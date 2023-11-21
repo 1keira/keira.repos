@@ -1,0 +1,215 @@
+/*********************************************************************************
+ * Copyright (c) 202x Cariad China. All rights reserved.
+ * FileName:	 PsdMap.h
+ * Author: 	     ZhaoZijia
+ * Version :	 Ver0.1
+ * Date:		 2023-11-03
+ * Description: create and update PsdMap, calculate latitude and logitude coordinates
+ *
+ *********************************************************************************/
+
+#ifndef _PSDMAP_H_
+#define _PSDMAP_H_
+
+/*-----------------------------------------------------------------------------
+ * INCLUDES
+ *---------------------------------------------------------------------------*/
+#include "PsdMessageDecoder.h"
+#include "Haversine.h"
+
+/*-----------------------------------------------------------------------------
+ * MACROS AND CONSTANTS: #define
+ *---------------------------------------------------------------------------*/
+ const double MaxRoadError = 7.0;
+ 
+/*-----------------------------------------------------------------------------
+ * ENUMS, TYPEDEFS, STRUCTS
+ *---------------------------------------------------------------------------*/
+//TreeNode
+typedef struct TreeNode{
+    tPsdMapData MapData;                                     //Each data filed of segment is tPsdMapData's type
+    struct TreeNode *ParentNode;                       //point the parent segment of HV
+    std::vector< struct TreeNode *> vChilds;   //point the child segment of HV
+}tTreeNode;
+
+/*-----------------------------------------------------------------------------
+ * FUNCTION PROTOTYPES: extern
+ *---------------------------------------------------------------------------*/
+
+/*-----------------------------------------------------------------------------
+ * GLOBAL VARIABLE DECLARATIONS
+ *---------------------------------------------------------------------------*/
+//pthread_t mapThread;
+/*-----------------------------------------------------------------------------
+ * CLASS DECLARATIONS
+ *---------------------------------------------------------------------------*/
+class PsdMap{
+public:
+    /**
+     * @brief Get the Instance object
+     * @return PsdMap* (PsdMap)
+     */
+    static PsdMap* getInstance();
+    
+    struct TreeNode *mTree;                                    /** <  Root node of segment, representing the root node of the tree*/
+
+    pthread_mutex_t mapThreadMutex;            /** <  Mutex for PsdMap thread*/
+
+    bool mMapMutexIsLocked;                               /** <  the status of Mutex whether is locked or not*/
+
+    tOffset disHv2EndBeforeRotatingCoord;    /** <  distance from the HV to the end point before the rotation coordinate system*/
+
+    tOffset disHv2StartBeforeRotatingCoord;  /** <  distance from the HV to the start point before the rotation coordinate system*/
+
+    /**
+     * @brief Find CurSegmentId whether in list or not
+     * @return struct PsdMapData* (the location of the list where HV is located, otherwise return NULL)
+     */
+    struct PsdMapData * curIdIsInList();
+
+    /**
+     * @brief Start triggering create map action
+     */
+    void mapCreate();
+
+    /**
+     * @brief Start triggering update map(the tree) action
+     */
+    void mapUpdate();
+
+   /**
+    * @brief  Start triggering clear map action
+    * @param Node (start clearing from mTree)
+    */
+    void mapClear(struct TreeNode *Node);
+
+    /**
+     * @brief Insert vPsdMap's data element in mTree
+     */
+    void insertNodeInTree();
+
+    /**
+     * @brief Insert recursively HV's parent, root, childs or child's childs  node
+     * @param Node (can represent any node)
+     */
+    void insertNode(struct TreeNode *Node);
+
+    /**
+     * @brief Create a Node object
+     * @return struct TreeNode* 
+     */
+    struct TreeNode *createNode();
+
+    /**
+     * @brief Start triggering update root(mTree) action
+     */
+    void updateRootNode();
+
+    /**
+     * @brief Delete subTree (update newParent, newCurrent, newChilds)
+     */
+    void updateChildNode();
+
+    /**
+     * @brief Clearing all nodes of mTree actually
+     * @param Node (can represent any node) 
+     */
+    void clearNodeOutTree(struct TreeNode *Node);
+
+    /**
+     * @brief Delete old root
+     * @return struct TreeNode* (returns new root if mTree is not NULL, otherwise returns NULL)
+     */
+    struct TreeNode *deleteOldRoot();
+
+    /**
+     * @brief Delete sub tree
+     * @param Node (can represent any node) 
+     */
+    void deleteSubTree(struct TreeNode *Node);
+
+    /**
+     * @brief Find in mTree by the known id 
+     * @param Node (can represent any node)
+     * @param KnownId 
+     * @return struct TreeNode* (returns the corresponding node in the mTree if found, otherwise returns NULL)
+     */
+    struct TreeNode *findNodeById(struct TreeNode *Node, uint8_t KnownId);
+
+    /**
+     * @brief Calculate coordinate distinguish between straight path and curved line
+     * @param Node (can represent any node)
+     * @return struct PsdMapData (data fields for each node)
+     */
+    struct PsdMapData calcCoordinate(struct TreeNode *Node);
+
+    /**
+     * @brief Calculate X Y offsset in curve case
+     * @param S (actual arc length, the length of a curve segment)
+     * @param A0 (clothoide parameter, starting value for each sampling point)
+     * @param A1 (clothoide parameter, sample the value of the next sampling point)
+     * @param deltaBranchAngleRad (branching angle relative to the previous position)
+     * @return tOffset (vertical offset x and horizontal offset y after rotating BranchAngle)
+     */
+    tOffset calcCurveXYOffset(double S, double A0, double A1, double deltaBranchAngleRad);
+
+    /**
+     * @brief Calculate X Y offsset in straight path case
+     * @param Length (actual length)
+     * @param accumulateBranchAngle (accumulate branch angle relative to the first position)
+     * @return tOffset (vertical offset x and horizontal offset y after rotating accumulateBranchAngle)
+     */
+    tOffset calcStraightXYOffset(double Length, double accumulateBranchAngle);
+
+    /**
+     * @brief Calculate horizontal and orthogonal distance
+     * @param Heading (from HV)
+     * @param distanceX (x-axis before rotation)
+     * @param distanceY (y-axis before rotation)
+     * @return tOffset (vertical offset x and horizontal offset y after rotation)
+     */
+    tOffset calcHeadingXY(double Heading, double distanceX, double distanceY);
+
+    /**
+     * @brief Get the Tree object
+     * @return struct TreeNode* 
+     */
+    struct TreeNode *getTree();
+
+    /**
+     * @brief Set the Tree object
+     * @param Node (set the Node to mTree)
+     */
+    void setTree(struct TreeNode *Node);
+    
+    /**
+     * @brief Get the Map Mutex Status object
+     * @return true (mapThreadMutex is locked)
+     * @return false (mapThreadMutex is unlocked)
+     */
+    bool getMapMutexStatus();
+
+    /**
+     * @brief Set the Map Mutex Status object (for gtest branch coverage)
+     * @param MutexStatus 
+     */
+    void setMapMutexStatus(bool MutexStatus);
+
+    //private:
+    static PsdMap* pInstance;   /**<A pointer used to return the object of  the class of PsdMap*/
+    
+    /**
+     * @brief Construct a new PsdMap object
+     */
+    PsdMap(/* args */);
+
+    /**
+     * @brief Destroy the PsdMap object
+     */
+    ~PsdMap();
+};
+
+void *PsdMapRun(void *arg);
+
+#endif /*_PSDMAP_H_*/
+
