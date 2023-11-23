@@ -32,12 +32,12 @@
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntryLo">30.9&nbsp;%</td>
-            <td class="headerCovTableEntry">489</td>
+            <td class="headerCovTableEntry">488</td>
             <td class="headerCovTableEntry">151</td>
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2023-11-21 14:58:49</td>
+            <td class="headerValue">2023-11-23 10:19:02</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryLo">50.0&nbsp;%</td>
@@ -49,9 +49,9 @@
             <td></td>
             <td></td>
             <td class="headerItem">Branches:</td>
-            <td class="headerCovTableEntryLo">35.8&nbsp;%</td>
-            <td class="headerCovTableEntry">134</td>
-            <td class="headerCovTableEntry">48</td>
+            <td class="headerCovTableEntryLo">35.4&nbsp;%</td>
+            <td class="headerCovTableEntry">130</td>
+            <td class="headerCovTableEntry">46</td>
           </tr>
                   <tr><td><img src="../../../../../glass.png" width=3 height=3 alt=""></td></tr>
                 </table>
@@ -660,362 +660,359 @@
 <span id="L588"><span class="lineNum">     588</span>                 :             :     }</span>
 <span id="L589"><span class="lineNum">     589</span>                 :             : }</span>
 <span id="L590"><span class="lineNum">     590</span>                 :             : </span>
-<span id="L591"><span class="lineNum">     591</span>                 :<span class="tlaGNC">           1 : void PsdMap::insertNode(struct TreeNode *Node)</span></span>
-<span id="L592"><span class="lineNum">     592</span>                 :             : {</span>
-<span id="L593"><span class="lineNum">     593</span>                 :             :     //need change &quot;Node-&gt;vChilds.size() &gt; 5&quot; to childSegment condition</span>
-<span id="L594"><span class="lineNum">     594</span>   [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span><span class="tlaUNC" title="Branch 2 was not taken"> - </span><span class="tlaGBC" title="Branch 3 was taken 1 time"> + </span> :<span class="tlaGNC">           1 :     if (Node-&gt;vChilds.size() &gt; 5 || count &gt;= PsdMessageDecoder::getInstance()-&gt;getVPsdMap().size())</span></span>
-<span class="lineNum">        </span>          <span class="tlaUNC" title="Branch 4 was not taken"> - </span><span class="tlaGBC" title="Branch 5 was taken 1 time"> + </span>]
-<span id="L595"><span class="lineNum">     595</span>                 :             :     {</span>
-<span id="L596"><span class="lineNum">     596</span>                 :<span class="tlaUNC tlaBgUNC">           0 :         printf(&quot;[%s] [%d]: childs &gt; 5 or count &gt;= size()\n&quot;, __FUNCTION__, __LINE__);</span></span>
-<span id="L597"><span class="lineNum">     597</span>                 :<span class="tlaUNC">           0 :         return ;</span></span>
-<span id="L598"><span class="lineNum">     598</span>                 :             :     }</span>
-<span id="L599"><span class="lineNum">     599</span>                 :             :     </span>
-<span id="L600"><span class="lineNum">     600</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]:<span class="tlaGNC tlaBgGNC">          65 :     for (auto it = PsdMessageDecoder::getInstance()-&gt;getVPsdMap().begin(); it != PsdMessageDecoder::getInstance()-&gt;getVPsdMap().end(); it++)</span></span>
-<span id="L601"><span class="lineNum">     601</span>                 :             :     {</span>
-<span id="L602"><span class="lineNum">     602</span>                 :<span class="tlaGNC">          64 :         printf(&quot;[%s] [%d]: (*it)-&gt;preSegmentId = %u's segIsInTree = %d\n&quot;, __FUNCTION__,  __LINE__, (*it)-&gt;preSegmentId, (*it)-&gt;segIsInTree);</span></span>
-<span id="L603"><span class="lineNum">     603</span>                 :             :         /*HV's parent or root*/</span>
-<span id="L604"><span class="lineNum">     604</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]:<span class="tlaGNC">          64 :         if (Node-&gt;MapData.prevSegmentId == (*it)-&gt;preSegmentId)</span></span>
-<span id="L605"><span class="lineNum">     605</span>                 :             :         {</span>
-<span id="L606"><span class="lineNum">     606</span>         [<span class="tlaUNC" title="Branch 0 was not taken"> - </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]:<span class="tlaGNC">           1 :             if ((*it)-&gt;segIsInTree == false) </span></span>
-<span id="L607"><span class="lineNum">     607</span>                 :             :             {</span>
-<span id="L608"><span class="lineNum">     608</span>                 :             :                 /*HV's root*/</span>
-<span id="L609"><span class="lineNum">     609</span>         [<span class="tlaUNC" title="Branch 0 was not executed"> # </span><span class="tlaUNC" title="Branch 1 was not executed"> # </span>]:<span class="tlaUNC tlaBgUNC">           0 :                 if ((*it)-&gt;preSegmentId == (*it)-&gt;prevSegmentId)</span></span>
-<span id="L610"><span class="lineNum">     610</span>                 :             :                 {</span>
-<span id="L611"><span class="lineNum">     611</span>                 :<span class="tlaUNC">           0 :                     struct TreeNode *rootNode = createNode();</span></span>
-<span id="L612"><span class="lineNum">     612</span>                 :<span class="tlaUNC">           0 :                     printf(&quot;[%s] [%d]: rootNode = %p\n&quot;, __FUNCTION__, __LINE__, rootNode);</span></span>
-<span id="L613"><span class="lineNum">     613</span>                 :<span class="tlaUNC">           0 :                     (*it)-&gt;segIsInTree = true;</span></span>
-<span id="L614"><span class="lineNum">     614</span>                 :<span class="tlaUNC">           0 :                     (*it)-&gt;nodeAttribute = RootSegment;</span></span>
-<span id="L615"><span class="lineNum">     615</span>                 :<span class="tlaUNC">           0 :                     rootNode-&gt;MapData = *(*it);</span></span>
-<span id="L616"><span class="lineNum">     616</span>                 :<span class="tlaUNC">           0 :                     mTree = rootNode;   //mTree is updated as rootNode</span></span>
-<span id="L617"><span class="lineNum">     617</span>                 :<span class="tlaUNC">           0 :                     rootNode-&gt;ParentNode = NULL;</span></span>
-<span id="L618"><span class="lineNum">     618</span>                 :<span class="tlaUNC">           0 :                     rootNode-&gt;vChilds.push_back(Node);</span></span>
-<span id="L619"><span class="lineNum">     619</span>                 :<span class="tlaUNC">           0 :                     Node-&gt;ParentNode = rootNode; //Node is still parentNode</span></span>
-<span id="L620"><span class="lineNum">     620</span>                 :<span class="tlaUNC">           0 :                     rootNode-&gt;MapData.endCoordinate = Node-&gt;MapData.startCoordinate;</span></span>
-<span id="L621"><span class="lineNum">     621</span>                 :             :                     //the branch angle of the parent relative to the root, because it is calculated backwards from the segment where the HV is located.</span>
-<span id="L622"><span class="lineNum">     622</span>                 :<span class="tlaUNC">           0 :                     rootNode-&gt;MapData.branchAngle = Node-&gt;MapData.branchAngle;   </span></span>
-<span id="L623"><span class="lineNum">     623</span>                 :             :                     //accumulateBranchAngle relative to HV's segment, for PsdLocation module to calcRelativePosition.</span>
-<span id="L624"><span class="lineNum">     624</span>                 :<span class="tlaUNC">           0 :                     rootNode-&gt;MapData.accumulateBranchAngle = Node-&gt;MapData.accumulateBranchAngle + rootNode-&gt;MapData.branchAngle; </span></span>
-<span id="L625"><span class="lineNum">     625</span>                 :<span class="tlaUNC">           0 :                     count += 1;</span></span>
-<span id="L626"><span class="lineNum">     626</span>                 :<span class="tlaUNC">           0 :                     doInsert = true;</span></span>
-<span id="L627"><span class="lineNum">     627</span>                 :<span class="tlaUNC">           0 :                     rootNode-&gt;MapData = calcCoordinate(rootNode);</span></span>
-<span id="L628"><span class="lineNum">     628</span>                 :<span class="tlaUNC">           0 :                     *(*it) = rootNode-&gt;MapData;  </span></span>
-<span id="L629"><span class="lineNum">     629</span>         [<span class="tlaUNC" title="Branch 0 was not executed"> # </span><span class="tlaUNC" title="Branch 1 was not executed"> # </span>]:<span class="tlaUNC">           0 :                     if (rootNode-&gt;MapData.sp == 1)</span></span>
-<span id="L630"><span class="lineNum">     630</span>                 :             :                     {</span>
-<span id="L631"><span class="lineNum">     631</span>                 :<span class="tlaUNC">           0 :                         printf(&quot;[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, rootNode-&gt;MapData.preSegmentId, rootNode-&gt;MapData.startCoordinate.latitude, rootNode-&gt;MapData.startCoordinate.longitude);</span></span>
-<span id="L632"><span class="lineNum">     632</span>                 :<span class="tlaUNC">           0 :                         printf(&quot;[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, rootNode-&gt;MapData.preSegmentId, rootNode-&gt;MapData.endCoordinate.latitude, rootNode-&gt;MapData.endCoordinate.longitude);</span></span>
-<span id="L633"><span class="lineNum">     633</span>                 :             :                     }</span>
-<span id="L634"><span class="lineNum">     634</span>                 :             :                     else</span>
-<span id="L635"><span class="lineNum">     635</span>                 :             :                     {</span>
-<span id="L636"><span class="lineNum">     636</span>                 :<span class="tlaUNC">           0 :                         printf(&quot;[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, rootNode-&gt;MapData.preSegmentId, rootNode-&gt;MapData.startCoordinate.latitude, rootNode-&gt;MapData.startCoordinate.longitude);</span></span>
-<span id="L637"><span class="lineNum">     637</span>         [<span class="tlaUNC" title="Branch 0 was not executed"> # </span><span class="tlaUNC" title="Branch 1 was not executed"> # </span>]:<span class="tlaUNC">           0 :                         for (auto it = rootNode-&gt;MapData.vSampleCoord.begin(); it != rootNode-&gt;MapData.vSampleCoord.end(); it++)</span></span>
-<span id="L638"><span class="lineNum">     638</span>                 :             :                         {</span>
-<span id="L639"><span class="lineNum">     639</span>                 :<span class="tlaUNC">           0 :                             printf(&quot;[%s] [%d]: %u's SampleCoord: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, rootNode-&gt;MapData.preSegmentId, it-&gt;latitude, it-&gt;longitude);</span></span>
-<span id="L640"><span class="lineNum">     640</span>                 :             :                         }</span>
-<span id="L641"><span class="lineNum">     641</span>                 :<span class="tlaUNC">           0 :                         printf(&quot;[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, rootNode-&gt;MapData.preSegmentId, rootNode-&gt;MapData.endCoordinate.latitude, rootNode-&gt;MapData.endCoordinate.longitude);</span></span>
-<span id="L642"><span class="lineNum">     642</span>                 :             :                     }</span>
-<span id="L643"><span class="lineNum">     643</span>                 :             :                 }</span>
-<span id="L644"><span class="lineNum">     644</span>                 :             :                 else</span>
-<span id="L645"><span class="lineNum">     645</span>                 :             :                 {</span>
-<span id="L646"><span class="lineNum">     646</span>                 :             :                     /*HV's parent*/</span>
-<span id="L647"><span class="lineNum">     647</span>                 :<span class="tlaUNC">           0 :                     struct TreeNode *parentNode = createNode();</span></span>
-<span id="L648"><span class="lineNum">     648</span>                 :<span class="tlaUNC">           0 :                     printf(&quot;[%s] [%d]: parentNode = %p\n&quot;, __FUNCTION__, __LINE__, parentNode);</span></span>
-<span id="L649"><span class="lineNum">     649</span>                 :<span class="tlaUNC">           0 :                     (*it)-&gt;segIsInTree = true;</span></span>
-<span id="L650"><span class="lineNum">     650</span>                 :<span class="tlaUNC">           0 :                     (*it)-&gt;nodeAttribute = ParentSegment;</span></span>
-<span id="L651"><span class="lineNum">     651</span>                 :<span class="tlaUNC">           0 :                     parentNode-&gt;MapData = *(*it);</span></span>
-<span id="L652"><span class="lineNum">     652</span>                 :<span class="tlaUNC">           0 :                     mTree = parentNode;  //mTree is updated as parentNode</span></span>
-<span id="L653"><span class="lineNum">     653</span>                 :<span class="tlaUNC">           0 :                     parentNode-&gt;ParentNode = NULL;</span></span>
-<span id="L654"><span class="lineNum">     654</span>                 :<span class="tlaUNC">           0 :                     parentNode-&gt;vChilds.push_back(Node);</span></span>
-<span id="L655"><span class="lineNum">     655</span>                 :<span class="tlaUNC">           0 :                     Node-&gt;ParentNode = parentNode;</span></span>
-<span id="L656"><span class="lineNum">     656</span>                 :<span class="tlaUNC">           0 :                     parentNode-&gt;MapData.endCoordinate = Node-&gt;MapData.startCoordinate;</span></span>
-<span id="L657"><span class="lineNum">     657</span>                 :             :                     //the branch angle of the parent relative to the current, because it is calculated backwards from the segment where the HV is located.</span>
-<span id="L658"><span class="lineNum">     658</span>                 :<span class="tlaUNC">           0 :                     double parentRelativeCurrentAngle = Node-&gt;MapData.branchAngle;   //parentNode-&gt;MapData.branchAngle is still itself branchAngle(relative to root)</span></span>
-<span id="L659"><span class="lineNum">     659</span>                 :             :                     //accumulateBranchAngle relative to HV's segment, for PsdLocation module to calcRelativePosition.</span>
-<span id="L660"><span class="lineNum">     660</span>                 :<span class="tlaUNC">           0 :                     parentNode-&gt;MapData.accumulateBranchAngle = Node-&gt;MapData.accumulateBranchAngle + parentRelativeCurrentAngle; </span></span>
-<span id="L661"><span class="lineNum">     661</span>                 :<span class="tlaUNC">           0 :                     count += 1;</span></span>
-<span id="L662"><span class="lineNum">     662</span>                 :<span class="tlaUNC">           0 :                     doInsert = true;</span></span>
-<span id="L663"><span class="lineNum">     663</span>                 :<span class="tlaUNC">           0 :                     parentNode-&gt;MapData = calcCoordinate(parentNode);</span></span>
-<span id="L664"><span class="lineNum">     664</span>                 :<span class="tlaUNC">           0 :                     *(*it) = parentNode-&gt;MapData;  </span></span>
-<span id="L665"><span class="lineNum">     665</span>                 :<span class="tlaUNC">           0 :                     (*it)-&gt;branchAngle = parentRelativeCurrentAngle;  //save parentRelativeCurrentAngle as new parent's branchAngle to list, but parentNode-&gt;MapData.branchAngle is still itself branchAngle in mTree</span></span>
-<span id="L666"><span class="lineNum">     666</span>         [<span class="tlaUNC" title="Branch 0 was not executed"> # </span><span class="tlaUNC" title="Branch 1 was not executed"> # </span>]:<span class="tlaUNC">           0 :                     if (parentNode-&gt;MapData.sp == 1)</span></span>
-<span id="L667"><span class="lineNum">     667</span>                 :             :                     {</span>
-<span id="L668"><span class="lineNum">     668</span>                 :<span class="tlaUNC">           0 :                         printf(&quot;[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, parentNode-&gt;MapData.preSegmentId, parentNode-&gt;MapData.startCoordinate.latitude, parentNode-&gt;MapData.startCoordinate.longitude);</span></span>
-<span id="L669"><span class="lineNum">     669</span>                 :<span class="tlaUNC">           0 :                         printf(&quot;[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, parentNode-&gt;MapData.preSegmentId, parentNode-&gt;MapData.endCoordinate.latitude, parentNode-&gt;MapData.endCoordinate.longitude);</span></span>
-<span id="L670"><span class="lineNum">     670</span>                 :             :                     }</span>
-<span id="L671"><span class="lineNum">     671</span>                 :             :                     else</span>
-<span id="L672"><span class="lineNum">     672</span>                 :             :                     {</span>
-<span id="L673"><span class="lineNum">     673</span>                 :<span class="tlaUNC">           0 :                         printf(&quot;[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, parentNode-&gt;MapData.preSegmentId, parentNode-&gt;MapData.startCoordinate.latitude, parentNode-&gt;MapData.startCoordinate.longitude);</span></span>
-<span id="L674"><span class="lineNum">     674</span>         [<span class="tlaUNC" title="Branch 0 was not executed"> # </span><span class="tlaUNC" title="Branch 1 was not executed"> # </span>]:<span class="tlaUNC">           0 :                         for (auto it = parentNode-&gt;MapData.vSampleCoord.begin(); it != parentNode-&gt;MapData.vSampleCoord.end(); it++)</span></span>
-<span id="L675"><span class="lineNum">     675</span>                 :             :                         {</span>
-<span id="L676"><span class="lineNum">     676</span>                 :<span class="tlaUNC">           0 :                             printf(&quot;[%s] [%d]: %u's SampleCoord: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, parentNode-&gt;MapData.preSegmentId, it-&gt;latitude, it-&gt;longitude);</span></span>
-<span id="L677"><span class="lineNum">     677</span>                 :             :                         }</span>
-<span id="L678"><span class="lineNum">     678</span>                 :<span class="tlaUNC">           0 :                         printf(&quot;[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, parentNode-&gt;MapData.preSegmentId, parentNode-&gt;MapData.endCoordinate.latitude, parentNode-&gt;MapData.endCoordinate.longitude);</span></span>
-<span id="L679"><span class="lineNum">     679</span>                 :             :                     }</span>
-<span id="L680"><span class="lineNum">     680</span>                 :             :                 }</span>
-<span id="L681"><span class="lineNum">     681</span>                 :             :             }</span>
-<span id="L682"><span class="lineNum">     682</span>                 :             :             else</span>
-<span id="L683"><span class="lineNum">     683</span>                 :             :             {</span>
-<span id="L684"><span class="lineNum">     684</span>                 :             :                 //root or parent nodes are already in tree, for mapUpdate</span>
-<span id="L685"><span class="lineNum">     685</span>                 :<span class="tlaGNC tlaBgGNC">           1 :                 printf(&quot;[%s] [%d]: root or parent nodes are already in tree\n&quot;, __FUNCTION__,  __LINE__);</span></span>
-<span id="L686"><span class="lineNum">     686</span>                 :             :                 // count += 1;</span>
-<span id="L687"><span class="lineNum">     687</span>                 :             :             }</span>
-<span id="L688"><span class="lineNum">     688</span>                 :             :         }</span>
-<span id="L689"><span class="lineNum">     689</span>                 :             : </span>
-<span id="L690"><span class="lineNum">     690</span>                 :             :         /*finding the childs node from the current tree*/</span>
-<span id="L691"><span class="lineNum">     691</span>                 :<span class="tlaGNC">          64 :         struct TreeNode *tempNode = findNodeById(mTree, (*it)-&gt;prevSegmentId);</span></span>
-<span id="L692"><span class="lineNum">     692</span>                 :<span class="tlaGNC">          64 :         printf(&quot;[%s] [%d]: tempNode is = %p, preSegmentId = %u, prevSegmentId = %u, segIsInTree = %d\n&quot;, __FUNCTION__, __LINE__, tempNode, (*it)-&gt;preSegmentId, (*it)-&gt;prevSegmentId, (*it)-&gt;segIsInTree);</span></span>
-<span id="L693"><span class="lineNum">     693</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span>]:<span class="tlaGNC">          64 :         if (NULL != tempNode)</span></span>
-<span id="L694"><span class="lineNum">     694</span>                 :             :         {</span>
-<span id="L695"><span class="lineNum">     695</span>                 :             :             /*HV's childs*/</span>
-<span id="L696"><span class="lineNum">     696</span>         [<span class="tlaUNC" title="Branch 0 was not taken"> - </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]:<span class="tlaGNC">          64 :             if (count &gt;= PsdMessageDecoder::getInstance()-&gt;getVPsdMap().size())</span></span>
-<span id="L697"><span class="lineNum">     697</span>                 :             :             {</span>
-<span id="L698"><span class="lineNum">     698</span>                 :<span class="tlaUNC tlaBgUNC">           0 :                 return ;</span></span>
-<span id="L699"><span class="lineNum">     699</span>                 :             :             }</span>
-<span id="L700"><span class="lineNum">     700</span>                 :             :             /*insert childs*/</span>
-<span id="L701"><span class="lineNum">     701</span>   [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 2 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 3 was not taken"> - </span> :<span class="tlaGNC tlaBgGNC">          64 :             if (((*it)-&gt;segIsInTree == false) &amp;&amp; (tempNode-&gt;MapData.preSegmentId == (*it)-&gt;prevSegmentId))</span></span>
+<span id="L591"><span class="lineNum">     591</span>                 :<span class="tlaGNC">          64 : void PsdMap::insertNode(struct TreeNode *Node, std::vector&lt;struct PsdMapData *&gt;::iterator it)</span></span>
+<span id="L592"><span class="lineNum">     592</span>                 :             : {    </span>
+<span id="L593"><span class="lineNum">     593</span>                 :<span class="tlaGNC">          64 :     printf(&quot;[%s] [%d]: (*it)-&gt;preSegmentId = %u's segIsInTree = %d\n&quot;, __FUNCTION__,  __LINE__, (*it)-&gt;preSegmentId, (*it)-&gt;segIsInTree);</span></span>
+<span id="L594"><span class="lineNum">     594</span>                 :             :     /*HV's parent or root*/</span>
+<span id="L595"><span class="lineNum">     595</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]:<span class="tlaGNC">          64 :     if (Node-&gt;MapData.prevSegmentId == (*it)-&gt;preSegmentId)</span></span>
+<span id="L596"><span class="lineNum">     596</span>                 :             :     {</span>
+<span id="L597"><span class="lineNum">     597</span>         [<span class="tlaUNC" title="Branch 0 was not taken"> - </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]:<span class="tlaGNC">           1 :         if ((*it)-&gt;segIsInTree == false) </span></span>
+<span id="L598"><span class="lineNum">     598</span>                 :             :         {</span>
+<span id="L599"><span class="lineNum">     599</span>                 :             :             /*HV's root*/</span>
+<span id="L600"><span class="lineNum">     600</span>         [<span class="tlaUNC" title="Branch 0 was not executed"> # </span><span class="tlaUNC" title="Branch 1 was not executed"> # </span>]:<span class="tlaUNC tlaBgUNC">           0 :             if ((*it)-&gt;preSegmentId == (*it)-&gt;prevSegmentId)</span></span>
+<span id="L601"><span class="lineNum">     601</span>                 :             :             {</span>
+<span id="L602"><span class="lineNum">     602</span>                 :<span class="tlaUNC">           0 :                 struct TreeNode *rootNode = createNode();</span></span>
+<span id="L603"><span class="lineNum">     603</span>                 :<span class="tlaUNC">           0 :                 printf(&quot;[%s] [%d]: rootNode = %p\n&quot;, __FUNCTION__, __LINE__, rootNode);</span></span>
+<span id="L604"><span class="lineNum">     604</span>                 :<span class="tlaUNC">           0 :                 (*it)-&gt;segIsInTree = true;</span></span>
+<span id="L605"><span class="lineNum">     605</span>                 :<span class="tlaUNC">           0 :                 (*it)-&gt;nodeAttribute = RootSegment;</span></span>
+<span id="L606"><span class="lineNum">     606</span>                 :<span class="tlaUNC">           0 :                 rootNode-&gt;MapData = *(*it);</span></span>
+<span id="L607"><span class="lineNum">     607</span>                 :<span class="tlaUNC">           0 :                 mTree = rootNode;   //mTree is updated as rootNode</span></span>
+<span id="L608"><span class="lineNum">     608</span>                 :<span class="tlaUNC">           0 :                 rootNode-&gt;ParentNode = NULL;</span></span>
+<span id="L609"><span class="lineNum">     609</span>                 :<span class="tlaUNC">           0 :                 rootNode-&gt;vChilds.push_back(Node);</span></span>
+<span id="L610"><span class="lineNum">     610</span>                 :<span class="tlaUNC">           0 :                 Node-&gt;ParentNode = rootNode; //Node is still parentNode</span></span>
+<span id="L611"><span class="lineNum">     611</span>                 :<span class="tlaUNC">           0 :                 rootNode-&gt;MapData.endCoordinate = Node-&gt;MapData.startCoordinate;</span></span>
+<span id="L612"><span class="lineNum">     612</span>                 :             :                 //the branch angle of the parent relative to the root, because it is calculated backwards from the segment where the HV is located.</span>
+<span id="L613"><span class="lineNum">     613</span>                 :<span class="tlaUNC">           0 :                 rootNode-&gt;MapData.branchAngle = Node-&gt;MapData.branchAngle;   </span></span>
+<span id="L614"><span class="lineNum">     614</span>                 :             :                 //accumulateBranchAngle relative to HV's segment, for PsdLocation module to calcRelativePosition.</span>
+<span id="L615"><span class="lineNum">     615</span>                 :<span class="tlaUNC">           0 :                 rootNode-&gt;MapData.accumulateBranchAngle = Node-&gt;MapData.accumulateBranchAngle + rootNode-&gt;MapData.branchAngle; </span></span>
+<span id="L616"><span class="lineNum">     616</span>                 :<span class="tlaUNC">           0 :                 count += 1;</span></span>
+<span id="L617"><span class="lineNum">     617</span>                 :<span class="tlaUNC">           0 :                 doInsert = true;</span></span>
+<span id="L618"><span class="lineNum">     618</span>                 :<span class="tlaUNC">           0 :                 rootNode-&gt;MapData = calcCoordinate(rootNode);</span></span>
+<span id="L619"><span class="lineNum">     619</span>                 :<span class="tlaUNC">           0 :                 *(*it) = rootNode-&gt;MapData;  </span></span>
+<span id="L620"><span class="lineNum">     620</span>         [<span class="tlaUNC" title="Branch 0 was not executed"> # </span><span class="tlaUNC" title="Branch 1 was not executed"> # </span>]:<span class="tlaUNC">           0 :                 if (rootNode-&gt;MapData.sp == 1)</span></span>
+<span id="L621"><span class="lineNum">     621</span>                 :             :                 {</span>
+<span id="L622"><span class="lineNum">     622</span>                 :<span class="tlaUNC">           0 :                     printf(&quot;[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, rootNode-&gt;MapData.preSegmentId, rootNode-&gt;MapData.startCoordinate.latitude, rootNode-&gt;MapData.startCoordinate.longitude);</span></span>
+<span id="L623"><span class="lineNum">     623</span>                 :<span class="tlaUNC">           0 :                     printf(&quot;[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, rootNode-&gt;MapData.preSegmentId, rootNode-&gt;MapData.endCoordinate.latitude, rootNode-&gt;MapData.endCoordinate.longitude);</span></span>
+<span id="L624"><span class="lineNum">     624</span>                 :             :                 }</span>
+<span id="L625"><span class="lineNum">     625</span>                 :             :                 else</span>
+<span id="L626"><span class="lineNum">     626</span>                 :             :                 {</span>
+<span id="L627"><span class="lineNum">     627</span>                 :<span class="tlaUNC">           0 :                     printf(&quot;[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, rootNode-&gt;MapData.preSegmentId, rootNode-&gt;MapData.startCoordinate.latitude, rootNode-&gt;MapData.startCoordinate.longitude);</span></span>
+<span id="L628"><span class="lineNum">     628</span>         [<span class="tlaUNC" title="Branch 0 was not executed"> # </span><span class="tlaUNC" title="Branch 1 was not executed"> # </span>]:<span class="tlaUNC">           0 :                     for (auto it = rootNode-&gt;MapData.vSampleCoord.begin(); it != rootNode-&gt;MapData.vSampleCoord.end(); it++)</span></span>
+<span id="L629"><span class="lineNum">     629</span>                 :             :                     {</span>
+<span id="L630"><span class="lineNum">     630</span>                 :<span class="tlaUNC">           0 :                         printf(&quot;[%s] [%d]: %u's SampleCoord: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, rootNode-&gt;MapData.preSegmentId, it-&gt;latitude, it-&gt;longitude);</span></span>
+<span id="L631"><span class="lineNum">     631</span>                 :             :                     }</span>
+<span id="L632"><span class="lineNum">     632</span>                 :<span class="tlaUNC">           0 :                     printf(&quot;[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, rootNode-&gt;MapData.preSegmentId, rootNode-&gt;MapData.endCoordinate.latitude, rootNode-&gt;MapData.endCoordinate.longitude);</span></span>
+<span id="L633"><span class="lineNum">     633</span>                 :             :                 }</span>
+<span id="L634"><span class="lineNum">     634</span>                 :             :             }</span>
+<span id="L635"><span class="lineNum">     635</span>                 :             :             else</span>
+<span id="L636"><span class="lineNum">     636</span>                 :             :             {</span>
+<span id="L637"><span class="lineNum">     637</span>                 :             :                 /*HV's parent*/</span>
+<span id="L638"><span class="lineNum">     638</span>                 :<span class="tlaUNC">           0 :                 struct TreeNode *parentNode = createNode();</span></span>
+<span id="L639"><span class="lineNum">     639</span>                 :<span class="tlaUNC">           0 :                 printf(&quot;[%s] [%d]: parentNode = %p\n&quot;, __FUNCTION__, __LINE__, parentNode);</span></span>
+<span id="L640"><span class="lineNum">     640</span>                 :<span class="tlaUNC">           0 :                 (*it)-&gt;segIsInTree = true;</span></span>
+<span id="L641"><span class="lineNum">     641</span>                 :<span class="tlaUNC">           0 :                 (*it)-&gt;nodeAttribute = ParentSegment;</span></span>
+<span id="L642"><span class="lineNum">     642</span>                 :<span class="tlaUNC">           0 :                 parentNode-&gt;MapData = *(*it);</span></span>
+<span id="L643"><span class="lineNum">     643</span>                 :<span class="tlaUNC">           0 :                 mTree = parentNode;  //mTree is updated as parentNode</span></span>
+<span id="L644"><span class="lineNum">     644</span>                 :<span class="tlaUNC">           0 :                 parentNode-&gt;ParentNode = NULL;</span></span>
+<span id="L645"><span class="lineNum">     645</span>                 :<span class="tlaUNC">           0 :                 parentNode-&gt;vChilds.push_back(Node);</span></span>
+<span id="L646"><span class="lineNum">     646</span>                 :<span class="tlaUNC">           0 :                 Node-&gt;ParentNode = parentNode;</span></span>
+<span id="L647"><span class="lineNum">     647</span>                 :<span class="tlaUNC">           0 :                 parentNode-&gt;MapData.endCoordinate = Node-&gt;MapData.startCoordinate;</span></span>
+<span id="L648"><span class="lineNum">     648</span>                 :             :                 //the branch angle of the parent relative to the current, because it is calculated backwards from the segment where the HV is located.</span>
+<span id="L649"><span class="lineNum">     649</span>                 :<span class="tlaUNC">           0 :                 double parentRelativeCurrentAngle = Node-&gt;MapData.branchAngle;   //parentNode-&gt;MapData.branchAngle is still itself branchAngle(relative to root)</span></span>
+<span id="L650"><span class="lineNum">     650</span>                 :             :                 //accumulateBranchAngle relative to HV's segment, for PsdLocation module to calcRelativePosition.</span>
+<span id="L651"><span class="lineNum">     651</span>                 :<span class="tlaUNC">           0 :                 parentNode-&gt;MapData.accumulateBranchAngle = Node-&gt;MapData.accumulateBranchAngle + parentRelativeCurrentAngle; </span></span>
+<span id="L652"><span class="lineNum">     652</span>                 :<span class="tlaUNC">           0 :                 count += 1;</span></span>
+<span id="L653"><span class="lineNum">     653</span>                 :<span class="tlaUNC">           0 :                 doInsert = true;</span></span>
+<span id="L654"><span class="lineNum">     654</span>                 :<span class="tlaUNC">           0 :                 parentNode-&gt;MapData = calcCoordinate(parentNode);</span></span>
+<span id="L655"><span class="lineNum">     655</span>                 :<span class="tlaUNC">           0 :                 *(*it) = parentNode-&gt;MapData;  </span></span>
+<span id="L656"><span class="lineNum">     656</span>                 :<span class="tlaUNC">           0 :                 (*it)-&gt;branchAngle = parentRelativeCurrentAngle;  //save parentRelativeCurrentAngle as new parent's branchAngle to list, but parentNode-&gt;MapData.branchAngle is still itself branchAngle in mTree</span></span>
+<span id="L657"><span class="lineNum">     657</span>         [<span class="tlaUNC" title="Branch 0 was not executed"> # </span><span class="tlaUNC" title="Branch 1 was not executed"> # </span>]:<span class="tlaUNC">           0 :                 if (parentNode-&gt;MapData.sp == 1)</span></span>
+<span id="L658"><span class="lineNum">     658</span>                 :             :                 {</span>
+<span id="L659"><span class="lineNum">     659</span>                 :<span class="tlaUNC">           0 :                     printf(&quot;[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, parentNode-&gt;MapData.preSegmentId, parentNode-&gt;MapData.startCoordinate.latitude, parentNode-&gt;MapData.startCoordinate.longitude);</span></span>
+<span id="L660"><span class="lineNum">     660</span>                 :<span class="tlaUNC">           0 :                     printf(&quot;[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, parentNode-&gt;MapData.preSegmentId, parentNode-&gt;MapData.endCoordinate.latitude, parentNode-&gt;MapData.endCoordinate.longitude);</span></span>
+<span id="L661"><span class="lineNum">     661</span>                 :             :                 }</span>
+<span id="L662"><span class="lineNum">     662</span>                 :             :                 else</span>
+<span id="L663"><span class="lineNum">     663</span>                 :             :                 {</span>
+<span id="L664"><span class="lineNum">     664</span>                 :<span class="tlaUNC">           0 :                     printf(&quot;[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, parentNode-&gt;MapData.preSegmentId, parentNode-&gt;MapData.startCoordinate.latitude, parentNode-&gt;MapData.startCoordinate.longitude);</span></span>
+<span id="L665"><span class="lineNum">     665</span>         [<span class="tlaUNC" title="Branch 0 was not executed"> # </span><span class="tlaUNC" title="Branch 1 was not executed"> # </span>]:<span class="tlaUNC">           0 :                     for (auto it = parentNode-&gt;MapData.vSampleCoord.begin(); it != parentNode-&gt;MapData.vSampleCoord.end(); it++)</span></span>
+<span id="L666"><span class="lineNum">     666</span>                 :             :                     {</span>
+<span id="L667"><span class="lineNum">     667</span>                 :<span class="tlaUNC">           0 :                         printf(&quot;[%s] [%d]: %u's SampleCoord: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, parentNode-&gt;MapData.preSegmentId, it-&gt;latitude, it-&gt;longitude);</span></span>
+<span id="L668"><span class="lineNum">     668</span>                 :             :                     }</span>
+<span id="L669"><span class="lineNum">     669</span>                 :<span class="tlaUNC">           0 :                     printf(&quot;[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, parentNode-&gt;MapData.preSegmentId, parentNode-&gt;MapData.endCoordinate.latitude, parentNode-&gt;MapData.endCoordinate.longitude);</span></span>
+<span id="L670"><span class="lineNum">     670</span>                 :             :                 }</span>
+<span id="L671"><span class="lineNum">     671</span>                 :             :             }</span>
+<span id="L672"><span class="lineNum">     672</span>                 :             :         }</span>
+<span id="L673"><span class="lineNum">     673</span>                 :             :         else</span>
+<span id="L674"><span class="lineNum">     674</span>                 :             :         {</span>
+<span id="L675"><span class="lineNum">     675</span>                 :             :             //root or parent nodes are already in tree, for mapUpdate</span>
+<span id="L676"><span class="lineNum">     676</span>                 :<span class="tlaGNC tlaBgGNC">           1 :             printf(&quot;[%s] [%d]: root or parent nodes are already in tree\n&quot;, __FUNCTION__,  __LINE__);</span></span>
+<span id="L677"><span class="lineNum">     677</span>                 :             :             // count += 1;</span>
+<span id="L678"><span class="lineNum">     678</span>                 :             :         }</span>
+<span id="L679"><span class="lineNum">     679</span>                 :             :     }</span>
+<span id="L680"><span class="lineNum">     680</span>                 :             :     /*finding the childs node from the current tree*/</span>
+<span id="L681"><span class="lineNum">     681</span>                 :<span class="tlaGNC">          64 :     struct TreeNode *tempNode = findNodeById(mTree, (*it)-&gt;prevSegmentId);</span></span>
+<span id="L682"><span class="lineNum">     682</span>                 :<span class="tlaGNC">          64 :     printf(&quot;[%s] [%d]: tempNode is = %p, preSegmentId = %u, prevSegmentId = %u, segIsInTree = %d\n&quot;, __FUNCTION__, __LINE__, tempNode, (*it)-&gt;preSegmentId, (*it)-&gt;prevSegmentId, (*it)-&gt;segIsInTree);</span></span>
+<span id="L683"><span class="lineNum">     683</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span>]:<span class="tlaGNC">          64 :     if (NULL != tempNode)</span></span>
+<span id="L684"><span class="lineNum">     684</span>                 :             :     {</span>
+<span id="L685"><span class="lineNum">     685</span>                 :             :         /*HV's childs*/</span>
+<span id="L686"><span class="lineNum">     686</span>         [<span class="tlaUNC" title="Branch 0 was not taken"> - </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]:<span class="tlaGNC">          64 :         if (count &gt;= PsdMessageDecoder::getInstance()-&gt;getVPsdMap().size())</span></span>
+<span id="L687"><span class="lineNum">     687</span>                 :             :         {</span>
+<span id="L688"><span class="lineNum">     688</span>                 :<span class="tlaUNC tlaBgUNC">           0 :             return ;</span></span>
+<span id="L689"><span class="lineNum">     689</span>                 :             :         }</span>
+<span id="L690"><span class="lineNum">     690</span>                 :             :         /*insert childs*/</span>
+<span id="L691"><span class="lineNum">     691</span>   [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 2 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 3 was not taken"> - </span> :<span class="tlaGNC tlaBgGNC">          64 :         if (((*it)-&gt;segIsInTree == false) &amp;&amp; (tempNode-&gt;MapData.preSegmentId == (*it)-&gt;prevSegmentId))</span></span>
 <span class="lineNum">        </span>          <span class="tlaGBC" title="Branch 4 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 5 was taken 1 time"> + </span>]
-<span id="L702"><span class="lineNum">     702</span>                 :             :             {</span>
-<span id="L703"><span class="lineNum">     703</span>                 :<span class="tlaGNC">          63 :                 struct TreeNode *childNode = createNode();</span></span>
-<span id="L704"><span class="lineNum">     704</span>                 :<span class="tlaGNC">          63 :                 printf(&quot;[%s] [%d]: childNode = %p\n&quot;, __FUNCTION__, __LINE__, childNode);</span></span>
-<span id="L705"><span class="lineNum">     705</span>                 :<span class="tlaGNC">          63 :                 (*it)-&gt;segIsInTree = true;</span></span>
-<span id="L706"><span class="lineNum">     706</span>                 :<span class="tlaGNC">          63 :                 (*it)-&gt;nodeAttribute = ChildSegment;</span></span>
-<span id="L707"><span class="lineNum">     707</span>                 :<span class="tlaGNC">          63 :                 childNode-&gt;MapData = *(*it);</span></span>
-<span id="L708"><span class="lineNum">     708</span>                 :<span class="tlaGNC">          63 :                 childNode-&gt;ParentNode = tempNode;</span></span>
-<span id="L709"><span class="lineNum">     709</span>                 :<span class="tlaGNC">          63 :                 childNode-&gt;vChilds.clear();</span></span>
-<span id="L710"><span class="lineNum">     710</span>                 :<span class="tlaGNC">          63 :                 tempNode-&gt;vChilds.push_back(childNode);</span></span>
-<span id="L711"><span class="lineNum">     711</span>                 :             :                 //the end coordinates of the previous segment are equal to the start coordinates of this segment</span>
-<span id="L712"><span class="lineNum">     712</span>                 :<span class="tlaGNC">          63 :                 childNode-&gt;MapData.startCoordinate = tempNode-&gt;MapData.endCoordinate;  </span></span>
-<span id="L713"><span class="lineNum">     713</span>                 :             :                 //the cumulative branch angle of this segment is equal to the cumulative branch angle of the previous segment add the branch angle relative to the previous segment</span>
-<span id="L714"><span class="lineNum">     714</span>                 :<span class="tlaGNC">          63 :                 childNode-&gt;MapData.accumulateBranchAngle = tempNode-&gt;MapData.accumulateBranchAngle + childNode-&gt;MapData.branchAngle; </span></span>
-<span id="L715"><span class="lineNum">     715</span>                 :<span class="tlaGNC">          63 :                 count += 1;</span></span>
-<span id="L716"><span class="lineNum">     716</span>                 :<span class="tlaGNC">          63 :                 doInsert = true;</span></span>
-<span id="L717"><span class="lineNum">     717</span>                 :<span class="tlaGNC">          63 :                 childNode-&gt;MapData = calcCoordinate(childNode);</span></span>
-<span id="L718"><span class="lineNum">     718</span>                 :<span class="tlaGNC">          63 :                 *(*it) = childNode-&gt;MapData; </span></span>
-<span id="L719"><span class="lineNum">     719</span>                 :<span class="tlaGNC">          63 :                 printf(&quot;[%s] [%d]: childNode's preSegmentId = %u\n&quot;, __FUNCTION__, __LINE__, childNode-&gt;MapData.preSegmentId);</span></span>
-<span id="L720"><span class="lineNum">     720</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span>]:<span class="tlaGNC">          63 :                 if (childNode-&gt;MapData.sp == 1)</span></span>
-<span id="L721"><span class="lineNum">     721</span>                 :             :                 {</span>
-<span id="L722"><span class="lineNum">     722</span>                 :<span class="tlaGNC">          63 :                     printf(&quot;[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, childNode-&gt;MapData.preSegmentId, childNode-&gt;MapData.startCoordinate.latitude, childNode-&gt;MapData.startCoordinate.longitude);</span></span>
-<span id="L723"><span class="lineNum">     723</span>                 :<span class="tlaGNC">          63 :                     printf(&quot;[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, childNode-&gt;MapData.preSegmentId, childNode-&gt;MapData.endCoordinate.latitude, childNode-&gt;MapData.endCoordinate.longitude);</span></span>
-<span id="L724"><span class="lineNum">     724</span>                 :             :                 }</span>
-<span id="L725"><span class="lineNum">     725</span>                 :             :                 else</span>
-<span id="L726"><span class="lineNum">     726</span>                 :             :                 {</span>
-<span id="L727"><span class="lineNum">     727</span>                 :<span class="tlaUNC tlaBgUNC">           0 :                     printf(&quot;[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, childNode-&gt;MapData.preSegmentId, childNode-&gt;MapData.startCoordinate.latitude, childNode-&gt;MapData.startCoordinate.longitude);</span></span>
-<span id="L728"><span class="lineNum">     728</span>         [<span class="tlaUNC" title="Branch 0 was not executed"> # </span><span class="tlaUNC" title="Branch 1 was not executed"> # </span>]:<span class="tlaUNC">           0 :                     for (auto it = childNode-&gt;MapData.vSampleCoord.begin(); it != childNode-&gt;MapData.vSampleCoord.end(); it++)</span></span>
-<span id="L729"><span class="lineNum">     729</span>                 :             :                     {</span>
-<span id="L730"><span class="lineNum">     730</span>                 :<span class="tlaUNC">           0 :                         printf(&quot;[%s] [%d]: %u's SampleCoord: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, childNode-&gt;MapData.preSegmentId, it-&gt;latitude, it-&gt;longitude);</span></span>
-<span id="L731"><span class="lineNum">     731</span>                 :             :                     }</span>
-<span id="L732"><span class="lineNum">     732</span>                 :<span class="tlaUNC">           0 :                     printf(&quot;[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, childNode-&gt;MapData.preSegmentId, childNode-&gt;MapData.endCoordinate.latitude, childNode-&gt;MapData.endCoordinate.longitude);</span></span>
-<span id="L733"><span class="lineNum">     733</span>                 :             :                 }</span>
-<span id="L734"><span class="lineNum">     734</span>                 :             :             }</span>
-<span id="L735"><span class="lineNum">     735</span>                 :             :             else</span>
-<span id="L736"><span class="lineNum">     736</span>                 :             :             {</span>
-<span id="L737"><span class="lineNum">     737</span>                 :             :                 //some nodes are already in tree, for mapUpdate</span>
-<span id="L738"><span class="lineNum">     738</span>                 :<span class="tlaGNC tlaBgGNC">           1 :                 printf(&quot;[%s] [%d]: some nodes are already in tree\n&quot;, __FUNCTION__, __LINE__);</span></span>
-<span id="L739"><span class="lineNum">     739</span>                 :             :                 // count += 1;</span>
-<span id="L740"><span class="lineNum">     740</span>                 :<span class="tlaGNC">           1 :                 printf(&quot;[%s] [%d]: count = %u\n&quot;, __FUNCTION__,  __LINE__, count);</span></span>
-<span id="L741"><span class="lineNum">     741</span>                 :             :             }</span>
-<span id="L742"><span class="lineNum">     742</span>                 :             :         }</span>
-<span id="L743"><span class="lineNum">     743</span>                 :             :         else </span>
-<span id="L744"><span class="lineNum">     744</span>                 :             :         {</span>
-<span id="L745"><span class="lineNum">     745</span>                 :<span class="tlaUNC tlaBgUNC">           0 :             doInsert = false;</span></span>
-<span id="L746"><span class="lineNum">     746</span>                 :<span class="tlaUNC">           0 :             printf(&quot;[%s] [%d]: goto check the next segment info from vPsdMap\n&quot;, __FUNCTION__,  __LINE__);</span></span>
-<span id="L747"><span class="lineNum">     747</span>                 :             :         }</span>
-<span id="L748"><span class="lineNum">     748</span>                 :             :     }    </span>
-<span id="L749"><span class="lineNum">     749</span>                 :             : }</span>
-<span id="L750"><span class="lineNum">     750</span>                 :             : </span>
-<span id="L751"><span class="lineNum">     751</span>                 :<span class="tlaGNC tlaBgGNC">           1 : void PsdMap::insertNodeInTree()</span></span>
-<span id="L752"><span class="lineNum">     752</span>                 :             : {</span>
-<span id="L753"><span class="lineNum">     753</span>                 :<span class="tlaGNC">           1 :     struct TreeNode *curNode = createNode();</span></span>
-<span id="L754"><span class="lineNum">     754</span>                 :<span class="tlaGNC">           1 :     printf(&quot;[%s] [%d]: curNode = %p\n&quot;, __FUNCTION__, __LINE__, curNode);</span></span>
-<span id="L755"><span class="lineNum">     755</span>                 :             : </span>
-<span id="L756"><span class="lineNum">     756</span>                 :             :     //TODO1: using HV information to create the first Node in Tree</span>
-<span id="L757"><span class="lineNum">     757</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span>]:<span class="tlaGNC">           1 :     if (NULL != curNode)</span></span>
-<span id="L758"><span class="lineNum">     758</span>                 :             :     {</span>
-<span id="L759"><span class="lineNum">     759</span>                 :             :         //TODO2: find where curSegmentId is in vPsdMap and save HV's information to the curNode</span>
-<span id="L760"><span class="lineNum">     760</span>                 :<span class="tlaGNC">           1 :         pthread_mutex_lock(&amp;decoderThreadMutex);</span></span>
-<span id="L761"><span class="lineNum">     761</span>                 :<span class="tlaGNC">           1 :         struct PsdMapData *HvMapData = curIdIsInList();</span></span>
-<span id="L762"><span class="lineNum">     762</span>                 :<span class="tlaGNC">           1 :         pthread_mutex_unlock(&amp;decoderThreadMutex);</span></span>
-<span id="L763"><span class="lineNum">     763</span>                 :<span class="tlaGNC">           1 :         HvMapData-&gt;segIsInTree = true;</span></span>
-<span id="L764"><span class="lineNum">     764</span>                 :             :         //At the beginning, the segment where the HV was located was also the root segment</span>
-<span id="L765"><span class="lineNum">     765</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span>]:<span class="tlaGNC">           1 :         if (HvMapData-&gt;preSegmentId == HvMapData-&gt;prevSegmentId)</span></span>
-<span id="L766"><span class="lineNum">     766</span>                 :             :         {</span>
-<span id="L767"><span class="lineNum">     767</span>                 :<span class="tlaGNC">           1 :             HvMapData-&gt;nodeAttribute = RootAndCurSegment;</span></span>
-<span id="L768"><span class="lineNum">     768</span>                 :             :         }</span>
-<span id="L769"><span class="lineNum">     769</span>                 :             :         else</span>
-<span id="L770"><span class="lineNum">     770</span>                 :             :         {</span>
-<span id="L771"><span class="lineNum">     771</span>                 :<span class="tlaUNC tlaBgUNC">           0 :             HvMapData-&gt;nodeAttribute = CurSegment;    </span></span>
-<span id="L772"><span class="lineNum">     772</span>                 :             :         }</span>
-<span id="L773"><span class="lineNum">     773</span>                 :<span class="tlaGNC tlaBgGNC">           1 :         curNode-&gt;MapData = *HvMapData;</span></span>
-<span id="L774"><span class="lineNum">     774</span>                 :<span class="tlaGNC">           1 :         mTree = curNode;</span></span>
-<span id="L775"><span class="lineNum">     775</span>                 :<span class="tlaGNC">           1 :         curNode-&gt;ParentNode = NULL;</span></span>
-<span id="L776"><span class="lineNum">     776</span>                 :<span class="tlaGNC">           1 :         curNode-&gt;vChilds.clear();</span></span>
-<span id="L777"><span class="lineNum">     777</span>                 :<span class="tlaGNC">           1 :         curNode-&gt;MapData.accumulateBranchAngle = 0.0; //HV's segment, for PsdLocation module to calcRelativePosition.</span></span>
-<span id="L778"><span class="lineNum">     778</span>                 :<span class="tlaGNC">           1 :         count += 1;</span></span>
-<span id="L779"><span class="lineNum">     779</span>                 :<span class="tlaGNC">           1 :         doInsert = true;</span></span>
-<span id="L780"><span class="lineNum">     780</span>                 :<span class="tlaGNC">           1 :         printf(&quot;[%s] [%d]: count = %u\n&quot;, __FUNCTION__, __LINE__, count);</span></span>
-<span id="L781"><span class="lineNum">     781</span>                 :<span class="tlaGNC">           1 :         printf(&quot;[%s] [%d]: current tree is = %p, current tree Id is = %u, curSegmentId is = %u\n&quot;, __FUNCTION__, __LINE__, mTree, mTree-&gt;MapData.preSegmentId, PsdMessageDecoder::getInstance()-&gt;getSelfSegment().curSegmentId);</span></span>
-<span id="L782"><span class="lineNum">     782</span>                 :             : </span>
-<span id="L783"><span class="lineNum">     783</span>                 :             :         //TODO3: calculate HV's endCoordinate and startCoordinate</span>
-<span id="L784"><span class="lineNum">     784</span>                 :<span class="tlaGNC">           1 :         curNode-&gt;MapData = calcCoordinate(curNode);</span></span>
-<span id="L785"><span class="lineNum">     785</span>                 :             :         //TODO4: save the calculated data back into the list</span>
-<span id="L786"><span class="lineNum">     786</span>                 :<span class="tlaGNC">           1 :         *HvMapData = curNode-&gt;MapData;  </span></span>
-<span id="L787"><span class="lineNum">     787</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span>]:<span class="tlaGNC">           1 :         if (curNode-&gt;MapData.sp == 1)</span></span>
-<span id="L788"><span class="lineNum">     788</span>                 :             :         {</span>
-<span id="L789"><span class="lineNum">     789</span>                 :<span class="tlaGNC">           1 :             printf(&quot;[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, curNode-&gt;MapData.preSegmentId, curNode-&gt;MapData.startCoordinate.latitude, curNode-&gt;MapData.startCoordinate.longitude);</span></span>
-<span id="L790"><span class="lineNum">     790</span>                 :<span class="tlaGNC">           1 :             printf(&quot;[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, curNode-&gt;MapData.preSegmentId, curNode-&gt;MapData.endCoordinate.latitude, curNode-&gt;MapData.endCoordinate.longitude);</span></span>
-<span id="L791"><span class="lineNum">     791</span>                 :             :         }</span>
-<span id="L792"><span class="lineNum">     792</span>                 :             :         else</span>
+<span id="L692"><span class="lineNum">     692</span>                 :             :         {</span>
+<span id="L693"><span class="lineNum">     693</span>                 :<span class="tlaGNC">          63 :             struct TreeNode *childNode = createNode();</span></span>
+<span id="L694"><span class="lineNum">     694</span>                 :<span class="tlaGNC">          63 :             printf(&quot;[%s] [%d]: childNode = %p\n&quot;, __FUNCTION__, __LINE__, childNode);</span></span>
+<span id="L695"><span class="lineNum">     695</span>                 :<span class="tlaGNC">          63 :             (*it)-&gt;segIsInTree = true;</span></span>
+<span id="L696"><span class="lineNum">     696</span>                 :<span class="tlaGNC">          63 :             (*it)-&gt;nodeAttribute = ChildSegment;</span></span>
+<span id="L697"><span class="lineNum">     697</span>                 :<span class="tlaGNC">          63 :             childNode-&gt;MapData = *(*it);</span></span>
+<span id="L698"><span class="lineNum">     698</span>                 :<span class="tlaGNC">          63 :             childNode-&gt;ParentNode = tempNode;</span></span>
+<span id="L699"><span class="lineNum">     699</span>                 :<span class="tlaGNC">          63 :             childNode-&gt;vChilds.clear();</span></span>
+<span id="L700"><span class="lineNum">     700</span>                 :<span class="tlaGNC">          63 :             tempNode-&gt;vChilds.push_back(childNode);</span></span>
+<span id="L701"><span class="lineNum">     701</span>                 :             :             //the end coordinates of the previous segment are equal to the start coordinates of this segment</span>
+<span id="L702"><span class="lineNum">     702</span>                 :<span class="tlaGNC">          63 :             childNode-&gt;MapData.startCoordinate = tempNode-&gt;MapData.endCoordinate;  </span></span>
+<span id="L703"><span class="lineNum">     703</span>                 :             :             //the cumulative branch angle of this segment is equal to the cumulative branch angle of the previous segment add the branch angle relative to the previous segment</span>
+<span id="L704"><span class="lineNum">     704</span>                 :<span class="tlaGNC">          63 :             childNode-&gt;MapData.accumulateBranchAngle = tempNode-&gt;MapData.accumulateBranchAngle + childNode-&gt;MapData.branchAngle; </span></span>
+<span id="L705"><span class="lineNum">     705</span>                 :<span class="tlaGNC">          63 :             count += 1;</span></span>
+<span id="L706"><span class="lineNum">     706</span>                 :<span class="tlaGNC">          63 :             doInsert = true;</span></span>
+<span id="L707"><span class="lineNum">     707</span>                 :<span class="tlaGNC">          63 :             childNode-&gt;MapData = calcCoordinate(childNode);</span></span>
+<span id="L708"><span class="lineNum">     708</span>                 :<span class="tlaGNC">          63 :             *(*it) = childNode-&gt;MapData; </span></span>
+<span id="L709"><span class="lineNum">     709</span>                 :<span class="tlaGNC">          63 :             printf(&quot;[%s] [%d]: childNode's preSegmentId = %u\n&quot;, __FUNCTION__, __LINE__, childNode-&gt;MapData.preSegmentId);</span></span>
+<span id="L710"><span class="lineNum">     710</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span>]:<span class="tlaGNC">          63 :             if (childNode-&gt;MapData.sp == 1)</span></span>
+<span id="L711"><span class="lineNum">     711</span>                 :             :             {</span>
+<span id="L712"><span class="lineNum">     712</span>                 :<span class="tlaGNC">          63 :                 printf(&quot;[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, childNode-&gt;MapData.preSegmentId, childNode-&gt;MapData.startCoordinate.latitude, childNode-&gt;MapData.startCoordinate.longitude);</span></span>
+<span id="L713"><span class="lineNum">     713</span>                 :<span class="tlaGNC">          63 :                 printf(&quot;[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, childNode-&gt;MapData.preSegmentId, childNode-&gt;MapData.endCoordinate.latitude, childNode-&gt;MapData.endCoordinate.longitude);</span></span>
+<span id="L714"><span class="lineNum">     714</span>                 :             :             }</span>
+<span id="L715"><span class="lineNum">     715</span>                 :             :             else</span>
+<span id="L716"><span class="lineNum">     716</span>                 :             :             {</span>
+<span id="L717"><span class="lineNum">     717</span>                 :<span class="tlaUNC tlaBgUNC">           0 :                 printf(&quot;[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, childNode-&gt;MapData.preSegmentId, childNode-&gt;MapData.startCoordinate.latitude, childNode-&gt;MapData.startCoordinate.longitude);</span></span>
+<span id="L718"><span class="lineNum">     718</span>         [<span class="tlaUNC" title="Branch 0 was not executed"> # </span><span class="tlaUNC" title="Branch 1 was not executed"> # </span>]:<span class="tlaUNC">           0 :                 for (auto it = childNode-&gt;MapData.vSampleCoord.begin(); it != childNode-&gt;MapData.vSampleCoord.end(); it++)</span></span>
+<span id="L719"><span class="lineNum">     719</span>                 :             :                 {</span>
+<span id="L720"><span class="lineNum">     720</span>                 :<span class="tlaUNC">           0 :                     printf(&quot;[%s] [%d]: %u's SampleCoord: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, childNode-&gt;MapData.preSegmentId, it-&gt;latitude, it-&gt;longitude);</span></span>
+<span id="L721"><span class="lineNum">     721</span>                 :             :                 }</span>
+<span id="L722"><span class="lineNum">     722</span>                 :<span class="tlaUNC">           0 :                 printf(&quot;[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, childNode-&gt;MapData.preSegmentId, childNode-&gt;MapData.endCoordinate.latitude, childNode-&gt;MapData.endCoordinate.longitude);</span></span>
+<span id="L723"><span class="lineNum">     723</span>                 :             :             }</span>
+<span id="L724"><span class="lineNum">     724</span>                 :             :         }</span>
+<span id="L725"><span class="lineNum">     725</span>                 :             :         else</span>
+<span id="L726"><span class="lineNum">     726</span>                 :             :         {</span>
+<span id="L727"><span class="lineNum">     727</span>                 :             :             //some nodes are already in tree, for mapUpdate</span>
+<span id="L728"><span class="lineNum">     728</span>                 :<span class="tlaGNC tlaBgGNC">           1 :             printf(&quot;[%s] [%d]: some nodes are already in tree\n&quot;, __FUNCTION__, __LINE__);</span></span>
+<span id="L729"><span class="lineNum">     729</span>                 :             :             // count += 1;</span>
+<span id="L730"><span class="lineNum">     730</span>                 :<span class="tlaGNC">           1 :             printf(&quot;[%s] [%d]: count = %u\n&quot;, __FUNCTION__,  __LINE__, count);</span></span>
+<span id="L731"><span class="lineNum">     731</span>                 :             :         }</span>
+<span id="L732"><span class="lineNum">     732</span>                 :             :     }</span>
+<span id="L733"><span class="lineNum">     733</span>                 :             :     else </span>
+<span id="L734"><span class="lineNum">     734</span>                 :             :     {</span>
+<span id="L735"><span class="lineNum">     735</span>                 :<span class="tlaUNC tlaBgUNC">           0 :         doInsert = false;</span></span>
+<span id="L736"><span class="lineNum">     736</span>                 :<span class="tlaUNC">           0 :         printf(&quot;[%s] [%d]: goto check the next segment info from vPsdMap\n&quot;, __FUNCTION__,  __LINE__);</span></span>
+<span id="L737"><span class="lineNum">     737</span>                 :             :     }   </span>
+<span id="L738"><span class="lineNum">     738</span>                 :             : }</span>
+<span id="L739"><span class="lineNum">     739</span>                 :             : </span>
+<span id="L740"><span class="lineNum">     740</span>                 :<span class="tlaGNC tlaBgGNC">           1 : void PsdMap::insertNodeInTree()</span></span>
+<span id="L741"><span class="lineNum">     741</span>                 :             : {</span>
+<span id="L742"><span class="lineNum">     742</span>                 :<span class="tlaGNC">           1 :     struct TreeNode *curNode = createNode();</span></span>
+<span id="L743"><span class="lineNum">     743</span>                 :<span class="tlaGNC">           1 :     printf(&quot;[%s] [%d]: curNode = %p\n&quot;, __FUNCTION__, __LINE__, curNode);</span></span>
+<span id="L744"><span class="lineNum">     744</span>                 :             : </span>
+<span id="L745"><span class="lineNum">     745</span>                 :             :     //TODO1: using HV information to create the first Node in Tree</span>
+<span id="L746"><span class="lineNum">     746</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span>]:<span class="tlaGNC">           1 :     if (NULL != curNode)</span></span>
+<span id="L747"><span class="lineNum">     747</span>                 :             :     {</span>
+<span id="L748"><span class="lineNum">     748</span>                 :             :         //TODO2: find where curSegmentId is in vPsdMap and save HV's information to the curNode</span>
+<span id="L749"><span class="lineNum">     749</span>                 :<span class="tlaGNC">           1 :         pthread_mutex_lock(&amp;decoderThreadMutex);</span></span>
+<span id="L750"><span class="lineNum">     750</span>                 :<span class="tlaGNC">           1 :         struct PsdMapData *HvMapData = curIdIsInList();</span></span>
+<span id="L751"><span class="lineNum">     751</span>                 :<span class="tlaGNC">           1 :         pthread_mutex_unlock(&amp;decoderThreadMutex);</span></span>
+<span id="L752"><span class="lineNum">     752</span>                 :<span class="tlaGNC">           1 :         HvMapData-&gt;segIsInTree = true;</span></span>
+<span id="L753"><span class="lineNum">     753</span>                 :             :         //At the beginning, the segment where the HV was located was also the root segment</span>
+<span id="L754"><span class="lineNum">     754</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span>]:<span class="tlaGNC">           1 :         if (HvMapData-&gt;preSegmentId == HvMapData-&gt;prevSegmentId)</span></span>
+<span id="L755"><span class="lineNum">     755</span>                 :             :         {</span>
+<span id="L756"><span class="lineNum">     756</span>                 :<span class="tlaGNC">           1 :             HvMapData-&gt;nodeAttribute = RootAndCurSegment;</span></span>
+<span id="L757"><span class="lineNum">     757</span>                 :             :         }</span>
+<span id="L758"><span class="lineNum">     758</span>                 :             :         else</span>
+<span id="L759"><span class="lineNum">     759</span>                 :             :         {</span>
+<span id="L760"><span class="lineNum">     760</span>                 :<span class="tlaUNC tlaBgUNC">           0 :             HvMapData-&gt;nodeAttribute = CurSegment;    </span></span>
+<span id="L761"><span class="lineNum">     761</span>                 :             :         }</span>
+<span id="L762"><span class="lineNum">     762</span>                 :<span class="tlaGNC tlaBgGNC">           1 :         curNode-&gt;MapData = *HvMapData;</span></span>
+<span id="L763"><span class="lineNum">     763</span>                 :<span class="tlaGNC">           1 :         mTree = curNode;</span></span>
+<span id="L764"><span class="lineNum">     764</span>                 :<span class="tlaGNC">           1 :         curNode-&gt;ParentNode = NULL;</span></span>
+<span id="L765"><span class="lineNum">     765</span>                 :<span class="tlaGNC">           1 :         curNode-&gt;vChilds.clear();</span></span>
+<span id="L766"><span class="lineNum">     766</span>                 :<span class="tlaGNC">           1 :         curNode-&gt;MapData.accumulateBranchAngle = 0.0; //HV's segment, for PsdLocation module to calcRelativePosition.</span></span>
+<span id="L767"><span class="lineNum">     767</span>                 :<span class="tlaGNC">           1 :         count += 1;</span></span>
+<span id="L768"><span class="lineNum">     768</span>                 :<span class="tlaGNC">           1 :         doInsert = true;</span></span>
+<span id="L769"><span class="lineNum">     769</span>                 :<span class="tlaGNC">           1 :         printf(&quot;[%s] [%d]: count = %u\n&quot;, __FUNCTION__, __LINE__, count);</span></span>
+<span id="L770"><span class="lineNum">     770</span>                 :<span class="tlaGNC">           1 :         printf(&quot;[%s] [%d]: current tree is = %p, current tree Id is = %u, curSegmentId is = %u\n&quot;, __FUNCTION__, __LINE__, mTree, mTree-&gt;MapData.preSegmentId, PsdMessageDecoder::getInstance()-&gt;getSelfSegment().curSegmentId);</span></span>
+<span id="L771"><span class="lineNum">     771</span>                 :             : </span>
+<span id="L772"><span class="lineNum">     772</span>                 :             :         //TODO3: calculate HV's endCoordinate and startCoordinate</span>
+<span id="L773"><span class="lineNum">     773</span>                 :<span class="tlaGNC">           1 :         curNode-&gt;MapData = calcCoordinate(curNode);</span></span>
+<span id="L774"><span class="lineNum">     774</span>                 :             :         //TODO4: save the calculated data back into the list</span>
+<span id="L775"><span class="lineNum">     775</span>                 :<span class="tlaGNC">           1 :         *HvMapData = curNode-&gt;MapData;  </span></span>
+<span id="L776"><span class="lineNum">     776</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span>]:<span class="tlaGNC">           1 :         if (curNode-&gt;MapData.sp == 1)</span></span>
+<span id="L777"><span class="lineNum">     777</span>                 :             :         {</span>
+<span id="L778"><span class="lineNum">     778</span>                 :<span class="tlaGNC">           1 :             printf(&quot;[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, curNode-&gt;MapData.preSegmentId, curNode-&gt;MapData.startCoordinate.latitude, curNode-&gt;MapData.startCoordinate.longitude);</span></span>
+<span id="L779"><span class="lineNum">     779</span>                 :<span class="tlaGNC">           1 :             printf(&quot;[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, curNode-&gt;MapData.preSegmentId, curNode-&gt;MapData.endCoordinate.latitude, curNode-&gt;MapData.endCoordinate.longitude);</span></span>
+<span id="L780"><span class="lineNum">     780</span>                 :             :         }</span>
+<span id="L781"><span class="lineNum">     781</span>                 :             :         else</span>
+<span id="L782"><span class="lineNum">     782</span>                 :             :         {</span>
+<span id="L783"><span class="lineNum">     783</span>                 :<span class="tlaUNC tlaBgUNC">           0 :             printf(&quot;[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, curNode-&gt;MapData.preSegmentId, curNode-&gt;MapData.startCoordinate.latitude, curNode-&gt;MapData.startCoordinate.longitude);</span></span>
+<span id="L784"><span class="lineNum">     784</span>         [<span class="tlaUNC" title="Branch 0 was not executed"> # </span><span class="tlaUNC" title="Branch 1 was not executed"> # </span>]:<span class="tlaUNC">           0 :             for (auto it = curNode-&gt;MapData.vSampleCoord.begin(); it != curNode-&gt;MapData.vSampleCoord.end(); it++)</span></span>
+<span id="L785"><span class="lineNum">     785</span>                 :             :             {</span>
+<span id="L786"><span class="lineNum">     786</span>                 :<span class="tlaUNC">           0 :                 printf(&quot;[%s] [%d]: %u's SampleCoord: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, curNode-&gt;MapData.preSegmentId, it-&gt;latitude, it-&gt;longitude);</span></span>
+<span id="L787"><span class="lineNum">     787</span>                 :             :             }</span>
+<span id="L788"><span class="lineNum">     788</span>                 :<span class="tlaUNC">           0 :             printf(&quot;[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, curNode-&gt;MapData.preSegmentId, curNode-&gt;MapData.endCoordinate.latitude, curNode-&gt;MapData.endCoordinate.longitude);</span></span>
+<span id="L789"><span class="lineNum">     789</span>                 :             :         }</span>
+<span id="L790"><span class="lineNum">     790</span>                 :             : </span>
+<span id="L791"><span class="lineNum">     791</span>                 :             :         //TODO5: insert other Nodes in tree</span>
+<span id="L792"><span class="lineNum">     792</span>   [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 2 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 3 was not taken"> - </span> :<span class="tlaGNC tlaBgGNC">           3 :         while ((count &lt; PsdMessageDecoder::getInstance()-&gt;getVPsdMap().size()) &amp;&amp; (doInsert == true))</span></span>
+<span class="lineNum">        </span>          <span class="tlaGBC" title="Branch 4 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 5 was taken 1 time"> + </span>]
 <span id="L793"><span class="lineNum">     793</span>                 :             :         {</span>
-<span id="L794"><span class="lineNum">     794</span>                 :<span class="tlaUNC tlaBgUNC">           0 :             printf(&quot;[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, curNode-&gt;MapData.preSegmentId, curNode-&gt;MapData.startCoordinate.latitude, curNode-&gt;MapData.startCoordinate.longitude);</span></span>
-<span id="L795"><span class="lineNum">     795</span>         [<span class="tlaUNC" title="Branch 0 was not executed"> # </span><span class="tlaUNC" title="Branch 1 was not executed"> # </span>]:<span class="tlaUNC">           0 :             for (auto it = curNode-&gt;MapData.vSampleCoord.begin(); it != curNode-&gt;MapData.vSampleCoord.end(); it++)</span></span>
-<span id="L796"><span class="lineNum">     796</span>                 :             :             {</span>
-<span id="L797"><span class="lineNum">     797</span>                 :<span class="tlaUNC">           0 :                 printf(&quot;[%s] [%d]: %u's SampleCoord: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, curNode-&gt;MapData.preSegmentId, it-&gt;latitude, it-&gt;longitude);</span></span>
-<span id="L798"><span class="lineNum">     798</span>                 :             :             }</span>
-<span id="L799"><span class="lineNum">     799</span>                 :<span class="tlaUNC">           0 :             printf(&quot;[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n&quot;, __FUNCTION__, __LINE__, curNode-&gt;MapData.preSegmentId, curNode-&gt;MapData.endCoordinate.latitude, curNode-&gt;MapData.endCoordinate.longitude);</span></span>
-<span id="L800"><span class="lineNum">     800</span>                 :             :         }</span>
-<span id="L801"><span class="lineNum">     801</span>                 :             : </span>
-<span id="L802"><span class="lineNum">     802</span>                 :             :         //TODO5: insert other Nodes in tree</span>
-<span id="L803"><span class="lineNum">     803</span>   [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 2 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 3 was not taken"> - </span> :<span class="tlaGNC tlaBgGNC">           3 :         while ((count &lt; PsdMessageDecoder::getInstance()-&gt;getVPsdMap().size()) &amp;&amp; (doInsert == true))</span></span>
-<span class="lineNum">        </span>          <span class="tlaGBC" title="Branch 4 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 5 was taken 1 time"> + </span>]
-<span id="L804"><span class="lineNum">     804</span>                 :             :         {</span>
-<span id="L805"><span class="lineNum">     805</span>                 :<span class="tlaGNC">           1 :             insertNode(mTree);</span></span>
-<span id="L806"><span class="lineNum">     806</span>                 :             :         }</span>
-<span id="L807"><span class="lineNum">     807</span>                 :             : </span>
-<span id="L808"><span class="lineNum">     808</span>                 :             :         //TODO6: reset the count and offset for mapUpdate after all elements being inserted in tree</span>
-<span id="L809"><span class="lineNum">     809</span>                 :<span class="tlaGNC">           1 :         count = 0;</span></span>
-<span id="L810"><span class="lineNum">     810</span>                 :<span class="tlaGNC">           1 :         doInsert = false;</span></span>
-<span id="L811"><span class="lineNum">     811</span>                 :             :     }</span>
-<span id="L812"><span class="lineNum">     812</span>                 :             :     else</span>
-<span id="L813"><span class="lineNum">     813</span>                 :             :     {</span>
-<span id="L814"><span class="lineNum">     814</span>                 :<span class="tlaUNC tlaBgUNC">           0 :         printf(&quot;[%s] [%d]: curNode create failed, not mapCreate anymore\n&quot;, __FUNCTION__, __LINE__);</span></span>
-<span id="L815"><span class="lineNum">     815</span>                 :<span class="tlaUNC">           0 :         return ;</span></span>
-<span id="L816"><span class="lineNum">     816</span>                 :             :     }</span>
-<span id="L817"><span class="lineNum">     817</span>                 :             : }</span>
-<span id="L818"><span class="lineNum">     818</span>                 :             : </span>
-<span id="L819"><span class="lineNum">     819</span>                 :<span class="tlaUNC">           0 : void PsdMap::mapClear(struct TreeNode *Node)</span></span>
-<span id="L820"><span class="lineNum">     820</span>                 :             : {</span>
-<span id="L821"><span class="lineNum">     821</span>                 :<span class="tlaUNC">           0 :     pthread_mutex_lock(&amp;mapThreadMutex);</span></span>
-<span id="L822"><span class="lineNum">     822</span>                 :<span class="tlaUNC">           0 :     mMapMutexIsLocked = true;</span></span>
-<span id="L823"><span class="lineNum">     823</span>                 :<span class="tlaUNC">           0 :     printf(&quot;[%s] [%d]: Node = %p\n&quot;, __FUNCTION__, __LINE__, Node);</span></span>
-<span id="L824"><span class="lineNum">     824</span>                 :<span class="tlaUNC">           0 :     clearNodeOutTree(Node);</span></span>
-<span id="L825"><span class="lineNum">     825</span>                 :             :     //for gtest</span>
-<span id="L826"><span class="lineNum">     826</span>                 :<span class="tlaUNC">           0 :     mTree = NULL;</span></span>
-<span id="L827"><span class="lineNum">     827</span>                 :<span class="tlaUNC">           0 :     printf(&quot;[%s] [%d]: tree = %p has been cleared\n&quot;, __FUNCTION__, __LINE__, getTree());</span></span>
-<span id="L828"><span class="lineNum">     828</span>                 :<span class="tlaUNC">           0 :     pthread_mutex_unlock(&amp;mapThreadMutex);</span></span>
-<span id="L829"><span class="lineNum">     829</span>                 :<span class="tlaUNC">           0 :     mMapMutexIsLocked = false;</span></span>
-<span id="L830"><span class="lineNum">     830</span>                 :<span class="tlaUNC">           0 : }</span></span>
-<span id="L831"><span class="lineNum">     831</span>                 :             : </span>
-<span id="L832"><span class="lineNum">     832</span>                 :<span class="tlaUNC">           0 : void PsdMap::mapUpdate()</span></span>
-<span id="L833"><span class="lineNum">     833</span>                 :             : {</span>
-<span id="L834"><span class="lineNum">     834</span>                 :             :     //TODO1: update root </span>
-<span id="L835"><span class="lineNum">     835</span>                 :<span class="tlaUNC">           0 :     pthread_mutex_lock(&amp;mapThreadMutex);</span></span>
-<span id="L836"><span class="lineNum">     836</span>                 :<span class="tlaUNC">           0 :     mMapMutexIsLocked = true;</span></span>
-<span id="L837"><span class="lineNum">     837</span>                 :<span class="tlaUNC">           0 :     updateRootNode();</span></span>
-<span id="L838"><span class="lineNum">     838</span>                 :<span class="tlaUNC">           0 :     printf(&quot;[%s] [%d]: updateRootNode fullfill\n&quot;, __FUNCTION__, __LINE__);</span></span>
-<span id="L839"><span class="lineNum">     839</span>                 :<span class="tlaUNC">           0 :     pthread_mutex_unlock(&amp;mapThreadMutex);</span></span>
-<span id="L840"><span class="lineNum">     840</span>                 :<span class="tlaUNC">           0 :     mMapMutexIsLocked = false;</span></span>
-<span id="L841"><span class="lineNum">     841</span>                 :             : </span>
-<span id="L842"><span class="lineNum">     842</span>                 :             :     //TODO2: update parent, current and child </span>
-<span id="L843"><span class="lineNum">     843</span>                 :<span class="tlaUNC">           0 :     pthread_mutex_lock(&amp;mapThreadMutex);</span></span>
-<span id="L844"><span class="lineNum">     844</span>                 :<span class="tlaUNC">           0 :     mMapMutexIsLocked = true;</span></span>
-<span id="L845"><span class="lineNum">     845</span>                 :<span class="tlaUNC">           0 :     updateChildNode();</span></span>
-<span id="L846"><span class="lineNum">     846</span>                 :<span class="tlaUNC">           0 :     printf(&quot;[%s] [%d]: updateChildNode\n&quot;, __FUNCTION__, __LINE__);</span></span>
-<span id="L847"><span class="lineNum">     847</span>                 :<span class="tlaUNC">           0 :     pthread_mutex_unlock(&amp;mapThreadMutex);</span></span>
-<span id="L848"><span class="lineNum">     848</span>                 :<span class="tlaUNC">           0 :     mMapMutexIsLocked = false;</span></span>
-<span id="L849"><span class="lineNum">     849</span>                 :             : </span>
-<span id="L850"><span class="lineNum">     850</span>                 :             :     //TODO3: insert new node</span>
-<span id="L851"><span class="lineNum">     851</span>                 :<span class="tlaUNC">           0 :     pthread_mutex_lock(&amp;mapThreadMutex);</span></span>
-<span id="L852"><span class="lineNum">     852</span>                 :<span class="tlaUNC">           0 :     mMapMutexIsLocked = true;</span></span>
-<span id="L853"><span class="lineNum">     853</span>                 :<span class="tlaUNC">           0 :     doInsert = true; //just for the fisrt step in mapUpdate</span></span>
-<span id="L854"><span class="lineNum">     854</span>   [<span class="tlaUNC" title="Branch 0 was not executed"> # </span><span class="tlaUNC" title="Branch 1 was not executed"> # </span><span class="tlaUNC" title="Branch 2 was not executed"> # </span><span class="tlaUNC" title="Branch 3 was not executed"> # </span> :<span class="tlaUNC">           0 :     while ((count &lt; PsdMessageDecoder::getInstance()-&gt;getVPsdMap().size()) &amp;&amp; (doInsert == true))</span></span>
+<span id="L794"><span class="lineNum">     794</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]:<span class="tlaGNC">          65 :             for (auto it = PsdMessageDecoder::getInstance()-&gt;getVPsdMap().begin(); it != PsdMessageDecoder::getInstance()-&gt;getVPsdMap().end(); it++)</span></span>
+<span id="L795"><span class="lineNum">     795</span>                 :             :             {</span>
+<span id="L796"><span class="lineNum">     796</span>                 :             :                 //Note: count &gt; vPsdMap.size() need to stop creat map</span>
+<span id="L797"><span class="lineNum">     797</span>         [<span class="tlaUNC" title="Branch 0 was not taken"> - </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]:<span class="tlaGNC">          64 :                 if (count &gt;= PsdMessageDecoder::getInstance()-&gt;getVPsdMap().size())</span></span>
+<span id="L798"><span class="lineNum">     798</span>                 :             :                 {</span>
+<span id="L799"><span class="lineNum">     799</span>                 :<span class="tlaUNC tlaBgUNC">           0 :                     printf(&quot;[%s] [%d]: count &gt;= size()\n&quot;, __FUNCTION__, __LINE__);</span></span>
+<span id="L800"><span class="lineNum">     800</span>                 :<span class="tlaUNC">           0 :                     break ;</span></span>
+<span id="L801"><span class="lineNum">     801</span>                 :             :                 }</span>
+<span id="L802"><span class="lineNum">     802</span>                 :<span class="tlaGNC tlaBgGNC">          64 :                 insertNode(mTree, it);</span></span>
+<span id="L803"><span class="lineNum">     803</span>                 :             :             }</span>
+<span id="L804"><span class="lineNum">     804</span>                 :             :         }</span>
+<span id="L805"><span class="lineNum">     805</span>                 :             : </span>
+<span id="L806"><span class="lineNum">     806</span>                 :             :         //TODO6: reset the count and offset for mapUpdate after all elements being inserted in tree</span>
+<span id="L807"><span class="lineNum">     807</span>                 :<span class="tlaGNC">           1 :         count = 0;</span></span>
+<span id="L808"><span class="lineNum">     808</span>                 :<span class="tlaGNC">           1 :         doInsert = false;</span></span>
+<span id="L809"><span class="lineNum">     809</span>                 :             :     }</span>
+<span id="L810"><span class="lineNum">     810</span>                 :             :     else</span>
+<span id="L811"><span class="lineNum">     811</span>                 :             :     {</span>
+<span id="L812"><span class="lineNum">     812</span>                 :<span class="tlaUNC tlaBgUNC">           0 :         printf(&quot;[%s] [%d]: curNode create failed, not mapCreate anymore\n&quot;, __FUNCTION__, __LINE__);</span></span>
+<span id="L813"><span class="lineNum">     813</span>                 :<span class="tlaUNC">           0 :         return ;</span></span>
+<span id="L814"><span class="lineNum">     814</span>                 :             :     }</span>
+<span id="L815"><span class="lineNum">     815</span>                 :             : }</span>
+<span id="L816"><span class="lineNum">     816</span>                 :             : </span>
+<span id="L817"><span class="lineNum">     817</span>                 :<span class="tlaUNC">           0 : void PsdMap::mapClear(struct TreeNode *Node)</span></span>
+<span id="L818"><span class="lineNum">     818</span>                 :             : {</span>
+<span id="L819"><span class="lineNum">     819</span>                 :<span class="tlaUNC">           0 :     pthread_mutex_lock(&amp;mapThreadMutex);</span></span>
+<span id="L820"><span class="lineNum">     820</span>                 :<span class="tlaUNC">           0 :     mMapMutexIsLocked = true;</span></span>
+<span id="L821"><span class="lineNum">     821</span>                 :<span class="tlaUNC">           0 :     printf(&quot;[%s] [%d]: Node = %p\n&quot;, __FUNCTION__, __LINE__, Node);</span></span>
+<span id="L822"><span class="lineNum">     822</span>                 :<span class="tlaUNC">           0 :     clearNodeOutTree(Node);</span></span>
+<span id="L823"><span class="lineNum">     823</span>                 :             :     //for gtest</span>
+<span id="L824"><span class="lineNum">     824</span>                 :<span class="tlaUNC">           0 :     mTree = NULL;</span></span>
+<span id="L825"><span class="lineNum">     825</span>                 :<span class="tlaUNC">           0 :     printf(&quot;[%s] [%d]: tree = %p has been cleared\n&quot;, __FUNCTION__, __LINE__, getTree());</span></span>
+<span id="L826"><span class="lineNum">     826</span>                 :<span class="tlaUNC">           0 :     pthread_mutex_unlock(&amp;mapThreadMutex);</span></span>
+<span id="L827"><span class="lineNum">     827</span>                 :<span class="tlaUNC">           0 :     mMapMutexIsLocked = false;</span></span>
+<span id="L828"><span class="lineNum">     828</span>                 :<span class="tlaUNC">           0 : }</span></span>
+<span id="L829"><span class="lineNum">     829</span>                 :             : </span>
+<span id="L830"><span class="lineNum">     830</span>                 :<span class="tlaUNC">           0 : void PsdMap::mapUpdate()</span></span>
+<span id="L831"><span class="lineNum">     831</span>                 :             : {</span>
+<span id="L832"><span class="lineNum">     832</span>                 :             :     //TODO1: update root </span>
+<span id="L833"><span class="lineNum">     833</span>                 :<span class="tlaUNC">           0 :     pthread_mutex_lock(&amp;mapThreadMutex);</span></span>
+<span id="L834"><span class="lineNum">     834</span>                 :<span class="tlaUNC">           0 :     mMapMutexIsLocked = true;</span></span>
+<span id="L835"><span class="lineNum">     835</span>                 :<span class="tlaUNC">           0 :     updateRootNode();</span></span>
+<span id="L836"><span class="lineNum">     836</span>                 :<span class="tlaUNC">           0 :     printf(&quot;[%s] [%d]: updateRootNode fullfill\n&quot;, __FUNCTION__, __LINE__);</span></span>
+<span id="L837"><span class="lineNum">     837</span>                 :<span class="tlaUNC">           0 :     pthread_mutex_unlock(&amp;mapThreadMutex);</span></span>
+<span id="L838"><span class="lineNum">     838</span>                 :<span class="tlaUNC">           0 :     mMapMutexIsLocked = false;</span></span>
+<span id="L839"><span class="lineNum">     839</span>                 :             : </span>
+<span id="L840"><span class="lineNum">     840</span>                 :             :     //TODO2: update parent, current and child </span>
+<span id="L841"><span class="lineNum">     841</span>                 :<span class="tlaUNC">           0 :     pthread_mutex_lock(&amp;mapThreadMutex);</span></span>
+<span id="L842"><span class="lineNum">     842</span>                 :<span class="tlaUNC">           0 :     mMapMutexIsLocked = true;</span></span>
+<span id="L843"><span class="lineNum">     843</span>                 :<span class="tlaUNC">           0 :     updateChildNode();</span></span>
+<span id="L844"><span class="lineNum">     844</span>                 :<span class="tlaUNC">           0 :     printf(&quot;[%s] [%d]: updateChildNode\n&quot;, __FUNCTION__, __LINE__);</span></span>
+<span id="L845"><span class="lineNum">     845</span>                 :<span class="tlaUNC">           0 :     pthread_mutex_unlock(&amp;mapThreadMutex);</span></span>
+<span id="L846"><span class="lineNum">     846</span>                 :<span class="tlaUNC">           0 :     mMapMutexIsLocked = false;</span></span>
+<span id="L847"><span class="lineNum">     847</span>                 :             : </span>
+<span id="L848"><span class="lineNum">     848</span>                 :             :     //TODO3: insert new node</span>
+<span id="L849"><span class="lineNum">     849</span>                 :<span class="tlaUNC">           0 :     pthread_mutex_lock(&amp;mapThreadMutex);</span></span>
+<span id="L850"><span class="lineNum">     850</span>                 :<span class="tlaUNC">           0 :     mMapMutexIsLocked = true;</span></span>
+<span id="L851"><span class="lineNum">     851</span>                 :<span class="tlaUNC">           0 :     doInsert = true; //just for the fisrt step in mapUpdate</span></span>
+<span id="L852"><span class="lineNum">     852</span>   [<span class="tlaUNC" title="Branch 0 was not executed"> # </span><span class="tlaUNC" title="Branch 1 was not executed"> # </span><span class="tlaUNC" title="Branch 2 was not executed"> # </span><span class="tlaUNC" title="Branch 3 was not executed"> # </span> :<span class="tlaUNC">           0 :     while ((count &lt; PsdMessageDecoder::getInstance()-&gt;getVPsdMap().size()) &amp;&amp; (doInsert == true))</span></span>
 <span class="lineNum">        </span>          <span class="tlaUNC" title="Branch 4 was not executed"> # </span><span class="tlaUNC" title="Branch 5 was not executed"> # </span>]
-<span id="L855"><span class="lineNum">     855</span>                 :             :     {</span>
-<span id="L856"><span class="lineNum">     856</span>                 :<span class="tlaUNC">           0 :         insertNode(mTree);</span></span>
-<span id="L857"><span class="lineNum">     857</span>                 :             :     }</span>
-<span id="L858"><span class="lineNum">     858</span>                 :<span class="tlaUNC">           0 :     pthread_mutex_unlock(&amp;mapThreadMutex);</span></span>
-<span id="L859"><span class="lineNum">     859</span>                 :<span class="tlaUNC">           0 :     mMapMutexIsLocked = false;</span></span>
-<span id="L860"><span class="lineNum">     860</span>                 :             :     </span>
-<span id="L861"><span class="lineNum">     861</span>                 :             :     //TODO4: reset the count and offset for mapUpdate after all elements being inserted in tree</span>
-<span id="L862"><span class="lineNum">     862</span>                 :<span class="tlaUNC">           0 :     count = 0;</span></span>
-<span id="L863"><span class="lineNum">     863</span>                 :<span class="tlaUNC">           0 :     doInsert = false;</span></span>
-<span id="L864"><span class="lineNum">     864</span>                 :<span class="tlaUNC">           0 : }</span></span>
-<span id="L865"><span class="lineNum">     865</span>                 :             : </span>
-<span id="L866"><span class="lineNum">     866</span>                 :<span class="tlaGNC tlaBgGNC">           1 : void PsdMap::mapCreate()</span></span>
-<span id="L867"><span class="lineNum">     867</span>                 :             : {</span>
-<span id="L868"><span class="lineNum">     868</span>                 :<span class="tlaGNC">           1 :     pthread_mutex_lock(&amp;mapThreadMutex);</span></span>
-<span id="L869"><span class="lineNum">     869</span>                 :<span class="tlaGNC">           1 :     mMapMutexIsLocked = true;</span></span>
-<span id="L870"><span class="lineNum">     870</span>                 :<span class="tlaGNC">           1 :     insertNodeInTree();</span></span>
-<span id="L871"><span class="lineNum">     871</span>                 :<span class="tlaGNC">           1 :     pthread_mutex_unlock(&amp;mapThreadMutex);</span></span>
-<span id="L872"><span class="lineNum">     872</span>                 :<span class="tlaGNC">           1 :     mMapMutexIsLocked = false;</span></span>
-<span id="L873"><span class="lineNum">     873</span>                 :<span class="tlaGNC">           1 : }</span></span>
-<span id="L874"><span class="lineNum">     874</span>                 :             : </span>
-<span id="L875"><span class="lineNum">     875</span>                 :<span class="tlaGNC">           1 : struct PsdMapData *PsdMap::curIdIsInList()</span></span>
-<span id="L876"><span class="lineNum">     876</span>                 :             : {</span>
-<span id="L877"><span class="lineNum">     877</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span>]:<span class="tlaGNC">           1 :     for (auto it = PsdMessageDecoder::getInstance()-&gt;getVPsdMap().begin(); it != PsdMessageDecoder::getInstance()-&gt;getVPsdMap().end(); it++)</span></span>
-<span id="L878"><span class="lineNum">     878</span>                 :             :     {</span>
-<span id="L879"><span class="lineNum">     879</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span>]:<span class="tlaGNC">           1 :         if ((*it)-&gt;preSegmentId == PsdMessageDecoder::getInstance()-&gt;getSelfSegment().curSegmentId)</span></span>
-<span id="L880"><span class="lineNum">     880</span>                 :             :         {</span>
-<span id="L881"><span class="lineNum">     881</span>                 :<span class="tlaGNC">           1 :             printf(&quot;[%s] [%d]: curSegmentId is in list = %u\n&quot;, __FUNCTION__, __LINE__, (*it)-&gt;preSegmentId);</span></span>
-<span id="L882"><span class="lineNum">     882</span>                 :<span class="tlaGNC">           1 :             return (*it);</span></span>
-<span id="L883"><span class="lineNum">     883</span>                 :             :         }</span>
-<span id="L884"><span class="lineNum">     884</span>                 :             :     }</span>
-<span id="L885"><span class="lineNum">     885</span>                 :             : </span>
-<span id="L886"><span class="lineNum">     886</span>                 :<span class="tlaUNC tlaBgUNC">           0 :     printf(&quot;[%s] [%d]: curSegmentId is not in List\n&quot;, __FUNCTION__, __LINE__);</span></span>
-<span id="L887"><span class="lineNum">     887</span>                 :<span class="tlaUNC">           0 :     return NULL;</span></span>
-<span id="L888"><span class="lineNum">     888</span>   [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span><span class="tlaGBC" title="Branch 2 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 3 was not taken"> - </span>]:<span class="tlaGNC tlaBgGNC">           3 : }</span></span>
-<span id="L889"><span class="lineNum">     889</span>                 :             : </span>
-<span id="L890"><span class="lineNum">     890</span>                 :             : #if 0</span>
-<span id="L891"><span class="lineNum">     891</span>                 :             : /*Thread: PsdMap*/</span>
-<span id="L892"><span class="lineNum">     892</span>                 :             : void *PsdMapRun(void *arg)</span>
-<span id="L893"><span class="lineNum">     893</span>                 :             : {</span>
-<span id="L894"><span class="lineNum">     894</span>                 :             :     int8_t CurSegId = -1;</span>
-<span id="L895"><span class="lineNum">     895</span>                 :             :     while (true)</span>
-<span id="L896"><span class="lineNum">     896</span>                 :             :     {</span>
-<span id="L897"><span class="lineNum">     897</span>                 :             :         /*TODO1: check P_PSD_Usage_Active*/</span>
-<span id="L898"><span class="lineNum">     898</span>                 :             :         if (P_PSD_Usage_Active)</span>
-<span id="L899"><span class="lineNum">     899</span>                 :             :         {</span>
-<span id="L900"><span class="lineNum">     900</span>                 :             :             /*TODO2: check HV's confidence*/</span>
-<span id="L901"><span class="lineNum">     901</span>                 :             :             // check HV's valid curSegmentId + posIsUnique + posLengthErr + (lat, lon) + heading + headingAccuracy(for filter invalid heading) in PsdMessageDecoder.cpp</span>
-<span id="L902"><span class="lineNum">     902</span>                 :             :             /*TODO3: check tree whether is NULL or not*/</span>
-<span id="L903"><span class="lineNum">     903</span>                 :             :             if (NULL == PsdMap::getInstance()-&gt;getTree())</span>
-<span id="L904"><span class="lineNum">     904</span>                 :             :             {</span>
-<span id="L905"><span class="lineNum">     905</span>                 :             :                 /*TODO4: find CurSegId success*/</span>
-<span id="L906"><span class="lineNum">     906</span>                 :             :                 pthread_mutex_lock(&amp;decoderThreadMutex);</span>
-<span id="L907"><span class="lineNum">     907</span>                 :             :                 CurSegId = PsdMap::getInstance()-&gt;CurIdIsInList()-&gt;preSegmentId;</span>
-<span id="L908"><span class="lineNum">     908</span>                 :             :                 pthread_mutex_unlock(&amp;decoderThreadMutex);</span>
-<span id="L909"><span class="lineNum">     909</span>                 :             : </span>
-<span id="L910"><span class="lineNum">     910</span>                 :             :                 /*TODO5: mapCreate*/</span>
-<span id="L911"><span class="lineNum">     911</span>                 :             :                 if (-1 != CurSegId)</span>
-<span id="L912"><span class="lineNum">     912</span>                 :             :                 {</span>
-<span id="L913"><span class="lineNum">     913</span>                 :             :                     PsdMap::getInstance()-&gt;mapCreate();</span>
-<span id="L914"><span class="lineNum">     914</span>                 :             :                     //TODO6: record LastCurSegmentId = curSegmentId, lastSize = vPsdMap.size()</span>
-<span id="L915"><span class="lineNum">     915</span>                 :             :                     // PsdMessageDecoder::getInstance()-&gt;getSelfSegment().lastSegmentId = PsdMessageDecoder::getInstance()-&gt;getSelfSegment().curSegmentId;</span>
-<span id="L916"><span class="lineNum">     916</span>                 :             :                     lastSize = PsdMessageDecoder::getInstance()-&gt;getVPsdMap().size();</span>
-<span id="L917"><span class="lineNum">     917</span>                 :             :                 }</span>
-<span id="L918"><span class="lineNum">     918</span>                 :             :             }</span>
-<span id="L919"><span class="lineNum">     919</span>                 :             :             else</span>
-<span id="L920"><span class="lineNum">     920</span>                 :             :             {</span>
-<span id="L921"><span class="lineNum">     921</span>                 :             :                 /*trigger mapUpdate*/</span>
-<span id="L922"><span class="lineNum">     922</span>                 :             :                 if (( PsdMessageDecoder::getInstance()-&gt;getSelfSegment().curSegmentId !=  PsdMessageDecoder::getInstance()-&gt;getSelfSegment().lastSegmentId) &amp;&amp; (lastSize !=  PsdMessageDecoder::getInstance()-&gt;getVPsdMap().size()))</span>
-<span id="L923"><span class="lineNum">     923</span>                 :             :                 {</span>
-<span id="L924"><span class="lineNum">     924</span>                 :             :                     PsdMap::getInstance()-&gt;mapUpdate();</span>
-<span id="L925"><span class="lineNum">     925</span>                 :             :                     //TODO6: record LastCurSegmentId = curSegmentId, lastSize = vPsdMap.size()</span>
-<span id="L926"><span class="lineNum">     926</span>                 :             :                     //PsdMessageDecoder::getInstance()-&gt;getSelfSegment().lastSegmentId =  PsdMessageDecoder::getInstance()-&gt;getSelfSegment().curSegmentId;</span>
-<span id="L927"><span class="lineNum">     927</span>                 :             :                     lastSize = PsdMessageDecoder::getInstance()-&gt;getVPsdMap().size();</span>
-<span id="L928"><span class="lineNum">     928</span>                 :             :                 }</span>
-<span id="L929"><span class="lineNum">     929</span>                 :             :             }</span>
-<span id="L930"><span class="lineNum">     930</span>                 :             :         }</span>
-<span id="L931"><span class="lineNum">     931</span>                 :             :         else</span>
-<span id="L932"><span class="lineNum">     932</span>                 :             :         {</span>
-<span id="L933"><span class="lineNum">     933</span>                 :             :             /*TODO: clear tree + clearList in P_PSD_Usage_Active == false case*/</span>
-<span id="L934"><span class="lineNum">     934</span>                 :             :             if (NULL != PsdMap::getInstance()-&gt;getTree())</span>
-<span id="L935"><span class="lineNum">     935</span>                 :             :             {</span>
-<span id="L936"><span class="lineNum">     936</span>                 :             :                 PsdMap::getInstance()-&gt;mapClear(PsdMap::getInstance()-&gt;getTree());</span>
-<span id="L937"><span class="lineNum">     937</span>                 :             :             }</span>
-<span id="L938"><span class="lineNum">     938</span>                 :             :             PsdMessageDecoder::getInstance()-&gt;segmentManager(false);</span>
-<span id="L939"><span class="lineNum">     939</span>                 :             :         }</span>
-<span id="L940"><span class="lineNum">     940</span>                 :             :     }</span>
-<span id="L941"><span class="lineNum">     941</span>                 :             : }</span>
-<span id="L942"><span class="lineNum">     942</span>                 :             : #endif</span>
+<span id="L853"><span class="lineNum">     853</span>                 :             :     {</span>
+<span id="L854"><span class="lineNum">     854</span>                 :             :         // insertNode(mTree);</span>
+<span id="L855"><span class="lineNum">     855</span>                 :             :     }</span>
+<span id="L856"><span class="lineNum">     856</span>                 :<span class="tlaUNC">           0 :     pthread_mutex_unlock(&amp;mapThreadMutex);</span></span>
+<span id="L857"><span class="lineNum">     857</span>                 :<span class="tlaUNC">           0 :     mMapMutexIsLocked = false;</span></span>
+<span id="L858"><span class="lineNum">     858</span>                 :             :     </span>
+<span id="L859"><span class="lineNum">     859</span>                 :             :     //TODO4: reset the count and offset for mapUpdate after all elements being inserted in tree</span>
+<span id="L860"><span class="lineNum">     860</span>                 :<span class="tlaUNC">           0 :     count = 0;</span></span>
+<span id="L861"><span class="lineNum">     861</span>                 :<span class="tlaUNC">           0 :     doInsert = false;</span></span>
+<span id="L862"><span class="lineNum">     862</span>                 :<span class="tlaUNC">           0 : }</span></span>
+<span id="L863"><span class="lineNum">     863</span>                 :             : </span>
+<span id="L864"><span class="lineNum">     864</span>                 :<span class="tlaGNC tlaBgGNC">           1 : void PsdMap::mapCreate()</span></span>
+<span id="L865"><span class="lineNum">     865</span>                 :             : {</span>
+<span id="L866"><span class="lineNum">     866</span>                 :<span class="tlaGNC">           1 :     pthread_mutex_lock(&amp;mapThreadMutex);</span></span>
+<span id="L867"><span class="lineNum">     867</span>                 :<span class="tlaGNC">           1 :     mMapMutexIsLocked = true;</span></span>
+<span id="L868"><span class="lineNum">     868</span>                 :<span class="tlaGNC">           1 :     insertNodeInTree();</span></span>
+<span id="L869"><span class="lineNum">     869</span>                 :<span class="tlaGNC">           1 :     pthread_mutex_unlock(&amp;mapThreadMutex);</span></span>
+<span id="L870"><span class="lineNum">     870</span>                 :<span class="tlaGNC">           1 :     mMapMutexIsLocked = false;</span></span>
+<span id="L871"><span class="lineNum">     871</span>                 :<span class="tlaGNC">           1 : }</span></span>
+<span id="L872"><span class="lineNum">     872</span>                 :             : </span>
+<span id="L873"><span class="lineNum">     873</span>                 :<span class="tlaGNC">           1 : struct PsdMapData *PsdMap::curIdIsInList()</span></span>
+<span id="L874"><span class="lineNum">     874</span>                 :             : {</span>
+<span id="L875"><span class="lineNum">     875</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span>]:<span class="tlaGNC">           1 :     for (auto it = PsdMessageDecoder::getInstance()-&gt;getVPsdMap().begin(); it != PsdMessageDecoder::getInstance()-&gt;getVPsdMap().end(); it++)</span></span>
+<span id="L876"><span class="lineNum">     876</span>                 :             :     {</span>
+<span id="L877"><span class="lineNum">     877</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span>]:<span class="tlaGNC">           1 :         if ((*it)-&gt;preSegmentId == PsdMessageDecoder::getInstance()-&gt;getSelfSegment().curSegmentId)</span></span>
+<span id="L878"><span class="lineNum">     878</span>                 :             :         {</span>
+<span id="L879"><span class="lineNum">     879</span>                 :<span class="tlaGNC">           1 :             printf(&quot;[%s] [%d]: curSegmentId is in list = %u\n&quot;, __FUNCTION__, __LINE__, (*it)-&gt;preSegmentId);</span></span>
+<span id="L880"><span class="lineNum">     880</span>                 :<span class="tlaGNC">           1 :             return (*it);</span></span>
+<span id="L881"><span class="lineNum">     881</span>                 :             :         }</span>
+<span id="L882"><span class="lineNum">     882</span>                 :             :     }</span>
+<span id="L883"><span class="lineNum">     883</span>                 :             : </span>
+<span id="L884"><span class="lineNum">     884</span>                 :<span class="tlaUNC tlaBgUNC">           0 :     printf(&quot;[%s] [%d]: curSegmentId is not in List\n&quot;, __FUNCTION__, __LINE__);</span></span>
+<span id="L885"><span class="lineNum">     885</span>                 :<span class="tlaUNC">           0 :     return NULL;</span></span>
+<span id="L886"><span class="lineNum">     886</span>   [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span><span class="tlaGBC" title="Branch 2 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 3 was not taken"> - </span>]:<span class="tlaGNC tlaBgGNC">           3 : }</span></span>
+<span id="L887"><span class="lineNum">     887</span>                 :             : </span>
+<span id="L888"><span class="lineNum">     888</span>                 :             : #if 0</span>
+<span id="L889"><span class="lineNum">     889</span>                 :             : /*Thread: PsdMap*/</span>
+<span id="L890"><span class="lineNum">     890</span>                 :             : void *PsdMapRun(void *arg)</span>
+<span id="L891"><span class="lineNum">     891</span>                 :             : {</span>
+<span id="L892"><span class="lineNum">     892</span>                 :             :     int8_t CurSegId = -1;</span>
+<span id="L893"><span class="lineNum">     893</span>                 :             :     while (true)</span>
+<span id="L894"><span class="lineNum">     894</span>                 :             :     {</span>
+<span id="L895"><span class="lineNum">     895</span>                 :             :         /*TODO1: check P_PSD_Usage_Active*/</span>
+<span id="L896"><span class="lineNum">     896</span>                 :             :         if (P_PSD_Usage_Active)</span>
+<span id="L897"><span class="lineNum">     897</span>                 :             :         {</span>
+<span id="L898"><span class="lineNum">     898</span>                 :             :             /*TODO2: check HV's confidence*/</span>
+<span id="L899"><span class="lineNum">     899</span>                 :             :             // check HV's valid curSegmentId + posIsUnique + posLengthErr + (lat, lon) + heading + headingAccuracy(for filter invalid heading) in PsdMessageDecoder.cpp</span>
+<span id="L900"><span class="lineNum">     900</span>                 :             :             /*TODO3: check tree whether is NULL or not*/</span>
+<span id="L901"><span class="lineNum">     901</span>                 :             :             if (NULL == PsdMap::getInstance()-&gt;getTree())</span>
+<span id="L902"><span class="lineNum">     902</span>                 :             :             {</span>
+<span id="L903"><span class="lineNum">     903</span>                 :             :                 /*TODO4: find CurSegId success*/</span>
+<span id="L904"><span class="lineNum">     904</span>                 :             :                 pthread_mutex_lock(&amp;decoderThreadMutex);</span>
+<span id="L905"><span class="lineNum">     905</span>                 :             :                 CurSegId = PsdMap::getInstance()-&gt;CurIdIsInList()-&gt;preSegmentId;</span>
+<span id="L906"><span class="lineNum">     906</span>                 :             :                 pthread_mutex_unlock(&amp;decoderThreadMutex);</span>
+<span id="L907"><span class="lineNum">     907</span>                 :             : </span>
+<span id="L908"><span class="lineNum">     908</span>                 :             :                 /*TODO5: mapCreate*/</span>
+<span id="L909"><span class="lineNum">     909</span>                 :             :                 if (-1 != CurSegId)</span>
+<span id="L910"><span class="lineNum">     910</span>                 :             :                 {</span>
+<span id="L911"><span class="lineNum">     911</span>                 :             :                     PsdMap::getInstance()-&gt;mapCreate();</span>
+<span id="L912"><span class="lineNum">     912</span>                 :             :                     //TODO6: record LastCurSegmentId = curSegmentId, lastSize = vPsdMap.size()</span>
+<span id="L913"><span class="lineNum">     913</span>                 :             :                     // PsdMessageDecoder::getInstance()-&gt;getSelfSegment().lastSegmentId = PsdMessageDecoder::getInstance()-&gt;getSelfSegment().curSegmentId;</span>
+<span id="L914"><span class="lineNum">     914</span>                 :             :                     lastSize = PsdMessageDecoder::getInstance()-&gt;getVPsdMap().size();</span>
+<span id="L915"><span class="lineNum">     915</span>                 :             :                 }</span>
+<span id="L916"><span class="lineNum">     916</span>                 :             :             }</span>
+<span id="L917"><span class="lineNum">     917</span>                 :             :             else</span>
+<span id="L918"><span class="lineNum">     918</span>                 :             :             {</span>
+<span id="L919"><span class="lineNum">     919</span>                 :             :                 /*trigger mapUpdate*/</span>
+<span id="L920"><span class="lineNum">     920</span>                 :             :                 if (( PsdMessageDecoder::getInstance()-&gt;getSelfSegment().curSegmentId !=  PsdMessageDecoder::getInstance()-&gt;getSelfSegment().lastSegmentId) &amp;&amp; (lastSize !=  PsdMessageDecoder::getInstance()-&gt;getVPsdMap().size()))</span>
+<span id="L921"><span class="lineNum">     921</span>                 :             :                 {</span>
+<span id="L922"><span class="lineNum">     922</span>                 :             :                     PsdMap::getInstance()-&gt;mapUpdate();</span>
+<span id="L923"><span class="lineNum">     923</span>                 :             :                     //TODO6: record LastCurSegmentId = curSegmentId, lastSize = vPsdMap.size()</span>
+<span id="L924"><span class="lineNum">     924</span>                 :             :                     //PsdMessageDecoder::getInstance()-&gt;getSelfSegment().lastSegmentId =  PsdMessageDecoder::getInstance()-&gt;getSelfSegment().curSegmentId;</span>
+<span id="L925"><span class="lineNum">     925</span>                 :             :                     lastSize = PsdMessageDecoder::getInstance()-&gt;getVPsdMap().size();</span>
+<span id="L926"><span class="lineNum">     926</span>                 :             :                 }</span>
+<span id="L927"><span class="lineNum">     927</span>                 :             :             }</span>
+<span id="L928"><span class="lineNum">     928</span>                 :             :         }</span>
+<span id="L929"><span class="lineNum">     929</span>                 :             :         else</span>
+<span id="L930"><span class="lineNum">     930</span>                 :             :         {</span>
+<span id="L931"><span class="lineNum">     931</span>                 :             :             /*TODO: clear tree + clearList in P_PSD_Usage_Active == false case*/</span>
+<span id="L932"><span class="lineNum">     932</span>                 :             :             if (NULL != PsdMap::getInstance()-&gt;getTree())</span>
+<span id="L933"><span class="lineNum">     933</span>                 :             :             {</span>
+<span id="L934"><span class="lineNum">     934</span>                 :             :                 PsdMap::getInstance()-&gt;mapClear(PsdMap::getInstance()-&gt;getTree());</span>
+<span id="L935"><span class="lineNum">     935</span>                 :             :             }</span>
+<span id="L936"><span class="lineNum">     936</span>                 :             :             PsdMessageDecoder::getInstance()-&gt;segmentManager(false);</span>
+<span id="L937"><span class="lineNum">     937</span>                 :             :         }</span>
+<span id="L938"><span class="lineNum">     938</span>                 :             :     }</span>
+<span id="L939"><span class="lineNum">     939</span>                 :             : }</span>
+<span id="L940"><span class="lineNum">     940</span>                 :             : #endif</span>
         </pre>
               </td>
             </tr>

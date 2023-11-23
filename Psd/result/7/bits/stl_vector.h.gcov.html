@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2023-11-21 14:58:49</td>
+            <td class="headerValue">2023-11-23 10:19:02</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryLo">67.1&nbsp;%</td>
@@ -740,8 +740,8 @@
 <span id="L667"><span class="lineNum">     667</span>                 :             :       // [23.2.4.2] capacity</span>
 <span id="L668"><span class="lineNum">     668</span>                 :             :       /**  Returns the number of elements in the %vector.  */</span>
 <span id="L669"><span class="lineNum">     669</span>                 :             :       size_type</span>
-<span id="L670"><span class="lineNum">     670</span>                 :<span class="tlaGNC tlaBgGNC">         668 :       size() const _GLIBCXX_NOEXCEPT</span></span>
-<span id="L671"><span class="lineNum">     671</span>                 :<span class="tlaGNC">         668 :       { return size_type(this-&gt;_M_impl._M_finish - this-&gt;_M_impl._M_start); }</span></span>
+<span id="L670"><span class="lineNum">     670</span>                 :<span class="tlaGNC tlaBgGNC">         730 :       size() const _GLIBCXX_NOEXCEPT</span></span>
+<span id="L671"><span class="lineNum">     671</span>                 :<span class="tlaGNC">         730 :       { return size_type(this-&gt;_M_impl._M_finish - this-&gt;_M_impl._M_start); }</span></span>
 <span id="L672"><span class="lineNum">     672</span>                 :             : </span>
 <span id="L673"><span class="lineNum">     673</span>                 :             :       /**  Returns the size() of the largest possible %vector.  */</span>
 <span id="L674"><span class="lineNum">     674</span>                 :             :       size_type</span>
@@ -1011,8 +1011,8 @@
 <span id="L938"><span class="lineNum">     938</span>                 :             :       void</span>
 <span id="L939"><span class="lineNum">     939</span>                 :<span class="tlaGNC tlaBgGNC">          63 :       push_back(const value_type&amp; __x)</span></span>
 <span id="L940"><span class="lineNum">     940</span>                 :             :       {</span>
-<span id="L941"><span class="lineNum">     941</span>         [<span class="tlaUNC" title="Branch 0 was not executed"> # </span><span class="tlaUNC" title="Branch 1 was not executed"> # </span>]:<span class="tlaGNC">          63 :         if (this-&gt;_M_impl._M_finish != this-&gt;_M_impl._M_end_of_storage)</span></span>
-<span class="lineNum">        </span>   [<span class="tlaUNC" title="Branch 0 was not taken"> - </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 2 was not executed"> # </span><span class="tlaUNC" title="Branch 3 was not executed"> # </span>]
+<span id="L941"><span class="lineNum">     941</span>   [<span class="tlaUNC" title="Branch 0 was not taken"> - </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 2 was not executed"> # </span><span class="tlaUNC" title="Branch 3 was not executed"> # </span>]:<span class="tlaGNC">          63 :         if (this-&gt;_M_impl._M_finish != this-&gt;_M_impl._M_end_of_storage)</span></span>
+<span class="lineNum">        </span>         [<span class="tlaUNC" title="Branch 0 was not executed"> # </span><span class="tlaUNC" title="Branch 1 was not executed"> # </span>]
 <span id="L942"><span class="lineNum">     942</span>                 :             :           {</span>
 <span id="L943"><span class="lineNum">     943</span>                 :<span class="tlaUNC tlaBgUNC">           0 :             _Alloc_traits::construct(this-&gt;_M_impl, this-&gt;_M_impl._M_finish,</span></span>
 <span id="L944"><span class="lineNum">     944</span>                 :             :                                      __x);</span>

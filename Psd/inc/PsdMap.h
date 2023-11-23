@@ -92,7 +92,7 @@ public:
      * @brief Insert recursively HV's parent, root, childs or child's childs  node
      * @param Node (can represent any node)
      */
-    void insertNode(struct TreeNode *Node);
+    void insertNode(struct TreeNode *Node, std::vector<struct PsdMapData *>::iterator it);
 
     /**
      * @brief Create a Node object

@@ -588,164 +588,153 @@ struct TreeNode *PsdMap::createNode()
     }
 }
 
-void PsdMap::insertNode(struct TreeNode *Node)
-{
-    //need change "Node->vChilds.size() > 5" to childSegment condition
-    if (Node->vChilds.size() > 5 || count >= PsdMessageDecoder::getInstance()->getVPsdMap().size())
+void PsdMap::insertNode(struct TreeNode *Node, std::vector<struct PsdMapData *>::iterator it)
+{    
+    printf("[%s] [%d]: (*it)->preSegmentId = %u's segIsInTree = %d\n", __FUNCTION__,  __LINE__, (*it)->preSegmentId, (*it)->segIsInTree);
+    /*HV's parent or root*/
+    if (Node->MapData.prevSegmentId == (*it)->preSegmentId)
     {
-        printf("[%s] [%d]: childs > 5 or count >= size()\n", __FUNCTION__, __LINE__);
-        return ;
-    }
-    
-    for (auto it = PsdMessageDecoder::getInstance()->getVPsdMap().begin(); it != PsdMessageDecoder::getInstance()->getVPsdMap().end(); it++)
-    {
-        printf("[%s] [%d]: (*it)->preSegmentId = %u's segIsInTree = %d\n", __FUNCTION__,  __LINE__, (*it)->preSegmentId, (*it)->segIsInTree);
-        /*HV's parent or root*/
-        if (Node->MapData.prevSegmentId == (*it)->preSegmentId)
+        if ((*it)->segIsInTree == false) 
         {
-            if ((*it)->segIsInTree == false) 
+            /*HV's root*/
+            if ((*it)->preSegmentId == (*it)->prevSegmentId)
             {
-                /*HV's root*/
-                if ((*it)->preSegmentId == (*it)->prevSegmentId)
-                {
-                    struct TreeNode *rootNode = createNode();
-                    printf("[%s] [%d]: rootNode = %p\n", __FUNCTION__, __LINE__, rootNode);
-                    (*it)->segIsInTree = true;
-                    (*it)->nodeAttribute = RootSegment;
-                    rootNode->MapData = *(*it);
-                    mTree = rootNode;   //mTree is updated as rootNode
-                    rootNode->ParentNode = NULL;
-                    rootNode->vChilds.push_back(Node);
-                    Node->ParentNode = rootNode; //Node is still parentNode
-                    rootNode->MapData.endCoordinate = Node->MapData.startCoordinate;
-                    //the branch angle of the parent relative to the root, because it is calculated backwards from the segment where the HV is located.
-                    rootNode->MapData.branchAngle = Node->MapData.branchAngle;   
-                    //accumulateBranchAngle relative to HV's segment, for PsdLocation module to calcRelativePosition.
-                    rootNode->MapData.accumulateBranchAngle = Node->MapData.accumulateBranchAngle + rootNode->MapData.branchAngle; 
-                    count += 1;
-                    doInsert = true;
-                    rootNode->MapData = calcCoordinate(rootNode);
-                    *(*it) = rootNode->MapData;  
-                    if (rootNode->MapData.sp == 1)
-                    {
-                        printf("[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, rootNode->MapData.preSegmentId, rootNode->MapData.startCoordinate.latitude, rootNode->MapData.startCoordinate.longitude);
-                        printf("[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, rootNode->MapData.preSegmentId, rootNode->MapData.endCoordinate.latitude, rootNode->MapData.endCoordinate.longitude);
-                    }
-                    else
-                    {
-                        printf("[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, rootNode->MapData.preSegmentId, rootNode->MapData.startCoordinate.latitude, rootNode->MapData.startCoordinate.longitude);
-                        for (auto it = rootNode->MapData.vSampleCoord.begin(); it != rootNode->MapData.vSampleCoord.end(); it++)
-                        {
-                            printf("[%s] [%d]: %u's SampleCoord: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, rootNode->MapData.preSegmentId, it->latitude, it->longitude);
-                        }
-                        printf("[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, rootNode->MapData.preSegmentId, rootNode->MapData.endCoordinate.latitude, rootNode->MapData.endCoordinate.longitude);
-                    }
-                }
-                else
-                {
-                    /*HV's parent*/
-                    struct TreeNode *parentNode = createNode();
-                    printf("[%s] [%d]: parentNode = %p\n", __FUNCTION__, __LINE__, parentNode);
-                    (*it)->segIsInTree = true;
-                    (*it)->nodeAttribute = ParentSegment;
-                    parentNode->MapData = *(*it);
-                    mTree = parentNode;  //mTree is updated as parentNode
-                    parentNode->ParentNode = NULL;
-                    parentNode->vChilds.push_back(Node);
-                    Node->ParentNode = parentNode;
-                    parentNode->MapData.endCoordinate = Node->MapData.startCoordinate;
-                    //the branch angle of the parent relative to the current, because it is calculated backwards from the segment where the HV is located.
-                    double parentRelativeCurrentAngle = Node->MapData.branchAngle;   //parentNode->MapData.branchAngle is still itself branchAngle(relative to root)
-                    //accumulateBranchAngle relative to HV's segment, for PsdLocation module to calcRelativePosition.
-                    parentNode->MapData.accumulateBranchAngle = Node->MapData.accumulateBranchAngle + parentRelativeCurrentAngle; 
-                    count += 1;
-                    doInsert = true;
-                    parentNode->MapData = calcCoordinate(parentNode);
-                    *(*it) = parentNode->MapData;  
-                    (*it)->branchAngle = parentRelativeCurrentAngle;  //save parentRelativeCurrentAngle as new parent's branchAngle to list, but parentNode->MapData.branchAngle is still itself branchAngle in mTree
-                    if (parentNode->MapData.sp == 1)
-                    {
-                        printf("[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, parentNode->MapData.preSegmentId, parentNode->MapData.startCoordinate.latitude, parentNode->MapData.startCoordinate.longitude);
-                        printf("[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, parentNode->MapData.preSegmentId, parentNode->MapData.endCoordinate.latitude, parentNode->MapData.endCoordinate.longitude);
-                    }
-                    else
-                    {
-                        printf("[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, parentNode->MapData.preSegmentId, parentNode->MapData.startCoordinate.latitude, parentNode->MapData.startCoordinate.longitude);
-                        for (auto it = parentNode->MapData.vSampleCoord.begin(); it != parentNode->MapData.vSampleCoord.end(); it++)
-                        {
-                            printf("[%s] [%d]: %u's SampleCoord: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, parentNode->MapData.preSegmentId, it->latitude, it->longitude);
-                        }
-                        printf("[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, parentNode->MapData.preSegmentId, parentNode->MapData.endCoordinate.latitude, parentNode->MapData.endCoordinate.longitude);
-                    }
-                }
-            }
-            else
-            {
-                //root or parent nodes are already in tree, for mapUpdate
-                printf("[%s] [%d]: root or parent nodes are already in tree\n", __FUNCTION__,  __LINE__);
-                // count += 1;
-            }
-        }
-
-        /*finding the childs node from the current tree*/
-        struct TreeNode *tempNode = findNodeById(mTree, (*it)->prevSegmentId);
-        printf("[%s] [%d]: tempNode is = %p, preSegmentId = %u, prevSegmentId = %u, segIsInTree = %d\n", __FUNCTION__, __LINE__, tempNode, (*it)->preSegmentId, (*it)->prevSegmentId, (*it)->segIsInTree);
-        if (NULL != tempNode)
-        {
-            /*HV's childs*/
-            if (count >= PsdMessageDecoder::getInstance()->getVPsdMap().size())
-            {
-                return ;
-            }
-            /*insert childs*/
-            if (((*it)->segIsInTree == false) && (tempNode->MapData.preSegmentId == (*it)->prevSegmentId))
-            {
-                struct TreeNode *childNode = createNode();
-                printf("[%s] [%d]: childNode = %p\n", __FUNCTION__, __LINE__, childNode);
+                struct TreeNode *rootNode = createNode();
+                printf("[%s] [%d]: rootNode = %p\n", __FUNCTION__, __LINE__, rootNode);
                 (*it)->segIsInTree = true;
-                (*it)->nodeAttribute = ChildSegment;
-                childNode->MapData = *(*it);
-                childNode->ParentNode = tempNode;
-                childNode->vChilds.clear();
-                tempNode->vChilds.push_back(childNode);
-                //the end coordinates of the previous segment are equal to the start coordinates of this segment
-                childNode->MapData.startCoordinate = tempNode->MapData.endCoordinate;  
-                //the cumulative branch angle of this segment is equal to the cumulative branch angle of the previous segment add the branch angle relative to the previous segment
-                childNode->MapData.accumulateBranchAngle = tempNode->MapData.accumulateBranchAngle + childNode->MapData.branchAngle; 
+                (*it)->nodeAttribute = RootSegment;
+                rootNode->MapData = *(*it);
+                mTree = rootNode;   //mTree is updated as rootNode
+                rootNode->ParentNode = NULL;
+                rootNode->vChilds.push_back(Node);
+                Node->ParentNode = rootNode; //Node is still parentNode
+                rootNode->MapData.endCoordinate = Node->MapData.startCoordinate;
+                //the branch angle of the parent relative to the root, because it is calculated backwards from the segment where the HV is located.
+                rootNode->MapData.branchAngle = Node->MapData.branchAngle;   
+                //accumulateBranchAngle relative to HV's segment, for PsdLocation module to calcRelativePosition.
+                rootNode->MapData.accumulateBranchAngle = Node->MapData.accumulateBranchAngle + rootNode->MapData.branchAngle; 
                 count += 1;
                 doInsert = true;
-                childNode->MapData = calcCoordinate(childNode);
-                *(*it) = childNode->MapData; 
-                printf("[%s] [%d]: childNode's preSegmentId = %u\n", __FUNCTION__, __LINE__, childNode->MapData.preSegmentId);
-                if (childNode->MapData.sp == 1)
+                rootNode->MapData = calcCoordinate(rootNode);
+                *(*it) = rootNode->MapData;  
+                if (rootNode->MapData.sp == 1)
                 {
-                    printf("[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, childNode->MapData.preSegmentId, childNode->MapData.startCoordinate.latitude, childNode->MapData.startCoordinate.longitude);
-                    printf("[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, childNode->MapData.preSegmentId, childNode->MapData.endCoordinate.latitude, childNode->MapData.endCoordinate.longitude);
+                    printf("[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, rootNode->MapData.preSegmentId, rootNode->MapData.startCoordinate.latitude, rootNode->MapData.startCoordinate.longitude);
+                    printf("[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, rootNode->MapData.preSegmentId, rootNode->MapData.endCoordinate.latitude, rootNode->MapData.endCoordinate.longitude);
                 }
                 else
                 {
-                    printf("[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, childNode->MapData.preSegmentId, childNode->MapData.startCoordinate.latitude, childNode->MapData.startCoordinate.longitude);
-                    for (auto it = childNode->MapData.vSampleCoord.begin(); it != childNode->MapData.vSampleCoord.end(); it++)
+                    printf("[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, rootNode->MapData.preSegmentId, rootNode->MapData.startCoordinate.latitude, rootNode->MapData.startCoordinate.longitude);
+                    for (auto it = rootNode->MapData.vSampleCoord.begin(); it != rootNode->MapData.vSampleCoord.end(); it++)
                     {
-                        printf("[%s] [%d]: %u's SampleCoord: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, childNode->MapData.preSegmentId, it->latitude, it->longitude);
+                        printf("[%s] [%d]: %u's SampleCoord: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, rootNode->MapData.preSegmentId, it->latitude, it->longitude);
                     }
-                    printf("[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, childNode->MapData.preSegmentId, childNode->MapData.endCoordinate.latitude, childNode->MapData.endCoordinate.longitude);
+                    printf("[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, rootNode->MapData.preSegmentId, rootNode->MapData.endCoordinate.latitude, rootNode->MapData.endCoordinate.longitude);
                 }
             }
             else
             {
-                //some nodes are already in tree, for mapUpdate
-                printf("[%s] [%d]: some nodes are already in tree\n", __FUNCTION__, __LINE__);
-                // count += 1;
-                printf("[%s] [%d]: count = %u\n", __FUNCTION__,  __LINE__, count);
+                /*HV's parent*/
+                struct TreeNode *parentNode = createNode();
+                printf("[%s] [%d]: parentNode = %p\n", __FUNCTION__, __LINE__, parentNode);
+                (*it)->segIsInTree = true;
+                (*it)->nodeAttribute = ParentSegment;
+                parentNode->MapData = *(*it);
+                mTree = parentNode;  //mTree is updated as parentNode
+                parentNode->ParentNode = NULL;
+                parentNode->vChilds.push_back(Node);
+                Node->ParentNode = parentNode;
+                parentNode->MapData.endCoordinate = Node->MapData.startCoordinate;
+                //the branch angle of the parent relative to the current, because it is calculated backwards from the segment where the HV is located.
+                double parentRelativeCurrentAngle = Node->MapData.branchAngle;   //parentNode->MapData.branchAngle is still itself branchAngle(relative to root)
+                //accumulateBranchAngle relative to HV's segment, for PsdLocation module to calcRelativePosition.
+                parentNode->MapData.accumulateBranchAngle = Node->MapData.accumulateBranchAngle + parentRelativeCurrentAngle; 
+                count += 1;
+                doInsert = true;
+                parentNode->MapData = calcCoordinate(parentNode);
+                *(*it) = parentNode->MapData;  
+                (*it)->branchAngle = parentRelativeCurrentAngle;  //save parentRelativeCurrentAngle as new parent's branchAngle to list, but parentNode->MapData.branchAngle is still itself branchAngle in mTree
+                if (parentNode->MapData.sp == 1)
+                {
+                    printf("[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, parentNode->MapData.preSegmentId, parentNode->MapData.startCoordinate.latitude, parentNode->MapData.startCoordinate.longitude);
+                    printf("[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, parentNode->MapData.preSegmentId, parentNode->MapData.endCoordinate.latitude, parentNode->MapData.endCoordinate.longitude);
+                }
+                else
+                {
+                    printf("[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, parentNode->MapData.preSegmentId, parentNode->MapData.startCoordinate.latitude, parentNode->MapData.startCoordinate.longitude);
+                    for (auto it = parentNode->MapData.vSampleCoord.begin(); it != parentNode->MapData.vSampleCoord.end(); it++)
+                    {
+                        printf("[%s] [%d]: %u's SampleCoord: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, parentNode->MapData.preSegmentId, it->latitude, it->longitude);
+                    }
+                    printf("[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, parentNode->MapData.preSegmentId, parentNode->MapData.endCoordinate.latitude, parentNode->MapData.endCoordinate.longitude);
+                }
             }
         }
-        else 
+        else
         {
-            doInsert = false;
-            printf("[%s] [%d]: goto check the next segment info from vPsdMap\n", __FUNCTION__,  __LINE__);
+            //root or parent nodes are already in tree, for mapUpdate
+            printf("[%s] [%d]: root or parent nodes are already in tree\n", __FUNCTION__,  __LINE__);
+            // count += 1;
         }
-    }    
+    }
+    /*finding the childs node from the current tree*/
+    struct TreeNode *tempNode = findNodeById(mTree, (*it)->prevSegmentId);
+    printf("[%s] [%d]: tempNode is = %p, preSegmentId = %u, prevSegmentId = %u, segIsInTree = %d\n", __FUNCTION__, __LINE__, tempNode, (*it)->preSegmentId, (*it)->prevSegmentId, (*it)->segIsInTree);
+    if (NULL != tempNode)
+    {
+        /*HV's childs*/
+        if (count >= PsdMessageDecoder::getInstance()->getVPsdMap().size())
+        {
+            return ;
+        }
+        /*insert childs*/
+        if (((*it)->segIsInTree == false) && (tempNode->MapData.preSegmentId == (*it)->prevSegmentId))
+        {
+            struct TreeNode *childNode = createNode();
+            printf("[%s] [%d]: childNode = %p\n", __FUNCTION__, __LINE__, childNode);
+            (*it)->segIsInTree = true;
+            (*it)->nodeAttribute = ChildSegment;
+            childNode->MapData = *(*it);
+            childNode->ParentNode = tempNode;
+            childNode->vChilds.clear();
+            tempNode->vChilds.push_back(childNode);
+            //the end coordinates of the previous segment are equal to the start coordinates of this segment
+            childNode->MapData.startCoordinate = tempNode->MapData.endCoordinate;  
+            //the cumulative branch angle of this segment is equal to the cumulative branch angle of the previous segment add the branch angle relative to the previous segment
+            childNode->MapData.accumulateBranchAngle = tempNode->MapData.accumulateBranchAngle + childNode->MapData.branchAngle; 
+            count += 1;
+            doInsert = true;
+            childNode->MapData = calcCoordinate(childNode);
+            *(*it) = childNode->MapData; 
+            printf("[%s] [%d]: childNode's preSegmentId = %u\n", __FUNCTION__, __LINE__, childNode->MapData.preSegmentId);
+            if (childNode->MapData.sp == 1)
+            {
+                printf("[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, childNode->MapData.preSegmentId, childNode->MapData.startCoordinate.latitude, childNode->MapData.startCoordinate.longitude);
+                printf("[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, childNode->MapData.preSegmentId, childNode->MapData.endCoordinate.latitude, childNode->MapData.endCoordinate.longitude);
+            }
+            else
+            {
+                printf("[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, childNode->MapData.preSegmentId, childNode->MapData.startCoordinate.latitude, childNode->MapData.startCoordinate.longitude);
+                for (auto it = childNode->MapData.vSampleCoord.begin(); it != childNode->MapData.vSampleCoord.end(); it++)
+                {
+                    printf("[%s] [%d]: %u's SampleCoord: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, childNode->MapData.preSegmentId, it->latitude, it->longitude);
+                }
+                printf("[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, childNode->MapData.preSegmentId, childNode->MapData.endCoordinate.latitude, childNode->MapData.endCoordinate.longitude);
+            }
+        }
+        else
+        {
+            //some nodes are already in tree, for mapUpdate
+            printf("[%s] [%d]: some nodes are already in tree\n", __FUNCTION__, __LINE__);
+            // count += 1;
+            printf("[%s] [%d]: count = %u\n", __FUNCTION__,  __LINE__, count);
+        }
+    }
+    else 
+    {
+        doInsert = false;
+        printf("[%s] [%d]: goto check the next segment info from vPsdMap\n", __FUNCTION__,  __LINE__);
+    }   
 }
 
 void PsdMap::insertNodeInTree()
@@ -802,7 +791,16 @@ void PsdMap::insertNodeInTree()
         //TODO5: insert other Nodes in tree
         while ((count < PsdMessageDecoder::getInstance()->getVPsdMap().size()) && (doInsert == true))
         {
-            insertNode(mTree);
+            for (auto it = PsdMessageDecoder::getInstance()->getVPsdMap().begin(); it != PsdMessageDecoder::getInstance()->getVPsdMap().end(); it++)
+            {
+                //Note: count > vPsdMap.size() need to stop creat map
+                if (count >= PsdMessageDecoder::getInstance()->getVPsdMap().size())
+                {
+                    printf("[%s] [%d]: count >= size()\n", __FUNCTION__, __LINE__);
+                    break ;
+                }
+                insertNode(mTree, it);
+            }
         }
 
         //TODO6: reset the count and offset for mapUpdate after all elements being inserted in tree
@@ -853,7 +851,7 @@ void PsdMap::mapUpdate()
     doInsert = true; //just for the fisrt step in mapUpdate
     while ((count < PsdMessageDecoder::getInstance()->getVPsdMap().size()) && (doInsert == true))
     {
-        insertNode(mTree);
+        // insertNode(mTree);
     }
     pthread_mutex_unlock(&mapThreadMutex);
     mMapMutexIsLocked = false;

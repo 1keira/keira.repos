@@ -1,5 +1,5 @@
-Script started on 2023-11-21 13:39:41+0800
-]0;zhao@zhao-virtual-machine: ~/Documents/Psd[01;32mzhao@zhao-virtual-machine[00m:[01;34m~/Documents/Psd[00m$ exit./build.sh 
+Script started on 2023-11-23 10:18:47+0800
+]0;zhao@zhao-virtual-machine: ~/Documents/Psd[01;32mzhao@zhao-virtual-machine[00m:[01;34m~/Documents/Psd[00m$ echo "# keira.repos" >> README.mdls[Kcd ../[4Plsecho "# keira.repos" >> README.md[Kecho "# keira.repos" >> README.mdls[Kcd ../at id_rsa.pub ls[Kcd ~/.sshssh-keygen -C "zzj1344956930@163.com" -t rsa[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K./build.sh 
 -- The C compiler identification is GNU 7.5.0
 -- The CXX compiler identification is GNU 7.5.0
 -- Detecting C compiler ABI info
@@ -236,11 +236,11 @@ open successfully
 [TestBody] [4091]: prevSegmentId = 23
 [TestBody] [4104]: preSegTotalLength = 6
 [getInstance] [50]: first new a pInstance
-[createNode] [587]: newNode = 0x55d9bfb41a70
-[insertNodeInTree] [755]: curNode = 0x55d9bfb41a70
-[curIdIsInList] [882]: curSegmentId is in list = 2
-[insertNodeInTree] [781]: count = 1
-[insertNodeInTree] [782]: current tree is = 0x55d9bfb41a70, current tree Id is = 2, curSegmentId is = 2
+[createNode] [586]: newNode = 0x563cad606a70
+[insertNodeInTree] [743]: curNode = 0x563cad606a70
+[curIdIsInList] [879]: curSegmentId is in list = 2
+[insertNodeInTree] [769]: count = 1
+[insertNodeInTree] [770]: current tree is = 0x563cad606a70, current tree Id is = 2, curSegmentId is = 2
 [calcCoordinate] [134]: Node is curSegment or rootAndcurSegment
 [calcStraightXYOffset] [102]: Length = 84.000000, accumulateBranchAngle = 0.000000
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 0.000000
@@ -264,17 +264,17 @@ open successfully
 [calcHeadingXY] [94]: coordinate system rotated Y = 0.533992
 [calcDestination] [78]: destinationCoord latitude = 40.353729  destinationCoord longitude = 116.821337
 [calcCoordinate] [166]: HV's startCoordinate latitude = 40.353729  longitude = 116.821337
-[insertNodeInTree] [790]: 2's startCoordinate: latitude = 40.353729, longitude = 116.821337
-[insertNodeInTree] [791]: 2's endCoordinate: latitude = 40.354645, longitude = 116.821302
-[insertNode] [603]: (*it)->preSegmentId = 2's segIsInTree = 1
-[insertNode] [686]: root or parent nodes are already in tree
-[insertNode] [693]: tempNode is = 0x55d9bfb41a70, preSegmentId = 2, prevSegmentId = 2, segIsInTree = 1
-[insertNode] [739]: some nodes are already in tree
-[insertNode] [741]: count = 1
-[insertNode] [603]: (*it)->preSegmentId = 3's segIsInTree = 0
-[insertNode] [693]: tempNode is = 0x55d9bfb41a70, preSegmentId = 3, prevSegmentId = 2, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb41b30
-[insertNode] [705]: childNode = 0x55d9bfb41b30
+[insertNodeInTree] [778]: 2's startCoordinate: latitude = 40.353729, longitude = 116.821337
+[insertNodeInTree] [779]: 2's endCoordinate: latitude = 40.354645, longitude = 116.821302
+[insertNode] [593]: (*it)->preSegmentId = 2's segIsInTree = 1
+[insertNode] [676]: root or parent nodes are already in tree
+[insertNode] [682]: tempNode is = 0x563cad606a70, preSegmentId = 2, prevSegmentId = 2, segIsInTree = 1
+[insertNode] [728]: some nodes are already in tree
+[insertNode] [730]: count = 1
+[insertNode] [593]: (*it)->preSegmentId = 3's segIsInTree = 0
+[insertNode] [682]: tempNode is = 0x563cad606a70, preSegmentId = 3, prevSegmentId = 2, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad606b30
+[insertNode] [694]: childNode = 0x563cad606b30
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 20.000000, accumulateBranchAngle = 0.000000
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 0.000000
@@ -286,14 +286,14 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 103.954225
 [calcHeadingXY] [94]: coordinate system rotated Y = -3.085289
 [calcDestination] [78]: destinationCoord latitude = 40.354825  destinationCoord longitude = 116.821295
-[insertNode] [720]: childNode's preSegmentId = 3
-[insertNode] [723]: 3's startCoordinate: latitude = 40.354645, longitude = 116.821302
-[insertNode] [724]: 3's endCoordinate: latitude = 40.354825, longitude = 116.821295
-[insertNode] [603]: (*it)->preSegmentId = 4's segIsInTree = 0
-[findNodeById] [439]: result = 0x55d9bfb41b30
-[insertNode] [693]: tempNode is = 0x55d9bfb41b30, preSegmentId = 4, prevSegmentId = 3, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb41bf0
-[insertNode] [705]: childNode = 0x55d9bfb41bf0
+[insertNode] [709]: childNode's preSegmentId = 3
+[insertNode] [712]: 3's startCoordinate: latitude = 40.354645, longitude = 116.821302
+[insertNode] [713]: 3's endCoordinate: latitude = 40.354825, longitude = 116.821295
+[insertNode] [593]: (*it)->preSegmentId = 4's segIsInTree = 0
+[findNodeById] [439]: result = 0x563cad606b30
+[insertNode] [682]: tempNode is = 0x563cad606b30, preSegmentId = 4, prevSegmentId = 3, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad606bf0
+[insertNode] [694]: childNode = 0x563cad606bf0
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 96.000000, accumulateBranchAngle = 1.417323
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 0.024737
@@ -305,14 +305,14 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 199.953057
 [calcHeadingXY] [94]: coordinate system rotated Y = -3.558917
 [calcDestination] [78]: destinationCoord latitude = 40.355687  destinationCoord longitude = 116.821289
-[insertNode] [720]: childNode's preSegmentId = 4
-[insertNode] [723]: 4's startCoordinate: latitude = 40.354825, longitude = 116.821295
-[insertNode] [724]: 4's endCoordinate: latitude = 40.355687, longitude = 116.821289
-[insertNode] [603]: (*it)->preSegmentId = 5's segIsInTree = 0
-[findNodeById] [439]: result = 0x55d9bfb41b30
-[insertNode] [693]: tempNode is = 0x55d9bfb41b30, preSegmentId = 5, prevSegmentId = 3, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb41cb0
-[insertNode] [705]: childNode = 0x55d9bfb41cb0
+[insertNode] [709]: childNode's preSegmentId = 4
+[insertNode] [712]: 4's startCoordinate: latitude = 40.354825, longitude = 116.821295
+[insertNode] [713]: 4's endCoordinate: latitude = 40.355687, longitude = 116.821289
+[insertNode] [593]: (*it)->preSegmentId = 5's segIsInTree = 0
+[findNodeById] [439]: result = 0x563cad606b30
+[insertNode] [682]: tempNode is = 0x563cad606b30, preSegmentId = 5, prevSegmentId = 3, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad606cb0
+[insertNode] [694]: childNode = 0x563cad606cb0
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 18.000000, accumulateBranchAngle = 92.125995
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 1.607902
@@ -324,16 +324,16 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 103.820396
 [calcHeadingXY] [94]: coordinate system rotated Y = 14.914213
 [calcDestination] [78]: destinationCoord latitude = 40.354824  destinationCoord longitude = 116.821507
-[insertNode] [720]: childNode's preSegmentId = 5
-[insertNode] [723]: 5's startCoordinate: latitude = 40.354825, longitude = 116.821295
-[insertNode] [724]: 5's endCoordinate: latitude = 40.354824, longitude = 116.821507
-[insertNode] [603]: (*it)->preSegmentId = 6's segIsInTree = 0
+[insertNode] [709]: childNode's preSegmentId = 5
+[insertNode] [712]: 5's startCoordinate: latitude = 40.354825, longitude = 116.821295
+[insertNode] [713]: 5's endCoordinate: latitude = 40.354824, longitude = 116.821507
+[insertNode] [593]: (*it)->preSegmentId = 6's segIsInTree = 0
 [findNodeById] [444]: result = (nil)
-[findNodeById] [439]: result = 0x55d9bfb41cb0
-[findNodeById] [439]: result = 0x55d9bfb41cb0
-[insertNode] [693]: tempNode is = 0x55d9bfb41cb0, preSegmentId = 6, prevSegmentId = 5, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb41d70
-[insertNode] [705]: childNode = 0x55d9bfb41d70
+[findNodeById] [439]: result = 0x563cad606cb0
+[findNodeById] [439]: result = 0x563cad606cb0
+[insertNode] [682]: tempNode is = 0x563cad606cb0, preSegmentId = 6, prevSegmentId = 5, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad606d70
+[insertNode] [694]: childNode = 0x563cad606d70
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 32.000000, accumulateBranchAngle = 93.543318
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 1.632639
@@ -345,17 +345,17 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 102.791071
 [calcHeadingXY] [94]: coordinate system rotated Y = 46.897654
 [calcDestination] [78]: destinationCoord latitude = 40.354814  destinationCoord longitude = 116.821884
-[insertNode] [720]: childNode's preSegmentId = 6
-[insertNode] [723]: 6's startCoordinate: latitude = 40.354824, longitude = 116.821507
-[insertNode] [724]: 6's endCoordinate: latitude = 40.354814, longitude = 116.821884
-[insertNode] [603]: (*it)->preSegmentId = 7's segIsInTree = 0
+[insertNode] [709]: childNode's preSegmentId = 6
+[insertNode] [712]: 6's startCoordinate: latitude = 40.354824, longitude = 116.821507
+[insertNode] [713]: 6's endCoordinate: latitude = 40.354814, longitude = 116.821884
+[insertNode] [593]: (*it)->preSegmentId = 7's segIsInTree = 0
 [findNodeById] [444]: result = (nil)
-[findNodeById] [439]: result = 0x55d9bfb41d70
-[findNodeById] [439]: result = 0x55d9bfb41d70
-[findNodeById] [439]: result = 0x55d9bfb41d70
-[insertNode] [693]: tempNode is = 0x55d9bfb41d70, preSegmentId = 7, prevSegmentId = 6, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb41e30
-[insertNode] [705]: childNode = 0x55d9bfb41e30
+[findNodeById] [439]: result = 0x563cad606d70
+[findNodeById] [439]: result = 0x563cad606d70
+[findNodeById] [439]: result = 0x563cad606d70
+[insertNode] [682]: tempNode is = 0x563cad606d70, preSegmentId = 7, prevSegmentId = 6, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad606e30
+[insertNode] [694]: childNode = 0x563cad606e30
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 112.000000, accumulateBranchAngle = 93.543318
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 1.632639
@@ -367,15 +367,15 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 99.188432
 [calcHeadingXY] [94]: coordinate system rotated Y = 158.839697
 [calcDestination] [78]: destinationCoord latitude = 40.354782  destinationCoord longitude = 116.823203
-[insertNode] [720]: childNode's preSegmentId = 7
-[insertNode] [723]: 7's startCoordinate: latitude = 40.354814, longitude = 116.821884
-[insertNode] [724]: 7's endCoordinate: latitude = 40.354782, longitude = 116.823203
-[insertNode] [603]: (*it)->preSegmentId = 8's segIsInTree = 0
-[findNodeById] [439]: result = 0x55d9bfb41bf0
-[findNodeById] [439]: result = 0x55d9bfb41bf0
-[insertNode] [693]: tempNode is = 0x55d9bfb41bf0, preSegmentId = 8, prevSegmentId = 4, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb41ef0
-[insertNode] [705]: childNode = 0x55d9bfb41ef0
+[insertNode] [709]: childNode's preSegmentId = 7
+[insertNode] [712]: 7's startCoordinate: latitude = 40.354814, longitude = 116.821884
+[insertNode] [713]: 7's endCoordinate: latitude = 40.354782, longitude = 116.823203
+[insertNode] [593]: (*it)->preSegmentId = 8's segIsInTree = 0
+[findNodeById] [439]: result = 0x563cad606bf0
+[findNodeById] [439]: result = 0x563cad606bf0
+[insertNode] [682]: tempNode is = 0x563cad606bf0, preSegmentId = 8, prevSegmentId = 4, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad606ef0
+[insertNode] [694]: childNode = 0x563cad606ef0
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 20.000000, accumulateBranchAngle = 1.417323
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 0.024737
@@ -387,16 +387,16 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 219.952814
 [calcHeadingXY] [94]: coordinate system rotated Y = -3.657590
 [calcDestination] [78]: destinationCoord latitude = 40.355867  destinationCoord longitude = 116.821288
-[insertNode] [720]: childNode's preSegmentId = 8
-[insertNode] [723]: 8's startCoordinate: latitude = 40.355687, longitude = 116.821289
-[insertNode] [724]: 8's endCoordinate: latitude = 40.355867, longitude = 116.821288
-[insertNode] [603]: (*it)->preSegmentId = 9's segIsInTree = 0
-[findNodeById] [439]: result = 0x55d9bfb41ef0
-[findNodeById] [439]: result = 0x55d9bfb41ef0
-[findNodeById] [439]: result = 0x55d9bfb41ef0
-[insertNode] [693]: tempNode is = 0x55d9bfb41ef0, preSegmentId = 9, prevSegmentId = 8, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb41fb0
-[insertNode] [705]: childNode = 0x55d9bfb41fb0
+[insertNode] [709]: childNode's preSegmentId = 8
+[insertNode] [712]: 8's startCoordinate: latitude = 40.355687, longitude = 116.821289
+[insertNode] [713]: 8's endCoordinate: latitude = 40.355867, longitude = 116.821288
+[insertNode] [593]: (*it)->preSegmentId = 9's segIsInTree = 0
+[findNodeById] [439]: result = 0x563cad606ef0
+[findNodeById] [439]: result = 0x563cad606ef0
+[findNodeById] [439]: result = 0x563cad606ef0
+[insertNode] [682]: tempNode is = 0x563cad606ef0, preSegmentId = 9, prevSegmentId = 8, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad606fb0
+[insertNode] [694]: childNode = 0x563cad606fb0
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 8.000000, accumulateBranchAngle = 2.834646
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 0.049474
@@ -408,16 +408,16 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 227.951245
 [calcHeadingXY] [94]: coordinate system rotated Y = -3.499174
 [calcDestination] [78]: destinationCoord latitude = 40.355939  destinationCoord longitude = 116.821290
-[insertNode] [720]: childNode's preSegmentId = 9
-[insertNode] [723]: 9's startCoordinate: latitude = 40.355867, longitude = 116.821288
-[insertNode] [724]: 9's endCoordinate: latitude = 40.355939, longitude = 116.821290
-[insertNode] [603]: (*it)->preSegmentId = 10's segIsInTree = 0
-[findNodeById] [439]: result = 0x55d9bfb41ef0
-[findNodeById] [439]: result = 0x55d9bfb41ef0
-[findNodeById] [439]: result = 0x55d9bfb41ef0
-[insertNode] [693]: tempNode is = 0x55d9bfb41ef0, preSegmentId = 10, prevSegmentId = 8, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb42070
-[insertNode] [705]: childNode = 0x55d9bfb42070
+[insertNode] [709]: childNode's preSegmentId = 9
+[insertNode] [712]: 9's startCoordinate: latitude = 40.355867, longitude = 116.821288
+[insertNode] [713]: 9's endCoordinate: latitude = 40.355939, longitude = 116.821290
+[insertNode] [593]: (*it)->preSegmentId = 10's segIsInTree = 0
+[findNodeById] [439]: result = 0x563cad606ef0
+[findNodeById] [439]: result = 0x563cad606ef0
+[findNodeById] [439]: result = 0x563cad606ef0
+[insertNode] [682]: tempNode is = 0x563cad606ef0, preSegmentId = 10, prevSegmentId = 8, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad607070
+[insertNode] [694]: childNode = 0x563cad607070
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 18.000000, accumulateBranchAngle = 93.543318
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 1.632639
@@ -429,17 +429,17 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 219.373818
 [calcHeadingXY] [94]: coordinate system rotated Y = 14.333096
 [calcDestination] [78]: destinationCoord latitude = 40.355862  destinationCoord longitude = 116.821500
-[insertNode] [720]: childNode's preSegmentId = 10
-[insertNode] [723]: 10's startCoordinate: latitude = 40.355867, longitude = 116.821288
-[insertNode] [724]: 10's endCoordinate: latitude = 40.355862, longitude = 116.821500
-[insertNode] [603]: (*it)->preSegmentId = 11's segIsInTree = 0
-[findNodeById] [439]: result = 0x55d9bfb41fb0
-[findNodeById] [439]: result = 0x55d9bfb41fb0
-[findNodeById] [439]: result = 0x55d9bfb41fb0
-[findNodeById] [439]: result = 0x55d9bfb41fb0
-[insertNode] [693]: tempNode is = 0x55d9bfb41fb0, preSegmentId = 11, prevSegmentId = 9, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb42130
-[insertNode] [705]: childNode = 0x55d9bfb42130
+[insertNode] [709]: childNode's preSegmentId = 10
+[insertNode] [712]: 10's startCoordinate: latitude = 40.355867, longitude = 116.821288
+[insertNode] [713]: 10's endCoordinate: latitude = 40.355862, longitude = 116.821500
+[insertNode] [593]: (*it)->preSegmentId = 11's segIsInTree = 0
+[findNodeById] [439]: result = 0x563cad606fb0
+[findNodeById] [439]: result = 0x563cad606fb0
+[findNodeById] [439]: result = 0x563cad606fb0
+[findNodeById] [439]: result = 0x563cad606fb0
+[insertNode] [682]: tempNode is = 0x563cad606fb0, preSegmentId = 11, prevSegmentId = 9, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad607130
+[insertNode] [694]: childNode = 0x563cad607130
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 82.000000, accumulateBranchAngle = 2.834646
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 0.049474
@@ -451,18 +451,18 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 309.935167
 [calcHeadingXY] [94]: coordinate system rotated Y = -1.875409
 [calcDestination] [78]: destinationCoord latitude = 40.356675  destinationCoord longitude = 116.821309
-[insertNode] [720]: childNode's preSegmentId = 11
-[insertNode] [723]: 11's startCoordinate: latitude = 40.355939, longitude = 116.821290
-[insertNode] [724]: 11's endCoordinate: latitude = 40.356675, longitude = 116.821309
-[insertNode] [603]: (*it)->preSegmentId = 12's segIsInTree = 0
-[findNodeById] [439]: result = 0x55d9bfb42130
-[findNodeById] [439]: result = 0x55d9bfb42130
-[findNodeById] [439]: result = 0x55d9bfb42130
-[findNodeById] [439]: result = 0x55d9bfb42130
-[findNodeById] [439]: result = 0x55d9bfb42130
-[insertNode] [693]: tempNode is = 0x55d9bfb42130, preSegmentId = 12, prevSegmentId = 11, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb421f0
-[insertNode] [705]: childNode = 0x55d9bfb421f0
+[insertNode] [709]: childNode's preSegmentId = 11
+[insertNode] [712]: 11's startCoordinate: latitude = 40.355939, longitude = 116.821290
+[insertNode] [713]: 11's endCoordinate: latitude = 40.356675, longitude = 116.821309
+[insertNode] [593]: (*it)->preSegmentId = 12's segIsInTree = 0
+[findNodeById] [439]: result = 0x563cad607130
+[findNodeById] [439]: result = 0x563cad607130
+[findNodeById] [439]: result = 0x563cad607130
+[findNodeById] [439]: result = 0x563cad607130
+[findNodeById] [439]: result = 0x563cad607130
+[insertNode] [682]: tempNode is = 0x563cad607130, preSegmentId = 12, prevSegmentId = 11, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad6071f0
+[insertNode] [694]: childNode = 0x563cad6071f0
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 30.000000, accumulateBranchAngle = 2.834646
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 0.049474
@@ -474,19 +474,19 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 339.929284
 [calcHeadingXY] [94]: coordinate system rotated Y = -1.281348
 [calcDestination] [78]: destinationCoord latitude = 40.356945  destinationCoord longitude = 116.821316
-[insertNode] [720]: childNode's preSegmentId = 12
-[insertNode] [723]: 12's startCoordinate: latitude = 40.356675, longitude = 116.821309
-[insertNode] [724]: 12's endCoordinate: latitude = 40.356945, longitude = 116.821316
-[insertNode] [603]: (*it)->preSegmentId = 13's segIsInTree = 0
-[findNodeById] [439]: result = 0x55d9bfb421f0
-[findNodeById] [439]: result = 0x55d9bfb421f0
-[findNodeById] [439]: result = 0x55d9bfb421f0
-[findNodeById] [439]: result = 0x55d9bfb421f0
-[findNodeById] [439]: result = 0x55d9bfb421f0
-[findNodeById] [439]: result = 0x55d9bfb421f0
-[insertNode] [693]: tempNode is = 0x55d9bfb421f0, preSegmentId = 13, prevSegmentId = 12, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb422b0
-[insertNode] [705]: childNode = 0x55d9bfb422b0
+[insertNode] [709]: childNode's preSegmentId = 12
+[insertNode] [712]: 12's startCoordinate: latitude = 40.356675, longitude = 116.821309
+[insertNode] [713]: 12's endCoordinate: latitude = 40.356945, longitude = 116.821316
+[insertNode] [593]: (*it)->preSegmentId = 13's segIsInTree = 0
+[findNodeById] [439]: result = 0x563cad6071f0
+[findNodeById] [439]: result = 0x563cad6071f0
+[findNodeById] [439]: result = 0x563cad6071f0
+[findNodeById] [439]: result = 0x563cad6071f0
+[findNodeById] [439]: result = 0x563cad6071f0
+[findNodeById] [439]: result = 0x563cad6071f0
+[insertNode] [682]: tempNode is = 0x563cad6071f0, preSegmentId = 13, prevSegmentId = 12, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad6072b0
+[insertNode] [694]: childNode = 0x563cad6072b0
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 18.000000, accumulateBranchAngle = 1.417323
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 0.024737
@@ -498,19 +498,19 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 357.929065
 [calcHeadingXY] [94]: coordinate system rotated Y = -1.370153
 [calcDestination] [78]: destinationCoord latitude = 40.357106  destinationCoord longitude = 116.821315
-[insertNode] [720]: childNode's preSegmentId = 13
-[insertNode] [723]: 13's startCoordinate: latitude = 40.356945, longitude = 116.821316
-[insertNode] [724]: 13's endCoordinate: latitude = 40.357106, longitude = 116.821315
-[insertNode] [603]: (*it)->preSegmentId = 14's segIsInTree = 0
-[findNodeById] [439]: result = 0x55d9bfb421f0
-[findNodeById] [439]: result = 0x55d9bfb421f0
-[findNodeById] [439]: result = 0x55d9bfb421f0
-[findNodeById] [439]: result = 0x55d9bfb421f0
-[findNodeById] [439]: result = 0x55d9bfb421f0
-[findNodeById] [439]: result = 0x55d9bfb421f0
-[insertNode] [693]: tempNode is = 0x55d9bfb421f0, preSegmentId = 14, prevSegmentId = 12, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb42370
-[insertNode] [705]: childNode = 0x55d9bfb42370
+[insertNode] [709]: childNode's preSegmentId = 13
+[insertNode] [712]: 13's startCoordinate: latitude = 40.356945, longitude = 116.821316
+[insertNode] [713]: 13's endCoordinate: latitude = 40.357106, longitude = 116.821315
+[insertNode] [593]: (*it)->preSegmentId = 14's segIsInTree = 0
+[findNodeById] [439]: result = 0x563cad6071f0
+[findNodeById] [439]: result = 0x563cad6071f0
+[findNodeById] [439]: result = 0x563cad6071f0
+[findNodeById] [439]: result = 0x563cad6071f0
+[findNodeById] [439]: result = 0x563cad6071f0
+[findNodeById] [439]: result = 0x563cad6071f0
+[insertNode] [682]: tempNode is = 0x563cad6071f0, preSegmentId = 14, prevSegmentId = 12, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad607370
+[insertNode] [694]: childNode = 0x563cad607370
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 12.000000, accumulateBranchAngle = 92.125995
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 1.607902
@@ -522,19 +522,19 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 339.840065
 [calcHeadingXY] [94]: coordinate system rotated Y = 10.718320
 [calcDestination] [78]: destinationCoord latitude = 40.356944  destinationCoord longitude = 116.821457
-[insertNode] [720]: childNode's preSegmentId = 14
-[insertNode] [723]: 14's startCoordinate: latitude = 40.356945, longitude = 116.821316
-[insertNode] [724]: 14's endCoordinate: latitude = 40.356944, longitude = 116.821457
-[insertNode] [603]: (*it)->preSegmentId = 15's segIsInTree = 0
-[findNodeById] [439]: result = 0x55d9bfb421f0
-[findNodeById] [439]: result = 0x55d9bfb421f0
-[findNodeById] [439]: result = 0x55d9bfb421f0
-[findNodeById] [439]: result = 0x55d9bfb421f0
-[findNodeById] [439]: result = 0x55d9bfb421f0
-[findNodeById] [439]: result = 0x55d9bfb421f0
-[insertNode] [693]: tempNode is = 0x55d9bfb421f0, preSegmentId = 15, prevSegmentId = 12, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb42430
-[insertNode] [705]: childNode = 0x55d9bfb42430
+[insertNode] [709]: childNode's preSegmentId = 14
+[insertNode] [712]: 14's startCoordinate: latitude = 40.356945, longitude = 116.821316
+[insertNode] [713]: 14's endCoordinate: latitude = 40.356944, longitude = 116.821457
+[insertNode] [593]: (*it)->preSegmentId = 15's segIsInTree = 0
+[findNodeById] [439]: result = 0x563cad6071f0
+[findNodeById] [439]: result = 0x563cad6071f0
+[findNodeById] [439]: result = 0x563cad6071f0
+[findNodeById] [439]: result = 0x563cad6071f0
+[findNodeById] [439]: result = 0x563cad6071f0
+[findNodeById] [439]: result = 0x563cad6071f0
+[insertNode] [682]: tempNode is = 0x563cad6071f0, preSegmentId = 15, prevSegmentId = 12, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad607430
+[insertNode] [694]: childNode = 0x563cad607430
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 20.000000, accumulateBranchAngle = -86.456703
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = -1.508954
@@ -546,20 +546,20 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 340.572605
 [calcHeadingXY] [94]: coordinate system rotated Y = -21.270999
 [calcDestination] [78]: destinationCoord latitude = 40.356950  destinationCoord longitude = 116.821080
-[insertNode] [720]: childNode's preSegmentId = 15
-[insertNode] [723]: 15's startCoordinate: latitude = 40.356945, longitude = 116.821316
-[insertNode] [724]: 15's endCoordinate: latitude = 40.356950, longitude = 116.821080
-[insertNode] [603]: (*it)->preSegmentId = 16's segIsInTree = 0
-[findNodeById] [439]: result = 0x55d9bfb422b0
-[findNodeById] [439]: result = 0x55d9bfb422b0
-[findNodeById] [439]: result = 0x55d9bfb422b0
-[findNodeById] [439]: result = 0x55d9bfb422b0
-[findNodeById] [439]: result = 0x55d9bfb422b0
-[findNodeById] [439]: result = 0x55d9bfb422b0
-[findNodeById] [439]: result = 0x55d9bfb422b0
-[insertNode] [693]: tempNode is = 0x55d9bfb422b0, preSegmentId = 16, prevSegmentId = 13, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb424f0
-[insertNode] [705]: childNode = 0x55d9bfb424f0
+[insertNode] [709]: childNode's preSegmentId = 15
+[insertNode] [712]: 15's startCoordinate: latitude = 40.356945, longitude = 116.821316
+[insertNode] [713]: 15's endCoordinate: latitude = 40.356950, longitude = 116.821080
+[insertNode] [593]: (*it)->preSegmentId = 16's segIsInTree = 0
+[findNodeById] [439]: result = 0x563cad6072b0
+[findNodeById] [439]: result = 0x563cad6072b0
+[findNodeById] [439]: result = 0x563cad6072b0
+[findNodeById] [439]: result = 0x563cad6072b0
+[findNodeById] [439]: result = 0x563cad6072b0
+[findNodeById] [439]: result = 0x563cad6072b0
+[findNodeById] [439]: result = 0x563cad6072b0
+[insertNode] [682]: tempNode is = 0x563cad6072b0, preSegmentId = 16, prevSegmentId = 13, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad6074f0
+[insertNode] [694]: childNode = 0x563cad6074f0
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 86.000000, accumulateBranchAngle = 2.834646
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 0.049474
@@ -571,20 +571,20 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 443.912202
 [calcHeadingXY] [94]: coordinate system rotated Y = 0.332820
 [calcDestination] [78]: destinationCoord latitude = 40.357879  destinationCoord longitude = 116.821335
-[insertNode] [720]: childNode's preSegmentId = 16
-[insertNode] [723]: 16's startCoordinate: latitude = 40.357106, longitude = 116.821315
-[insertNode] [724]: 16's endCoordinate: latitude = 40.357879, longitude = 116.821335
-[insertNode] [603]: (*it)->preSegmentId = 17's segIsInTree = 0
-[findNodeById] [439]: result = 0x55d9bfb422b0
-[findNodeById] [439]: result = 0x55d9bfb422b0
-[findNodeById] [439]: result = 0x55d9bfb422b0
-[findNodeById] [439]: result = 0x55d9bfb422b0
-[findNodeById] [439]: result = 0x55d9bfb422b0
-[findNodeById] [439]: result = 0x55d9bfb422b0
-[findNodeById] [439]: result = 0x55d9bfb422b0
-[insertNode] [693]: tempNode is = 0x55d9bfb422b0, preSegmentId = 17, prevSegmentId = 13, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb425b0
-[insertNode] [705]: childNode = 0x55d9bfb425b0
+[insertNode] [709]: childNode's preSegmentId = 16
+[insertNode] [712]: 16's startCoordinate: latitude = 40.357106, longitude = 116.821315
+[insertNode] [713]: 16's endCoordinate: latitude = 40.357879, longitude = 116.821335
+[insertNode] [593]: (*it)->preSegmentId = 17's segIsInTree = 0
+[findNodeById] [439]: result = 0x563cad6072b0
+[findNodeById] [439]: result = 0x563cad6072b0
+[findNodeById] [439]: result = 0x563cad6072b0
+[findNodeById] [439]: result = 0x563cad6072b0
+[findNodeById] [439]: result = 0x563cad6072b0
+[findNodeById] [439]: result = 0x563cad6072b0
+[findNodeById] [439]: result = 0x563cad6072b0
+[insertNode] [682]: tempNode is = 0x563cad6072b0, preSegmentId = 17, prevSegmentId = 13, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad6075b0
+[insertNode] [694]: childNode = 0x563cad6075b0
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 12.000000, accumulateBranchAngle = 93.543318
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 1.632639
@@ -596,20 +596,20 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 357.543068
 [calcHeadingXY] [94]: coordinate system rotated Y = 10.623637
 [calcDestination] [78]: destinationCoord latitude = 40.357103  destinationCoord longitude = 116.821456
-[insertNode] [720]: childNode's preSegmentId = 17
-[insertNode] [723]: 17's startCoordinate: latitude = 40.357106, longitude = 116.821315
-[insertNode] [724]: 17's endCoordinate: latitude = 40.357103, longitude = 116.821456
-[insertNode] [603]: (*it)->preSegmentId = 18's segIsInTree = 0
-[findNodeById] [439]: result = 0x55d9bfb422b0
-[findNodeById] [439]: result = 0x55d9bfb422b0
-[findNodeById] [439]: result = 0x55d9bfb422b0
-[findNodeById] [439]: result = 0x55d9bfb422b0
-[findNodeById] [439]: result = 0x55d9bfb422b0
-[findNodeById] [439]: result = 0x55d9bfb422b0
-[findNodeById] [439]: result = 0x55d9bfb422b0
-[insertNode] [693]: tempNode is = 0x55d9bfb422b0, preSegmentId = 18, prevSegmentId = 13, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb42670
-[insertNode] [705]: childNode = 0x55d9bfb42670
+[insertNode] [709]: childNode's preSegmentId = 17
+[insertNode] [712]: 17's startCoordinate: latitude = 40.357106, longitude = 116.821315
+[insertNode] [713]: 17's endCoordinate: latitude = 40.357103, longitude = 116.821456
+[insertNode] [593]: (*it)->preSegmentId = 18's segIsInTree = 0
+[findNodeById] [439]: result = 0x563cad6072b0
+[findNodeById] [439]: result = 0x563cad6072b0
+[findNodeById] [439]: result = 0x563cad6072b0
+[findNodeById] [439]: result = 0x563cad6072b0
+[findNodeById] [439]: result = 0x563cad6072b0
+[findNodeById] [439]: result = 0x563cad6072b0
+[findNodeById] [439]: result = 0x563cad6072b0
+[insertNode] [682]: tempNode is = 0x563cad6072b0, preSegmentId = 18, prevSegmentId = 13, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad607670
+[insertNode] [694]: childNode = 0x563cad607670
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 20.000000, accumulateBranchAngle = -86.456703
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = -1.508954
@@ -621,21 +621,21 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 358.572386
 [calcHeadingXY] [94]: coordinate system rotated Y = -21.359804
 [calcDestination] [78]: destinationCoord latitude = 40.357112  destinationCoord longitude = 116.821079
-[insertNode] [720]: childNode's preSegmentId = 18
-[insertNode] [723]: 18's startCoordinate: latitude = 40.357106, longitude = 116.821315
-[insertNode] [724]: 18's endCoordinate: latitude = 40.357112, longitude = 116.821079
-[insertNode] [603]: (*it)->preSegmentId = 19's segIsInTree = 0
-[findNodeById] [439]: result = 0x55d9bfb424f0
-[findNodeById] [439]: result = 0x55d9bfb424f0
-[findNodeById] [439]: result = 0x55d9bfb424f0
-[findNodeById] [439]: result = 0x55d9bfb424f0
-[findNodeById] [439]: result = 0x55d9bfb424f0
-[findNodeById] [439]: result = 0x55d9bfb424f0
-[findNodeById] [439]: result = 0x55d9bfb424f0
-[findNodeById] [439]: result = 0x55d9bfb424f0
-[insertNode] [693]: tempNode is = 0x55d9bfb424f0, preSegmentId = 19, prevSegmentId = 16, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb42730
-[insertNode] [705]: childNode = 0x55d9bfb42730
+[insertNode] [709]: childNode's preSegmentId = 18
+[insertNode] [712]: 18's startCoordinate: latitude = 40.357106, longitude = 116.821315
+[insertNode] [713]: 18's endCoordinate: latitude = 40.357112, longitude = 116.821079
+[insertNode] [593]: (*it)->preSegmentId = 19's segIsInTree = 0
+[findNodeById] [439]: result = 0x563cad6074f0
+[findNodeById] [439]: result = 0x563cad6074f0
+[findNodeById] [439]: result = 0x563cad6074f0
+[findNodeById] [439]: result = 0x563cad6074f0
+[findNodeById] [439]: result = 0x563cad6074f0
+[findNodeById] [439]: result = 0x563cad6074f0
+[findNodeById] [439]: result = 0x563cad6074f0
+[findNodeById] [439]: result = 0x563cad6074f0
+[insertNode] [682]: tempNode is = 0x563cad6074f0, preSegmentId = 19, prevSegmentId = 16, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad607730
+[insertNode] [694]: childNode = 0x563cad607730
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 52.000000, accumulateBranchAngle = 2.834646
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 0.049474
@@ -647,22 +647,22 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 495.902006
 [calcHeadingXY] [94]: coordinate system rotated Y = 1.362525
 [calcDestination] [78]: destinationCoord latitude = 40.358346  destinationCoord longitude = 116.821347
-[insertNode] [720]: childNode's preSegmentId = 19
-[insertNode] [723]: 19's startCoordinate: latitude = 40.357879, longitude = 116.821335
-[insertNode] [724]: 19's endCoordinate: latitude = 40.358346, longitude = 116.821347
-[insertNode] [603]: (*it)->preSegmentId = 20's segIsInTree = 0
-[findNodeById] [439]: result = 0x55d9bfb42730
-[findNodeById] [439]: result = 0x55d9bfb42730
-[findNodeById] [439]: result = 0x55d9bfb42730
-[findNodeById] [439]: result = 0x55d9bfb42730
-[findNodeById] [439]: result = 0x55d9bfb42730
-[findNodeById] [439]: result = 0x55d9bfb42730
-[findNodeById] [439]: result = 0x55d9bfb42730
-[findNodeById] [439]: result = 0x55d9bfb42730
-[findNodeById] [439]: result = 0x55d9bfb42730
-[insertNode] [693]: tempNode is = 0x55d9bfb42730, preSegmentId = 20, prevSegmentId = 19, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb427f0
-[insertNode] [705]: childNode = 0x55d9bfb427f0
+[insertNode] [709]: childNode's preSegmentId = 19
+[insertNode] [712]: 19's startCoordinate: latitude = 40.357879, longitude = 116.821335
+[insertNode] [713]: 19's endCoordinate: latitude = 40.358346, longitude = 116.821347
+[insertNode] [593]: (*it)->preSegmentId = 20's segIsInTree = 0
+[findNodeById] [439]: result = 0x563cad607730
+[findNodeById] [439]: result = 0x563cad607730
+[findNodeById] [439]: result = 0x563cad607730
+[findNodeById] [439]: result = 0x563cad607730
+[findNodeById] [439]: result = 0x563cad607730
+[findNodeById] [439]: result = 0x563cad607730
+[findNodeById] [439]: result = 0x563cad607730
+[findNodeById] [439]: result = 0x563cad607730
+[findNodeById] [439]: result = 0x563cad607730
+[insertNode] [682]: tempNode is = 0x563cad607730, preSegmentId = 20, prevSegmentId = 19, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad6077f0
+[insertNode] [694]: childNode = 0x563cad6077f0
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 118.000000, accumulateBranchAngle = 2.834646
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 0.049474
@@ -674,23 +674,23 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 613.878869
 [calcHeadingXY] [94]: coordinate system rotated Y = 3.699162
 [calcDestination] [78]: destinationCoord latitude = 40.359406  destinationCoord longitude = 116.821375
-[insertNode] [720]: childNode's preSegmentId = 20
-[insertNode] [723]: 20's startCoordinate: latitude = 40.358346, longitude = 116.821347
-[insertNode] [724]: 20's endCoordinate: latitude = 40.359406, longitude = 116.821375
-[insertNode] [603]: (*it)->preSegmentId = 21's segIsInTree = 0
-[findNodeById] [439]: result = 0x55d9bfb427f0
-[findNodeById] [439]: result = 0x55d9bfb427f0
-[findNodeById] [439]: result = 0x55d9bfb427f0
-[findNodeById] [439]: result = 0x55d9bfb427f0
-[findNodeById] [439]: result = 0x55d9bfb427f0
-[findNodeById] [439]: result = 0x55d9bfb427f0
-[findNodeById] [439]: result = 0x55d9bfb427f0
-[findNodeById] [439]: result = 0x55d9bfb427f0
-[findNodeById] [439]: result = 0x55d9bfb427f0
-[findNodeById] [439]: result = 0x55d9bfb427f0
-[insertNode] [693]: tempNode is = 0x55d9bfb427f0, preSegmentId = 21, prevSegmentId = 20, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb428b0
-[insertNode] [705]: childNode = 0x55d9bfb428b0
+[insertNode] [709]: childNode's preSegmentId = 20
+[insertNode] [712]: 20's startCoordinate: latitude = 40.358346, longitude = 116.821347
+[insertNode] [713]: 20's endCoordinate: latitude = 40.359406, longitude = 116.821375
+[insertNode] [593]: (*it)->preSegmentId = 21's segIsInTree = 0
+[findNodeById] [439]: result = 0x563cad6077f0
+[findNodeById] [439]: result = 0x563cad6077f0
+[findNodeById] [439]: result = 0x563cad6077f0
+[findNodeById] [439]: result = 0x563cad6077f0
+[findNodeById] [439]: result = 0x563cad6077f0
+[findNodeById] [439]: result = 0x563cad6077f0
+[findNodeById] [439]: result = 0x563cad6077f0
+[findNodeById] [439]: result = 0x563cad6077f0
+[findNodeById] [439]: result = 0x563cad6077f0
+[findNodeById] [439]: result = 0x563cad6077f0
+[insertNode] [682]: tempNode is = 0x563cad6077f0, preSegmentId = 21, prevSegmentId = 20, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad6078b0
+[insertNode] [694]: childNode = 0x563cad6078b0
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 20.000000, accumulateBranchAngle = 2.834646
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 0.049474
@@ -702,24 +702,24 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 633.874947
 [calcHeadingXY] [94]: coordinate system rotated Y = 4.095203
 [calcDestination] [78]: destinationCoord latitude = 40.359585  destinationCoord longitude = 116.821379
-[insertNode] [720]: childNode's preSegmentId = 21
-[insertNode] [723]: 21's startCoordinate: latitude = 40.359406, longitude = 116.821375
-[insertNode] [724]: 21's endCoordinate: latitude = 40.359585, longitude = 116.821379
-[insertNode] [603]: (*it)->preSegmentId = 22's segIsInTree = 0
-[findNodeById] [439]: result = 0x55d9bfb428b0
-[findNodeById] [439]: result = 0x55d9bfb428b0
-[findNodeById] [439]: result = 0x55d9bfb428b0
-[findNodeById] [439]: result = 0x55d9bfb428b0
-[findNodeById] [439]: result = 0x55d9bfb428b0
-[findNodeById] [439]: result = 0x55d9bfb428b0
-[findNodeById] [439]: result = 0x55d9bfb428b0
-[findNodeById] [439]: result = 0x55d9bfb428b0
-[findNodeById] [439]: result = 0x55d9bfb428b0
-[findNodeById] [439]: result = 0x55d9bfb428b0
-[findNodeById] [439]: result = 0x55d9bfb428b0
-[insertNode] [693]: tempNode is = 0x55d9bfb428b0, preSegmentId = 22, prevSegmentId = 21, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb42970
-[insertNode] [705]: childNode = 0x55d9bfb42970
+[insertNode] [709]: childNode's preSegmentId = 21
+[insertNode] [712]: 21's startCoordinate: latitude = 40.359406, longitude = 116.821375
+[insertNode] [713]: 21's endCoordinate: latitude = 40.359585, longitude = 116.821379
+[insertNode] [593]: (*it)->preSegmentId = 22's segIsInTree = 0
+[findNodeById] [439]: result = 0x563cad6078b0
+[findNodeById] [439]: result = 0x563cad6078b0
+[findNodeById] [439]: result = 0x563cad6078b0
+[findNodeById] [439]: result = 0x563cad6078b0
+[findNodeById] [439]: result = 0x563cad6078b0
+[findNodeById] [439]: result = 0x563cad6078b0
+[findNodeById] [439]: result = 0x563cad6078b0
+[findNodeById] [439]: result = 0x563cad6078b0
+[findNodeById] [439]: result = 0x563cad6078b0
+[findNodeById] [439]: result = 0x563cad6078b0
+[findNodeById] [439]: result = 0x563cad6078b0
+[insertNode] [682]: tempNode is = 0x563cad6078b0, preSegmentId = 22, prevSegmentId = 21, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad607970
+[insertNode] [694]: childNode = 0x563cad607970
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 46.000000, accumulateBranchAngle = 2.834646
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 0.049474
@@ -731,24 +731,24 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 679.865928
 [calcHeadingXY] [94]: coordinate system rotated Y = 5.006095
 [calcDestination] [78]: destinationCoord latitude = 40.359998  destinationCoord longitude = 116.821390
-[insertNode] [720]: childNode's preSegmentId = 22
-[insertNode] [723]: 22's startCoordinate: latitude = 40.359585, longitude = 116.821379
-[insertNode] [724]: 22's endCoordinate: latitude = 40.359998, longitude = 116.821390
-[insertNode] [603]: (*it)->preSegmentId = 23's segIsInTree = 0
-[findNodeById] [439]: result = 0x55d9bfb428b0
-[findNodeById] [439]: result = 0x55d9bfb428b0
-[findNodeById] [439]: result = 0x55d9bfb428b0
-[findNodeById] [439]: result = 0x55d9bfb428b0
-[findNodeById] [439]: result = 0x55d9bfb428b0
-[findNodeById] [439]: result = 0x55d9bfb428b0
-[findNodeById] [439]: result = 0x55d9bfb428b0
-[findNodeById] [439]: result = 0x55d9bfb428b0
-[findNodeById] [439]: result = 0x55d9bfb428b0
-[findNodeById] [439]: result = 0x55d9bfb428b0
-[findNodeById] [439]: result = 0x55d9bfb428b0
-[insertNode] [693]: tempNode is = 0x55d9bfb428b0, preSegmentId = 23, prevSegmentId = 21, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb42a30
-[insertNode] [705]: childNode = 0x55d9bfb42a30
+[insertNode] [709]: childNode's preSegmentId = 22
+[insertNode] [712]: 22's startCoordinate: latitude = 40.359585, longitude = 116.821379
+[insertNode] [713]: 22's endCoordinate: latitude = 40.359998, longitude = 116.821390
+[insertNode] [593]: (*it)->preSegmentId = 23's segIsInTree = 0
+[findNodeById] [439]: result = 0x563cad6078b0
+[findNodeById] [439]: result = 0x563cad6078b0
+[findNodeById] [439]: result = 0x563cad6078b0
+[findNodeById] [439]: result = 0x563cad6078b0
+[findNodeById] [439]: result = 0x563cad6078b0
+[findNodeById] [439]: result = 0x563cad6078b0
+[findNodeById] [439]: result = 0x563cad6078b0
+[findNodeById] [439]: result = 0x563cad6078b0
+[findNodeById] [439]: result = 0x563cad6078b0
+[findNodeById] [439]: result = 0x563cad6078b0
+[findNodeById] [439]: result = 0x563cad6078b0
+[insertNode] [682]: tempNode is = 0x563cad6078b0, preSegmentId = 23, prevSegmentId = 21, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad607a30
+[insertNode] [694]: childNode = 0x563cad607a30
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 14.000000, accumulateBranchAngle = 96.377964
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 1.682113
@@ -760,25 +760,25 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 632.733175
 [calcHeadingXY] [94]: coordinate system rotated Y = 18.048566
 [calcDestination] [78]: destinationCoord latitude = 40.359575  destinationCoord longitude = 116.821544
-[insertNode] [720]: childNode's preSegmentId = 23
-[insertNode] [723]: 23's startCoordinate: latitude = 40.359585, longitude = 116.821379
-[insertNode] [724]: 23's endCoordinate: latitude = 40.359575, longitude = 116.821544
-[insertNode] [603]: (*it)->preSegmentId = 24's segIsInTree = 0
-[findNodeById] [439]: result = 0x55d9bfb42970
-[findNodeById] [439]: result = 0x55d9bfb42970
-[findNodeById] [439]: result = 0x55d9bfb42970
-[findNodeById] [439]: result = 0x55d9bfb42970
-[findNodeById] [439]: result = 0x55d9bfb42970
-[findNodeById] [439]: result = 0x55d9bfb42970
-[findNodeById] [439]: result = 0x55d9bfb42970
-[findNodeById] [439]: result = 0x55d9bfb42970
-[findNodeById] [439]: result = 0x55d9bfb42970
-[findNodeById] [439]: result = 0x55d9bfb42970
-[findNodeById] [439]: result = 0x55d9bfb42970
-[findNodeById] [439]: result = 0x55d9bfb42970
-[insertNode] [693]: tempNode is = 0x55d9bfb42970, preSegmentId = 24, prevSegmentId = 22, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb42af0
-[insertNode] [705]: childNode = 0x55d9bfb42af0
+[insertNode] [709]: childNode's preSegmentId = 23
+[insertNode] [712]: 23's startCoordinate: latitude = 40.359585, longitude = 116.821379
+[insertNode] [713]: 23's endCoordinate: latitude = 40.359575, longitude = 116.821544
+[insertNode] [593]: (*it)->preSegmentId = 24's segIsInTree = 0
+[findNodeById] [439]: result = 0x563cad607970
+[findNodeById] [439]: result = 0x563cad607970
+[findNodeById] [439]: result = 0x563cad607970
+[findNodeById] [439]: result = 0x563cad607970
+[findNodeById] [439]: result = 0x563cad607970
+[findNodeById] [439]: result = 0x563cad607970
+[findNodeById] [439]: result = 0x563cad607970
+[findNodeById] [439]: result = 0x563cad607970
+[findNodeById] [439]: result = 0x563cad607970
+[findNodeById] [439]: result = 0x563cad607970
+[findNodeById] [439]: result = 0x563cad607970
+[findNodeById] [439]: result = 0x563cad607970
+[insertNode] [682]: tempNode is = 0x563cad607970, preSegmentId = 24, prevSegmentId = 22, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad607af0
+[insertNode] [694]: childNode = 0x563cad607af0
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 112.000000, accumulateBranchAngle = 2.834646
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 0.049474
@@ -790,25 +790,25 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 791.843967
 [calcHeadingXY] [94]: coordinate system rotated Y = 7.223921
 [calcDestination] [78]: destinationCoord latitude = 40.361004  destinationCoord longitude = 116.821416
-[insertNode] [720]: childNode's preSegmentId = 24
-[insertNode] [723]: 24's startCoordinate: latitude = 40.359998, longitude = 116.821390
-[insertNode] [724]: 24's endCoordinate: latitude = 40.361004, longitude = 116.821416
-[insertNode] [603]: (*it)->preSegmentId = 25's segIsInTree = 0
-[findNodeById] [439]: result = 0x55d9bfb42970
-[findNodeById] [439]: result = 0x55d9bfb42970
-[findNodeById] [439]: result = 0x55d9bfb42970
-[findNodeById] [439]: result = 0x55d9bfb42970
-[findNodeById] [439]: result = 0x55d9bfb42970
-[findNodeById] [439]: result = 0x55d9bfb42970
-[findNodeById] [439]: result = 0x55d9bfb42970
-[findNodeById] [439]: result = 0x55d9bfb42970
-[findNodeById] [439]: result = 0x55d9bfb42970
-[findNodeById] [439]: result = 0x55d9bfb42970
-[findNodeById] [439]: result = 0x55d9bfb42970
-[findNodeById] [439]: result = 0x55d9bfb42970
-[insertNode] [693]: tempNode is = 0x55d9bfb42970, preSegmentId = 25, prevSegmentId = 22, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb42bb0
-[insertNode] [705]: childNode = 0x55d9bfb42bb0
+[insertNode] [709]: childNode's preSegmentId = 24
+[insertNode] [712]: 24's startCoordinate: latitude = 40.359998, longitude = 116.821390
+[insertNode] [713]: 24's endCoordinate: latitude = 40.361004, longitude = 116.821416
+[insertNode] [593]: (*it)->preSegmentId = 25's segIsInTree = 0
+[findNodeById] [439]: result = 0x563cad607970
+[findNodeById] [439]: result = 0x563cad607970
+[findNodeById] [439]: result = 0x563cad607970
+[findNodeById] [439]: result = 0x563cad607970
+[findNodeById] [439]: result = 0x563cad607970
+[findNodeById] [439]: result = 0x563cad607970
+[findNodeById] [439]: result = 0x563cad607970
+[findNodeById] [439]: result = 0x563cad607970
+[findNodeById] [439]: result = 0x563cad607970
+[findNodeById] [439]: result = 0x563cad607970
+[findNodeById] [439]: result = 0x563cad607970
+[findNodeById] [439]: result = 0x563cad607970
+[insertNode] [682]: tempNode is = 0x563cad607970, preSegmentId = 25, prevSegmentId = 22, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad607bb0
+[insertNode] [694]: childNode = 0x563cad607bb0
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 38.000000, accumulateBranchAngle = -89.291349
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = -1.558428
@@ -820,25 +820,25 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 679.208473
 [calcHeadingXY] [94]: coordinate system rotated Y = -32.988217
 [calcDestination] [78]: destinationCoord latitude = 40.359992  destinationCoord longitude = 116.820942
-[insertNode] [720]: childNode's preSegmentId = 25
-[insertNode] [723]: 25's startCoordinate: latitude = 40.359998, longitude = 116.821390
-[insertNode] [724]: 25's endCoordinate: latitude = 40.359992, longitude = 116.820942
-[insertNode] [603]: (*it)->preSegmentId = 26's segIsInTree = 0
-[findNodeById] [439]: result = 0x55d9bfb42970
-[findNodeById] [439]: result = 0x55d9bfb42970
-[findNodeById] [439]: result = 0x55d9bfb42970
-[findNodeById] [439]: result = 0x55d9bfb42970
-[findNodeById] [439]: result = 0x55d9bfb42970
-[findNodeById] [439]: result = 0x55d9bfb42970
-[findNodeById] [439]: result = 0x55d9bfb42970
-[findNodeById] [439]: result = 0x55d9bfb42970
-[findNodeById] [439]: result = 0x55d9bfb42970
-[findNodeById] [439]: result = 0x55d9bfb42970
-[findNodeById] [439]: result = 0x55d9bfb42970
-[findNodeById] [439]: result = 0x55d9bfb42970
-[insertNode] [693]: tempNode is = 0x55d9bfb42970, preSegmentId = 26, prevSegmentId = 22, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb42c70
-[insertNode] [705]: childNode = 0x55d9bfb42c70
+[insertNode] [709]: childNode's preSegmentId = 25
+[insertNode] [712]: 25's startCoordinate: latitude = 40.359998, longitude = 116.821390
+[insertNode] [713]: 25's endCoordinate: latitude = 40.359992, longitude = 116.820942
+[insertNode] [593]: (*it)->preSegmentId = 26's segIsInTree = 0
+[findNodeById] [439]: result = 0x563cad607970
+[findNodeById] [439]: result = 0x563cad607970
+[findNodeById] [439]: result = 0x563cad607970
+[findNodeById] [439]: result = 0x563cad607970
+[findNodeById] [439]: result = 0x563cad607970
+[findNodeById] [439]: result = 0x563cad607970
+[findNodeById] [439]: result = 0x563cad607970
+[findNodeById] [439]: result = 0x563cad607970
+[findNodeById] [439]: result = 0x563cad607970
+[findNodeById] [439]: result = 0x563cad607970
+[findNodeById] [439]: result = 0x563cad607970
+[findNodeById] [439]: result = 0x563cad607970
+[insertNode] [682]: tempNode is = 0x563cad607970, preSegmentId = 26, prevSegmentId = 22, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad607c70
+[insertNode] [694]: childNode = 0x563cad607c70
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 120.000000, accumulateBranchAngle = 82.204734
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 1.434743
@@ -850,26 +850,26 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 699.661861
 [calcHeadingXY] [94]: coordinate system rotated Y = 123.362003
 [calcDestination] [78]: destinationCoord latitude = 40.360176  destinationCoord longitude = 116.822785
-[insertNode] [720]: childNode's preSegmentId = 26
-[insertNode] [723]: 26's startCoordinate: latitude = 40.359998, longitude = 116.821390
-[insertNode] [724]: 26's endCoordinate: latitude = 40.360176, longitude = 116.822785
-[insertNode] [603]: (*it)->preSegmentId = 27's segIsInTree = 0
-[findNodeById] [439]: result = 0x55d9bfb42af0
-[findNodeById] [439]: result = 0x55d9bfb42af0
-[findNodeById] [439]: result = 0x55d9bfb42af0
-[findNodeById] [439]: result = 0x55d9bfb42af0
-[findNodeById] [439]: result = 0x55d9bfb42af0
-[findNodeById] [439]: result = 0x55d9bfb42af0
-[findNodeById] [439]: result = 0x55d9bfb42af0
-[findNodeById] [439]: result = 0x55d9bfb42af0
-[findNodeById] [439]: result = 0x55d9bfb42af0
-[findNodeById] [439]: result = 0x55d9bfb42af0
-[findNodeById] [439]: result = 0x55d9bfb42af0
-[findNodeById] [439]: result = 0x55d9bfb42af0
-[findNodeById] [439]: result = 0x55d9bfb42af0
-[insertNode] [693]: tempNode is = 0x55d9bfb42af0, preSegmentId = 27, prevSegmentId = 24, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb42d30
-[insertNode] [705]: childNode = 0x55d9bfb42d30
+[insertNode] [709]: childNode's preSegmentId = 26
+[insertNode] [712]: 26's startCoordinate: latitude = 40.359998, longitude = 116.821390
+[insertNode] [713]: 26's endCoordinate: latitude = 40.360176, longitude = 116.822785
+[insertNode] [593]: (*it)->preSegmentId = 27's segIsInTree = 0
+[findNodeById] [439]: result = 0x563cad607af0
+[findNodeById] [439]: result = 0x563cad607af0
+[findNodeById] [439]: result = 0x563cad607af0
+[findNodeById] [439]: result = 0x563cad607af0
+[findNodeById] [439]: result = 0x563cad607af0
+[findNodeById] [439]: result = 0x563cad607af0
+[findNodeById] [439]: result = 0x563cad607af0
+[findNodeById] [439]: result = 0x563cad607af0
+[findNodeById] [439]: result = 0x563cad607af0
+[findNodeById] [439]: result = 0x563cad607af0
+[findNodeById] [439]: result = 0x563cad607af0
+[findNodeById] [439]: result = 0x563cad607af0
+[findNodeById] [439]: result = 0x563cad607af0
+[insertNode] [682]: tempNode is = 0x563cad607af0, preSegmentId = 27, prevSegmentId = 24, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad607d30
+[insertNode] [694]: childNode = 0x563cad607d30
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 110.000000, accumulateBranchAngle = 2.834646
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 0.049474
@@ -881,27 +881,27 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 901.822398
 [calcHeadingXY] [94]: coordinate system rotated Y = 9.402142
 [calcDestination] [78]: destinationCoord latitude = 40.361992  destinationCoord longitude = 116.821442
-[insertNode] [720]: childNode's preSegmentId = 27
-[insertNode] [723]: 27's startCoordinate: latitude = 40.361004, longitude = 116.821416
-[insertNode] [724]: 27's endCoordinate: latitude = 40.361992, longitude = 116.821442
-[insertNode] [603]: (*it)->preSegmentId = 28's segIsInTree = 0
-[findNodeById] [439]: result = 0x55d9bfb42d30
-[findNodeById] [439]: result = 0x55d9bfb42d30
-[findNodeById] [439]: result = 0x55d9bfb42d30
-[findNodeById] [439]: result = 0x55d9bfb42d30
-[findNodeById] [439]: result = 0x55d9bfb42d30
-[findNodeById] [439]: result = 0x55d9bfb42d30
-[findNodeById] [439]: result = 0x55d9bfb42d30
-[findNodeById] [439]: result = 0x55d9bfb42d30
-[findNodeById] [439]: result = 0x55d9bfb42d30
-[findNodeById] [439]: result = 0x55d9bfb42d30
-[findNodeById] [439]: result = 0x55d9bfb42d30
-[findNodeById] [439]: result = 0x55d9bfb42d30
-[findNodeById] [439]: result = 0x55d9bfb42d30
-[findNodeById] [439]: result = 0x55d9bfb42d30
-[insertNode] [693]: tempNode is = 0x55d9bfb42d30, preSegmentId = 28, prevSegmentId = 27, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb42df0
-[insertNode] [705]: childNode = 0x55d9bfb42df0
+[insertNode] [709]: childNode's preSegmentId = 27
+[insertNode] [712]: 27's startCoordinate: latitude = 40.361004, longitude = 116.821416
+[insertNode] [713]: 27's endCoordinate: latitude = 40.361992, longitude = 116.821442
+[insertNode] [593]: (*it)->preSegmentId = 28's segIsInTree = 0
+[findNodeById] [439]: result = 0x563cad607d30
+[findNodeById] [439]: result = 0x563cad607d30
+[findNodeById] [439]: result = 0x563cad607d30
+[findNodeById] [439]: result = 0x563cad607d30
+[findNodeById] [439]: result = 0x563cad607d30
+[findNodeById] [439]: result = 0x563cad607d30
+[findNodeById] [439]: result = 0x563cad607d30
+[findNodeById] [439]: result = 0x563cad607d30
+[findNodeById] [439]: result = 0x563cad607d30
+[findNodeById] [439]: result = 0x563cad607d30
+[findNodeById] [439]: result = 0x563cad607d30
+[findNodeById] [439]: result = 0x563cad607d30
+[findNodeById] [439]: result = 0x563cad607d30
+[findNodeById] [439]: result = 0x563cad607d30
+[insertNode] [682]: tempNode is = 0x563cad607d30, preSegmentId = 28, prevSegmentId = 27, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad607df0
+[insertNode] [694]: childNode = 0x563cad607df0
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 34.000000, accumulateBranchAngle = 4.251969
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 0.074211
@@ -913,27 +913,27 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 935.788678
 [calcHeadingXY] [94]: coordinate system rotated Y = 10.916011
 [calcDestination] [78]: destinationCoord latitude = 40.362297  destinationCoord longitude = 116.821460
-[insertNode] [720]: childNode's preSegmentId = 28
-[insertNode] [723]: 28's startCoordinate: latitude = 40.361992, longitude = 116.821442
-[insertNode] [724]: 28's endCoordinate: latitude = 40.362297, longitude = 116.821460
-[insertNode] [603]: (*it)->preSegmentId = 29's segIsInTree = 0
-[findNodeById] [439]: result = 0x55d9bfb42d30
-[findNodeById] [439]: result = 0x55d9bfb42d30
-[findNodeById] [439]: result = 0x55d9bfb42d30
-[findNodeById] [439]: result = 0x55d9bfb42d30
-[findNodeById] [439]: result = 0x55d9bfb42d30
-[findNodeById] [439]: result = 0x55d9bfb42d30
-[findNodeById] [439]: result = 0x55d9bfb42d30
-[findNodeById] [439]: result = 0x55d9bfb42d30
-[findNodeById] [439]: result = 0x55d9bfb42d30
-[findNodeById] [439]: result = 0x55d9bfb42d30
-[findNodeById] [439]: result = 0x55d9bfb42d30
-[findNodeById] [439]: result = 0x55d9bfb42d30
-[findNodeById] [439]: result = 0x55d9bfb42d30
-[findNodeById] [439]: result = 0x55d9bfb42d30
-[insertNode] [693]: tempNode is = 0x55d9bfb42d30, preSegmentId = 29, prevSegmentId = 27, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb42eb0
-[insertNode] [705]: childNode = 0x55d9bfb42eb0
+[insertNode] [709]: childNode's preSegmentId = 28
+[insertNode] [712]: 28's startCoordinate: latitude = 40.361992, longitude = 116.821442
+[insertNode] [713]: 28's endCoordinate: latitude = 40.362297, longitude = 116.821460
+[insertNode] [593]: (*it)->preSegmentId = 29's segIsInTree = 0
+[findNodeById] [439]: result = 0x563cad607d30
+[findNodeById] [439]: result = 0x563cad607d30
+[findNodeById] [439]: result = 0x563cad607d30
+[findNodeById] [439]: result = 0x563cad607d30
+[findNodeById] [439]: result = 0x563cad607d30
+[findNodeById] [439]: result = 0x563cad607d30
+[findNodeById] [439]: result = 0x563cad607d30
+[findNodeById] [439]: result = 0x563cad607d30
+[findNodeById] [439]: result = 0x563cad607d30
+[findNodeById] [439]: result = 0x563cad607d30
+[findNodeById] [439]: result = 0x563cad607d30
+[findNodeById] [439]: result = 0x563cad607d30
+[findNodeById] [439]: result = 0x563cad607d30
+[findNodeById] [439]: result = 0x563cad607d30
+[insertNode] [682]: tempNode is = 0x563cad607d30, preSegmentId = 29, prevSegmentId = 27, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad607eb0
+[insertNode] [694]: childNode = 0x563cad607eb0
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 12.000000, accumulateBranchAngle = 90.708672
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 1.583165
@@ -945,28 +945,28 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 902.030011
 [calcHeadingXY] [94]: coordinate system rotated Y = 21.400346
 [calcDestination] [78]: destinationCoord latitude = 40.361994  destinationCoord longitude = 116.821583
-[insertNode] [720]: childNode's preSegmentId = 29
-[insertNode] [723]: 29's startCoordinate: latitude = 40.361992, longitude = 116.821442
-[insertNode] [724]: 29's endCoordinate: latitude = 40.361994, longitude = 116.821583
-[insertNode] [603]: (*it)->preSegmentId = 30's segIsInTree = 0
-[findNodeById] [439]: result = 0x55d9bfb42df0
-[findNodeById] [439]: result = 0x55d9bfb42df0
-[findNodeById] [439]: result = 0x55d9bfb42df0
-[findNodeById] [439]: result = 0x55d9bfb42df0
-[findNodeById] [439]: result = 0x55d9bfb42df0
-[findNodeById] [439]: result = 0x55d9bfb42df0
-[findNodeById] [439]: result = 0x55d9bfb42df0
-[findNodeById] [439]: result = 0x55d9bfb42df0
-[findNodeById] [439]: result = 0x55d9bfb42df0
-[findNodeById] [439]: result = 0x55d9bfb42df0
-[findNodeById] [439]: result = 0x55d9bfb42df0
-[findNodeById] [439]: result = 0x55d9bfb42df0
-[findNodeById] [439]: result = 0x55d9bfb42df0
-[findNodeById] [439]: result = 0x55d9bfb42df0
-[findNodeById] [439]: result = 0x55d9bfb42df0
-[insertNode] [693]: tempNode is = 0x55d9bfb42df0, preSegmentId = 30, prevSegmentId = 28, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb42f70
-[insertNode] [705]: childNode = 0x55d9bfb42f70
+[insertNode] [709]: childNode's preSegmentId = 29
+[insertNode] [712]: 29's startCoordinate: latitude = 40.361992, longitude = 116.821442
+[insertNode] [713]: 29's endCoordinate: latitude = 40.361994, longitude = 116.821583
+[insertNode] [593]: (*it)->preSegmentId = 30's segIsInTree = 0
+[findNodeById] [439]: result = 0x563cad607df0
+[findNodeById] [439]: result = 0x563cad607df0
+[findNodeById] [439]: result = 0x563cad607df0
+[findNodeById] [439]: result = 0x563cad607df0
+[findNodeById] [439]: result = 0x563cad607df0
+[findNodeById] [439]: result = 0x563cad607df0
+[findNodeById] [439]: result = 0x563cad607df0
+[findNodeById] [439]: result = 0x563cad607df0
+[findNodeById] [439]: result = 0x563cad607df0
+[findNodeById] [439]: result = 0x563cad607df0
+[findNodeById] [439]: result = 0x563cad607df0
+[findNodeById] [439]: result = 0x563cad607df0
+[findNodeById] [439]: result = 0x563cad607df0
+[findNodeById] [439]: result = 0x563cad607df0
+[findNodeById] [439]: result = 0x563cad607df0
+[insertNode] [682]: tempNode is = 0x563cad607df0, preSegmentId = 30, prevSegmentId = 28, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad607f70
+[insertNode] [694]: childNode = 0x563cad607f70
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 62.000000, accumulateBranchAngle = 2.834646
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 0.049474
@@ -978,28 +978,28 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 997.776522
 [calcHeadingXY] [94]: coordinate system rotated Y = 12.143735
 [calcDestination] [78]: destinationCoord latitude = 40.362854  destinationCoord longitude = 116.821474
-[insertNode] [720]: childNode's preSegmentId = 30
-[insertNode] [723]: 30's startCoordinate: latitude = 40.362297, longitude = 116.821460
-[insertNode] [724]: 30's endCoordinate: latitude = 40.362854, longitude = 116.821474
-[insertNode] [603]: (*it)->preSegmentId = 31's segIsInTree = 0
-[findNodeById] [439]: result = 0x55d9bfb42df0
-[findNodeById] [439]: result = 0x55d9bfb42df0
-[findNodeById] [439]: result = 0x55d9bfb42df0
-[findNodeById] [439]: result = 0x55d9bfb42df0
-[findNodeById] [439]: result = 0x55d9bfb42df0
-[findNodeById] [439]: result = 0x55d9bfb42df0
-[findNodeById] [439]: result = 0x55d9bfb42df0
-[findNodeById] [439]: result = 0x55d9bfb42df0
-[findNodeById] [439]: result = 0x55d9bfb42df0
-[findNodeById] [439]: result = 0x55d9bfb42df0
-[findNodeById] [439]: result = 0x55d9bfb42df0
-[findNodeById] [439]: result = 0x55d9bfb42df0
-[findNodeById] [439]: result = 0x55d9bfb42df0
-[findNodeById] [439]: result = 0x55d9bfb42df0
-[findNodeById] [439]: result = 0x55d9bfb42df0
-[insertNode] [693]: tempNode is = 0x55d9bfb42df0, preSegmentId = 31, prevSegmentId = 28, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb43030
-[insertNode] [705]: childNode = 0x55d9bfb43030
+[insertNode] [709]: childNode's preSegmentId = 30
+[insertNode] [712]: 30's startCoordinate: latitude = 40.362297, longitude = 116.821460
+[insertNode] [713]: 30's endCoordinate: latitude = 40.362854, longitude = 116.821474
+[insertNode] [593]: (*it)->preSegmentId = 31's segIsInTree = 0
+[findNodeById] [439]: result = 0x563cad607df0
+[findNodeById] [439]: result = 0x563cad607df0
+[findNodeById] [439]: result = 0x563cad607df0
+[findNodeById] [439]: result = 0x563cad607df0
+[findNodeById] [439]: result = 0x563cad607df0
+[findNodeById] [439]: result = 0x563cad607df0
+[findNodeById] [439]: result = 0x563cad607df0
+[findNodeById] [439]: result = 0x563cad607df0
+[findNodeById] [439]: result = 0x563cad607df0
+[findNodeById] [439]: result = 0x563cad607df0
+[findNodeById] [439]: result = 0x563cad607df0
+[findNodeById] [439]: result = 0x563cad607df0
+[findNodeById] [439]: result = 0x563cad607df0
+[findNodeById] [439]: result = 0x563cad607df0
+[findNodeById] [439]: result = 0x563cad607df0
+[insertNode] [682]: tempNode is = 0x563cad607df0, preSegmentId = 31, prevSegmentId = 28, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad608030
+[insertNode] [694]: childNode = 0x563cad608030
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 10.000000, accumulateBranchAngle = 96.377964
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 1.682113
@@ -1011,29 +1011,29 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 934.973127
 [calcHeadingXY] [94]: coordinate system rotated Y = 20.882699
 [calcDestination] [78]: destinationCoord latitude = 40.362290  destinationCoord longitude = 116.821577
-[insertNode] [720]: childNode's preSegmentId = 31
-[insertNode] [723]: 31's startCoordinate: latitude = 40.362297, longitude = 116.821460
-[insertNode] [724]: 31's endCoordinate: latitude = 40.362290, longitude = 116.821577
-[insertNode] [603]: (*it)->preSegmentId = 32's segIsInTree = 0
-[findNodeById] [439]: result = 0x55d9bfb42f70
-[findNodeById] [439]: result = 0x55d9bfb42f70
-[findNodeById] [439]: result = 0x55d9bfb42f70
-[findNodeById] [439]: result = 0x55d9bfb42f70
-[findNodeById] [439]: result = 0x55d9bfb42f70
-[findNodeById] [439]: result = 0x55d9bfb42f70
-[findNodeById] [439]: result = 0x55d9bfb42f70
-[findNodeById] [439]: result = 0x55d9bfb42f70
-[findNodeById] [439]: result = 0x55d9bfb42f70
-[findNodeById] [439]: result = 0x55d9bfb42f70
-[findNodeById] [439]: result = 0x55d9bfb42f70
-[findNodeById] [439]: result = 0x55d9bfb42f70
-[findNodeById] [439]: result = 0x55d9bfb42f70
-[findNodeById] [439]: result = 0x55d9bfb42f70
-[findNodeById] [439]: result = 0x55d9bfb42f70
-[findNodeById] [439]: result = 0x55d9bfb42f70
-[insertNode] [693]: tempNode is = 0x55d9bfb42f70, preSegmentId = 32, prevSegmentId = 30, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb43110
-[insertNode] [705]: childNode = 0x55d9bfb43110
+[insertNode] [709]: childNode's preSegmentId = 31
+[insertNode] [712]: 31's startCoordinate: latitude = 40.362297, longitude = 116.821460
+[insertNode] [713]: 31's endCoordinate: latitude = 40.362290, longitude = 116.821577
+[insertNode] [593]: (*it)->preSegmentId = 32's segIsInTree = 0
+[findNodeById] [439]: result = 0x563cad607f70
+[findNodeById] [439]: result = 0x563cad607f70
+[findNodeById] [439]: result = 0x563cad607f70
+[findNodeById] [439]: result = 0x563cad607f70
+[findNodeById] [439]: result = 0x563cad607f70
+[findNodeById] [439]: result = 0x563cad607f70
+[findNodeById] [439]: result = 0x563cad607f70
+[findNodeById] [439]: result = 0x563cad607f70
+[findNodeById] [439]: result = 0x563cad607f70
+[findNodeById] [439]: result = 0x563cad607f70
+[findNodeById] [439]: result = 0x563cad607f70
+[findNodeById] [439]: result = 0x563cad607f70
+[findNodeById] [439]: result = 0x563cad607f70
+[findNodeById] [439]: result = 0x563cad607f70
+[findNodeById] [439]: result = 0x563cad607f70
+[findNodeById] [439]: result = 0x563cad607f70
+[insertNode] [682]: tempNode is = 0x563cad607f70, preSegmentId = 32, prevSegmentId = 30, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad608110
+[insertNode] [694]: childNode = 0x563cad608110
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 66.000000, accumulateBranchAngle = -1.417323
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = -0.024737
@@ -1045,29 +1045,29 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 1063.678860
 [calcHeadingXY] [94]: coordinate system rotated Y = 8.554609
 [calcDestination] [78]: destinationCoord latitude = 40.363446  destinationCoord longitude = 116.821432
-[insertNode] [720]: childNode's preSegmentId = 32
-[insertNode] [723]: 32's startCoordinate: latitude = 40.362854, longitude = 116.821474
-[insertNode] [724]: 32's endCoordinate: latitude = 40.363446, longitude = 116.821432
-[insertNode] [603]: (*it)->preSegmentId = 33's segIsInTree = 0
-[findNodeById] [439]: result = 0x55d9bfb42f70
-[findNodeById] [439]: result = 0x55d9bfb42f70
-[findNodeById] [439]: result = 0x55d9bfb42f70
-[findNodeById] [439]: result = 0x55d9bfb42f70
-[findNodeById] [439]: result = 0x55d9bfb42f70
-[findNodeById] [439]: result = 0x55d9bfb42f70
-[findNodeById] [439]: result = 0x55d9bfb42f70
-[findNodeById] [439]: result = 0x55d9bfb42f70
-[findNodeById] [439]: result = 0x55d9bfb42f70
-[findNodeById] [439]: result = 0x55d9bfb42f70
-[findNodeById] [439]: result = 0x55d9bfb42f70
-[findNodeById] [439]: result = 0x55d9bfb42f70
-[findNodeById] [439]: result = 0x55d9bfb42f70
-[findNodeById] [439]: result = 0x55d9bfb42f70
-[findNodeById] [439]: result = 0x55d9bfb42f70
-[findNodeById] [439]: result = 0x55d9bfb42f70
-[insertNode] [693]: tempNode is = 0x55d9bfb42f70, preSegmentId = 33, prevSegmentId = 30, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb431d0
-[insertNode] [705]: childNode = 0x55d9bfb431d0
+[insertNode] [709]: childNode's preSegmentId = 32
+[insertNode] [712]: 32's startCoordinate: latitude = 40.362854, longitude = 116.821474
+[insertNode] [713]: 32's endCoordinate: latitude = 40.363446, longitude = 116.821432
+[insertNode] [593]: (*it)->preSegmentId = 33's segIsInTree = 0
+[findNodeById] [439]: result = 0x563cad607f70
+[findNodeById] [439]: result = 0x563cad607f70
+[findNodeById] [439]: result = 0x563cad607f70
+[findNodeById] [439]: result = 0x563cad607f70
+[findNodeById] [439]: result = 0x563cad607f70
+[findNodeById] [439]: result = 0x563cad607f70
+[findNodeById] [439]: result = 0x563cad607f70
+[findNodeById] [439]: result = 0x563cad607f70
+[findNodeById] [439]: result = 0x563cad607f70
+[findNodeById] [439]: result = 0x563cad607f70
+[findNodeById] [439]: result = 0x563cad607f70
+[findNodeById] [439]: result = 0x563cad607f70
+[findNodeById] [439]: result = 0x563cad607f70
+[findNodeById] [439]: result = 0x563cad607f70
+[findNodeById] [439]: result = 0x563cad607f70
+[findNodeById] [439]: result = 0x563cad607f70
+[insertNode] [682]: tempNode is = 0x563cad607f70, preSegmentId = 33, prevSegmentId = 30, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad6081d0
+[insertNode] [694]: childNode = 0x563cad6081d0
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 20.000000, accumulateBranchAngle = 82.204734
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 1.434743
@@ -1079,10 +1079,10 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 1001.075844
 [calcHeadingXY] [94]: coordinate system rotated Y = 31.869720
 [calcDestination] [78]: destinationCoord latitude = 40.362884  destinationCoord longitude = 116.821707
-[insertNode] [720]: childNode's preSegmentId = 33
-[insertNode] [723]: 33's startCoordinate: latitude = 40.362854, longitude = 116.821474
-[insertNode] [724]: 33's endCoordinate: latitude = 40.362884, longitude = 116.821707
-[insertNode] [603]: (*it)->preSegmentId = 34's segIsInTree = 0
+[insertNode] [709]: childNode's preSegmentId = 33
+[insertNode] [712]: 33's startCoordinate: latitude = 40.362854, longitude = 116.821474
+[insertNode] [713]: 33's endCoordinate: latitude = 40.362884, longitude = 116.821707
+[insertNode] [593]: (*it)->preSegmentId = 34's segIsInTree = 0
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
@@ -1107,13 +1107,13 @@ open successfully
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
-[findNodeById] [439]: result = 0x55d9bfb42070
-[findNodeById] [439]: result = 0x55d9bfb42070
-[findNodeById] [439]: result = 0x55d9bfb42070
-[findNodeById] [439]: result = 0x55d9bfb42070
-[insertNode] [693]: tempNode is = 0x55d9bfb42070, preSegmentId = 34, prevSegmentId = 10, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb432b0
-[insertNode] [705]: childNode = 0x55d9bfb432b0
+[findNodeById] [439]: result = 0x563cad607070
+[findNodeById] [439]: result = 0x563cad607070
+[findNodeById] [439]: result = 0x563cad607070
+[findNodeById] [439]: result = 0x563cad607070
+[insertNode] [682]: tempNode is = 0x563cad607070, preSegmentId = 34, prevSegmentId = 10, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad6082b0
+[insertNode] [694]: childNode = 0x563cad6082b0
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 34.000000, accumulateBranchAngle = 92.125995
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 1.607902
@@ -1125,10 +1125,10 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 219.121030
 [calcHeadingXY] [94]: coordinate system rotated Y = 48.332156
 [calcDestination] [78]: destinationCoord latitude = 40.355859  destinationCoord longitude = 116.821901
-[insertNode] [720]: childNode's preSegmentId = 34
-[insertNode] [723]: 34's startCoordinate: latitude = 40.355862, longitude = 116.821500
-[insertNode] [724]: 34's endCoordinate: latitude = 40.355859, longitude = 116.821901
-[insertNode] [603]: (*it)->preSegmentId = 35's segIsInTree = 0
+[insertNode] [709]: childNode's preSegmentId = 34
+[insertNode] [712]: 34's startCoordinate: latitude = 40.355862, longitude = 116.821500
+[insertNode] [713]: 34's endCoordinate: latitude = 40.355859, longitude = 116.821901
+[insertNode] [593]: (*it)->preSegmentId = 35's segIsInTree = 0
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
@@ -1153,14 +1153,14 @@ open successfully
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
-[findNodeById] [439]: result = 0x55d9bfb432b0
-[findNodeById] [439]: result = 0x55d9bfb432b0
-[findNodeById] [439]: result = 0x55d9bfb432b0
-[findNodeById] [439]: result = 0x55d9bfb432b0
-[findNodeById] [439]: result = 0x55d9bfb432b0
-[insertNode] [693]: tempNode is = 0x55d9bfb432b0, preSegmentId = 35, prevSegmentId = 34, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb43370
-[insertNode] [705]: childNode = 0x55d9bfb43370
+[findNodeById] [439]: result = 0x563cad6082b0
+[findNodeById] [439]: result = 0x563cad6082b0
+[findNodeById] [439]: result = 0x563cad6082b0
+[findNodeById] [439]: result = 0x563cad6082b0
+[findNodeById] [439]: result = 0x563cad6082b0
+[insertNode] [682]: tempNode is = 0x563cad6082b0, preSegmentId = 35, prevSegmentId = 34, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad608370
+[insertNode] [694]: childNode = 0x563cad608370
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 112.000000, accumulateBranchAngle = 92.125995
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 1.607902
@@ -1172,30 +1172,30 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 218.288316
 [calcHeadingXY] [94]: coordinate system rotated Y = 160.329060
 [calcDestination] [78]: destinationCoord latitude = 40.355852  destinationCoord longitude = 116.823221
-[insertNode] [720]: childNode's preSegmentId = 35
-[insertNode] [723]: 35's startCoordinate: latitude = 40.355859, longitude = 116.821901
-[insertNode] [724]: 35's endCoordinate: latitude = 40.355852, longitude = 116.823221
-[insertNode] [603]: (*it)->preSegmentId = 36's segIsInTree = 0
-[findNodeById] [439]: result = 0x55d9bfb43110
-[findNodeById] [439]: result = 0x55d9bfb43110
-[findNodeById] [439]: result = 0x55d9bfb43110
-[findNodeById] [439]: result = 0x55d9bfb43110
-[findNodeById] [439]: result = 0x55d9bfb43110
-[findNodeById] [439]: result = 0x55d9bfb43110
-[findNodeById] [439]: result = 0x55d9bfb43110
-[findNodeById] [439]: result = 0x55d9bfb43110
-[findNodeById] [439]: result = 0x55d9bfb43110
-[findNodeById] [439]: result = 0x55d9bfb43110
-[findNodeById] [439]: result = 0x55d9bfb43110
-[findNodeById] [439]: result = 0x55d9bfb43110
-[findNodeById] [439]: result = 0x55d9bfb43110
-[findNodeById] [439]: result = 0x55d9bfb43110
-[findNodeById] [439]: result = 0x55d9bfb43110
-[findNodeById] [439]: result = 0x55d9bfb43110
-[findNodeById] [439]: result = 0x55d9bfb43110
-[insertNode] [693]: tempNode is = 0x55d9bfb43110, preSegmentId = 36, prevSegmentId = 32, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb43450
-[insertNode] [705]: childNode = 0x55d9bfb43450
+[insertNode] [709]: childNode's preSegmentId = 35
+[insertNode] [712]: 35's startCoordinate: latitude = 40.355859, longitude = 116.821901
+[insertNode] [713]: 35's endCoordinate: latitude = 40.355852, longitude = 116.823221
+[insertNode] [593]: (*it)->preSegmentId = 36's segIsInTree = 0
+[findNodeById] [439]: result = 0x563cad608110
+[findNodeById] [439]: result = 0x563cad608110
+[findNodeById] [439]: result = 0x563cad608110
+[findNodeById] [439]: result = 0x563cad608110
+[findNodeById] [439]: result = 0x563cad608110
+[findNodeById] [439]: result = 0x563cad608110
+[findNodeById] [439]: result = 0x563cad608110
+[findNodeById] [439]: result = 0x563cad608110
+[findNodeById] [439]: result = 0x563cad608110
+[findNodeById] [439]: result = 0x563cad608110
+[findNodeById] [439]: result = 0x563cad608110
+[findNodeById] [439]: result = 0x563cad608110
+[findNodeById] [439]: result = 0x563cad608110
+[findNodeById] [439]: result = 0x563cad608110
+[findNodeById] [439]: result = 0x563cad608110
+[findNodeById] [439]: result = 0x563cad608110
+[findNodeById] [439]: result = 0x563cad608110
+[insertNode] [682]: tempNode is = 0x563cad608110, preSegmentId = 36, prevSegmentId = 32, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad608450
+[insertNode] [694]: childNode = 0x563cad608450
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 12.000000, accumulateBranchAngle = 0.000000
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 0.000000
@@ -1207,30 +1207,30 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 1075.673578
 [calcHeadingXY] [94]: coordinate system rotated Y = 8.198614
 [calcDestination] [78]: destinationCoord latitude = 40.363554  destinationCoord longitude = 116.821428
-[insertNode] [720]: childNode's preSegmentId = 36
-[insertNode] [723]: 36's startCoordinate: latitude = 40.363446, longitude = 116.821432
-[insertNode] [724]: 36's endCoordinate: latitude = 40.363554, longitude = 116.821428
-[insertNode] [603]: (*it)->preSegmentId = 37's segIsInTree = 0
-[findNodeById] [439]: result = 0x55d9bfb43110
-[findNodeById] [439]: result = 0x55d9bfb43110
-[findNodeById] [439]: result = 0x55d9bfb43110
-[findNodeById] [439]: result = 0x55d9bfb43110
-[findNodeById] [439]: result = 0x55d9bfb43110
-[findNodeById] [439]: result = 0x55d9bfb43110
-[findNodeById] [439]: result = 0x55d9bfb43110
-[findNodeById] [439]: result = 0x55d9bfb43110
-[findNodeById] [439]: result = 0x55d9bfb43110
-[findNodeById] [439]: result = 0x55d9bfb43110
-[findNodeById] [439]: result = 0x55d9bfb43110
-[findNodeById] [439]: result = 0x55d9bfb43110
-[findNodeById] [439]: result = 0x55d9bfb43110
-[findNodeById] [439]: result = 0x55d9bfb43110
-[findNodeById] [439]: result = 0x55d9bfb43110
-[findNodeById] [439]: result = 0x55d9bfb43110
-[findNodeById] [439]: result = 0x55d9bfb43110
-[insertNode] [693]: tempNode is = 0x55d9bfb43110, preSegmentId = 37, prevSegmentId = 32, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb43530
-[insertNode] [705]: childNode = 0x55d9bfb43530
+[insertNode] [709]: childNode's preSegmentId = 36
+[insertNode] [712]: 36's startCoordinate: latitude = 40.363446, longitude = 116.821432
+[insertNode] [713]: 36's endCoordinate: latitude = 40.363554, longitude = 116.821428
+[insertNode] [593]: (*it)->preSegmentId = 37's segIsInTree = 0
+[findNodeById] [439]: result = 0x563cad608110
+[findNodeById] [439]: result = 0x563cad608110
+[findNodeById] [439]: result = 0x563cad608110
+[findNodeById] [439]: result = 0x563cad608110
+[findNodeById] [439]: result = 0x563cad608110
+[findNodeById] [439]: result = 0x563cad608110
+[findNodeById] [439]: result = 0x563cad608110
+[findNodeById] [439]: result = 0x563cad608110
+[findNodeById] [439]: result = 0x563cad608110
+[findNodeById] [439]: result = 0x563cad608110
+[findNodeById] [439]: result = 0x563cad608110
+[findNodeById] [439]: result = 0x563cad608110
+[findNodeById] [439]: result = 0x563cad608110
+[findNodeById] [439]: result = 0x563cad608110
+[findNodeById] [439]: result = 0x563cad608110
+[findNodeById] [439]: result = 0x563cad608110
+[findNodeById] [439]: result = 0x563cad608110
+[insertNode] [682]: tempNode is = 0x563cad608110, preSegmentId = 37, prevSegmentId = 32, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad608530
+[insertNode] [694]: childNode = 0x563cad608530
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 72.000000, accumulateBranchAngle = -83.622057
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = -1.459480
@@ -1242,10 +1242,10 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 1069.550807
 [calcHeadingXY] [94]: coordinate system rotated Y = -63.205549
 [calcDestination] [78]: destinationCoord latitude = 40.363499  destinationCoord longitude = 116.820586
-[insertNode] [720]: childNode's preSegmentId = 37
-[insertNode] [723]: 37's startCoordinate: latitude = 40.363446, longitude = 116.821432
-[insertNode] [724]: 37's endCoordinate: latitude = 40.363499, longitude = 116.820586
-[insertNode] [603]: (*it)->preSegmentId = 38's segIsInTree = 0
+[insertNode] [709]: childNode's preSegmentId = 37
+[insertNode] [712]: 37's startCoordinate: latitude = 40.363446, longitude = 116.821432
+[insertNode] [713]: 37's endCoordinate: latitude = 40.363499, longitude = 116.820586
+[insertNode] [593]: (*it)->preSegmentId = 38's segIsInTree = 0
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
@@ -1267,16 +1267,16 @@ open successfully
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
-[findNodeById] [439]: result = 0x55d9bfb42370
-[findNodeById] [439]: result = 0x55d9bfb42370
-[findNodeById] [439]: result = 0x55d9bfb42370
-[findNodeById] [439]: result = 0x55d9bfb42370
-[findNodeById] [439]: result = 0x55d9bfb42370
-[findNodeById] [439]: result = 0x55d9bfb42370
-[findNodeById] [439]: result = 0x55d9bfb42370
-[insertNode] [693]: tempNode is = 0x55d9bfb42370, preSegmentId = 38, prevSegmentId = 14, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb43610
-[insertNode] [705]: childNode = 0x55d9bfb43610
+[findNodeById] [439]: result = 0x563cad607370
+[findNodeById] [439]: result = 0x563cad607370
+[findNodeById] [439]: result = 0x563cad607370
+[findNodeById] [439]: result = 0x563cad607370
+[findNodeById] [439]: result = 0x563cad607370
+[findNodeById] [439]: result = 0x563cad607370
+[findNodeById] [439]: result = 0x563cad607370
+[insertNode] [682]: tempNode is = 0x563cad607370, preSegmentId = 38, prevSegmentId = 14, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad608610
+[insertNode] [694]: childNode = 0x563cad608610
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 60.000000, accumulateBranchAngle = 93.543318
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 1.632639
@@ -1288,10 +1288,10 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 337.910080
 [calcHeadingXY] [94]: coordinate system rotated Y = 70.687272
 [calcDestination] [78]: destinationCoord latitude = 40.356926  destinationCoord longitude = 116.822164
-[insertNode] [720]: childNode's preSegmentId = 38
-[insertNode] [723]: 38's startCoordinate: latitude = 40.356944, longitude = 116.821457
-[insertNode] [724]: 38's endCoordinate: latitude = 40.356926, longitude = 116.822164
-[insertNode] [603]: (*it)->preSegmentId = 39's segIsInTree = 0
+[insertNode] [709]: childNode's preSegmentId = 38
+[insertNode] [712]: 38's startCoordinate: latitude = 40.356944, longitude = 116.821457
+[insertNode] [713]: 38's endCoordinate: latitude = 40.356926, longitude = 116.822164
+[insertNode] [593]: (*it)->preSegmentId = 39's segIsInTree = 0
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
@@ -1313,16 +1313,16 @@ open successfully
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
-[findNodeById] [439]: result = 0x55d9bfb42370
-[findNodeById] [439]: result = 0x55d9bfb42370
-[findNodeById] [439]: result = 0x55d9bfb42370
-[findNodeById] [439]: result = 0x55d9bfb42370
-[findNodeById] [439]: result = 0x55d9bfb42370
-[findNodeById] [439]: result = 0x55d9bfb42370
-[findNodeById] [439]: result = 0x55d9bfb42370
-[insertNode] [693]: tempNode is = 0x55d9bfb42370, preSegmentId = 39, prevSegmentId = 14, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb436d0
-[insertNode] [705]: childNode = 0x55d9bfb436d0
+[findNodeById] [439]: result = 0x563cad607370
+[findNodeById] [439]: result = 0x563cad607370
+[findNodeById] [439]: result = 0x563cad607370
+[findNodeById] [439]: result = 0x563cad607370
+[findNodeById] [439]: result = 0x563cad607370
+[findNodeById] [439]: result = 0x563cad607370
+[findNodeById] [439]: result = 0x563cad607370
+[insertNode] [682]: tempNode is = 0x563cad607370, preSegmentId = 39, prevSegmentId = 14, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad6086d0
+[insertNode] [694]: childNode = 0x563cad6086d0
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 18.000000, accumulateBranchAngle = 2.834646
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 0.049474
@@ -1334,31 +1334,31 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 357.836535
 [calcHeadingXY] [94]: coordinate system rotated Y = 11.074756
 [calcDestination] [78]: destinationCoord latitude = 40.357106  destinationCoord longitude = 116.821462
-[insertNode] [720]: childNode's preSegmentId = 39
-[insertNode] [723]: 39's startCoordinate: latitude = 40.356944, longitude = 116.821457
-[insertNode] [724]: 39's endCoordinate: latitude = 40.357106, longitude = 116.821462
-[insertNode] [603]: (*it)->preSegmentId = 40's segIsInTree = 0
-[findNodeById] [439]: result = 0x55d9bfb43450
-[findNodeById] [439]: result = 0x55d9bfb43450
-[findNodeById] [439]: result = 0x55d9bfb43450
-[findNodeById] [439]: result = 0x55d9bfb43450
-[findNodeById] [439]: result = 0x55d9bfb43450
-[findNodeById] [439]: result = 0x55d9bfb43450
-[findNodeById] [439]: result = 0x55d9bfb43450
-[findNodeById] [439]: result = 0x55d9bfb43450
-[findNodeById] [439]: result = 0x55d9bfb43450
-[findNodeById] [439]: result = 0x55d9bfb43450
-[findNodeById] [439]: result = 0x55d9bfb43450
-[findNodeById] [439]: result = 0x55d9bfb43450
-[findNodeById] [439]: result = 0x55d9bfb43450
-[findNodeById] [439]: result = 0x55d9bfb43450
-[findNodeById] [439]: result = 0x55d9bfb43450
-[findNodeById] [439]: result = 0x55d9bfb43450
-[findNodeById] [439]: result = 0x55d9bfb43450
-[findNodeById] [439]: result = 0x55d9bfb43450
-[insertNode] [693]: tempNode is = 0x55d9bfb43450, preSegmentId = 40, prevSegmentId = 36, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb437b0
-[insertNode] [705]: childNode = 0x55d9bfb437b0
+[insertNode] [709]: childNode's preSegmentId = 39
+[insertNode] [712]: 39's startCoordinate: latitude = 40.356944, longitude = 116.821457
+[insertNode] [713]: 39's endCoordinate: latitude = 40.357106, longitude = 116.821462
+[insertNode] [593]: (*it)->preSegmentId = 40's segIsInTree = 0
+[findNodeById] [439]: result = 0x563cad608450
+[findNodeById] [439]: result = 0x563cad608450
+[findNodeById] [439]: result = 0x563cad608450
+[findNodeById] [439]: result = 0x563cad608450
+[findNodeById] [439]: result = 0x563cad608450
+[findNodeById] [439]: result = 0x563cad608450
+[findNodeById] [439]: result = 0x563cad608450
+[findNodeById] [439]: result = 0x563cad608450
+[findNodeById] [439]: result = 0x563cad608450
+[findNodeById] [439]: result = 0x563cad608450
+[findNodeById] [439]: result = 0x563cad608450
+[findNodeById] [439]: result = 0x563cad608450
+[findNodeById] [439]: result = 0x563cad608450
+[findNodeById] [439]: result = 0x563cad608450
+[findNodeById] [439]: result = 0x563cad608450
+[findNodeById] [439]: result = 0x563cad608450
+[findNodeById] [439]: result = 0x563cad608450
+[findNodeById] [439]: result = 0x563cad608450
+[insertNode] [682]: tempNode is = 0x563cad608450, preSegmentId = 40, prevSegmentId = 36, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad6087b0
+[insertNode] [694]: childNode = 0x563cad6087b0
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 22.000000, accumulateBranchAngle = 8.503938
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 0.148422
@@ -1370,10 +1370,10 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 1097.518640
 [calcHeadingXY] [94]: coordinate system rotated Y = 10.805002
 [calcDestination] [78]: destinationCoord latitude = 40.363750  destinationCoord longitude = 116.821458
-[insertNode] [720]: childNode's preSegmentId = 40
-[insertNode] [723]: 40's startCoordinate: latitude = 40.363554, longitude = 116.821428
-[insertNode] [724]: 40's endCoordinate: latitude = 40.363750, longitude = 116.821458
-[insertNode] [603]: (*it)->preSegmentId = 41's segIsInTree = 0
+[insertNode] [709]: childNode's preSegmentId = 40
+[insertNode] [712]: 40's startCoordinate: latitude = 40.363554, longitude = 116.821428
+[insertNode] [713]: 40's endCoordinate: latitude = 40.363750, longitude = 116.821458
+[insertNode] [593]: (*it)->preSegmentId = 41's segIsInTree = 0
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
@@ -1394,17 +1394,17 @@ open successfully
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
-[findNodeById] [439]: result = 0x55d9bfb42670
-[findNodeById] [439]: result = 0x55d9bfb42670
-[findNodeById] [439]: result = 0x55d9bfb42670
-[findNodeById] [439]: result = 0x55d9bfb42670
-[findNodeById] [439]: result = 0x55d9bfb42670
-[findNodeById] [439]: result = 0x55d9bfb42670
-[findNodeById] [439]: result = 0x55d9bfb42670
-[findNodeById] [439]: result = 0x55d9bfb42670
-[insertNode] [693]: tempNode is = 0x55d9bfb42670, preSegmentId = 41, prevSegmentId = 18, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb43870
-[insertNode] [705]: childNode = 0x55d9bfb43870
+[findNodeById] [439]: result = 0x563cad607670
+[findNodeById] [439]: result = 0x563cad607670
+[findNodeById] [439]: result = 0x563cad607670
+[findNodeById] [439]: result = 0x563cad607670
+[findNodeById] [439]: result = 0x563cad607670
+[findNodeById] [439]: result = 0x563cad607670
+[findNodeById] [439]: result = 0x563cad607670
+[findNodeById] [439]: result = 0x563cad607670
+[insertNode] [682]: tempNode is = 0x563cad607670, preSegmentId = 41, prevSegmentId = 18, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad608870
+[insertNode] [694]: childNode = 0x563cad608870
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 18.000000, accumulateBranchAngle = -177.165375
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = -3.092119
@@ -1416,10 +1416,10 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 340.575915
 [calcHeadingXY] [94]: coordinate system rotated Y = -21.716234
 [calcDestination] [78]: destinationCoord latitude = 40.356950  destinationCoord longitude = 116.821075
-[insertNode] [720]: childNode's preSegmentId = 41
-[insertNode] [723]: 41's startCoordinate: latitude = 40.357112, longitude = 116.821079
-[insertNode] [724]: 41's endCoordinate: latitude = 40.356950, longitude = 116.821075
-[insertNode] [603]: (*it)->preSegmentId = 42's segIsInTree = 0
+[insertNode] [709]: childNode's preSegmentId = 41
+[insertNode] [712]: 41's startCoordinate: latitude = 40.357112, longitude = 116.821079
+[insertNode] [713]: 41's endCoordinate: latitude = 40.356950, longitude = 116.821075
+[insertNode] [593]: (*it)->preSegmentId = 42's segIsInTree = 0
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
@@ -1440,17 +1440,17 @@ open successfully
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
-[findNodeById] [439]: result = 0x55d9bfb42670
-[findNodeById] [439]: result = 0x55d9bfb42670
-[findNodeById] [439]: result = 0x55d9bfb42670
-[findNodeById] [439]: result = 0x55d9bfb42670
-[findNodeById] [439]: result = 0x55d9bfb42670
-[findNodeById] [439]: result = 0x55d9bfb42670
-[findNodeById] [439]: result = 0x55d9bfb42670
-[findNodeById] [439]: result = 0x55d9bfb42670
-[insertNode] [693]: tempNode is = 0x55d9bfb42670, preSegmentId = 42, prevSegmentId = 18, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb43950
-[insertNode] [705]: childNode = 0x55d9bfb43950
+[findNodeById] [439]: result = 0x563cad607670
+[findNodeById] [439]: result = 0x563cad607670
+[findNodeById] [439]: result = 0x563cad607670
+[findNodeById] [439]: result = 0x563cad607670
+[findNodeById] [439]: result = 0x563cad607670
+[findNodeById] [439]: result = 0x563cad607670
+[findNodeById] [439]: result = 0x563cad607670
+[findNodeById] [439]: result = 0x563cad607670
+[insertNode] [682]: tempNode is = 0x563cad607670, preSegmentId = 42, prevSegmentId = 18, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad608950
+[insertNode] [694]: childNode = 0x563cad608950
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 80.000000, accumulateBranchAngle = -85.039380
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = -1.484217
@@ -1462,10 +1462,10 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 363.122614
 [calcHeadingXY] [94]: coordinate system rotated Y = -101.230296
 [calcDestination] [78]: destinationCoord latitude = 40.357153  destinationCoord longitude = 116.820138
-[insertNode] [720]: childNode's preSegmentId = 42
-[insertNode] [723]: 42's startCoordinate: latitude = 40.357112, longitude = 116.821079
-[insertNode] [724]: 42's endCoordinate: latitude = 40.357153, longitude = 116.820138
-[insertNode] [603]: (*it)->preSegmentId = 43's segIsInTree = 0
+[insertNode] [709]: childNode's preSegmentId = 42
+[insertNode] [712]: 42's startCoordinate: latitude = 40.357112, longitude = 116.821079
+[insertNode] [713]: 42's endCoordinate: latitude = 40.357153, longitude = 116.820138
+[insertNode] [593]: (*it)->preSegmentId = 43's segIsInTree = 0
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
@@ -1490,17 +1490,17 @@ open successfully
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
-[findNodeById] [439]: result = 0x55d9bfb43610
-[findNodeById] [439]: result = 0x55d9bfb43610
-[findNodeById] [439]: result = 0x55d9bfb43610
-[findNodeById] [439]: result = 0x55d9bfb43610
-[findNodeById] [439]: result = 0x55d9bfb43610
-[findNodeById] [439]: result = 0x55d9bfb43610
-[findNodeById] [439]: result = 0x55d9bfb43610
-[findNodeById] [439]: result = 0x55d9bfb43610
-[insertNode] [693]: tempNode is = 0x55d9bfb43610, preSegmentId = 43, prevSegmentId = 38, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb43a30
-[insertNode] [705]: childNode = 0x55d9bfb43a30
+[findNodeById] [439]: result = 0x563cad608610
+[findNodeById] [439]: result = 0x563cad608610
+[findNodeById] [439]: result = 0x563cad608610
+[findNodeById] [439]: result = 0x563cad608610
+[findNodeById] [439]: result = 0x563cad608610
+[findNodeById] [439]: result = 0x563cad608610
+[findNodeById] [439]: result = 0x563cad608610
+[findNodeById] [439]: result = 0x563cad608610
+[insertNode] [682]: tempNode is = 0x563cad608610, preSegmentId = 43, prevSegmentId = 38, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad608a30
+[insertNode] [694]: childNode = 0x563cad608a30
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 30.000000, accumulateBranchAngle = 93.543318
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 1.632639
@@ -1512,10 +1512,10 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 336.945087
 [calcHeadingXY] [94]: coordinate system rotated Y = 100.671748
 [calcDestination] [78]: destinationCoord latitude = 40.356918  destinationCoord longitude = 116.822518
-[insertNode] [720]: childNode's preSegmentId = 43
-[insertNode] [723]: 43's startCoordinate: latitude = 40.356926, longitude = 116.822164
-[insertNode] [724]: 43's endCoordinate: latitude = 40.356918, longitude = 116.822518
-[insertNode] [603]: (*it)->preSegmentId = 44's segIsInTree = 0
+[insertNode] [709]: childNode's preSegmentId = 43
+[insertNode] [712]: 43's startCoordinate: latitude = 40.356926, longitude = 116.822164
+[insertNode] [713]: 43's endCoordinate: latitude = 40.356918, longitude = 116.822518
+[insertNode] [593]: (*it)->preSegmentId = 44's segIsInTree = 0
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
@@ -1540,18 +1540,18 @@ open successfully
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
-[findNodeById] [439]: result = 0x55d9bfb43a30
-[findNodeById] [439]: result = 0x55d9bfb43a30
-[findNodeById] [439]: result = 0x55d9bfb43a30
-[findNodeById] [439]: result = 0x55d9bfb43a30
-[findNodeById] [439]: result = 0x55d9bfb43a30
-[findNodeById] [439]: result = 0x55d9bfb43a30
-[findNodeById] [439]: result = 0x55d9bfb43a30
-[findNodeById] [439]: result = 0x55d9bfb43a30
-[findNodeById] [439]: result = 0x55d9bfb43a30
-[insertNode] [693]: tempNode is = 0x55d9bfb43a30, preSegmentId = 44, prevSegmentId = 43, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb43af0
-[insertNode] [705]: childNode = 0x55d9bfb43af0
+[findNodeById] [439]: result = 0x563cad608a30
+[findNodeById] [439]: result = 0x563cad608a30
+[findNodeById] [439]: result = 0x563cad608a30
+[findNodeById] [439]: result = 0x563cad608a30
+[findNodeById] [439]: result = 0x563cad608a30
+[findNodeById] [439]: result = 0x563cad608a30
+[findNodeById] [439]: result = 0x563cad608a30
+[findNodeById] [439]: result = 0x563cad608a30
+[findNodeById] [439]: result = 0x563cad608a30
+[insertNode] [682]: tempNode is = 0x563cad608a30, preSegmentId = 44, prevSegmentId = 43, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad608af0
+[insertNode] [694]: childNode = 0x563cad608af0
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 18.000000, accumulateBranchAngle = 4.251969
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 0.074211
@@ -1563,10 +1563,10 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 354.927236
 [calcHeadingXY] [94]: coordinate system rotated Y = 101.473207
 [calcDestination] [78]: destinationCoord latitude = 40.357079  destinationCoord longitude = 116.822527
-[insertNode] [720]: childNode's preSegmentId = 44
-[insertNode] [723]: 44's startCoordinate: latitude = 40.356918, longitude = 116.822518
-[insertNode] [724]: 44's endCoordinate: latitude = 40.357079, longitude = 116.822527
-[insertNode] [603]: (*it)->preSegmentId = 45's segIsInTree = 0
+[insertNode] [709]: childNode's preSegmentId = 44
+[insertNode] [712]: 44's startCoordinate: latitude = 40.356918, longitude = 116.822518
+[insertNode] [713]: 44's endCoordinate: latitude = 40.357079, longitude = 116.822527
+[insertNode] [593]: (*it)->preSegmentId = 45's segIsInTree = 0
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
@@ -1591,18 +1591,18 @@ open successfully
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
-[findNodeById] [439]: result = 0x55d9bfb43a30
-[findNodeById] [439]: result = 0x55d9bfb43a30
-[findNodeById] [439]: result = 0x55d9bfb43a30
-[findNodeById] [439]: result = 0x55d9bfb43a30
-[findNodeById] [439]: result = 0x55d9bfb43a30
-[findNodeById] [439]: result = 0x55d9bfb43a30
-[findNodeById] [439]: result = 0x55d9bfb43a30
-[findNodeById] [439]: result = 0x55d9bfb43a30
-[findNodeById] [439]: result = 0x55d9bfb43a30
-[insertNode] [693]: tempNode is = 0x55d9bfb43a30, preSegmentId = 45, prevSegmentId = 43, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb43bd0
-[insertNode] [705]: childNode = 0x55d9bfb43bd0
+[findNodeById] [439]: result = 0x563cad608a30
+[findNodeById] [439]: result = 0x563cad608a30
+[findNodeById] [439]: result = 0x563cad608a30
+[findNodeById] [439]: result = 0x563cad608a30
+[findNodeById] [439]: result = 0x563cad608a30
+[findNodeById] [439]: result = 0x563cad608a30
+[findNodeById] [439]: result = 0x563cad608a30
+[findNodeById] [439]: result = 0x563cad608a30
+[findNodeById] [439]: result = 0x563cad608a30
+[insertNode] [682]: tempNode is = 0x563cad608a30, preSegmentId = 45, prevSegmentId = 43, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad608bd0
+[insertNode] [694]: childNode = 0x563cad608bd0
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 42.000000, accumulateBranchAngle = 93.543318
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 1.632639
@@ -1614,10 +1614,10 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 335.594098
 [calcHeadingXY] [94]: coordinate system rotated Y = 142.650014
 [calcDestination] [78]: destinationCoord latitude = 40.356906  destinationCoord longitude = 116.823013
-[insertNode] [720]: childNode's preSegmentId = 45
-[insertNode] [723]: 45's startCoordinate: latitude = 40.356918, longitude = 116.822518
-[insertNode] [724]: 45's endCoordinate: latitude = 40.356906, longitude = 116.823013
-[insertNode] [603]: (*it)->preSegmentId = 46's segIsInTree = 0
+[insertNode] [709]: childNode's preSegmentId = 45
+[insertNode] [712]: 45's startCoordinate: latitude = 40.356918, longitude = 116.822518
+[insertNode] [713]: 45's endCoordinate: latitude = 40.356906, longitude = 116.823013
+[insertNode] [593]: (*it)->preSegmentId = 46's segIsInTree = 0
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
@@ -1639,18 +1639,18 @@ open successfully
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
-[findNodeById] [439]: result = 0x55d9bfb43950
-[findNodeById] [439]: result = 0x55d9bfb43950
-[findNodeById] [439]: result = 0x55d9bfb43950
-[findNodeById] [439]: result = 0x55d9bfb43950
-[findNodeById] [439]: result = 0x55d9bfb43950
-[findNodeById] [439]: result = 0x55d9bfb43950
-[findNodeById] [439]: result = 0x55d9bfb43950
-[findNodeById] [439]: result = 0x55d9bfb43950
-[findNodeById] [439]: result = 0x55d9bfb43950
-[insertNode] [693]: tempNode is = 0x55d9bfb43950, preSegmentId = 46, prevSegmentId = 42, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb43cb0
-[insertNode] [705]: childNode = 0x55d9bfb43cb0
+[findNodeById] [439]: result = 0x563cad608950
+[findNodeById] [439]: result = 0x563cad608950
+[findNodeById] [439]: result = 0x563cad608950
+[findNodeById] [439]: result = 0x563cad608950
+[findNodeById] [439]: result = 0x563cad608950
+[findNodeById] [439]: result = 0x563cad608950
+[findNodeById] [439]: result = 0x563cad608950
+[findNodeById] [439]: result = 0x563cad608950
+[findNodeById] [439]: result = 0x563cad608950
+[insertNode] [682]: tempNode is = 0x563cad608950, preSegmentId = 46, prevSegmentId = 42, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad608cb0
+[insertNode] [694]: childNode = 0x563cad608cb0
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 28.000000, accumulateBranchAngle = -85.039380
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = -1.484217
@@ -1662,10 +1662,10 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 364.715193
 [calcHeadingXY] [94]: coordinate system rotated Y = -129.184968
 [calcDestination] [78]: destinationCoord latitude = 40.357167  destinationCoord longitude = 116.819808
-[insertNode] [720]: childNode's preSegmentId = 46
-[insertNode] [723]: 46's startCoordinate: latitude = 40.357153, longitude = 116.820138
-[insertNode] [724]: 46's endCoordinate: latitude = 40.357167, longitude = 116.819808
-[insertNode] [603]: (*it)->preSegmentId = 47's segIsInTree = 0
+[insertNode] [709]: childNode's preSegmentId = 46
+[insertNode] [712]: 46's startCoordinate: latitude = 40.357153, longitude = 116.820138
+[insertNode] [713]: 46's endCoordinate: latitude = 40.357167, longitude = 116.819808
+[insertNode] [593]: (*it)->preSegmentId = 47's segIsInTree = 0
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
@@ -1691,19 +1691,19 @@ open successfully
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
-[findNodeById] [439]: result = 0x55d9bfb43af0
-[findNodeById] [439]: result = 0x55d9bfb43af0
-[findNodeById] [439]: result = 0x55d9bfb43af0
-[findNodeById] [439]: result = 0x55d9bfb43af0
-[findNodeById] [439]: result = 0x55d9bfb43af0
-[findNodeById] [439]: result = 0x55d9bfb43af0
-[findNodeById] [439]: result = 0x55d9bfb43af0
-[findNodeById] [439]: result = 0x55d9bfb43af0
-[findNodeById] [439]: result = 0x55d9bfb43af0
-[findNodeById] [439]: result = 0x55d9bfb43af0
-[insertNode] [693]: tempNode is = 0x55d9bfb43af0, preSegmentId = 47, prevSegmentId = 44, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb43d70
-[insertNode] [705]: childNode = 0x55d9bfb43d70
+[findNodeById] [439]: result = 0x563cad608af0
+[findNodeById] [439]: result = 0x563cad608af0
+[findNodeById] [439]: result = 0x563cad608af0
+[findNodeById] [439]: result = 0x563cad608af0
+[findNodeById] [439]: result = 0x563cad608af0
+[findNodeById] [439]: result = 0x563cad608af0
+[findNodeById] [439]: result = 0x563cad608af0
+[findNodeById] [439]: result = 0x563cad608af0
+[findNodeById] [439]: result = 0x563cad608af0
+[findNodeById] [439]: result = 0x563cad608af0
+[insertNode] [682]: tempNode is = 0x563cad608af0, preSegmentId = 47, prevSegmentId = 44, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad608d70
+[insertNode] [694]: childNode = 0x563cad608d70
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 20.000000, accumulateBranchAngle = 94.960641
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 1.657376
@@ -1715,10 +1715,10 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 353.789671
 [calcHeadingXY] [94]: coordinate system rotated Y = 121.440830
 [calcDestination] [78]: destinationCoord latitude = 40.357069  destinationCoord longitude = 116.822763
-[insertNode] [720]: childNode's preSegmentId = 47
-[insertNode] [723]: 47's startCoordinate: latitude = 40.357079, longitude = 116.822527
-[insertNode] [724]: 47's endCoordinate: latitude = 40.357069, longitude = 116.822763
-[insertNode] [603]: (*it)->preSegmentId = 48's segIsInTree = 0
+[insertNode] [709]: childNode's preSegmentId = 47
+[insertNode] [712]: 47's startCoordinate: latitude = 40.357079, longitude = 116.822527
+[insertNode] [713]: 47's endCoordinate: latitude = 40.357069, longitude = 116.822763
+[insertNode] [593]: (*it)->preSegmentId = 48's segIsInTree = 0
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
@@ -1744,19 +1744,19 @@ open successfully
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
-[findNodeById] [439]: result = 0x55d9bfb43af0
-[findNodeById] [439]: result = 0x55d9bfb43af0
-[findNodeById] [439]: result = 0x55d9bfb43af0
-[findNodeById] [439]: result = 0x55d9bfb43af0
-[findNodeById] [439]: result = 0x55d9bfb43af0
-[findNodeById] [439]: result = 0x55d9bfb43af0
-[findNodeById] [439]: result = 0x55d9bfb43af0
-[findNodeById] [439]: result = 0x55d9bfb43af0
-[findNodeById] [439]: result = 0x55d9bfb43af0
-[findNodeById] [439]: result = 0x55d9bfb43af0
-[insertNode] [693]: tempNode is = 0x55d9bfb43af0, preSegmentId = 48, prevSegmentId = 44, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb43e50
-[insertNode] [705]: childNode = 0x55d9bfb43e50
+[findNodeById] [439]: result = 0x563cad608af0
+[findNodeById] [439]: result = 0x563cad608af0
+[findNodeById] [439]: result = 0x563cad608af0
+[findNodeById] [439]: result = 0x563cad608af0
+[findNodeById] [439]: result = 0x563cad608af0
+[findNodeById] [439]: result = 0x563cad608af0
+[findNodeById] [439]: result = 0x563cad608af0
+[findNodeById] [439]: result = 0x563cad608af0
+[findNodeById] [439]: result = 0x563cad608af0
+[findNodeById] [439]: result = 0x563cad608af0
+[insertNode] [682]: tempNode is = 0x563cad608af0, preSegmentId = 48, prevSegmentId = 44, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad608e50
+[insertNode] [694]: childNode = 0x563cad608e50
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 38.000000, accumulateBranchAngle = -85.039380
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = -1.484217
@@ -1768,10 +1768,10 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 357.088594
 [calcHeadingXY] [94]: coordinate system rotated Y = 63.534724
 [calcDestination] [78]: destinationCoord latitude = 40.357099  destinationCoord longitude = 116.822080
-[insertNode] [720]: childNode's preSegmentId = 48
-[insertNode] [723]: 48's startCoordinate: latitude = 40.357079, longitude = 116.822527
-[insertNode] [724]: 48's endCoordinate: latitude = 40.357099, longitude = 116.822080
-[insertNode] [603]: (*it)->preSegmentId = 49's segIsInTree = 0
+[insertNode] [709]: childNode's preSegmentId = 48
+[insertNode] [712]: 48's startCoordinate: latitude = 40.357079, longitude = 116.822527
+[insertNode] [713]: 48's endCoordinate: latitude = 40.357099, longitude = 116.822080
+[insertNode] [593]: (*it)->preSegmentId = 49's segIsInTree = 0
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
@@ -1800,19 +1800,19 @@ open successfully
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
-[findNodeById] [439]: result = 0x55d9bfb43bd0
-[findNodeById] [439]: result = 0x55d9bfb43bd0
-[findNodeById] [439]: result = 0x55d9bfb43bd0
-[findNodeById] [439]: result = 0x55d9bfb43bd0
-[findNodeById] [439]: result = 0x55d9bfb43bd0
-[findNodeById] [439]: result = 0x55d9bfb43bd0
-[findNodeById] [439]: result = 0x55d9bfb43bd0
-[findNodeById] [439]: result = 0x55d9bfb43bd0
-[findNodeById] [439]: result = 0x55d9bfb43bd0
-[findNodeById] [439]: result = 0x55d9bfb43bd0
-[insertNode] [693]: tempNode is = 0x55d9bfb43bd0, preSegmentId = 49, prevSegmentId = 45, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb43f30
-[insertNode] [705]: childNode = 0x55d9bfb43f30
+[findNodeById] [439]: result = 0x563cad608bd0
+[findNodeById] [439]: result = 0x563cad608bd0
+[findNodeById] [439]: result = 0x563cad608bd0
+[findNodeById] [439]: result = 0x563cad608bd0
+[findNodeById] [439]: result = 0x563cad608bd0
+[findNodeById] [439]: result = 0x563cad608bd0
+[findNodeById] [439]: result = 0x563cad608bd0
+[findNodeById] [439]: result = 0x563cad608bd0
+[findNodeById] [439]: result = 0x563cad608bd0
+[findNodeById] [439]: result = 0x563cad608bd0
+[insertNode] [682]: tempNode is = 0x563cad608bd0, preSegmentId = 49, prevSegmentId = 45, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad608f30
+[insertNode] [694]: childNode = 0x563cad608f30
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 120.000000, accumulateBranchAngle = 93.543318
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 1.632639
@@ -1824,10 +1824,10 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 331.734127
 [calcHeadingXY] [94]: coordinate system rotated Y = 262.587917
 [calcDestination] [78]: destinationCoord latitude = 40.356871  destinationCoord longitude = 116.824426
-[insertNode] [720]: childNode's preSegmentId = 49
-[insertNode] [723]: 49's startCoordinate: latitude = 40.356906, longitude = 116.823013
-[insertNode] [724]: 49's endCoordinate: latitude = 40.356871, longitude = 116.824426
-[insertNode] [603]: (*it)->preSegmentId = 50's segIsInTree = 0
+[insertNode] [709]: childNode's preSegmentId = 49
+[insertNode] [712]: 49's startCoordinate: latitude = 40.356906, longitude = 116.823013
+[insertNode] [713]: 49's endCoordinate: latitude = 40.356871, longitude = 116.824426
+[insertNode] [593]: (*it)->preSegmentId = 50's segIsInTree = 0
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
@@ -1856,19 +1856,19 @@ open successfully
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
-[findNodeById] [439]: result = 0x55d9bfb43bd0
-[findNodeById] [439]: result = 0x55d9bfb43bd0
-[findNodeById] [439]: result = 0x55d9bfb43bd0
-[findNodeById] [439]: result = 0x55d9bfb43bd0
-[findNodeById] [439]: result = 0x55d9bfb43bd0
-[findNodeById] [439]: result = 0x55d9bfb43bd0
-[findNodeById] [439]: result = 0x55d9bfb43bd0
-[findNodeById] [439]: result = 0x55d9bfb43bd0
-[findNodeById] [439]: result = 0x55d9bfb43bd0
-[findNodeById] [439]: result = 0x55d9bfb43bd0
-[insertNode] [693]: tempNode is = 0x55d9bfb43bd0, preSegmentId = 50, prevSegmentId = 45, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb43ff0
-[insertNode] [705]: childNode = 0x55d9bfb43ff0
+[findNodeById] [439]: result = 0x563cad608bd0
+[findNodeById] [439]: result = 0x563cad608bd0
+[findNodeById] [439]: result = 0x563cad608bd0
+[findNodeById] [439]: result = 0x563cad608bd0
+[findNodeById] [439]: result = 0x563cad608bd0
+[findNodeById] [439]: result = 0x563cad608bd0
+[findNodeById] [439]: result = 0x563cad608bd0
+[findNodeById] [439]: result = 0x563cad608bd0
+[findNodeById] [439]: result = 0x563cad608bd0
+[findNodeById] [439]: result = 0x563cad608bd0
+[insertNode] [682]: tempNode is = 0x563cad608bd0, preSegmentId = 50, prevSegmentId = 45, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad608ff0
+[insertNode] [694]: childNode = 0x563cad608ff0
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 90.000000, accumulateBranchAngle = 185.669313
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 3.240541
@@ -1880,10 +1880,10 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 245.809983
 [calcHeadingXY] [94]: coordinate system rotated Y = 136.420018
 [calcDestination] [78]: destinationCoord latitude = 40.356099  destinationCoord longitude = 116.822939
-[insertNode] [720]: childNode's preSegmentId = 50
-[insertNode] [723]: 50's startCoordinate: latitude = 40.356906, longitude = 116.823013
-[insertNode] [724]: 50's endCoordinate: latitude = 40.356099, longitude = 116.822939
-[insertNode] [603]: (*it)->preSegmentId = 51's segIsInTree = 0
+[insertNode] [709]: childNode's preSegmentId = 50
+[insertNode] [712]: 50's startCoordinate: latitude = 40.356906, longitude = 116.823013
+[insertNode] [713]: 50's endCoordinate: latitude = 40.356099, longitude = 116.822939
+[insertNode] [593]: (*it)->preSegmentId = 51's segIsInTree = 0
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
@@ -1905,19 +1905,19 @@ open successfully
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
-[findNodeById] [439]: result = 0x55d9bfb43cb0
-[findNodeById] [439]: result = 0x55d9bfb43cb0
-[findNodeById] [439]: result = 0x55d9bfb43cb0
-[findNodeById] [439]: result = 0x55d9bfb43cb0
-[findNodeById] [439]: result = 0x55d9bfb43cb0
-[findNodeById] [439]: result = 0x55d9bfb43cb0
-[findNodeById] [439]: result = 0x55d9bfb43cb0
-[findNodeById] [439]: result = 0x55d9bfb43cb0
-[findNodeById] [439]: result = 0x55d9bfb43cb0
-[findNodeById] [439]: result = 0x55d9bfb43cb0
-[insertNode] [693]: tempNode is = 0x55d9bfb43cb0, preSegmentId = 51, prevSegmentId = 46, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb440d0
-[insertNode] [705]: childNode = 0x55d9bfb440d0
+[findNodeById] [439]: result = 0x563cad608cb0
+[findNodeById] [439]: result = 0x563cad608cb0
+[findNodeById] [439]: result = 0x563cad608cb0
+[findNodeById] [439]: result = 0x563cad608cb0
+[findNodeById] [439]: result = 0x563cad608cb0
+[findNodeById] [439]: result = 0x563cad608cb0
+[findNodeById] [439]: result = 0x563cad608cb0
+[findNodeById] [439]: result = 0x563cad608cb0
+[findNodeById] [439]: result = 0x563cad608cb0
+[findNodeById] [439]: result = 0x563cad608cb0
+[insertNode] [682]: tempNode is = 0x563cad608cb0, preSegmentId = 51, prevSegmentId = 46, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad6090d0
+[insertNode] [694]: childNode = 0x563cad6090d0
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 18.000000, accumulateBranchAngle = -85.039380
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = -1.484217
@@ -1929,10 +1929,10 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 365.738994
 [calcHeadingXY] [94]: coordinate system rotated Y = -147.155828
 [calcDestination] [78]: destinationCoord latitude = 40.357176  destinationCoord longitude = 116.819596
-[insertNode] [720]: childNode's preSegmentId = 51
-[insertNode] [723]: 51's startCoordinate: latitude = 40.357167, longitude = 116.819808
-[insertNode] [724]: 51's endCoordinate: latitude = 40.357176, longitude = 116.819596
-[insertNode] [603]: (*it)->preSegmentId = 52's segIsInTree = 0
+[insertNode] [709]: childNode's preSegmentId = 51
+[insertNode] [712]: 51's startCoordinate: latitude = 40.357167, longitude = 116.819808
+[insertNode] [713]: 51's endCoordinate: latitude = 40.357176, longitude = 116.819596
+[insertNode] [593]: (*it)->preSegmentId = 52's segIsInTree = 0
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
@@ -1960,20 +1960,20 @@ open successfully
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
-[findNodeById] [439]: result = 0x55d9bfb43e50
-[findNodeById] [439]: result = 0x55d9bfb43e50
-[findNodeById] [439]: result = 0x55d9bfb43e50
-[findNodeById] [439]: result = 0x55d9bfb43e50
-[findNodeById] [439]: result = 0x55d9bfb43e50
-[findNodeById] [439]: result = 0x55d9bfb43e50
-[findNodeById] [439]: result = 0x55d9bfb43e50
-[findNodeById] [439]: result = 0x55d9bfb43e50
-[findNodeById] [439]: result = 0x55d9bfb43e50
-[findNodeById] [439]: result = 0x55d9bfb43e50
-[findNodeById] [439]: result = 0x55d9bfb43e50
-[insertNode] [693]: tempNode is = 0x55d9bfb43e50, preSegmentId = 52, prevSegmentId = 48, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb44190
-[insertNode] [705]: childNode = 0x55d9bfb44190
+[findNodeById] [439]: result = 0x563cad608e50
+[findNodeById] [439]: result = 0x563cad608e50
+[findNodeById] [439]: result = 0x563cad608e50
+[findNodeById] [439]: result = 0x563cad608e50
+[findNodeById] [439]: result = 0x563cad608e50
+[findNodeById] [439]: result = 0x563cad608e50
+[findNodeById] [439]: result = 0x563cad608e50
+[findNodeById] [439]: result = 0x563cad608e50
+[findNodeById] [439]: result = 0x563cad608e50
+[findNodeById] [439]: result = 0x563cad608e50
+[findNodeById] [439]: result = 0x563cad608e50
+[insertNode] [682]: tempNode is = 0x563cad608e50, preSegmentId = 52, prevSegmentId = 48, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad609190
+[insertNode] [694]: childNode = 0x563cad609190
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 52.000000, accumulateBranchAngle = -85.039380
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = -1.484217
@@ -1985,10 +1985,10 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 360.046241
 [calcHeadingXY] [94]: coordinate system rotated Y = 11.618904
 [calcDestination] [78]: destinationCoord latitude = 40.357125  destinationCoord longitude = 116.821468
-[insertNode] [720]: childNode's preSegmentId = 52
-[insertNode] [723]: 52's startCoordinate: latitude = 40.357099, longitude = 116.822080
-[insertNode] [724]: 52's endCoordinate: latitude = 40.357125, longitude = 116.821468
-[insertNode] [603]: (*it)->preSegmentId = 53's segIsInTree = 0
+[insertNode] [709]: childNode's preSegmentId = 52
+[insertNode] [712]: 52's startCoordinate: latitude = 40.357099, longitude = 116.822080
+[insertNode] [713]: 52's endCoordinate: latitude = 40.357125, longitude = 116.821468
+[insertNode] [593]: (*it)->preSegmentId = 53's segIsInTree = 0
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
@@ -2010,20 +2010,20 @@ open successfully
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
-[findNodeById] [439]: result = 0x55d9bfb440d0
-[findNodeById] [439]: result = 0x55d9bfb440d0
-[findNodeById] [439]: result = 0x55d9bfb440d0
-[findNodeById] [439]: result = 0x55d9bfb440d0
-[findNodeById] [439]: result = 0x55d9bfb440d0
-[findNodeById] [439]: result = 0x55d9bfb440d0
-[findNodeById] [439]: result = 0x55d9bfb440d0
-[findNodeById] [439]: result = 0x55d9bfb440d0
-[findNodeById] [439]: result = 0x55d9bfb440d0
-[findNodeById] [439]: result = 0x55d9bfb440d0
-[findNodeById] [439]: result = 0x55d9bfb440d0
-[insertNode] [693]: tempNode is = 0x55d9bfb440d0, preSegmentId = 53, prevSegmentId = 51, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb44270
-[insertNode] [705]: childNode = 0x55d9bfb44270
+[findNodeById] [439]: result = 0x563cad6090d0
+[findNodeById] [439]: result = 0x563cad6090d0
+[findNodeById] [439]: result = 0x563cad6090d0
+[findNodeById] [439]: result = 0x563cad6090d0
+[findNodeById] [439]: result = 0x563cad6090d0
+[findNodeById] [439]: result = 0x563cad6090d0
+[findNodeById] [439]: result = 0x563cad6090d0
+[findNodeById] [439]: result = 0x563cad6090d0
+[findNodeById] [439]: result = 0x563cad6090d0
+[findNodeById] [439]: result = 0x563cad6090d0
+[findNodeById] [439]: result = 0x563cad6090d0
+[insertNode] [682]: tempNode is = 0x563cad6090d0, preSegmentId = 53, prevSegmentId = 51, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad609270
+[insertNode] [694]: childNode = 0x563cad609270
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 16.000000, accumulateBranchAngle = 12.755907
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 0.222633
@@ -2035,10 +2035,10 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 381.442043
 [calcHeadingXY] [94]: coordinate system rotated Y = -144.087561
 [calcDestination] [78]: destinationCoord latitude = 40.357318  destinationCoord longitude = 116.819632
-[insertNode] [720]: childNode's preSegmentId = 53
-[insertNode] [723]: 53's startCoordinate: latitude = 40.357176, longitude = 116.819596
-[insertNode] [724]: 53's endCoordinate: latitude = 40.357318, longitude = 116.819632
-[insertNode] [603]: (*it)->preSegmentId = 54's segIsInTree = 0
+[insertNode] [709]: childNode's preSegmentId = 53
+[insertNode] [712]: 53's startCoordinate: latitude = 40.357176, longitude = 116.819596
+[insertNode] [713]: 53's endCoordinate: latitude = 40.357318, longitude = 116.819632
+[insertNode] [593]: (*it)->preSegmentId = 54's segIsInTree = 0
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
@@ -2060,20 +2060,20 @@ open successfully
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
-[findNodeById] [439]: result = 0x55d9bfb440d0
-[findNodeById] [439]: result = 0x55d9bfb440d0
-[findNodeById] [439]: result = 0x55d9bfb440d0
-[findNodeById] [439]: result = 0x55d9bfb440d0
-[findNodeById] [439]: result = 0x55d9bfb440d0
-[findNodeById] [439]: result = 0x55d9bfb440d0
-[findNodeById] [439]: result = 0x55d9bfb440d0
-[findNodeById] [439]: result = 0x55d9bfb440d0
-[findNodeById] [439]: result = 0x55d9bfb440d0
-[findNodeById] [439]: result = 0x55d9bfb440d0
-[findNodeById] [439]: result = 0x55d9bfb440d0
-[insertNode] [693]: tempNode is = 0x55d9bfb440d0, preSegmentId = 54, prevSegmentId = 51, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb44350
-[insertNode] [705]: childNode = 0x55d9bfb44350
+[findNodeById] [439]: result = 0x563cad6090d0
+[findNodeById] [439]: result = 0x563cad6090d0
+[findNodeById] [439]: result = 0x563cad6090d0
+[findNodeById] [439]: result = 0x563cad6090d0
+[findNodeById] [439]: result = 0x563cad6090d0
+[findNodeById] [439]: result = 0x563cad6090d0
+[findNodeById] [439]: result = 0x563cad6090d0
+[findNodeById] [439]: result = 0x563cad6090d0
+[findNodeById] [439]: result = 0x563cad6090d0
+[findNodeById] [439]: result = 0x563cad6090d0
+[findNodeById] [439]: result = 0x563cad6090d0
+[insertNode] [682]: tempNode is = 0x563cad6090d0, preSegmentId = 54, prevSegmentId = 51, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad609350
+[insertNode] [694]: childNode = 0x563cad609350
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 18.000000, accumulateBranchAngle = -172.913406
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = -3.017908
@@ -2085,10 +2085,10 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 347.818483
 [calcHeadingXY] [94]: coordinate system rotated Y = -148.845585
 [calcDestination] [78]: destinationCoord latitude = 40.357016  destinationCoord longitude = 116.819576
-[insertNode] [720]: childNode's preSegmentId = 54
-[insertNode] [723]: 54's startCoordinate: latitude = 40.357176, longitude = 116.819596
-[insertNode] [724]: 54's endCoordinate: latitude = 40.357016, longitude = 116.819576
-[insertNode] [603]: (*it)->preSegmentId = 55's segIsInTree = 0
+[insertNode] [709]: childNode's preSegmentId = 54
+[insertNode] [712]: 54's startCoordinate: latitude = 40.357176, longitude = 116.819596
+[insertNode] [713]: 54's endCoordinate: latitude = 40.357016, longitude = 116.819576
+[insertNode] [593]: (*it)->preSegmentId = 55's segIsInTree = 0
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
@@ -2110,20 +2110,20 @@ open successfully
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
-[findNodeById] [439]: result = 0x55d9bfb440d0
-[findNodeById] [439]: result = 0x55d9bfb440d0
-[findNodeById] [439]: result = 0x55d9bfb440d0
-[findNodeById] [439]: result = 0x55d9bfb440d0
-[findNodeById] [439]: result = 0x55d9bfb440d0
-[findNodeById] [439]: result = 0x55d9bfb440d0
-[findNodeById] [439]: result = 0x55d9bfb440d0
-[findNodeById] [439]: result = 0x55d9bfb440d0
-[findNodeById] [439]: result = 0x55d9bfb440d0
-[findNodeById] [439]: result = 0x55d9bfb440d0
-[findNodeById] [439]: result = 0x55d9bfb440d0
-[insertNode] [693]: tempNode is = 0x55d9bfb440d0, preSegmentId = 55, prevSegmentId = 51, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb44430
-[insertNode] [705]: childNode = 0x55d9bfb44430
+[findNodeById] [439]: result = 0x563cad6090d0
+[findNodeById] [439]: result = 0x563cad6090d0
+[findNodeById] [439]: result = 0x563cad6090d0
+[findNodeById] [439]: result = 0x563cad6090d0
+[findNodeById] [439]: result = 0x563cad6090d0
+[findNodeById] [439]: result = 0x563cad6090d0
+[findNodeById] [439]: result = 0x563cad6090d0
+[findNodeById] [439]: result = 0x563cad6090d0
+[findNodeById] [439]: result = 0x563cad6090d0
+[findNodeById] [439]: result = 0x563cad6090d0
+[findNodeById] [439]: result = 0x563cad6090d0
+[insertNode] [682]: tempNode is = 0x563cad6090d0, preSegmentId = 55, prevSegmentId = 51, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad609430
+[insertNode] [694]: childNode = 0x563cad609430
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 16.000000, accumulateBranchAngle = -85.039380
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = -1.484217
@@ -2135,10 +2135,10 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 366.649040
 [calcHeadingXY] [94]: coordinate system rotated Y = -163.129927
 [calcDestination] [78]: destinationCoord latitude = 40.357185  destinationCoord longitude = 116.819408
-[insertNode] [720]: childNode's preSegmentId = 55
-[insertNode] [723]: 55's startCoordinate: latitude = 40.357176, longitude = 116.819596
-[insertNode] [724]: 55's endCoordinate: latitude = 40.357185, longitude = 116.819408
-[insertNode] [603]: (*it)->preSegmentId = 56's segIsInTree = 0
+[insertNode] [709]: childNode's preSegmentId = 55
+[insertNode] [712]: 55's startCoordinate: latitude = 40.357176, longitude = 116.819596
+[insertNode] [713]: 55's endCoordinate: latitude = 40.357185, longitude = 116.819408
+[insertNode] [593]: (*it)->preSegmentId = 56's segIsInTree = 0
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
@@ -2162,21 +2162,21 @@ open successfully
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
-[findNodeById] [439]: result = 0x55d9bfb44430
-[findNodeById] [439]: result = 0x55d9bfb44430
-[findNodeById] [439]: result = 0x55d9bfb44430
-[findNodeById] [439]: result = 0x55d9bfb44430
-[findNodeById] [439]: result = 0x55d9bfb44430
-[findNodeById] [439]: result = 0x55d9bfb44430
-[findNodeById] [439]: result = 0x55d9bfb44430
-[findNodeById] [439]: result = 0x55d9bfb44430
-[findNodeById] [439]: result = 0x55d9bfb44430
-[findNodeById] [439]: result = 0x55d9bfb44430
-[findNodeById] [439]: result = 0x55d9bfb44430
-[findNodeById] [439]: result = 0x55d9bfb44430
-[insertNode] [693]: tempNode is = 0x55d9bfb44430, preSegmentId = 56, prevSegmentId = 55, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb444f0
-[insertNode] [705]: childNode = 0x55d9bfb444f0
+[findNodeById] [439]: result = 0x563cad609430
+[findNodeById] [439]: result = 0x563cad609430
+[findNodeById] [439]: result = 0x563cad609430
+[findNodeById] [439]: result = 0x563cad609430
+[findNodeById] [439]: result = 0x563cad609430
+[findNodeById] [439]: result = 0x563cad609430
+[findNodeById] [439]: result = 0x563cad609430
+[findNodeById] [439]: result = 0x563cad609430
+[findNodeById] [439]: result = 0x563cad609430
+[findNodeById] [439]: result = 0x563cad609430
+[findNodeById] [439]: result = 0x563cad609430
+[findNodeById] [439]: result = 0x563cad609430
+[insertNode] [682]: tempNode is = 0x563cad609430, preSegmentId = 56, prevSegmentId = 55, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad6094f0
+[insertNode] [694]: childNode = 0x563cad6094f0
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 80.000000, accumulateBranchAngle = -85.039380
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = -1.484217
@@ -2188,10 +2188,10 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 371.199267
 [calcHeadingXY] [94]: coordinate system rotated Y = -243.000418
 [calcDestination] [78]: destinationCoord latitude = 40.357226  destinationCoord longitude = 116.818467
-[insertNode] [720]: childNode's preSegmentId = 56
-[insertNode] [723]: 56's startCoordinate: latitude = 40.357185, longitude = 116.819408
-[insertNode] [724]: 56's endCoordinate: latitude = 40.357226, longitude = 116.818467
-[insertNode] [603]: (*it)->preSegmentId = 56's segIsInTree = 0
+[insertNode] [709]: childNode's preSegmentId = 56
+[insertNode] [712]: 56's startCoordinate: latitude = 40.357185, longitude = 116.819408
+[insertNode] [713]: 56's endCoordinate: latitude = 40.357226, longitude = 116.818467
+[insertNode] [593]: (*it)->preSegmentId = 56's segIsInTree = 0
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
@@ -2215,21 +2215,21 @@ open successfully
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
-[findNodeById] [439]: result = 0x55d9bfb44430
-[findNodeById] [439]: result = 0x55d9bfb44430
-[findNodeById] [439]: result = 0x55d9bfb44430
-[findNodeById] [439]: result = 0x55d9bfb44430
-[findNodeById] [439]: result = 0x55d9bfb44430
-[findNodeById] [439]: result = 0x55d9bfb44430
-[findNodeById] [439]: result = 0x55d9bfb44430
-[findNodeById] [439]: result = 0x55d9bfb44430
-[findNodeById] [439]: result = 0x55d9bfb44430
-[findNodeById] [439]: result = 0x55d9bfb44430
-[findNodeById] [439]: result = 0x55d9bfb44430
-[findNodeById] [439]: result = 0x55d9bfb44430
-[insertNode] [693]: tempNode is = 0x55d9bfb44430, preSegmentId = 56, prevSegmentId = 55, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb445b0
-[insertNode] [705]: childNode = 0x55d9bfb445b0
+[findNodeById] [439]: result = 0x563cad609430
+[findNodeById] [439]: result = 0x563cad609430
+[findNodeById] [439]: result = 0x563cad609430
+[findNodeById] [439]: result = 0x563cad609430
+[findNodeById] [439]: result = 0x563cad609430
+[findNodeById] [439]: result = 0x563cad609430
+[findNodeById] [439]: result = 0x563cad609430
+[findNodeById] [439]: result = 0x563cad609430
+[findNodeById] [439]: result = 0x563cad609430
+[findNodeById] [439]: result = 0x563cad609430
+[findNodeById] [439]: result = 0x563cad609430
+[findNodeById] [439]: result = 0x563cad609430
+[insertNode] [682]: tempNode is = 0x563cad609430, preSegmentId = 56, prevSegmentId = 55, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad6095b0
+[insertNode] [694]: childNode = 0x563cad6095b0
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 80.000000, accumulateBranchAngle = -85.039380
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = -1.484217
@@ -2241,10 +2241,10 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 371.199267
 [calcHeadingXY] [94]: coordinate system rotated Y = -243.000418
 [calcDestination] [78]: destinationCoord latitude = 40.357226  destinationCoord longitude = 116.818467
-[insertNode] [720]: childNode's preSegmentId = 56
-[insertNode] [723]: 56's startCoordinate: latitude = 40.357185, longitude = 116.819408
-[insertNode] [724]: 56's endCoordinate: latitude = 40.357226, longitude = 116.818467
-[insertNode] [603]: (*it)->preSegmentId = 57's segIsInTree = 0
+[insertNode] [709]: childNode's preSegmentId = 56
+[insertNode] [712]: 56's startCoordinate: latitude = 40.357185, longitude = 116.819408
+[insertNode] [713]: 56's endCoordinate: latitude = 40.357226, longitude = 116.818467
+[insertNode] [593]: (*it)->preSegmentId = 57's segIsInTree = 0
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
@@ -2267,21 +2267,21 @@ open successfully
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
-[findNodeById] [439]: result = 0x55d9bfb44350
-[findNodeById] [439]: result = 0x55d9bfb44350
-[findNodeById] [439]: result = 0x55d9bfb44350
-[findNodeById] [439]: result = 0x55d9bfb44350
-[findNodeById] [439]: result = 0x55d9bfb44350
-[findNodeById] [439]: result = 0x55d9bfb44350
-[findNodeById] [439]: result = 0x55d9bfb44350
-[findNodeById] [439]: result = 0x55d9bfb44350
-[findNodeById] [439]: result = 0x55d9bfb44350
-[findNodeById] [439]: result = 0x55d9bfb44350
-[findNodeById] [439]: result = 0x55d9bfb44350
-[findNodeById] [439]: result = 0x55d9bfb44350
-[insertNode] [693]: tempNode is = 0x55d9bfb44350, preSegmentId = 57, prevSegmentId = 54, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb44670
-[insertNode] [705]: childNode = 0x55d9bfb44670
+[findNodeById] [439]: result = 0x563cad609350
+[findNodeById] [439]: result = 0x563cad609350
+[findNodeById] [439]: result = 0x563cad609350
+[findNodeById] [439]: result = 0x563cad609350
+[findNodeById] [439]: result = 0x563cad609350
+[findNodeById] [439]: result = 0x563cad609350
+[findNodeById] [439]: result = 0x563cad609350
+[findNodeById] [439]: result = 0x563cad609350
+[findNodeById] [439]: result = 0x563cad609350
+[findNodeById] [439]: result = 0x563cad609350
+[findNodeById] [439]: result = 0x563cad609350
+[findNodeById] [439]: result = 0x563cad609350
+[insertNode] [682]: tempNode is = 0x563cad609350, preSegmentId = 57, prevSegmentId = 54, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad609670
+[insertNode] [694]: childNode = 0x563cad609670
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 16.000000, accumulateBranchAngle = -262.204755
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = -4.576336
@@ -2293,10 +2293,10 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 346.119578
 [calcHeadingXY] [94]: coordinate system rotated Y = -132.936037
 [calcDestination] [78]: destinationCoord latitude = 40.357000  destinationCoord longitude = 116.819764
-[insertNode] [720]: childNode's preSegmentId = 57
-[insertNode] [723]: 57's startCoordinate: latitude = 40.357016, longitude = 116.819576
-[insertNode] [724]: 57's endCoordinate: latitude = 40.357000, longitude = 116.819764
-[insertNode] [603]: (*it)->preSegmentId = 58's segIsInTree = 0
+[insertNode] [709]: childNode's preSegmentId = 57
+[insertNode] [712]: 57's startCoordinate: latitude = 40.357016, longitude = 116.819576
+[insertNode] [713]: 57's endCoordinate: latitude = 40.357000, longitude = 116.819764
+[insertNode] [593]: (*it)->preSegmentId = 58's segIsInTree = 0
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
@@ -2319,21 +2319,21 @@ open successfully
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
-[findNodeById] [439]: result = 0x55d9bfb44350
-[findNodeById] [439]: result = 0x55d9bfb44350
-[findNodeById] [439]: result = 0x55d9bfb44350
-[findNodeById] [439]: result = 0x55d9bfb44350
-[findNodeById] [439]: result = 0x55d9bfb44350
-[findNodeById] [439]: result = 0x55d9bfb44350
-[findNodeById] [439]: result = 0x55d9bfb44350
-[findNodeById] [439]: result = 0x55d9bfb44350
-[findNodeById] [439]: result = 0x55d9bfb44350
-[findNodeById] [439]: result = 0x55d9bfb44350
-[findNodeById] [439]: result = 0x55d9bfb44350
-[findNodeById] [439]: result = 0x55d9bfb44350
-[insertNode] [693]: tempNode is = 0x55d9bfb44350, preSegmentId = 58, prevSegmentId = 54, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb44730
-[insertNode] [705]: childNode = 0x55d9bfb44730
+[findNodeById] [439]: result = 0x563cad609350
+[findNodeById] [439]: result = 0x563cad609350
+[findNodeById] [439]: result = 0x563cad609350
+[findNodeById] [439]: result = 0x563cad609350
+[findNodeById] [439]: result = 0x563cad609350
+[findNodeById] [439]: result = 0x563cad609350
+[findNodeById] [439]: result = 0x563cad609350
+[findNodeById] [439]: result = 0x563cad609350
+[findNodeById] [439]: result = 0x563cad609350
+[findNodeById] [439]: result = 0x563cad609350
+[findNodeById] [439]: result = 0x563cad609350
+[findNodeById] [439]: result = 0x563cad609350
+[insertNode] [682]: tempNode is = 0x563cad609350, preSegmentId = 58, prevSegmentId = 54, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad609730
+[insertNode] [694]: childNode = 0x563cad609730
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 14.000000, accumulateBranchAngle = -83.622057
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = -1.459480
@@ -2345,10 +2345,10 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 348.960251
 [calcHeadingXY] [94]: coordinate system rotated Y = -162.798949
 [calcDestination] [78]: destinationCoord latitude = 40.357026  destinationCoord longitude = 116.819412
-[insertNode] [720]: childNode's preSegmentId = 58
-[insertNode] [723]: 58's startCoordinate: latitude = 40.357016, longitude = 116.819576
-[insertNode] [724]: 58's endCoordinate: latitude = 40.357026, longitude = 116.819412
-[insertNode] [603]: (*it)->preSegmentId = 58's segIsInTree = 0
+[insertNode] [709]: childNode's preSegmentId = 58
+[insertNode] [712]: 58's startCoordinate: latitude = 40.357016, longitude = 116.819576
+[insertNode] [713]: 58's endCoordinate: latitude = 40.357026, longitude = 116.819412
+[insertNode] [593]: (*it)->preSegmentId = 58's segIsInTree = 0
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
@@ -2371,21 +2371,21 @@ open successfully
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
-[findNodeById] [439]: result = 0x55d9bfb44350
-[findNodeById] [439]: result = 0x55d9bfb44350
-[findNodeById] [439]: result = 0x55d9bfb44350
-[findNodeById] [439]: result = 0x55d9bfb44350
-[findNodeById] [439]: result = 0x55d9bfb44350
-[findNodeById] [439]: result = 0x55d9bfb44350
-[findNodeById] [439]: result = 0x55d9bfb44350
-[findNodeById] [439]: result = 0x55d9bfb44350
-[findNodeById] [439]: result = 0x55d9bfb44350
-[findNodeById] [439]: result = 0x55d9bfb44350
-[findNodeById] [439]: result = 0x55d9bfb44350
-[findNodeById] [439]: result = 0x55d9bfb44350
-[insertNode] [693]: tempNode is = 0x55d9bfb44350, preSegmentId = 58, prevSegmentId = 54, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb44810
-[insertNode] [705]: childNode = 0x55d9bfb44810
+[findNodeById] [439]: result = 0x563cad609350
+[findNodeById] [439]: result = 0x563cad609350
+[findNodeById] [439]: result = 0x563cad609350
+[findNodeById] [439]: result = 0x563cad609350
+[findNodeById] [439]: result = 0x563cad609350
+[findNodeById] [439]: result = 0x563cad609350
+[findNodeById] [439]: result = 0x563cad609350
+[findNodeById] [439]: result = 0x563cad609350
+[findNodeById] [439]: result = 0x563cad609350
+[findNodeById] [439]: result = 0x563cad609350
+[findNodeById] [439]: result = 0x563cad609350
+[findNodeById] [439]: result = 0x563cad609350
+[insertNode] [682]: tempNode is = 0x563cad609350, preSegmentId = 58, prevSegmentId = 54, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad609810
+[insertNode] [694]: childNode = 0x563cad609810
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 14.000000, accumulateBranchAngle = -83.622057
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = -1.459480
@@ -2397,10 +2397,10 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 348.960251
 [calcHeadingXY] [94]: coordinate system rotated Y = -162.798949
 [calcDestination] [78]: destinationCoord latitude = 40.357026  destinationCoord longitude = 116.819412
-[insertNode] [720]: childNode's preSegmentId = 58
-[insertNode] [723]: 58's startCoordinate: latitude = 40.357016, longitude = 116.819576
-[insertNode] [724]: 58's endCoordinate: latitude = 40.357026, longitude = 116.819412
-[insertNode] [603]: (*it)->preSegmentId = 59's segIsInTree = 0
+[insertNode] [709]: childNode's preSegmentId = 58
+[insertNode] [712]: 58's startCoordinate: latitude = 40.357016, longitude = 116.819576
+[insertNode] [713]: 58's endCoordinate: latitude = 40.357026, longitude = 116.819412
+[insertNode] [593]: (*it)->preSegmentId = 59's segIsInTree = 0
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
@@ -2423,22 +2423,22 @@ open successfully
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
-[findNodeById] [439]: result = 0x55d9bfb44670
-[findNodeById] [439]: result = 0x55d9bfb44670
-[findNodeById] [439]: result = 0x55d9bfb44670
-[findNodeById] [439]: result = 0x55d9bfb44670
-[findNodeById] [439]: result = 0x55d9bfb44670
-[findNodeById] [439]: result = 0x55d9bfb44670
-[findNodeById] [439]: result = 0x55d9bfb44670
-[findNodeById] [439]: result = 0x55d9bfb44670
-[findNodeById] [439]: result = 0x55d9bfb44670
-[findNodeById] [439]: result = 0x55d9bfb44670
-[findNodeById] [439]: result = 0x55d9bfb44670
-[findNodeById] [439]: result = 0x55d9bfb44670
-[findNodeById] [439]: result = 0x55d9bfb44670
-[insertNode] [693]: tempNode is = 0x55d9bfb44670, preSegmentId = 59, prevSegmentId = 57, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb448d0
-[insertNode] [705]: childNode = 0x55d9bfb448d0
+[findNodeById] [439]: result = 0x563cad609670
+[findNodeById] [439]: result = 0x563cad609670
+[findNodeById] [439]: result = 0x563cad609670
+[findNodeById] [439]: result = 0x563cad609670
+[findNodeById] [439]: result = 0x563cad609670
+[findNodeById] [439]: result = 0x563cad609670
+[findNodeById] [439]: result = 0x563cad609670
+[findNodeById] [439]: result = 0x563cad609670
+[findNodeById] [439]: result = 0x563cad609670
+[findNodeById] [439]: result = 0x563cad609670
+[findNodeById] [439]: result = 0x563cad609670
+[findNodeById] [439]: result = 0x563cad609670
+[findNodeById] [439]: result = 0x563cad609670
+[insertNode] [682]: tempNode is = 0x563cad609670, preSegmentId = 59, prevSegmentId = 57, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad6098d0
+[insertNode] [694]: childNode = 0x563cad6098d0
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 10.000000, accumulateBranchAngle = -165.826791
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = -2.894223
@@ -2450,10 +2450,10 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 336.355607
 [calcHeadingXY] [94]: coordinate system rotated Y = -135.095868
 [calcDestination] [78]: destinationCoord latitude = 40.356913  destinationCoord longitude = 116.819738
-[insertNode] [720]: childNode's preSegmentId = 59
-[insertNode] [723]: 59's startCoordinate: latitude = 40.357000, longitude = 116.819764
-[insertNode] [724]: 59's endCoordinate: latitude = 40.356913, longitude = 116.819738
-[insertNode] [603]: (*it)->preSegmentId = 60's segIsInTree = 0
+[insertNode] [709]: childNode's preSegmentId = 59
+[insertNode] [712]: 59's startCoordinate: latitude = 40.357000, longitude = 116.819764
+[insertNode] [713]: 59's endCoordinate: latitude = 40.356913, longitude = 116.819738
+[insertNode] [593]: (*it)->preSegmentId = 60's segIsInTree = 0
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
@@ -2476,22 +2476,22 @@ open successfully
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
-[findNodeById] [439]: result = 0x55d9bfb44670
-[findNodeById] [439]: result = 0x55d9bfb44670
-[findNodeById] [439]: result = 0x55d9bfb44670
-[findNodeById] [439]: result = 0x55d9bfb44670
-[findNodeById] [439]: result = 0x55d9bfb44670
-[findNodeById] [439]: result = 0x55d9bfb44670
-[findNodeById] [439]: result = 0x55d9bfb44670
-[findNodeById] [439]: result = 0x55d9bfb44670
-[findNodeById] [439]: result = 0x55d9bfb44670
-[findNodeById] [439]: result = 0x55d9bfb44670
-[findNodeById] [439]: result = 0x55d9bfb44670
-[findNodeById] [439]: result = 0x55d9bfb44670
-[findNodeById] [439]: result = 0x55d9bfb44670
-[insertNode] [693]: tempNode is = 0x55d9bfb44670, preSegmentId = 60, prevSegmentId = 57, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb44990
-[insertNode] [705]: childNode = 0x55d9bfb44990
+[findNodeById] [439]: result = 0x563cad609670
+[findNodeById] [439]: result = 0x563cad609670
+[findNodeById] [439]: result = 0x563cad609670
+[findNodeById] [439]: result = 0x563cad609670
+[findNodeById] [439]: result = 0x563cad609670
+[findNodeById] [439]: result = 0x563cad609670
+[findNodeById] [439]: result = 0x563cad609670
+[findNodeById] [439]: result = 0x563cad609670
+[findNodeById] [439]: result = 0x563cad609670
+[findNodeById] [439]: result = 0x563cad609670
+[findNodeById] [439]: result = 0x563cad609670
+[findNodeById] [439]: result = 0x563cad609670
+[findNodeById] [439]: result = 0x563cad609670
+[insertNode] [682]: tempNode is = 0x563cad609670, preSegmentId = 60, prevSegmentId = 57, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad609990
+[insertNode] [694]: childNode = 0x563cad609990
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 112.000000, accumulateBranchAngle = -262.204755
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = -4.576336
@@ -2503,10 +2503,10 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 334.227245
 [calcHeadingXY] [94]: coordinate system rotated Y = -21.569200
 [calcDestination] [78]: destinationCoord latitude = 40.356893  destinationCoord longitude = 116.821077
-[insertNode] [720]: childNode's preSegmentId = 60
-[insertNode] [723]: 60's startCoordinate: latitude = 40.357000, longitude = 116.819764
-[insertNode] [724]: 60's endCoordinate: latitude = 40.356893, longitude = 116.821077
-[insertNode] [603]: (*it)->preSegmentId = 61's segIsInTree = 0
+[insertNode] [709]: childNode's preSegmentId = 60
+[insertNode] [712]: 60's startCoordinate: latitude = 40.357000, longitude = 116.819764
+[insertNode] [713]: 60's endCoordinate: latitude = 40.356893, longitude = 116.821077
+[insertNode] [593]: (*it)->preSegmentId = 61's segIsInTree = 0
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
@@ -2529,23 +2529,23 @@ open successfully
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
-[findNodeById] [439]: result = 0x55d9bfb448d0
-[findNodeById] [439]: result = 0x55d9bfb448d0
-[findNodeById] [439]: result = 0x55d9bfb448d0
-[findNodeById] [439]: result = 0x55d9bfb448d0
-[findNodeById] [439]: result = 0x55d9bfb448d0
-[findNodeById] [439]: result = 0x55d9bfb448d0
-[findNodeById] [439]: result = 0x55d9bfb448d0
-[findNodeById] [439]: result = 0x55d9bfb448d0
-[findNodeById] [439]: result = 0x55d9bfb448d0
-[findNodeById] [439]: result = 0x55d9bfb448d0
-[findNodeById] [439]: result = 0x55d9bfb448d0
-[findNodeById] [439]: result = 0x55d9bfb448d0
-[findNodeById] [439]: result = 0x55d9bfb448d0
-[findNodeById] [439]: result = 0x55d9bfb448d0
-[insertNode] [693]: tempNode is = 0x55d9bfb448d0, preSegmentId = 61, prevSegmentId = 59, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb44a50
-[insertNode] [705]: childNode = 0x55d9bfb44a50
+[findNodeById] [439]: result = 0x563cad6098d0
+[findNodeById] [439]: result = 0x563cad6098d0
+[findNodeById] [439]: result = 0x563cad6098d0
+[findNodeById] [439]: result = 0x563cad6098d0
+[findNodeById] [439]: result = 0x563cad6098d0
+[findNodeById] [439]: result = 0x563cad6098d0
+[findNodeById] [439]: result = 0x563cad6098d0
+[findNodeById] [439]: result = 0x563cad6098d0
+[findNodeById] [439]: result = 0x563cad6098d0
+[findNodeById] [439]: result = 0x563cad6098d0
+[findNodeById] [439]: result = 0x563cad6098d0
+[findNodeById] [439]: result = 0x563cad6098d0
+[findNodeById] [439]: result = 0x563cad6098d0
+[findNodeById] [439]: result = 0x563cad6098d0
+[insertNode] [682]: tempNode is = 0x563cad6098d0, preSegmentId = 61, prevSegmentId = 59, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad609a50
+[insertNode] [694]: childNode = 0x563cad609a50
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 22.000000, accumulateBranchAngle = -167.244114
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = -2.918960
@@ -2557,10 +2557,10 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 314.763914
 [calcHeadingXY] [94]: coordinate system rotated Y = -139.314728
 [calcDestination] [78]: destinationCoord latitude = 40.356719  destinationCoord longitude = 116.819689
-[insertNode] [720]: childNode's preSegmentId = 61
-[insertNode] [723]: 61's startCoordinate: latitude = 40.356913, longitude = 116.819738
-[insertNode] [724]: 61's endCoordinate: latitude = 40.356719, longitude = 116.819689
-[insertNode] [603]: (*it)->preSegmentId = 62's segIsInTree = 0
+[insertNode] [709]: childNode's preSegmentId = 61
+[insertNode] [712]: 61's startCoordinate: latitude = 40.356913, longitude = 116.819738
+[insertNode] [713]: 61's endCoordinate: latitude = 40.356719, longitude = 116.819689
+[insertNode] [593]: (*it)->preSegmentId = 62's segIsInTree = 0
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
@@ -2590,22 +2590,22 @@ open successfully
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
-[findNodeById] [439]: result = 0x55d9bfb444f0
-[findNodeById] [439]: result = 0x55d9bfb444f0
-[findNodeById] [439]: result = 0x55d9bfb444f0
-[findNodeById] [439]: result = 0x55d9bfb444f0
-[findNodeById] [439]: result = 0x55d9bfb444f0
-[findNodeById] [439]: result = 0x55d9bfb444f0
-[findNodeById] [439]: result = 0x55d9bfb444f0
-[findNodeById] [439]: result = 0x55d9bfb444f0
-[findNodeById] [439]: result = 0x55d9bfb444f0
-[findNodeById] [439]: result = 0x55d9bfb444f0
-[findNodeById] [439]: result = 0x55d9bfb444f0
-[findNodeById] [439]: result = 0x55d9bfb444f0
-[findNodeById] [439]: result = 0x55d9bfb444f0
-[insertNode] [693]: tempNode is = 0x55d9bfb444f0, preSegmentId = 62, prevSegmentId = 56, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb44b10
-[insertNode] [705]: childNode = 0x55d9bfb44b10
+[findNodeById] [439]: result = 0x563cad6094f0
+[findNodeById] [439]: result = 0x563cad6094f0
+[findNodeById] [439]: result = 0x563cad6094f0
+[findNodeById] [439]: result = 0x563cad6094f0
+[findNodeById] [439]: result = 0x563cad6094f0
+[findNodeById] [439]: result = 0x563cad6094f0
+[findNodeById] [439]: result = 0x563cad6094f0
+[findNodeById] [439]: result = 0x563cad6094f0
+[findNodeById] [439]: result = 0x563cad6094f0
+[findNodeById] [439]: result = 0x563cad6094f0
+[findNodeById] [439]: result = 0x563cad6094f0
+[findNodeById] [439]: result = 0x563cad6094f0
+[findNodeById] [439]: result = 0x563cad6094f0
+[insertNode] [682]: tempNode is = 0x563cad6094f0, preSegmentId = 62, prevSegmentId = 56, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad609b10
+[insertNode] [694]: childNode = 0x563cad609b10
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 34.000000, accumulateBranchAngle = -85.039380
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = -1.484217
@@ -2617,10 +2617,10 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 373.133114
 [calcHeadingXY] [94]: coordinate system rotated Y = -276.945377
 [calcDestination] [78]: destinationCoord latitude = 40.357243  destinationCoord longitude = 116.818066
-[insertNode] [720]: childNode's preSegmentId = 62
-[insertNode] [723]: 62's startCoordinate: latitude = 40.357226, longitude = 116.818467
-[insertNode] [724]: 62's endCoordinate: latitude = 40.357243, longitude = 116.818066
-[insertNode] [603]: (*it)->preSegmentId = 63's segIsInTree = 0
+[insertNode] [709]: childNode's preSegmentId = 62
+[insertNode] [712]: 62's startCoordinate: latitude = 40.357226, longitude = 116.818467
+[insertNode] [713]: 62's endCoordinate: latitude = 40.357243, longitude = 116.818066
+[insertNode] [593]: (*it)->preSegmentId = 63's segIsInTree = 0
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
@@ -2635,21 +2635,21 @@ open successfully
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
 [findNodeById] [444]: result = (nil)
-[findNodeById] [439]: result = 0x55d9bfb42a30
-[findNodeById] [439]: result = 0x55d9bfb42a30
-[findNodeById] [439]: result = 0x55d9bfb42a30
-[findNodeById] [439]: result = 0x55d9bfb42a30
-[findNodeById] [439]: result = 0x55d9bfb42a30
-[findNodeById] [439]: result = 0x55d9bfb42a30
-[findNodeById] [439]: result = 0x55d9bfb42a30
-[findNodeById] [439]: result = 0x55d9bfb42a30
-[findNodeById] [439]: result = 0x55d9bfb42a30
-[findNodeById] [439]: result = 0x55d9bfb42a30
-[findNodeById] [439]: result = 0x55d9bfb42a30
-[findNodeById] [439]: result = 0x55d9bfb42a30
-[insertNode] [693]: tempNode is = 0x55d9bfb42a30, preSegmentId = 63, prevSegmentId = 23, segIsInTree = 0
-[createNode] [587]: newNode = 0x55d9bfb44bf0
-[insertNode] [705]: childNode = 0x55d9bfb44bf0
+[findNodeById] [439]: result = 0x563cad607a30
+[findNodeById] [439]: result = 0x563cad607a30
+[findNodeById] [439]: result = 0x563cad607a30
+[findNodeById] [439]: result = 0x563cad607a30
+[findNodeById] [439]: result = 0x563cad607a30
+[findNodeById] [439]: result = 0x563cad607a30
+[findNodeById] [439]: result = 0x563cad607a30
+[findNodeById] [439]: result = 0x563cad607a30
+[findNodeById] [439]: result = 0x563cad607a30
+[findNodeById] [439]: result = 0x563cad607a30
+[findNodeById] [439]: result = 0x563cad607a30
+[findNodeById] [439]: result = 0x563cad607a30
+[insertNode] [682]: tempNode is = 0x563cad607a30, preSegmentId = 63, prevSegmentId = 23, segIsInTree = 0
+[createNode] [586]: newNode = 0x563cad609bf0
+[insertNode] [694]: childNode = 0x563cad609bf0
 [calcCoordinate] [346]: Node is childSegment
 [calcStraightXYOffset] [102]: Length = 6.000000, accumulateBranchAngle = 96.377964
 [calcStraightXYOffset] [104]: accumulateBranchAngleRad = 1.682113
@@ -2661,14 +2661,14 @@ open successfully
 [calcHeadingXY] [93]: coordinate system rotated X = 632.243843
 [calcHeadingXY] [94]: coordinate system rotated Y = 24.028579
 [calcDestination] [78]: destinationCoord latitude = 40.359571  destinationCoord longitude = 116.821614
-[insertNode] [720]: childNode's preSegmentId = 63
-[insertNode] [723]: 63's startCoordinate: latitude = 40.359575, longitude = 116.821544
-[insertNode] [724]: 63's endCoordinate: latitude = 40.359571, longitude = 116.821614
-[0;32m[       OK ] [mPsdMapTest.useRealRecordPsdWithSP (12 ms)
-[0;32m[----------] [m1 test from PsdMapTest (12 ms total)
+[insertNode] [709]: childNode's preSegmentId = 63
+[insertNode] [712]: 63's startCoordinate: latitude = 40.359575, longitude = 116.821544
+[insertNode] [713]: 63's endCoordinate: latitude = 40.359571, longitude = 116.821614
+[0;32m[       OK ] [mPsdMapTest.useRealRecordPsdWithSP (20 ms)
+[0;32m[----------] [m1 test from PsdMapTest (20 ms total)
 
 [0;32m[----------] [mGlobal test environment tear-down
-[0;32m[==========] [m1 test from 1 test suite ran. (12 ms total)
+[0;32m[==========] [m1 test from 1 test suite ran. (20 ms total)
 [0;32m[  PASSED  ] [m1 test.
 Capturing coverage data from .
 geninfo cmd: '/usr/local/bin/geninfo . --output-filename PsdModule.info --test-name PsdModule --rc lcov_branch_coverage=1 --branch-coverage'
@@ -2676,7 +2676,7 @@ geninfo: WARNING: (deprecated) RC option 'lcov_branch_coverage' is deprecated.  
 	(use "geninfo --ignore-errors deprecated,deprecated ..." to suppress this warning)
 Found gcov version: 7.5.0
 Using intermediate gcov format
-Writing temporary data to /tmp/geninfo_dateAeb
+Writing temporary data to /tmp/geninfo_datJqe6
 Scanning . for .gcda files ...
 Found 5 data files in .
 using: chunkSize: 1, nchunks:5, intervalLength:0
@@ -2686,9 +2686,9 @@ Finished filter file processing
 Finished .info-file creation
 Summary coverage rate:
   source files: 22
-  lines.......: 31.9% (426 of 1335 lines)
+  lines.......: 31.9% (427 of 1337 lines)
   functions...: 55.0% (198 of 360 functions)
-  branches....: 17.2% (83 of 482 branches)
+  branches....: 17.1% (82 of 480 branches)
 Message summary:
   1 warning message:
     deprecated: 1
@@ -2696,58 +2696,58 @@ Reading tracefile PsdModule.info.
 Found 22 entries.
 Found common filename prefix "/usr/include/c++"
 Generating output.
+Processing file 7/bits/stl_construct.h
+  lines=7 hit=7 functions=12 hit=12
+Processing file 7/ext/new_allocator.h
+  lines=15 hit=13 functions=22 hit=13 branches=14 hit=3
+Processing file 7/new
+  lines=2 hit=2 functions=1 hit=1
+Processing file 7/bits/stl_iterator.h
+  lines=38 hit=22 functions=55 hit=26
+Processing file 7/bits/alloc_traits.h
+  lines=22 hit=15 functions=21 hit=11
+Processing file /home/zhao/Documents/Psd/inc/PsdMap.h
+  lines=1 hit=1 functions=1 hit=1
+Processing file /home/zhao/Documents/Psd/src/PsdMap.cpp
+  lines=488 hit=151 functions=26 hit=13 branches=130 hit=46
+Processing file 7/bits/cpp_type_traits.h
+  lines=2 hit=2 functions=6 hit=3
+Processing file /home/zhao/Documents/Psd/src/PsdMessageDecoder.cpp
+  lines=94 hit=14 functions=17 hit=7 branches=36 hit=4
 Processing file /home/zhao/Documents/Psd/src/PsdLocation.cpp
   lines=321 hit=1 functions=24 hit=2 branches=222 hit=2
 Processing file 7/bits/allocator.h
   lines=6 hit=4 functions=7 hit=5
-Processing file 7/bits/stl_uninitialized.h
-  lines=10 hit=10 functions=18 hit=11
-Processing file 7/ext/alloc_traits.h
-  lines=6 hit=4 functions=3 hit=2
-Processing file 7/new
-  lines=2 hit=2 functions=1 hit=1
-Processing file 7/bits/cpp_type_traits.h
-  lines=2 hit=2 functions=6 hit=3
-Processing file 7/bits/alloc_traits.h
-  lines=22 hit=15 functions=21 hit=11
-Processing file 7/bits/stl_iterator.h
-  lines=38 hit=22 functions=55 hit=26
-Processing file 7/ext/new_allocator.h
-  lines=15 hit=13 functions=22 hit=13 branches=14 hit=3
-Processing file 7/bits/vector.tcc
-  lines=86 hit=40 functions=9 hit=4 branches=22 hit=6
-Processing file /home/zhao/Documents/Psd/src/PsdMap.cpp
-  lines=486 hit=150 functions=26 hit=13 branches=132 hit=47
-Processing file 7/bits/stl_construct.h
-  lines=7 hit=7 functions=12 hit=12
-Processing file /home/zhao/Documents/Psd/inc/PsdMap.h
-  lines=1 hit=1 functions=1 hit=1
-Processing file 7/bits/move.h
-  lines=13 hit=9 functions=11 hit=6
-Processing file /home/zhao/Documents/Psd/src/PsdMessageDecoder.cpp
-  lines=94 hit=14 functions=17 hit=7 branches=36 hit=4
-Processing file 7/iostream
-  lines=1 hit=1
-Processing file 7/bits/ptr_traits.h
-  lines=2 hit=0 functions=1 hit=0
-Processing file 7/bits/stl_algobase.h
-  lines=37 hit=20 functions=33 hit=18 branches=14 hit=7
 Processing file /home/zhao/Documents/Psd/inc/PsdMessageDecoder.h
   lines=1 hit=1 functions=5 hit=5
-Processing file /home/zhao/Documents/Psd/src/GeometricCalc.cpp
-  lines=29 hit=0 functions=1 hit=0
-Processing file /home/zhao/Documents/Psd/src/Haversine.cpp
-  lines=35 hit=19 functions=8 hit=5 branches=4 hit=2
+Processing file 7/ext/alloc_traits.h
+  lines=6 hit=4 functions=3 hit=2
+Processing file 7/bits/vector.tcc
+  lines=86 hit=40 functions=9 hit=4 branches=22 hit=6
+Processing file 7/bits/ptr_traits.h
+  lines=2 hit=0 functions=1 hit=0
+Processing file 7/bits/move.h
+  lines=13 hit=9 functions=11 hit=6
+Processing file 7/bits/stl_algobase.h
+  lines=37 hit=20 functions=33 hit=18 branches=14 hit=7
+Processing file 7/bits/stl_uninitialized.h
+  lines=10 hit=10 functions=18 hit=11
 Processing file 7/bits/stl_vector.h
   lines=121 hit=91 functions=79 hit=53 branches=38 hit=12
+Processing file /home/zhao/Documents/Psd/src/Haversine.cpp
+  lines=35 hit=19 functions=8 hit=5 branches=4 hit=2
+Processing file 7/iostream
+  lines=1 hit=1
+Processing file /home/zhao/Documents/Psd/src/GeometricCalc.cpp
+  lines=29 hit=0 functions=1 hit=0
 Overall coverage rate:
   source files: 22
-  lines.......: 31.9% (426 of 1335 lines)
+  lines.......: 31.9% (427 of 1337 lines)
   functions...: 55.0% (198 of 360 functions)
-  branches....: 17.2% (83 of 482 branches)
+  branches....: 17.1% (82 of 480 branches)
 Message summary:
   no messages were reported
-]0;zhao@zhao-virtual-machine: ~/Documents/Psd[01;32mzhao@zhao-virtual-machine[00m:[01;34m~/Documents/Psd[00m$ ./build.sh [7Pexit
+]0;zhao@zhao-virtual-machine: ~/Documents/Psd[01;32mzhao@zhao-virtual-machine[00m:[01;34m~/Documents/Psd[00m$ ./build.sh echo "# keira.repos" >> README.md[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kxit
 exit
 
-Script done on 2023-11-21 13:39:48+0800
+Script done on 2023-11-23 10:19:07+0800
