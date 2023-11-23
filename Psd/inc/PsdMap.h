@@ -61,6 +61,8 @@ public:
 
     tOffset disHv2StartBeforeRotatingCoord;  /** <  distance from the HV to the start point before the rotation coordinate system*/
 
+    double parentRelativeCurrentAngle;            /** <  the branchAngle of current segment relative parent segment */
+
     /**
      * @brief Find CurSegmentId whether in list or not
      * @return struct PsdMapData* (the location of the list where HV is located, otherwise return NULL)
@@ -93,6 +95,30 @@ public:
      * @param Node (can represent any node)
      */
     void insertNode(struct TreeNode *Node, std::vector<struct PsdMapData *>::iterator it);
+
+    /**
+     * @brief Insert root node in mTree 
+     * @param Node 
+     * @param it (indicate the root segment of container)
+     * @return struct TreeNode* (return rootNode)
+     */
+    struct TreeNode *insertRootNode(struct TreeNode *Node, std::vector<struct PsdMapData *>::iterator it);
+    
+    /**
+     * @brief Insert parent node in mTree
+     * @param Node 
+     * @param it (indicate the parent segment of container)
+     * @return struct TreeNode* (return parentNode)
+     */
+    struct TreeNode *insertParentNode(struct TreeNode *Node, std::vector<struct PsdMapData *>::iterator it);
+    
+    /**
+     * @brief insert child nodes in mTree
+     * @param tempNode (Indicates the previous segment of any segment in the container)
+     * @param it (indicate the each segments of container)
+     * @return struct TreeNode* (return childNode)
+     */
+    struct TreeNode *insertChildNode(struct TreeNode *tempNode, std::vector<struct PsdMapData *>::iterator it);
 
     /**
      * @brief Create a Node object

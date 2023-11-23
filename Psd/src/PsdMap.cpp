@@ -588,6 +588,70 @@ struct TreeNode *PsdMap::createNode()
     }
 }
 
+struct TreeNode *PsdMap::insertChildNode(struct TreeNode *tempNode, std::vector<struct PsdMapData *>::iterator it)
+{
+    struct TreeNode *childNode = createNode();
+    printf("[%s] [%d]: childNode = %p\n", __FUNCTION__, __LINE__, childNode);
+    (*it)->segIsInTree = true;
+    (*it)->nodeAttribute = ChildSegment;
+    childNode->MapData = *(*it);
+    childNode->ParentNode = tempNode;
+    childNode->vChilds.clear();
+    tempNode->vChilds.push_back(childNode);
+    //the end coordinates of the previous segment are equal to the start coordinates of this segment
+    childNode->MapData.startCoordinate = tempNode->MapData.endCoordinate;  
+    //the cumulative branch angle of this segment is equal to the cumulative branch angle of the previous segment add the branch angle relative to the previous segment
+    childNode->MapData.accumulateBranchAngle = tempNode->MapData.accumulateBranchAngle + childNode->MapData.branchAngle; 
+    count += 1;
+    doInsert = true;
+
+    return childNode;
+}
+
+struct TreeNode *PsdMap::insertParentNode(struct TreeNode *Node, std::vector<struct PsdMapData *>::iterator it)
+{
+    struct TreeNode *parentNode = createNode();
+    printf("[%s] [%d]: parentNode = %p\n", __FUNCTION__, __LINE__, parentNode);
+    (*it)->segIsInTree = true;
+    (*it)->nodeAttribute = ParentSegment;
+    parentNode->MapData = *(*it);
+    mTree = parentNode;  //mTree is updated as parentNode
+    parentNode->ParentNode = NULL;
+    parentNode->vChilds.push_back(Node);
+    Node->ParentNode = parentNode;
+    parentNode->MapData.endCoordinate = Node->MapData.startCoordinate;
+    //the branch angle of the parent relative to the current, because it is calculated backwards from the segment where the HV is located.
+    parentRelativeCurrentAngle = Node->MapData.branchAngle;   //use current relative parent's branchAngle as to accumulate, parentNode->MapData.branchAngle is still itself branchAngle(relative to root)
+    //accumulateBranchAngle relative to HV's segment, for PsdLocation module to calcRelativePosition.
+    parentNode->MapData.accumulateBranchAngle = Node->MapData.accumulateBranchAngle + parentRelativeCurrentAngle; 
+    count += 1;
+    doInsert = true;
+
+    return parentNode;
+}
+
+struct TreeNode *PsdMap::insertRootNode(struct TreeNode *Node, std::vector<struct PsdMapData *>::iterator it)
+{
+    struct TreeNode *rootNode = createNode();
+    printf("[%s] [%d]: rootNode = %p\n", __FUNCTION__, __LINE__, rootNode);
+    (*it)->segIsInTree = true;
+    (*it)->nodeAttribute = RootSegment;
+    rootNode->MapData = *(*it);
+    mTree = rootNode;   //mTree is updated as rootNode
+    rootNode->ParentNode = NULL;
+    rootNode->vChilds.push_back(Node);
+    Node->ParentNode = rootNode; //Node is still parentNode
+    rootNode->MapData.endCoordinate = Node->MapData.startCoordinate;
+    //the branch angle of the parent relative to the root, because it is calculated backwards from the segment where the HV is located.
+    rootNode->MapData.branchAngle = Node->MapData.branchAngle;   
+    //accumulateBranchAngle relative to HV's segment, for PsdLocation module to calcRelativePosition.
+    rootNode->MapData.accumulateBranchAngle = Node->MapData.accumulateBranchAngle + rootNode->MapData.branchAngle; 
+    count += 1;
+    doInsert = true;
+
+    return rootNode;
+}
+
 void PsdMap::insertNode(struct TreeNode *Node, std::vector<struct PsdMapData *>::iterator it)
 {    
     printf("[%s] [%d]: (*it)->preSegmentId = %u's segIsInTree = %d\n", __FUNCTION__,  __LINE__, (*it)->preSegmentId, (*it)->segIsInTree);
@@ -599,22 +663,7 @@ void PsdMap::insertNode(struct TreeNode *Node, std::vector<struct PsdMapData *>:
             /*HV's root*/
             if ((*it)->preSegmentId == (*it)->prevSegmentId)
             {
-                struct TreeNode *rootNode = createNode();
-                printf("[%s] [%d]: rootNode = %p\n", __FUNCTION__, __LINE__, rootNode);
-                (*it)->segIsInTree = true;
-                (*it)->nodeAttribute = RootSegment;
-                rootNode->MapData = *(*it);
-                mTree = rootNode;   //mTree is updated as rootNode
-                rootNode->ParentNode = NULL;
-                rootNode->vChilds.push_back(Node);
-                Node->ParentNode = rootNode; //Node is still parentNode
-                rootNode->MapData.endCoordinate = Node->MapData.startCoordinate;
-                //the branch angle of the parent relative to the root, because it is calculated backwards from the segment where the HV is located.
-                rootNode->MapData.branchAngle = Node->MapData.branchAngle;   
-                //accumulateBranchAngle relative to HV's segment, for PsdLocation module to calcRelativePosition.
-                rootNode->MapData.accumulateBranchAngle = Node->MapData.accumulateBranchAngle + rootNode->MapData.branchAngle; 
-                count += 1;
-                doInsert = true;
+                struct TreeNode *rootNode = insertRootNode(Node, it);
                 rootNode->MapData = calcCoordinate(rootNode);
                 *(*it) = rootNode->MapData;  
                 if (rootNode->MapData.sp == 1)
@@ -635,25 +684,10 @@ void PsdMap::insertNode(struct TreeNode *Node, std::vector<struct PsdMapData *>:
             else
             {
                 /*HV's parent*/
-                struct TreeNode *parentNode = createNode();
-                printf("[%s] [%d]: parentNode = %p\n", __FUNCTION__, __LINE__, parentNode);
-                (*it)->segIsInTree = true;
-                (*it)->nodeAttribute = ParentSegment;
-                parentNode->MapData = *(*it);
-                mTree = parentNode;  //mTree is updated as parentNode
-                parentNode->ParentNode = NULL;
-                parentNode->vChilds.push_back(Node);
-                Node->ParentNode = parentNode;
-                parentNode->MapData.endCoordinate = Node->MapData.startCoordinate;
-                //the branch angle of the parent relative to the current, because it is calculated backwards from the segment where the HV is located.
-                double parentRelativeCurrentAngle = Node->MapData.branchAngle;   //parentNode->MapData.branchAngle is still itself branchAngle(relative to root)
-                //accumulateBranchAngle relative to HV's segment, for PsdLocation module to calcRelativePosition.
-                parentNode->MapData.accumulateBranchAngle = Node->MapData.accumulateBranchAngle + parentRelativeCurrentAngle; 
-                count += 1;
-                doInsert = true;
+                struct TreeNode *parentNode = insertParentNode(Node, it);
                 parentNode->MapData = calcCoordinate(parentNode);
                 *(*it) = parentNode->MapData;  
-                (*it)->branchAngle = parentRelativeCurrentAngle;  //save parentRelativeCurrentAngle as new parent's branchAngle to list, but parentNode->MapData.branchAngle is still itself branchAngle in mTree
+                (*it)->branchAngle = parentRelativeCurrentAngle;  //save parentRelativeCurrentAngle as new parent's branchAngle to list, but parentNode->MapData.branchAngle is still parent relative root in mTree
                 if (parentNode->MapData.sp == 1)
                 {
                     printf("[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, parentNode->MapData.preSegmentId, parentNode->MapData.startCoordinate.latitude, parentNode->MapData.startCoordinate.longitude);
@@ -672,38 +706,25 @@ void PsdMap::insertNode(struct TreeNode *Node, std::vector<struct PsdMapData *>:
         }
         else
         {
-            //root or parent nodes are already in tree, for mapUpdate
             printf("[%s] [%d]: root or parent nodes are already in tree\n", __FUNCTION__,  __LINE__);
-            // count += 1;
         }
     }
-    /*finding the childs node from the current tree*/
+    
+    /*traverse the mTree, finding the childs node from the current tree*/
     struct TreeNode *tempNode = findNodeById(mTree, (*it)->prevSegmentId);
     printf("[%s] [%d]: tempNode is = %p, preSegmentId = %u, prevSegmentId = %u, segIsInTree = %d\n", __FUNCTION__, __LINE__, tempNode, (*it)->preSegmentId, (*it)->prevSegmentId, (*it)->segIsInTree);
     if (NULL != tempNode)
     {
         /*HV's childs*/
-        if (count >= PsdMessageDecoder::getInstance()->getVPsdMap().size())
+        if (tempNode->vChilds.size() > 5)
         {
+            printf("[%s] [%d]: tempNode->vChilds.size() > 5, stop insert this child to the tempNode instead, should goto insert next child\n", __FUNCTION__, __LINE__);
             return ;
         }
         /*insert childs*/
         if (((*it)->segIsInTree == false) && (tempNode->MapData.preSegmentId == (*it)->prevSegmentId))
         {
-            struct TreeNode *childNode = createNode();
-            printf("[%s] [%d]: childNode = %p\n", __FUNCTION__, __LINE__, childNode);
-            (*it)->segIsInTree = true;
-            (*it)->nodeAttribute = ChildSegment;
-            childNode->MapData = *(*it);
-            childNode->ParentNode = tempNode;
-            childNode->vChilds.clear();
-            tempNode->vChilds.push_back(childNode);
-            //the end coordinates of the previous segment are equal to the start coordinates of this segment
-            childNode->MapData.startCoordinate = tempNode->MapData.endCoordinate;  
-            //the cumulative branch angle of this segment is equal to the cumulative branch angle of the previous segment add the branch angle relative to the previous segment
-            childNode->MapData.accumulateBranchAngle = tempNode->MapData.accumulateBranchAngle + childNode->MapData.branchAngle; 
-            count += 1;
-            doInsert = true;
+            struct TreeNode *childNode = insertChildNode(tempNode, it);
             childNode->MapData = calcCoordinate(childNode);
             *(*it) = childNode->MapData; 
             printf("[%s] [%d]: childNode's preSegmentId = %u\n", __FUNCTION__, __LINE__, childNode->MapData.preSegmentId);
@@ -724,10 +745,7 @@ void PsdMap::insertNode(struct TreeNode *Node, std::vector<struct PsdMapData *>:
         }
         else
         {
-            //some nodes are already in tree, for mapUpdate
             printf("[%s] [%d]: some nodes are already in tree\n", __FUNCTION__, __LINE__);
-            // count += 1;
-            printf("[%s] [%d]: count = %u\n", __FUNCTION__,  __LINE__, count);
         }
     }
     else 
