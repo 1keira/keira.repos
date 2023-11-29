@@ -177,17 +177,16 @@ void PsdMessageDecoder::pushInList()
     {   
         //TODO2: vPsdMap don't have this preSegmentId, first pushInList
         tPsdMapData *pPsdMapData = new(tPsdMapData);
-        //for gtest
-        // if (NULL == pPsdMapData)
-        // {
-        //     printf("[%s] [%d]: new failed\n", __FUNCTION__, __LINE__);
-        // }
-        // else
-        // {
+        if (NULL == pPsdMapData)
+        {
+            printf("[%s] [%d]: new failed\n", __FUNCTION__, __LINE__);
+        }
+        else
+        {
             //TODO3: fill pPsdMapData and then emplace_back to vPsdMap
             *pPsdMapData = PsdMapData;
             vPsdMap.emplace_back(pPsdMapData);
-        // }
+        }
     }
 }
 
@@ -216,6 +215,17 @@ void PsdMessageDecoder::calcPsd04Data()
     //TODO: calculate endCurvature,startCurvature, branchAngle
     convertCurvature();
     convertBranchAngle();
+}
+
+std::vector<struct PsdMapData *>::iterator PsdMessageDecoder::findSegmentById(uint8_t KnownId)
+{
+    for (auto it = vPsdMap.begin(); it != vPsdMap.end(); it++)
+    {
+        if ((*it)->preSegmentId == KnownId)
+        {
+            return it;
+        }
+    }
 }
 
 void PsdMessageDecoder::segmentManager(bool PsdUsageActive)

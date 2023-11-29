@@ -134,7 +134,19 @@ public:
     /**
      * @brief Delete subTree (update newParent, newCurrent, newChilds)
      */
-    void updateChildNode();
+    void updateOtherNode();
+
+    /**
+     * @brief for mapUpdate, just update child nodes
+     * @param it (each segment elements in vPsdMap)
+     */
+    void updateChildNode(std::vector<struct PsdMapData *>::iterator it);
+
+    /**
+     * @brief DFS the tree, calculate all child nodes's end (latitude, longitude)
+     * @param Node (start with current segment)
+     */
+    void dfsCalcChildCoord(struct TreeNode *Node);
 
     /**
      * @brief Clearing all nodes of mTree actually
@@ -153,6 +165,12 @@ public:
      * @param Node (can represent any node) 
      */
     void deleteSubTree(struct TreeNode *Node);
+
+    /**
+     * @brief delete vChilds except current, travers peer vChilds of current segment 
+     * @param Node (delete this node's child nodes)
+     */
+    void deleteNodeExceptCurrent(struct TreeNode *Node);
 
     /**
      * @brief Find in mTree by the known id 

@@ -171,6 +171,13 @@ public:
      * @param PsdUsageActive (false Psd inactive)
      */
     void segmentManager(bool PsdUsageActive);
+
+    /**
+     * @brief Find the segment info with the specified id  in the list
+     * @param KnownId 
+     * @return std::vector<struct PsdMapData *>::iterator
+     */
+    std::vector<struct PsdMapData *>::iterator findSegmentById(uint8_t KnownId);
 //private:
     /**
      * @brief Calculate PSD_04 data
