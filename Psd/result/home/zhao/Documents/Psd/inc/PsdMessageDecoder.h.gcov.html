@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2023-11-23 16:57:40</td>
+            <td class="headerValue">2023-11-29 14:25:53</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -242,84 +242,91 @@
 <span id="L171"><span class="lineNum">     171</span>                 :             :      * @param PsdUsageActive (false Psd inactive)</span>
 <span id="L172"><span class="lineNum">     172</span>                 :             :      */</span>
 <span id="L173"><span class="lineNum">     173</span>                 :             :     void segmentManager(bool PsdUsageActive);</span>
-<span id="L174"><span class="lineNum">     174</span>                 :             : //private:</span>
+<span id="L174"><span class="lineNum">     174</span>                 :             : </span>
 <span id="L175"><span class="lineNum">     175</span>                 :             :     /**</span>
-<span id="L176"><span class="lineNum">     176</span>                 :             :      * @brief Calculate PSD_04 data</span>
-<span id="L177"><span class="lineNum">     177</span>                 :             :      */</span>
-<span id="L178"><span class="lineNum">     178</span>                 :             :     void calcPsd04Data();</span>
-<span id="L179"><span class="lineNum">     179</span>                 :             : </span>
-<span id="L180"><span class="lineNum">     180</span>                 :             :     /**</span>
-<span id="L181"><span class="lineNum">     181</span>                 :             :      * @brief Convert start &amp;&amp; end Curvature from uint8_t to double type</span>
-<span id="L182"><span class="lineNum">     182</span>                 :             :      */</span>
-<span id="L183"><span class="lineNum">     183</span>                 :             :     void convertCurvature();</span>
-<span id="L184"><span class="lineNum">     184</span>                 :             : </span>
-<span id="L185"><span class="lineNum">     185</span>                 :             :     /**</span>
-<span id="L186"><span class="lineNum">     186</span>                 :             :      * @brief Convert branchAngle from uint8_t to double type</span>
-<span id="L187"><span class="lineNum">     187</span>                 :             :      */</span>
-<span id="L188"><span class="lineNum">     188</span>                 :             :     void convertBranchAngle();</span>
-<span id="L189"><span class="lineNum">     189</span>                 :             : </span>
-<span id="L190"><span class="lineNum">     190</span>                 :             :     /**</span>
-<span id="L191"><span class="lineNum">     191</span>                 :             :      * @brief PsdMapData emplace in container</span>
-<span id="L192"><span class="lineNum">     192</span>                 :             :      */</span>
-<span id="L193"><span class="lineNum">     193</span>                 :             :     void pushInList();</span>
-<span id="L194"><span class="lineNum">     194</span>                 :             : </span>
-<span id="L195"><span class="lineNum">     195</span>                 :             :     /**</span>
-<span id="L196"><span class="lineNum">     196</span>                 :             :      * @brief PsdMapData erase out container </span>
-<span id="L197"><span class="lineNum">     197</span>                 :             :      * @param position (the position in the container to be deleted)</span>
-<span id="L198"><span class="lineNum">     198</span>                 :             :      */</span>
-<span id="L199"><span class="lineNum">     199</span>                 :             :     void popUpList(std::vector&lt;struct PsdMapData *&gt;::iterator position);</span>
-<span id="L200"><span class="lineNum">     200</span>                 :             : </span>
-<span id="L201"><span class="lineNum">     201</span>                 :             :     /**</span>
-<span id="L202"><span class="lineNum">     202</span>                 :             :      * @brief Clear the container</span>
-<span id="L203"><span class="lineNum">     203</span>                 :             :      */</span>
-<span id="L204"><span class="lineNum">     204</span>                 :             :     void clearList();</span>
-<span id="L205"><span class="lineNum">     205</span>                 :             : </span>
-<span id="L206"><span class="lineNum">     206</span>                 :             :     /**</span>
-<span id="L207"><span class="lineNum">     207</span>                 :             :      * @brief Check StructSeparate info and save in container</span>
-<span id="L208"><span class="lineNum">     208</span>                 :             :      */</span>
-<span id="L209"><span class="lineNum">     209</span>                 :             :     void saveAttributToList();</span>
-<span id="L210"><span class="lineNum">     210</span>                 :             : </span>
-<span id="L211"><span class="lineNum">     211</span>                 :             :     /**</span>
-<span id="L212"><span class="lineNum">     212</span>                 :             :      * @brief Get the Self Segment object</span>
-<span id="L213"><span class="lineNum">     213</span>                 :             :      * @return tSelfSegment </span>
-<span id="L214"><span class="lineNum">     214</span>                 :             :      */</span>
-<span id="L215"><span class="lineNum">     215</span>                 :             :     tSelfSegment getSelfSegment();</span>
-<span id="L216"><span class="lineNum">     216</span>                 :             : </span>
-<span id="L217"><span class="lineNum">     217</span>                 :             :     /**</span>
-<span id="L218"><span class="lineNum">     218</span>                 :             :      * @brief Set the Self Segment object</span>
-<span id="L219"><span class="lineNum">     219</span>                 :             :      * @param SelfSegment </span>
-<span id="L220"><span class="lineNum">     220</span>                 :             :      */</span>
-<span id="L221"><span class="lineNum">     221</span>                 :             :     void setSelfSegment(tSelfSegment SelfSegment);</span>
-<span id="L222"><span class="lineNum">     222</span>                 :             : </span>
-<span id="L223"><span class="lineNum">     223</span>                 :             :     /**</span>
-<span id="L224"><span class="lineNum">     224</span>                 :             :      * @brief Set the Psd Map Data object</span>
-<span id="L225"><span class="lineNum">     225</span>                 :             :      * @param psdMapData </span>
-<span id="L226"><span class="lineNum">     226</span>                 :             :      */</span>
-<span id="L227"><span class="lineNum">     227</span>                 :             :     void setPsdMapData(tPsdMapData psdMapData);</span>
-<span id="L228"><span class="lineNum">     228</span>                 :             : </span>
-<span id="L229"><span class="lineNum">     229</span>                 :             :     /**</span>
-<span id="L230"><span class="lineNum">     230</span>                 :             :      * @brief Get the container with PsdMapData</span>
-<span id="L231"><span class="lineNum">     231</span>                 :             :      * @return std::vector&lt;struct PsdMapData *&gt;&amp; </span>
-<span id="L232"><span class="lineNum">     232</span>                 :             :      */</span>
-<span id="L233"><span class="lineNum">     233</span>                 :             :     std::vector&lt;struct PsdMapData *&gt;&amp; getVPsdMap();</span>
-<span id="L234"><span class="lineNum">     234</span>                 :             : </span>
-<span id="L235"><span class="lineNum">     235</span>                 :             :     /**</span>
-<span id="L236"><span class="lineNum">     236</span>                 :             :      * @brief  Construct a new PsdMessageDecoder object</span>
-<span id="L237"><span class="lineNum">     237</span>                 :             :      */</span>
-<span id="L238"><span class="lineNum">     238</span>                 :             :     PsdMessageDecoder(/* args */);</span>
-<span id="L239"><span class="lineNum">     239</span>                 :             : </span>
-<span id="L240"><span class="lineNum">     240</span>                 :             :     /**</span>
-<span id="L241"><span class="lineNum">     241</span>                 :             :      * @brief Destroy the PsdMessageDecoder object</span>
-<span id="L242"><span class="lineNum">     242</span>                 :             :      */</span>
-<span id="L243"><span class="lineNum">     243</span>                 :             :     ~PsdMessageDecoder();</span>
-<span id="L244"><span class="lineNum">     244</span>                 :             : </span>
-<span id="L245"><span class="lineNum">     245</span>                 :             :     static PsdMessageDecoder* pInstance;  /**&lt;A pointer used to return the object of  the class of PsdMessageDecoder*/</span>
-<span id="L246"><span class="lineNum">     246</span>                 :             : };</span>
-<span id="L247"><span class="lineNum">     247</span>                 :             : </span>
-<span id="L248"><span class="lineNum">     248</span>                 :             : void* PsdMessageDecoderRun(void *arg);</span>
-<span id="L249"><span class="lineNum">     249</span>                 :             : </span>
-<span id="L250"><span class="lineNum">     250</span>                 :             : #endif /*_PSDMESSAGEDECODER_H_*/</span>
+<span id="L176"><span class="lineNum">     176</span>                 :             :      * @brief Find the segment info with the specified id  in the list</span>
+<span id="L177"><span class="lineNum">     177</span>                 :             :      * @param KnownId </span>
+<span id="L178"><span class="lineNum">     178</span>                 :             :      * @return std::vector&lt;struct PsdMapData *&gt;::iterator</span>
+<span id="L179"><span class="lineNum">     179</span>                 :             :      */</span>
+<span id="L180"><span class="lineNum">     180</span>                 :             :     std::vector&lt;struct PsdMapData *&gt;::iterator findSegmentById(uint8_t KnownId);</span>
+<span id="L181"><span class="lineNum">     181</span>                 :             : //private:</span>
+<span id="L182"><span class="lineNum">     182</span>                 :             :     /**</span>
+<span id="L183"><span class="lineNum">     183</span>                 :             :      * @brief Calculate PSD_04 data</span>
+<span id="L184"><span class="lineNum">     184</span>                 :             :      */</span>
+<span id="L185"><span class="lineNum">     185</span>                 :             :     void calcPsd04Data();</span>
+<span id="L186"><span class="lineNum">     186</span>                 :             : </span>
+<span id="L187"><span class="lineNum">     187</span>                 :             :     /**</span>
+<span id="L188"><span class="lineNum">     188</span>                 :             :      * @brief Convert start &amp;&amp; end Curvature from uint8_t to double type</span>
+<span id="L189"><span class="lineNum">     189</span>                 :             :      */</span>
+<span id="L190"><span class="lineNum">     190</span>                 :             :     void convertCurvature();</span>
+<span id="L191"><span class="lineNum">     191</span>                 :             : </span>
+<span id="L192"><span class="lineNum">     192</span>                 :             :     /**</span>
+<span id="L193"><span class="lineNum">     193</span>                 :             :      * @brief Convert branchAngle from uint8_t to double type</span>
+<span id="L194"><span class="lineNum">     194</span>                 :             :      */</span>
+<span id="L195"><span class="lineNum">     195</span>                 :             :     void convertBranchAngle();</span>
+<span id="L196"><span class="lineNum">     196</span>                 :             : </span>
+<span id="L197"><span class="lineNum">     197</span>                 :             :     /**</span>
+<span id="L198"><span class="lineNum">     198</span>                 :             :      * @brief PsdMapData emplace in container</span>
+<span id="L199"><span class="lineNum">     199</span>                 :             :      */</span>
+<span id="L200"><span class="lineNum">     200</span>                 :             :     void pushInList();</span>
+<span id="L201"><span class="lineNum">     201</span>                 :             : </span>
+<span id="L202"><span class="lineNum">     202</span>                 :             :     /**</span>
+<span id="L203"><span class="lineNum">     203</span>                 :             :      * @brief PsdMapData erase out container </span>
+<span id="L204"><span class="lineNum">     204</span>                 :             :      * @param position (the position in the container to be deleted)</span>
+<span id="L205"><span class="lineNum">     205</span>                 :             :      */</span>
+<span id="L206"><span class="lineNum">     206</span>                 :             :     void popUpList(std::vector&lt;struct PsdMapData *&gt;::iterator position);</span>
+<span id="L207"><span class="lineNum">     207</span>                 :             : </span>
+<span id="L208"><span class="lineNum">     208</span>                 :             :     /**</span>
+<span id="L209"><span class="lineNum">     209</span>                 :             :      * @brief Clear the container</span>
+<span id="L210"><span class="lineNum">     210</span>                 :             :      */</span>
+<span id="L211"><span class="lineNum">     211</span>                 :             :     void clearList();</span>
+<span id="L212"><span class="lineNum">     212</span>                 :             : </span>
+<span id="L213"><span class="lineNum">     213</span>                 :             :     /**</span>
+<span id="L214"><span class="lineNum">     214</span>                 :             :      * @brief Check StructSeparate info and save in container</span>
+<span id="L215"><span class="lineNum">     215</span>                 :             :      */</span>
+<span id="L216"><span class="lineNum">     216</span>                 :             :     void saveAttributToList();</span>
+<span id="L217"><span class="lineNum">     217</span>                 :             : </span>
+<span id="L218"><span class="lineNum">     218</span>                 :             :     /**</span>
+<span id="L219"><span class="lineNum">     219</span>                 :             :      * @brief Get the Self Segment object</span>
+<span id="L220"><span class="lineNum">     220</span>                 :             :      * @return tSelfSegment </span>
+<span id="L221"><span class="lineNum">     221</span>                 :             :      */</span>
+<span id="L222"><span class="lineNum">     222</span>                 :             :     tSelfSegment getSelfSegment();</span>
+<span id="L223"><span class="lineNum">     223</span>                 :             : </span>
+<span id="L224"><span class="lineNum">     224</span>                 :             :     /**</span>
+<span id="L225"><span class="lineNum">     225</span>                 :             :      * @brief Set the Self Segment object</span>
+<span id="L226"><span class="lineNum">     226</span>                 :             :      * @param SelfSegment </span>
+<span id="L227"><span class="lineNum">     227</span>                 :             :      */</span>
+<span id="L228"><span class="lineNum">     228</span>                 :             :     void setSelfSegment(tSelfSegment SelfSegment);</span>
+<span id="L229"><span class="lineNum">     229</span>                 :             : </span>
+<span id="L230"><span class="lineNum">     230</span>                 :             :     /**</span>
+<span id="L231"><span class="lineNum">     231</span>                 :             :      * @brief Set the Psd Map Data object</span>
+<span id="L232"><span class="lineNum">     232</span>                 :             :      * @param psdMapData </span>
+<span id="L233"><span class="lineNum">     233</span>                 :             :      */</span>
+<span id="L234"><span class="lineNum">     234</span>                 :             :     void setPsdMapData(tPsdMapData psdMapData);</span>
+<span id="L235"><span class="lineNum">     235</span>                 :             : </span>
+<span id="L236"><span class="lineNum">     236</span>                 :             :     /**</span>
+<span id="L237"><span class="lineNum">     237</span>                 :             :      * @brief Get the container with PsdMapData</span>
+<span id="L238"><span class="lineNum">     238</span>                 :             :      * @return std::vector&lt;struct PsdMapData *&gt;&amp; </span>
+<span id="L239"><span class="lineNum">     239</span>                 :             :      */</span>
+<span id="L240"><span class="lineNum">     240</span>                 :             :     std::vector&lt;struct PsdMapData *&gt;&amp; getVPsdMap();</span>
+<span id="L241"><span class="lineNum">     241</span>                 :             : </span>
+<span id="L242"><span class="lineNum">     242</span>                 :             :     /**</span>
+<span id="L243"><span class="lineNum">     243</span>                 :             :      * @brief  Construct a new PsdMessageDecoder object</span>
+<span id="L244"><span class="lineNum">     244</span>                 :             :      */</span>
+<span id="L245"><span class="lineNum">     245</span>                 :             :     PsdMessageDecoder(/* args */);</span>
+<span id="L246"><span class="lineNum">     246</span>                 :             : </span>
+<span id="L247"><span class="lineNum">     247</span>                 :             :     /**</span>
+<span id="L248"><span class="lineNum">     248</span>                 :             :      * @brief Destroy the PsdMessageDecoder object</span>
+<span id="L249"><span class="lineNum">     249</span>                 :             :      */</span>
+<span id="L250"><span class="lineNum">     250</span>                 :             :     ~PsdMessageDecoder();</span>
 <span id="L251"><span class="lineNum">     251</span>                 :             : </span>
+<span id="L252"><span class="lineNum">     252</span>                 :             :     static PsdMessageDecoder* pInstance;  /**&lt;A pointer used to return the object of  the class of PsdMessageDecoder*/</span>
+<span id="L253"><span class="lineNum">     253</span>                 :             : };</span>
+<span id="L254"><span class="lineNum">     254</span>                 :             : </span>
+<span id="L255"><span class="lineNum">     255</span>                 :             : void* PsdMessageDecoderRun(void *arg);</span>
+<span id="L256"><span class="lineNum">     256</span>                 :             : </span>
+<span id="L257"><span class="lineNum">     257</span>                 :             : #endif /*_PSDMESSAGEDECODER_H_*/</span>
+<span id="L258"><span class="lineNum">     258</span>                 :             : </span>
         </pre>
               </td>
             </tr>

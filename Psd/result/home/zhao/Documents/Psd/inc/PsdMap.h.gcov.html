@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2023-11-23 16:57:40</td>
+            <td class="headerValue">2023-11-29 14:25:53</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -205,111 +205,129 @@
 <span id="L134"><span class="lineNum">     134</span>                 :             :     /**</span>
 <span id="L135"><span class="lineNum">     135</span>                 :             :      * @brief Delete subTree (update newParent, newCurrent, newChilds)</span>
 <span id="L136"><span class="lineNum">     136</span>                 :             :      */</span>
-<span id="L137"><span class="lineNum">     137</span>                 :             :     void updateChildNode();</span>
+<span id="L137"><span class="lineNum">     137</span>                 :             :     void updateOtherNode();</span>
 <span id="L138"><span class="lineNum">     138</span>                 :             : </span>
 <span id="L139"><span class="lineNum">     139</span>                 :             :     /**</span>
-<span id="L140"><span class="lineNum">     140</span>                 :             :      * @brief Clearing all nodes of mTree actually</span>
-<span id="L141"><span class="lineNum">     141</span>                 :             :      * @param Node (can represent any node) </span>
+<span id="L140"><span class="lineNum">     140</span>                 :             :      * @brief for mapUpdate, just update child nodes</span>
+<span id="L141"><span class="lineNum">     141</span>                 :             :      * @param it (each segment elements in vPsdMap)</span>
 <span id="L142"><span class="lineNum">     142</span>                 :             :      */</span>
-<span id="L143"><span class="lineNum">     143</span>                 :             :     void clearNodeOutTree(struct TreeNode *Node);</span>
+<span id="L143"><span class="lineNum">     143</span>                 :             :     void updateChildNode(std::vector&lt;struct PsdMapData *&gt;::iterator it);</span>
 <span id="L144"><span class="lineNum">     144</span>                 :             : </span>
 <span id="L145"><span class="lineNum">     145</span>                 :             :     /**</span>
-<span id="L146"><span class="lineNum">     146</span>                 :             :      * @brief Delete old root</span>
-<span id="L147"><span class="lineNum">     147</span>                 :             :      * @return struct TreeNode* (returns new root if mTree is not NULL, otherwise returns NULL)</span>
+<span id="L146"><span class="lineNum">     146</span>                 :             :      * @brief DFS the tree, calculate all child nodes's end (latitude, longitude)</span>
+<span id="L147"><span class="lineNum">     147</span>                 :             :      * @param Node (start with current segment)</span>
 <span id="L148"><span class="lineNum">     148</span>                 :             :      */</span>
-<span id="L149"><span class="lineNum">     149</span>                 :             :     struct TreeNode *deleteOldRoot();</span>
+<span id="L149"><span class="lineNum">     149</span>                 :             :     void dfsCalcChildCoord(struct TreeNode *Node);</span>
 <span id="L150"><span class="lineNum">     150</span>                 :             : </span>
 <span id="L151"><span class="lineNum">     151</span>                 :             :     /**</span>
-<span id="L152"><span class="lineNum">     152</span>                 :             :      * @brief Delete sub tree</span>
+<span id="L152"><span class="lineNum">     152</span>                 :             :      * @brief Clearing all nodes of mTree actually</span>
 <span id="L153"><span class="lineNum">     153</span>                 :             :      * @param Node (can represent any node) </span>
 <span id="L154"><span class="lineNum">     154</span>                 :             :      */</span>
-<span id="L155"><span class="lineNum">     155</span>                 :             :     void deleteSubTree(struct TreeNode *Node);</span>
+<span id="L155"><span class="lineNum">     155</span>                 :             :     void clearNodeOutTree(struct TreeNode *Node);</span>
 <span id="L156"><span class="lineNum">     156</span>                 :             : </span>
 <span id="L157"><span class="lineNum">     157</span>                 :             :     /**</span>
-<span id="L158"><span class="lineNum">     158</span>                 :             :      * @brief Find in mTree by the known id </span>
-<span id="L159"><span class="lineNum">     159</span>                 :             :      * @param Node (can represent any node)</span>
-<span id="L160"><span class="lineNum">     160</span>                 :             :      * @param KnownId </span>
-<span id="L161"><span class="lineNum">     161</span>                 :             :      * @return struct TreeNode* (returns the corresponding node in the mTree if found, otherwise returns NULL)</span>
-<span id="L162"><span class="lineNum">     162</span>                 :             :      */</span>
-<span id="L163"><span class="lineNum">     163</span>                 :             :     struct TreeNode *findNodeById(struct TreeNode *Node, uint8_t KnownId);</span>
-<span id="L164"><span class="lineNum">     164</span>                 :             : </span>
-<span id="L165"><span class="lineNum">     165</span>                 :             :     /**</span>
-<span id="L166"><span class="lineNum">     166</span>                 :             :      * @brief Calculate coordinate distinguish between straight path and curved line</span>
-<span id="L167"><span class="lineNum">     167</span>                 :             :      * @param Node (can represent any node)</span>
-<span id="L168"><span class="lineNum">     168</span>                 :             :      * @return struct PsdMapData (data fields for each node)</span>
-<span id="L169"><span class="lineNum">     169</span>                 :             :      */</span>
-<span id="L170"><span class="lineNum">     170</span>                 :             :     struct PsdMapData calcCoordinate(struct TreeNode *Node);</span>
-<span id="L171"><span class="lineNum">     171</span>                 :             : </span>
-<span id="L172"><span class="lineNum">     172</span>                 :             :     /**</span>
-<span id="L173"><span class="lineNum">     173</span>                 :             :      * @brief Calculate X Y offsset in curve case</span>
-<span id="L174"><span class="lineNum">     174</span>                 :             :      * @param S (actual arc length, the length of a curve segment)</span>
-<span id="L175"><span class="lineNum">     175</span>                 :             :      * @param A0 (clothoide parameter, starting value for each sampling point)</span>
-<span id="L176"><span class="lineNum">     176</span>                 :             :      * @param A1 (clothoide parameter, sample the value of the next sampling point)</span>
-<span id="L177"><span class="lineNum">     177</span>                 :             :      * @param deltaBranchAngleRad (branching angle relative to the previous position)</span>
-<span id="L178"><span class="lineNum">     178</span>                 :             :      * @return tOffset (vertical offset x and horizontal offset y after rotating BranchAngle)</span>
-<span id="L179"><span class="lineNum">     179</span>                 :             :      */</span>
-<span id="L180"><span class="lineNum">     180</span>                 :             :     tOffset calcCurveXYOffset(double S, double A0, double A1, double deltaBranchAngleRad);</span>
-<span id="L181"><span class="lineNum">     181</span>                 :             : </span>
-<span id="L182"><span class="lineNum">     182</span>                 :             :     /**</span>
-<span id="L183"><span class="lineNum">     183</span>                 :             :      * @brief Calculate X Y offsset in straight path case</span>
-<span id="L184"><span class="lineNum">     184</span>                 :             :      * @param Length (actual length)</span>
-<span id="L185"><span class="lineNum">     185</span>                 :             :      * @param accumulateBranchAngle (accumulate branch angle relative to the first position)</span>
-<span id="L186"><span class="lineNum">     186</span>                 :             :      * @return tOffset (vertical offset x and horizontal offset y after rotating accumulateBranchAngle)</span>
+<span id="L158"><span class="lineNum">     158</span>                 :             :      * @brief Delete old root</span>
+<span id="L159"><span class="lineNum">     159</span>                 :             :      * @return struct TreeNode* (returns new root if mTree is not NULL, otherwise returns NULL)</span>
+<span id="L160"><span class="lineNum">     160</span>                 :             :      */</span>
+<span id="L161"><span class="lineNum">     161</span>                 :             :     struct TreeNode *deleteOldRoot();</span>
+<span id="L162"><span class="lineNum">     162</span>                 :             : </span>
+<span id="L163"><span class="lineNum">     163</span>                 :             :     /**</span>
+<span id="L164"><span class="lineNum">     164</span>                 :             :      * @brief Delete sub tree</span>
+<span id="L165"><span class="lineNum">     165</span>                 :             :      * @param Node (can represent any node) </span>
+<span id="L166"><span class="lineNum">     166</span>                 :             :      */</span>
+<span id="L167"><span class="lineNum">     167</span>                 :             :     void deleteSubTree(struct TreeNode *Node);</span>
+<span id="L168"><span class="lineNum">     168</span>                 :             : </span>
+<span id="L169"><span class="lineNum">     169</span>                 :             :     /**</span>
+<span id="L170"><span class="lineNum">     170</span>                 :             :      * @brief delete vChilds except current, travers peer vChilds of current segment </span>
+<span id="L171"><span class="lineNum">     171</span>                 :             :      * @param Node (delete this node's child nodes)</span>
+<span id="L172"><span class="lineNum">     172</span>                 :             :      */</span>
+<span id="L173"><span class="lineNum">     173</span>                 :             :     void deleteNodeExceptCurrent(struct TreeNode *Node);</span>
+<span id="L174"><span class="lineNum">     174</span>                 :             : </span>
+<span id="L175"><span class="lineNum">     175</span>                 :             :     /**</span>
+<span id="L176"><span class="lineNum">     176</span>                 :             :      * @brief Find in mTree by the known id </span>
+<span id="L177"><span class="lineNum">     177</span>                 :             :      * @param Node (can represent any node)</span>
+<span id="L178"><span class="lineNum">     178</span>                 :             :      * @param KnownId </span>
+<span id="L179"><span class="lineNum">     179</span>                 :             :      * @return struct TreeNode* (returns the corresponding node in the mTree if found, otherwise returns NULL)</span>
+<span id="L180"><span class="lineNum">     180</span>                 :             :      */</span>
+<span id="L181"><span class="lineNum">     181</span>                 :             :     struct TreeNode *findNodeById(struct TreeNode *Node, uint8_t KnownId);</span>
+<span id="L182"><span class="lineNum">     182</span>                 :             : </span>
+<span id="L183"><span class="lineNum">     183</span>                 :             :     /**</span>
+<span id="L184"><span class="lineNum">     184</span>                 :             :      * @brief Calculate coordinate distinguish between straight path and curved line</span>
+<span id="L185"><span class="lineNum">     185</span>                 :             :      * @param Node (can represent any node)</span>
+<span id="L186"><span class="lineNum">     186</span>                 :             :      * @return struct PsdMapData (data fields for each node)</span>
 <span id="L187"><span class="lineNum">     187</span>                 :             :      */</span>
-<span id="L188"><span class="lineNum">     188</span>                 :             :     tOffset calcStraightXYOffset(double Length, double accumulateBranchAngle);</span>
+<span id="L188"><span class="lineNum">     188</span>                 :             :     struct PsdMapData calcCoordinate(struct TreeNode *Node);</span>
 <span id="L189"><span class="lineNum">     189</span>                 :             : </span>
 <span id="L190"><span class="lineNum">     190</span>                 :             :     /**</span>
-<span id="L191"><span class="lineNum">     191</span>                 :             :      * @brief Calculate horizontal and orthogonal distance</span>
-<span id="L192"><span class="lineNum">     192</span>                 :             :      * @param Heading (from HV)</span>
-<span id="L193"><span class="lineNum">     193</span>                 :             :      * @param distanceX (x-axis before rotation)</span>
-<span id="L194"><span class="lineNum">     194</span>                 :             :      * @param distanceY (y-axis before rotation)</span>
-<span id="L195"><span class="lineNum">     195</span>                 :             :      * @return tOffset (vertical offset x and horizontal offset y after rotation)</span>
-<span id="L196"><span class="lineNum">     196</span>                 :             :      */</span>
-<span id="L197"><span class="lineNum">     197</span>                 :             :     tOffset calcHeadingXY(double Heading, double distanceX, double distanceY);</span>
-<span id="L198"><span class="lineNum">     198</span>                 :             : </span>
-<span id="L199"><span class="lineNum">     199</span>                 :             :     /**</span>
-<span id="L200"><span class="lineNum">     200</span>                 :             :      * @brief Get the Tree object</span>
-<span id="L201"><span class="lineNum">     201</span>                 :             :      * @return struct TreeNode* </span>
-<span id="L202"><span class="lineNum">     202</span>                 :             :      */</span>
-<span id="L203"><span class="lineNum">     203</span>                 :             :     struct TreeNode *getTree();</span>
-<span id="L204"><span class="lineNum">     204</span>                 :             : </span>
-<span id="L205"><span class="lineNum">     205</span>                 :             :     /**</span>
-<span id="L206"><span class="lineNum">     206</span>                 :             :      * @brief Set the Tree object</span>
-<span id="L207"><span class="lineNum">     207</span>                 :             :      * @param Node (set the Node to mTree)</span>
-<span id="L208"><span class="lineNum">     208</span>                 :             :      */</span>
-<span id="L209"><span class="lineNum">     209</span>                 :             :     void setTree(struct TreeNode *Node);</span>
-<span id="L210"><span class="lineNum">     210</span>                 :             :     </span>
-<span id="L211"><span class="lineNum">     211</span>                 :             :     /**</span>
-<span id="L212"><span class="lineNum">     212</span>                 :             :      * @brief Get the Map Mutex Status object</span>
-<span id="L213"><span class="lineNum">     213</span>                 :             :      * @return true (mapThreadMutex is locked)</span>
-<span id="L214"><span class="lineNum">     214</span>                 :             :      * @return false (mapThreadMutex is unlocked)</span>
-<span id="L215"><span class="lineNum">     215</span>                 :             :      */</span>
-<span id="L216"><span class="lineNum">     216</span>                 :             :     bool getMapMutexStatus();</span>
-<span id="L217"><span class="lineNum">     217</span>                 :             : </span>
-<span id="L218"><span class="lineNum">     218</span>                 :             :     /**</span>
-<span id="L219"><span class="lineNum">     219</span>                 :             :      * @brief Set the Map Mutex Status object (for gtest branch coverage)</span>
-<span id="L220"><span class="lineNum">     220</span>                 :             :      * @param MutexStatus </span>
-<span id="L221"><span class="lineNum">     221</span>                 :             :      */</span>
-<span id="L222"><span class="lineNum">     222</span>                 :             :     void setMapMutexStatus(bool MutexStatus);</span>
-<span id="L223"><span class="lineNum">     223</span>                 :             : </span>
-<span id="L224"><span class="lineNum">     224</span>                 :             :     //private:</span>
-<span id="L225"><span class="lineNum">     225</span>                 :             :     static PsdMap* pInstance;   /**&lt;A pointer used to return the object of  the class of PsdMap*/</span>
-<span id="L226"><span class="lineNum">     226</span>                 :             :     </span>
-<span id="L227"><span class="lineNum">     227</span>                 :             :     /**</span>
-<span id="L228"><span class="lineNum">     228</span>                 :             :      * @brief Construct a new PsdMap object</span>
-<span id="L229"><span class="lineNum">     229</span>                 :             :      */</span>
-<span id="L230"><span class="lineNum">     230</span>                 :             :     PsdMap(/* args */);</span>
-<span id="L231"><span class="lineNum">     231</span>                 :             : </span>
-<span id="L232"><span class="lineNum">     232</span>                 :             :     /**</span>
-<span id="L233"><span class="lineNum">     233</span>                 :             :      * @brief Destroy the PsdMap object</span>
-<span id="L234"><span class="lineNum">     234</span>                 :             :      */</span>
-<span id="L235"><span class="lineNum">     235</span>                 :             :     ~PsdMap();</span>
-<span id="L236"><span class="lineNum">     236</span>                 :             : };</span>
-<span id="L237"><span class="lineNum">     237</span>                 :             : </span>
-<span id="L238"><span class="lineNum">     238</span>                 :             : void *PsdMapRun(void *arg);</span>
-<span id="L239"><span class="lineNum">     239</span>                 :             : </span>
-<span id="L240"><span class="lineNum">     240</span>                 :             : #endif /*_PSDMAP_H_*/</span>
+<span id="L191"><span class="lineNum">     191</span>                 :             :      * @brief Calculate X Y offsset in curve case</span>
+<span id="L192"><span class="lineNum">     192</span>                 :             :      * @param S (actual arc length, the length of a curve segment)</span>
+<span id="L193"><span class="lineNum">     193</span>                 :             :      * @param A0 (clothoide parameter, starting value for each sampling point)</span>
+<span id="L194"><span class="lineNum">     194</span>                 :             :      * @param A1 (clothoide parameter, sample the value of the next sampling point)</span>
+<span id="L195"><span class="lineNum">     195</span>                 :             :      * @param deltaBranchAngleRad (branching angle relative to the previous position)</span>
+<span id="L196"><span class="lineNum">     196</span>                 :             :      * @return tOffset (vertical offset x and horizontal offset y after rotating BranchAngle)</span>
+<span id="L197"><span class="lineNum">     197</span>                 :             :      */</span>
+<span id="L198"><span class="lineNum">     198</span>                 :             :     tOffset calcCurveXYOffset(double S, double A0, double A1, double deltaBranchAngleRad);</span>
+<span id="L199"><span class="lineNum">     199</span>                 :             : </span>
+<span id="L200"><span class="lineNum">     200</span>                 :             :     /**</span>
+<span id="L201"><span class="lineNum">     201</span>                 :             :      * @brief Calculate X Y offsset in straight path case</span>
+<span id="L202"><span class="lineNum">     202</span>                 :             :      * @param Length (actual length)</span>
+<span id="L203"><span class="lineNum">     203</span>                 :             :      * @param accumulateBranchAngle (accumulate branch angle relative to the first position)</span>
+<span id="L204"><span class="lineNum">     204</span>                 :             :      * @return tOffset (vertical offset x and horizontal offset y after rotating accumulateBranchAngle)</span>
+<span id="L205"><span class="lineNum">     205</span>                 :             :      */</span>
+<span id="L206"><span class="lineNum">     206</span>                 :             :     tOffset calcStraightXYOffset(double Length, double accumulateBranchAngle);</span>
+<span id="L207"><span class="lineNum">     207</span>                 :             : </span>
+<span id="L208"><span class="lineNum">     208</span>                 :             :     /**</span>
+<span id="L209"><span class="lineNum">     209</span>                 :             :      * @brief Calculate horizontal and orthogonal distance</span>
+<span id="L210"><span class="lineNum">     210</span>                 :             :      * @param Heading (from HV)</span>
+<span id="L211"><span class="lineNum">     211</span>                 :             :      * @param distanceX (x-axis before rotation)</span>
+<span id="L212"><span class="lineNum">     212</span>                 :             :      * @param distanceY (y-axis before rotation)</span>
+<span id="L213"><span class="lineNum">     213</span>                 :             :      * @return tOffset (vertical offset x and horizontal offset y after rotation)</span>
+<span id="L214"><span class="lineNum">     214</span>                 :             :      */</span>
+<span id="L215"><span class="lineNum">     215</span>                 :             :     tOffset calcHeadingXY(double Heading, double distanceX, double distanceY);</span>
+<span id="L216"><span class="lineNum">     216</span>                 :             : </span>
+<span id="L217"><span class="lineNum">     217</span>                 :             :     /**</span>
+<span id="L218"><span class="lineNum">     218</span>                 :             :      * @brief Get the Tree object</span>
+<span id="L219"><span class="lineNum">     219</span>                 :             :      * @return struct TreeNode* </span>
+<span id="L220"><span class="lineNum">     220</span>                 :             :      */</span>
+<span id="L221"><span class="lineNum">     221</span>                 :             :     struct TreeNode *getTree();</span>
+<span id="L222"><span class="lineNum">     222</span>                 :             : </span>
+<span id="L223"><span class="lineNum">     223</span>                 :             :     /**</span>
+<span id="L224"><span class="lineNum">     224</span>                 :             :      * @brief Set the Tree object</span>
+<span id="L225"><span class="lineNum">     225</span>                 :             :      * @param Node (set the Node to mTree)</span>
+<span id="L226"><span class="lineNum">     226</span>                 :             :      */</span>
+<span id="L227"><span class="lineNum">     227</span>                 :             :     void setTree(struct TreeNode *Node);</span>
+<span id="L228"><span class="lineNum">     228</span>                 :             :     </span>
+<span id="L229"><span class="lineNum">     229</span>                 :             :     /**</span>
+<span id="L230"><span class="lineNum">     230</span>                 :             :      * @brief Get the Map Mutex Status object</span>
+<span id="L231"><span class="lineNum">     231</span>                 :             :      * @return true (mapThreadMutex is locked)</span>
+<span id="L232"><span class="lineNum">     232</span>                 :             :      * @return false (mapThreadMutex is unlocked)</span>
+<span id="L233"><span class="lineNum">     233</span>                 :             :      */</span>
+<span id="L234"><span class="lineNum">     234</span>                 :             :     bool getMapMutexStatus();</span>
+<span id="L235"><span class="lineNum">     235</span>                 :             : </span>
+<span id="L236"><span class="lineNum">     236</span>                 :             :     /**</span>
+<span id="L237"><span class="lineNum">     237</span>                 :             :      * @brief Set the Map Mutex Status object (for gtest branch coverage)</span>
+<span id="L238"><span class="lineNum">     238</span>                 :             :      * @param MutexStatus </span>
+<span id="L239"><span class="lineNum">     239</span>                 :             :      */</span>
+<span id="L240"><span class="lineNum">     240</span>                 :             :     void setMapMutexStatus(bool MutexStatus);</span>
 <span id="L241"><span class="lineNum">     241</span>                 :             : </span>
+<span id="L242"><span class="lineNum">     242</span>                 :             :     //private:</span>
+<span id="L243"><span class="lineNum">     243</span>                 :             :     static PsdMap* pInstance;   /**&lt;A pointer used to return the object of  the class of PsdMap*/</span>
+<span id="L244"><span class="lineNum">     244</span>                 :             :     </span>
+<span id="L245"><span class="lineNum">     245</span>                 :             :     /**</span>
+<span id="L246"><span class="lineNum">     246</span>                 :             :      * @brief Construct a new PsdMap object</span>
+<span id="L247"><span class="lineNum">     247</span>                 :             :      */</span>
+<span id="L248"><span class="lineNum">     248</span>                 :             :     PsdMap(/* args */);</span>
+<span id="L249"><span class="lineNum">     249</span>                 :             : </span>
+<span id="L250"><span class="lineNum">     250</span>                 :             :     /**</span>
+<span id="L251"><span class="lineNum">     251</span>                 :             :      * @brief Destroy the PsdMap object</span>
+<span id="L252"><span class="lineNum">     252</span>                 :             :      */</span>
+<span id="L253"><span class="lineNum">     253</span>                 :             :     ~PsdMap();</span>
+<span id="L254"><span class="lineNum">     254</span>                 :             : };</span>
+<span id="L255"><span class="lineNum">     255</span>                 :             : </span>
+<span id="L256"><span class="lineNum">     256</span>                 :             : void *PsdMapRun(void *arg);</span>
+<span id="L257"><span class="lineNum">     257</span>                 :             : </span>
+<span id="L258"><span class="lineNum">     258</span>                 :             : #endif /*_PSDMAP_H_*/</span>
+<span id="L259"><span class="lineNum">     259</span>                 :             : </span>
         </pre>
               </td>
             </tr>
