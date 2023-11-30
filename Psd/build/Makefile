@@ -201,6 +201,30 @@ src/Haversine.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/PsdModule.dir/build.make CMakeFiles/PsdModule.dir/src/Haversine.cpp.s
 .PHONY : src/Haversine.cpp.s
 
+src/Location.o: src/Location.cpp.o
+.PHONY : src/Location.o
+
+# target to build an object file
+src/Location.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PsdModule.dir/build.make CMakeFiles/PsdModule.dir/src/Location.cpp.o
+.PHONY : src/Location.cpp.o
+
+src/Location.i: src/Location.cpp.i
+.PHONY : src/Location.i
+
+# target to preprocess a source file
+src/Location.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PsdModule.dir/build.make CMakeFiles/PsdModule.dir/src/Location.cpp.i
+.PHONY : src/Location.cpp.i
+
+src/Location.s: src/Location.cpp.s
+.PHONY : src/Location.s
+
+# target to generate assembly for a file
+src/Location.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PsdModule.dir/build.make CMakeFiles/PsdModule.dir/src/Location.cpp.s
+.PHONY : src/Location.cpp.s
+
 src/PsdLocation.o: src/PsdLocation.cpp.o
 .PHONY : src/PsdLocation.o
 
@@ -291,6 +315,9 @@ help:
 	@echo "... src/Haversine.o"
 	@echo "... src/Haversine.i"
 	@echo "... src/Haversine.s"
+	@echo "... src/Location.o"
+	@echo "... src/Location.i"
+	@echo "... src/Location.s"
 	@echo "... src/PsdLocation.o"
 	@echo "... src/PsdLocation.i"
 	@echo "... src/PsdLocation.s"

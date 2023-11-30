@@ -7,6 +7,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/PsdModule.dir/src/GeometricCalc.cpp.o.d"
   "CMakeFiles/PsdModule.dir/src/Haversine.cpp.o"
   "CMakeFiles/PsdModule.dir/src/Haversine.cpp.o.d"
+  "CMakeFiles/PsdModule.dir/src/Location.cpp.o"
+  "CMakeFiles/PsdModule.dir/src/Location.cpp.o.d"
   "CMakeFiles/PsdModule.dir/src/PsdLocation.cpp.o"
   "CMakeFiles/PsdModule.dir/src/PsdLocation.cpp.o.d"
   "CMakeFiles/PsdModule.dir/src/PsdMap.cpp.o"

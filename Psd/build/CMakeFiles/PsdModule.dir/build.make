@@ -97,10 +97,24 @@ CMakeFiles/PsdModule.dir/src/Haversine.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PsdModule.dir/src/Haversine.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhao/Documents/Psd/src/Haversine.cpp -o CMakeFiles/PsdModule.dir/src/Haversine.cpp.s
 
+CMakeFiles/PsdModule.dir/src/Location.cpp.o: CMakeFiles/PsdModule.dir/flags.make
+CMakeFiles/PsdModule.dir/src/Location.cpp.o: /home/zhao/Documents/Psd/src/Location.cpp
+CMakeFiles/PsdModule.dir/src/Location.cpp.o: CMakeFiles/PsdModule.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhao/Documents/Psd/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/PsdModule.dir/src/Location.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PsdModule.dir/src/Location.cpp.o -MF CMakeFiles/PsdModule.dir/src/Location.cpp.o.d -o CMakeFiles/PsdModule.dir/src/Location.cpp.o -c /home/zhao/Documents/Psd/src/Location.cpp
+
+CMakeFiles/PsdModule.dir/src/Location.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PsdModule.dir/src/Location.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zhao/Documents/Psd/src/Location.cpp > CMakeFiles/PsdModule.dir/src/Location.cpp.i
+
+CMakeFiles/PsdModule.dir/src/Location.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PsdModule.dir/src/Location.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhao/Documents/Psd/src/Location.cpp -o CMakeFiles/PsdModule.dir/src/Location.cpp.s
+
 CMakeFiles/PsdModule.dir/src/PsdLocation.cpp.o: CMakeFiles/PsdModule.dir/flags.make
 CMakeFiles/PsdModule.dir/src/PsdLocation.cpp.o: /home/zhao/Documents/Psd/src/PsdLocation.cpp
 CMakeFiles/PsdModule.dir/src/PsdLocation.cpp.o: CMakeFiles/PsdModule.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhao/Documents/Psd/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/PsdModule.dir/src/PsdLocation.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhao/Documents/Psd/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/PsdModule.dir/src/PsdLocation.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PsdModule.dir/src/PsdLocation.cpp.o -MF CMakeFiles/PsdModule.dir/src/PsdLocation.cpp.o.d -o CMakeFiles/PsdModule.dir/src/PsdLocation.cpp.o -c /home/zhao/Documents/Psd/src/PsdLocation.cpp
 
 CMakeFiles/PsdModule.dir/src/PsdLocation.cpp.i: cmake_force
@@ -114,7 +128,7 @@ CMakeFiles/PsdModule.dir/src/PsdLocation.cpp.s: cmake_force
 CMakeFiles/PsdModule.dir/src/PsdMap.cpp.o: CMakeFiles/PsdModule.dir/flags.make
 CMakeFiles/PsdModule.dir/src/PsdMap.cpp.o: /home/zhao/Documents/Psd/src/PsdMap.cpp
 CMakeFiles/PsdModule.dir/src/PsdMap.cpp.o: CMakeFiles/PsdModule.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhao/Documents/Psd/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/PsdModule.dir/src/PsdMap.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhao/Documents/Psd/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/PsdModule.dir/src/PsdMap.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PsdModule.dir/src/PsdMap.cpp.o -MF CMakeFiles/PsdModule.dir/src/PsdMap.cpp.o.d -o CMakeFiles/PsdModule.dir/src/PsdMap.cpp.o -c /home/zhao/Documents/Psd/src/PsdMap.cpp
 
 CMakeFiles/PsdModule.dir/src/PsdMap.cpp.i: cmake_force
@@ -128,7 +142,7 @@ CMakeFiles/PsdModule.dir/src/PsdMap.cpp.s: cmake_force
 CMakeFiles/PsdModule.dir/src/PsdMessageDecoder.cpp.o: CMakeFiles/PsdModule.dir/flags.make
 CMakeFiles/PsdModule.dir/src/PsdMessageDecoder.cpp.o: /home/zhao/Documents/Psd/src/PsdMessageDecoder.cpp
 CMakeFiles/PsdModule.dir/src/PsdMessageDecoder.cpp.o: CMakeFiles/PsdModule.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhao/Documents/Psd/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/PsdModule.dir/src/PsdMessageDecoder.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhao/Documents/Psd/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/PsdModule.dir/src/PsdMessageDecoder.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PsdModule.dir/src/PsdMessageDecoder.cpp.o -MF CMakeFiles/PsdModule.dir/src/PsdMessageDecoder.cpp.o.d -o CMakeFiles/PsdModule.dir/src/PsdMessageDecoder.cpp.o -c /home/zhao/Documents/Psd/src/PsdMessageDecoder.cpp
 
 CMakeFiles/PsdModule.dir/src/PsdMessageDecoder.cpp.i: cmake_force
@@ -142,7 +156,7 @@ CMakeFiles/PsdModule.dir/src/PsdMessageDecoder.cpp.s: cmake_force
 CMakeFiles/PsdModule.dir/gtest/src/PsdTest.cpp.o: CMakeFiles/PsdModule.dir/flags.make
 CMakeFiles/PsdModule.dir/gtest/src/PsdTest.cpp.o: /home/zhao/Documents/Psd/gtest/src/PsdTest.cpp
 CMakeFiles/PsdModule.dir/gtest/src/PsdTest.cpp.o: CMakeFiles/PsdModule.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhao/Documents/Psd/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/PsdModule.dir/gtest/src/PsdTest.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhao/Documents/Psd/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/PsdModule.dir/gtest/src/PsdTest.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PsdModule.dir/gtest/src/PsdTest.cpp.o -MF CMakeFiles/PsdModule.dir/gtest/src/PsdTest.cpp.o.d -o CMakeFiles/PsdModule.dir/gtest/src/PsdTest.cpp.o -c /home/zhao/Documents/Psd/gtest/src/PsdTest.cpp
 
 CMakeFiles/PsdModule.dir/gtest/src/PsdTest.cpp.i: cmake_force
@@ -157,6 +171,7 @@ CMakeFiles/PsdModule.dir/gtest/src/PsdTest.cpp.s: cmake_force
 PsdModule_OBJECTS = \
 "CMakeFiles/PsdModule.dir/src/GeometricCalc.cpp.o" \
 "CMakeFiles/PsdModule.dir/src/Haversine.cpp.o" \
+"CMakeFiles/PsdModule.dir/src/Location.cpp.o" \
 "CMakeFiles/PsdModule.dir/src/PsdLocation.cpp.o" \
 "CMakeFiles/PsdModule.dir/src/PsdMap.cpp.o" \
 "CMakeFiles/PsdModule.dir/src/PsdMessageDecoder.cpp.o" \
@@ -167,13 +182,14 @@ PsdModule_EXTERNAL_OBJECTS =
 
 /home/zhao/Documents/Psd/gtest/output/bin/PsdModule: CMakeFiles/PsdModule.dir/src/GeometricCalc.cpp.o
 /home/zhao/Documents/Psd/gtest/output/bin/PsdModule: CMakeFiles/PsdModule.dir/src/Haversine.cpp.o
+/home/zhao/Documents/Psd/gtest/output/bin/PsdModule: CMakeFiles/PsdModule.dir/src/Location.cpp.o
 /home/zhao/Documents/Psd/gtest/output/bin/PsdModule: CMakeFiles/PsdModule.dir/src/PsdLocation.cpp.o
 /home/zhao/Documents/Psd/gtest/output/bin/PsdModule: CMakeFiles/PsdModule.dir/src/PsdMap.cpp.o
 /home/zhao/Documents/Psd/gtest/output/bin/PsdModule: CMakeFiles/PsdModule.dir/src/PsdMessageDecoder.cpp.o
 /home/zhao/Documents/Psd/gtest/output/bin/PsdModule: CMakeFiles/PsdModule.dir/gtest/src/PsdTest.cpp.o
 /home/zhao/Documents/Psd/gtest/output/bin/PsdModule: CMakeFiles/PsdModule.dir/build.make
 /home/zhao/Documents/Psd/gtest/output/bin/PsdModule: CMakeFiles/PsdModule.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zhao/Documents/Psd/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable /home/zhao/Documents/Psd/gtest/output/bin/PsdModule"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zhao/Documents/Psd/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable /home/zhao/Documents/Psd/gtest/output/bin/PsdModule"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/PsdModule.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
