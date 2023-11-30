@@ -35,7 +35,8 @@
 PsdLocation *PsdLocation::pInstance = NULL;
 extern pthread_mutex_t decoderThreadMutex;
 extern pthread_mutex_t mapThreadMutex;
-bool pPsdUsageActive = 0;                                       
+pthread_t decoderThread = 0;
+pthread_t mapThread = 0;                                  
 double pLateralDistTolerance = 8.0;     
 double pRelativePositionAngle = 45.0; 
 double pRelativeDirection = 45.0;  
@@ -65,41 +66,32 @@ PsdLocation::PsdLocation()
     mIsMatch = false;
     mData2EventList.PsdAvailable = false;
     mData2EventList.MPP = false;
-    mData2EventList.RoadSegClass = RoadClass_Unkown;
-    mData2EventList.RelativePos = Pos_Unclassified;
-    mData2EventList.RelativeDir = Dir_Unclassified;
-    mData2EventList.RvRelevancy = irrelevant;
-    mData2EventList.DistanceToEvent = 0.0;
-    mData2EventList.HvDis2Intersection = 0.0;
-    mData2EventList.RoDis2Intersection = 0.0;
+    mData2EventList.roadSegClass = RoadClass_Unkown;
+    mData2EventList.relativePos = Pos_Unclassified;
+    RelativeDir = Dir_Unclassified;
+    mData2EventList.RvRelevancy = false;
+    mData2EventList.dis2Event = 0.0;
+    mData2EventList.HvDTIP = 0.0;
+    mData2EventList.RvDTIP = 0.0;
     printf("[%s] [%d]: initialize mRoMatchedSegId = %u\n", __FUNCTION__, __LINE__, mRoMatchedSegId);
     printf("[%s] [%d]: initialize mRoMatchedNode = %p\n", __FUNCTION__, __LINE__, mRoMatchedNode);
     printf("[%s] [%d]: initialize mIsMatch = %d\n", __FUNCTION__, __LINE__, mIsMatch);
     printf("[%s] [%d]: initialize PsdAvailable = %d\n", __FUNCTION__, __LINE__, mData2EventList.PsdAvailable);
     printf("[%s] [%d]: initialize MPP = %d\n", __FUNCTION__, __LINE__, mData2EventList.MPP);
-    printf("[%s] [%d]: initialize RoadSegClass = %d\n", __FUNCTION__, __LINE__, mData2EventList.RoadSegClass);
-    printf("[%s] [%d]: initialize RelativePos = %d\n", __FUNCTION__, __LINE__, mData2EventList.RelativePos);
-    printf("[%s] [%d]: initialize RelativeDir = %d\n", __FUNCTION__, __LINE__, mData2EventList.RelativeDir);
+    printf("[%s] [%d]: initialize roadSegClass = %d\n", __FUNCTION__, __LINE__, mData2EventList.roadSegClass);
+    printf("[%s] [%d]: initialize relativePos = %d\n", __FUNCTION__, __LINE__, mData2EventList.relativePos);
+    printf("[%s] [%d]: initialize RelativeDir = %d\n", __FUNCTION__, __LINE__, RelativeDir);
     printf("[%s] [%d]: initialize RvRelevancy = %d\n", __FUNCTION__, __LINE__, mData2EventList.RvRelevancy);
-    printf("[%s] [%d]: initialize DistanceToEvent = %f\n", __FUNCTION__, __LINE__, mData2EventList.DistanceToEvent);
-    printf("[%s] [%d]: initialize HvDis2Intersection = %f\n", __FUNCTION__, __LINE__, mData2EventList.HvDis2Intersection);
-    printf("[%s] [%d]: initialize RoDis2Intersection = %f\n", __FUNCTION__, __LINE__, mData2EventList.RoDis2Intersection);
+    printf("[%s] [%d]: initialize dis2Event = %f\n", __FUNCTION__, __LINE__, mData2EventList.dis2Event);
+    printf("[%s] [%d]: initialize HvDTIP = %f\n", __FUNCTION__, __LINE__, mData2EventList.HvDTIP);
+    printf("[%s] [%d]: initialize RvDTIP = %f\n", __FUNCTION__, __LINE__, mData2EventList.RvDTIP);
 }
 
 PsdLocation::~PsdLocation()
 {
 }
 
-//for gtest: assumption PsdMapRun and PsdMessageDecoderRun 
-void *PsdMapRun(void *arg)
-{
-}
-
-void *PsdMessageDecoderRun(void *arg)
-{
-}
-
-float_t PsdLocation::accumulateChildsLength(struct TreeNode *Node)
+float PsdLocation::accumulateChildsLength(struct TreeNode *Node)
 {
     //return directly when Node is NULL
     if (NULL == Node)
@@ -109,7 +101,7 @@ float_t PsdLocation::accumulateChildsLength(struct TreeNode *Node)
 
     if (1 == Node->vChilds.size())
     {
-        return static_cast<float_t>(Node->vChilds[0]->MapData.preSegTotalLength) + accumulateChildsLength(Node->vChilds[0]);
+        return static_cast<float>(Node->vChilds[0]->MapData.preSegTotalLength) + accumulateChildsLength(Node->vChilds[0]);
     }
     else
     {
@@ -117,32 +109,32 @@ float_t PsdLocation::accumulateChildsLength(struct TreeNode *Node)
     }
 }
 
-float_t PsdLocation::calcRoDis2Intersection(Data2Location data2Location)
+float PsdLocation::calcRoDis2Intersection(Data2Location data2Location)
 {
-    float_t RvDis2Intersection = 0.0;
+    float RvDis2Intersection = 0.0;
     //Note: need distinguish some case, such as Ro is matched the segment of Root, Parent, Current and Childs to calculate RvDis2Intersection
     if (mRoMatchedNode->MapData.nodeAttribute != ChildSegment)
     {
         pthread_mutex_lock(&mapThreadMutex);
-        float_t MiddleLength = accumulateChildsLength(mRoMatchedNode);
-        float_t Ro2EndCoordDis = Haversine::haversineAirDistance(data2Location.RoPos.lat, data2Location.RoPos.lon, mRoMatchedNode->MapData.endCoordinate.latitude, mRoMatchedNode->MapData.endCoordinate.longitude);
+        float MiddleLength = accumulateChildsLength(mRoMatchedNode);
+        float Ro2EndCoordDis = Haversine::haversineAirDistance(data2Location.RoPos.lat, data2Location.RoPos.lon, mRoMatchedNode->MapData.endCoordinate.latitude, mRoMatchedNode->MapData.endCoordinate.longitude);
         pthread_mutex_unlock(&mapThreadMutex);
         RvDis2Intersection = MiddleLength + Ro2EndCoordDis;
     }
     else
     {
-        //mRoMatchedNode->MapData.nodeAttribute == ChildSegment, RvDis2Intersection = DistanceToEvent - HvDis2Intersection
-        RvDis2Intersection = mData2EventList.DistanceToEvent - mData2EventList.HvDis2Intersection;
+        //mRoMatchedNode->MapData.nodeAttribute == ChildSegment, RvDis2Intersection = dis2Event - HvDTIP
+        RvDis2Intersection = mData2EventList.dis2Event - mData2EventList.HvDTIP;
     }   
 
     printf("[%s] [%d]: RvDis2Intersection = %f\n", __FUNCTION__, __LINE__, RvDis2Intersection);
     return RvDis2Intersection;
 }
 
-float_t PsdLocation::calcHvDis2Intersection()
+float PsdLocation::calcHvDis2Intersection()
 {
-    float_t HvDis2Intersection = 0.0;
-    float_t ChildsTotalLength = 0.0;
+    float HvDTIP = 0.0;
+    float ChildsTotalLength = 0.0;
     struct TreeNode *Node = NULL;
 
     //TODO1: use the CurSegmentId of HV to find the node where it is located.
@@ -155,49 +147,49 @@ float_t PsdLocation::calcHvDis2Intersection()
     ChildsTotalLength = accumulateChildsLength(Node);
     pthread_mutex_unlock(&mapThreadMutex);
 
-    //TODO3: HvDis2Intersection = CurRemainLength + every preSegTotalLength of child nodes
+    //TODO3: HvDTIP = CurRemainLength + every preSegTotalLength of child nodes
     printf("[%s] [%d]: curRemainLength = %u\n", __FUNCTION__, __LINE__, PsdMessageDecoder::getInstance()->getSelfSegment().curRemainLength);
     printf("[%s] [%d]: ChildsTotalLength = %f\n", __FUNCTION__,  __LINE__, ChildsTotalLength);
-    HvDis2Intersection = PsdMessageDecoder::getInstance()->getSelfSegment().curRemainLength + ChildsTotalLength;
+    HvDTIP = PsdMessageDecoder::getInstance()->getSelfSegment().curRemainLength + ChildsTotalLength;
 
-    //TODO4: return HvDis2Intersection
-    printf("[%s] [%d]: HvDis2Intersection = %f\n", __FUNCTION__, __LINE__, HvDis2Intersection);
-    return HvDis2Intersection;
+    //TODO4: return HvDTIP
+    printf("[%s] [%d]: HvDTIP = %f\n", __FUNCTION__, __LINE__, HvDTIP);
+    return HvDTIP;
 }
 
-float_t PsdLocation::calcDistanceToEvent(Data2Location data2Location)
+float PsdLocation::calcDistanceToEvent(Data2Location data2Location)
 {
-    float_t DistanceToEvent = 0.0;
-    //Note: need distinguish some case, such as Ro is matched the segment of Root, Parent, Current and Childs to calculate DistanceToEvent
+    float dis2Event = 0.0;
+    //Note: need distinguish some case, such as Ro is matched the segment of Root, Parent, Current and Childs to calculate dis2Event
     if (mRoMatchedNode->MapData.nodeAttribute == RootSegment)
     {
-        //TODO: DistanceToEvent = RoRemainLength(by haversineAirDistance) on root segment + rootNode->vChilds[0]->preSegTotalLength + (HV's preSegTotalLength - curRemainLength)
-        float_t Ro2EndCoordDis = Haversine::haversineAirDistance(data2Location.RoPos.lat, data2Location.RoPos.lon, PsdMap::getInstance()->getTree()->MapData.endCoordinate.latitude, PsdMap::getInstance()->getTree()->MapData.endCoordinate.longitude);        
-        float_t HvDrivedLength = PsdMap::getInstance()->getTree()->vChilds[0]->vChilds[0]->MapData.preSegTotalLength - PsdMessageDecoder::getInstance()->getSelfSegment().curRemainLength; 
-        DistanceToEvent = Ro2EndCoordDis + PsdMap::getInstance()->getTree()->vChilds[0]->MapData.preSegTotalLength + HvDrivedLength;
+        //TODO: dis2Event = RoRemainLength(by haversineAirDistance) on root segment + rootNode->vChilds[0]->preSegTotalLength + (HV's preSegTotalLength - curRemainLength)
+        float Ro2EndCoordDis = Haversine::haversineAirDistance(data2Location.RoPos.lat, data2Location.RoPos.lon, PsdMap::getInstance()->getTree()->MapData.endCoordinate.latitude, PsdMap::getInstance()->getTree()->MapData.endCoordinate.longitude);        
+        float HvDrivedLength = PsdMap::getInstance()->getTree()->vChilds[0]->vChilds[0]->MapData.preSegTotalLength - PsdMessageDecoder::getInstance()->getSelfSegment().curRemainLength; 
+        dis2Event = Ro2EndCoordDis + PsdMap::getInstance()->getTree()->vChilds[0]->MapData.preSegTotalLength + HvDrivedLength;
         printf("[%s] [%d]: Ro2EndCoordDis = %f, HvDrivedLength = %f\n", __FUNCTION__, __LINE__, Ro2EndCoordDis, HvDrivedLength);       
     }
     else
     if (mRoMatchedNode->MapData.nodeAttribute == ParentSegment)
     {
-        //TODO: DistanceToEvent = Ro2EndCoordDis(by haversineAirDistance) on parent segment + (HV's preSegTotalLength - curRemainLength)
-        float_t Ro2EndCoordDis = Haversine::haversineAirDistance(data2Location.RoPos.lat, data2Location.RoPos.lon, PsdMap::getInstance()->getTree()->vChilds[0]->MapData.endCoordinate.latitude, PsdMap::getInstance()->getTree()->vChilds[0]->MapData.endCoordinate.longitude);
-        float_t HvDrivedLength = PsdMap::getInstance()->getTree()->vChilds[0]->vChilds[0]->MapData.preSegTotalLength - PsdMessageDecoder::getInstance()->getSelfSegment().curRemainLength; 
-        DistanceToEvent = Ro2EndCoordDis + HvDrivedLength;
+        //TODO: dis2Event = Ro2EndCoordDis(by haversineAirDistance) on parent segment + (HV's preSegTotalLength - curRemainLength)
+        float Ro2EndCoordDis = Haversine::haversineAirDistance(data2Location.RoPos.lat, data2Location.RoPos.lon, PsdMap::getInstance()->getTree()->vChilds[0]->MapData.endCoordinate.latitude, PsdMap::getInstance()->getTree()->vChilds[0]->MapData.endCoordinate.longitude);
+        float HvDrivedLength = PsdMap::getInstance()->getTree()->vChilds[0]->vChilds[0]->MapData.preSegTotalLength - PsdMessageDecoder::getInstance()->getSelfSegment().curRemainLength; 
+        dis2Event = Ro2EndCoordDis + HvDrivedLength;
         printf("[%s] [%d]: Ro2EndCoordDis = %f, HvDrivedLength = %f\n", __FUNCTION__, __LINE__, Ro2EndCoordDis, HvDrivedLength);
     }
     else
     if (mRoMatchedNode->MapData.nodeAttribute == CurSegment)
     {
-        //TODO: DistanceToEvent = invoke haversineAirDistance Ro to Hv
-        DistanceToEvent = Haversine::haversineAirDistance(PsdMessageDecoder::getInstance()->getSelfSegment().hvCoordinate.latitude, PsdMessageDecoder::getInstance()->getSelfSegment().hvCoordinate.longitude, data2Location.RoPos.lat, data2Location.RoPos.lon);
+        //TODO: dis2Event = invoke haversineAirDistance Ro to Hv
+        dis2Event = Haversine::haversineAirDistance(PsdMessageDecoder::getInstance()->getSelfSegment().hvCoordinate.latitude, PsdMessageDecoder::getInstance()->getSelfSegment().hvCoordinate.longitude, data2Location.RoPos.lat, data2Location.RoPos.lon);
     }
     else
     {
-        //mRoMatchedNode->MapData.nodeAttribute == ChildSegment, DistanceToEvent = distance between Ro and the starting coordinate of Ro matched segment + ChildsTotalLength + curRemainLength of HV located segment
+        //mRoMatchedNode->MapData.nodeAttribute == ChildSegment, dis2Event = distance between Ro and the starting coordinate of Ro matched segment + ChildsTotalLength + curRemainLength of HV located segment
         //TODO: Starting with the RO-matched segmentId, it accumulates backwards to the father of each segment until it reaches the segment where HV is located
         struct TreeNode *tempNode = mRoMatchedNode; //initial as RoMatched segment
-        float_t ChildsTotalLength = 0.0;
+        float ChildsTotalLength = 0.0;
         printf("[%s] [%d]: tempNodeId is = %u\n", __FUNCTION__, __LINE__, tempNode->MapData.preSegmentId);
         while (tempNode->MapData.prevSegmentId != PsdMessageDecoder::getInstance()->getSelfSegment().curSegmentId)
         {
@@ -206,48 +198,48 @@ float_t PsdLocation::calcDistanceToEvent(Data2Location data2Location)
             printf("[%s] [%d]: ChildsTotalLength = %f, tempNodeId is = %u\n", __FUNCTION__, __LINE__, ChildsTotalLength, tempNode->MapData.preSegmentId);
         }
         tempNode = NULL;
-        float_t Ro2StartCoordDis = Haversine::haversineAirDistance(mRoMatchedNode->MapData.startCoordinate.latitude, mRoMatchedNode->MapData.startCoordinate.longitude, data2Location.RoPos.lat, data2Location.RoPos.lon);
-        DistanceToEvent = PsdMessageDecoder::getInstance()->getSelfSegment().curRemainLength + ChildsTotalLength + Ro2StartCoordDis;
+        float Ro2StartCoordDis = Haversine::haversineAirDistance(mRoMatchedNode->MapData.startCoordinate.latitude, mRoMatchedNode->MapData.startCoordinate.longitude, data2Location.RoPos.lat, data2Location.RoPos.lon);
+        dis2Event = PsdMessageDecoder::getInstance()->getSelfSegment().curRemainLength + ChildsTotalLength + Ro2StartCoordDis;
         printf("[%s] [%d]: Ro2StartCoordDis = %f, ChildsTotalLength = %f, curRemainLength = %u\n", __FUNCTION__, __LINE__, Ro2StartCoordDis, ChildsTotalLength, PsdMessageDecoder::getInstance()->getSelfSegment().curRemainLength);
     }
 
-    printf("[%s] [%d]: DistanceToEvent = %f\n", __FUNCTION__, __LINE__, DistanceToEvent);
-    return DistanceToEvent;
+    printf("[%s] [%d]: dis2Event = %f\n", __FUNCTION__, __LINE__, dis2Event);
+    return dis2Event;
 }
 
-RelevancyCheck PsdLocation::calcRvRelevancy(Data2Location data2Location)
+bool PsdLocation::calcRvRelevancy(Data2Location data2Location)
 {
-    printf("[%s] [%d]: RelativePos = %d, RelativeDir = %d, mRoMatchedNode->MapData.mpp = %d\n", __FUNCTION__, __LINE__, mData2EventList.RelativePos, mData2EventList.RelativeDir, mRoMatchedNode->MapData.mpp);
+    printf("[%s] [%d]: relativePos = %d, RelativeDir = %d, mRoMatchedNode->MapData.mpp = %d\n", __FUNCTION__, __LINE__, mData2EventList.relativePos, RelativeDir, mRoMatchedNode->MapData.mpp);
     printf("[%s] [%d]: mRoMatchedSegId = %u, curSegmentId = %u, structSeparate = %d\n",  __FUNCTION__, __LINE__, mRoMatchedSegId, PsdMessageDecoder::getInstance()->getSelfSegment().curSegmentId, mRoMatchedNode->MapData.structSeparate);
     if (data2Location.eventClassify == Static_Event)
     {
         //for static object
-        if ((mData2EventList.RelativePos == Pos_Behind) || (mRoMatchedNode->MapData.mpp == false))
+        if ((mData2EventList.relativePos == Pos_Behind) || (mRoMatchedNode->MapData.mpp == false))
         {
-            mData2EventList.RvRelevancy = irrelevant;
+            mData2EventList.RvRelevancy = false;
         }
         else
-        if ((mData2EventList.RelativePos != Pos_Behind) && (mRoMatchedNode->MapData.mpp == true))
+        if ((mData2EventList.relativePos != Pos_Behind) && (mRoMatchedNode->MapData.mpp == true))
         {
-            mData2EventList.RvRelevancy = relevant;
+            mData2EventList.RvRelevancy = true;
         }
     }
     else
     if (data2Location.eventClassify == Dynamic_Event)
     {
-        if ((mRoMatchedSegId == PsdMessageDecoder::getInstance()->getSelfSegment().curSegmentId) && (mData2EventList.RelativeDir == Dir_Oncoming) && (mRoMatchedNode->MapData.structSeparate == 1 || mRoMatchedNode->MapData.structSeparate == 2))
+        if ((mRoMatchedSegId == PsdMessageDecoder::getInstance()->getSelfSegment().curSegmentId) && (RelativeDir == Dir_Oncoming) && (mRoMatchedNode->MapData.structSeparate == 1 || mRoMatchedNode->MapData.structSeparate == 2))
         {
-            mData2EventList.RvRelevancy = irrelevant;
+            mData2EventList.RvRelevancy = false;
         }
         else
-        if ((mData2EventList.RelativeDir == Dir_AwayFromBehind) || (mData2EventList.RelativeDir == Dir_AwayFromLeft) || (mData2EventList.RelativeDir == Dir_AwayFromRight) || (mData2EventList.RelativeDir == Dir_Unreachable))
+        if ((RelativeDir == Dir_AwayFromBehind) || (RelativeDir == Dir_AwayFromLeft) || (RelativeDir == Dir_AwayFromRight) || (RelativeDir == Dir_Unreachable))
         {
-            mData2EventList.RvRelevancy = irrelevant;
+            mData2EventList.RvRelevancy = false;
         }
         else
-        if ((mData2EventList.RelativeDir == Dir_Oncoming) || (mData2EventList.RelativeDir == Dir_Ahead) || (mData2EventList.RelativeDir == Dir_ComingFromLeft) || (mData2EventList.RelativeDir == Dir_ComingFromRight) || (mData2EventList.RelativeDir == Dir_ComingFromBehind))
+        if ((RelativeDir == Dir_Oncoming) || (RelativeDir == Dir_Ahead) || (RelativeDir == Dir_ComingFromLeft) || (RelativeDir == Dir_ComingFromRight) || (RelativeDir == Dir_ComingFromBehind))
         {
-            mData2EventList.RvRelevancy = relevant;
+            mData2EventList.RvRelevancy = true;
         }
     }
 
@@ -259,54 +251,54 @@ RealativeDirection PsdLocation::calcRelativeDirection(Data2Location data2Locatio
 {
     RealativeDirection realativeDirection = Dir_Unclassified;
 
-    printf("[%s] [%d]: RoadSegClass = %d, RelativePos = %d, RvSpeed = %lf, HeadingDelta = %lf\n", __FUNCTION__, __LINE__, mData2EventList.RoadSegClass, mData2EventList.RelativePos, data2Location.RvSpeed, data2Location.HeadingDelta);
+    printf("[%s] [%d]: roadSegClass = %d, relativePos = %d, RvSpeed = %lf, headingDelta = %lf\n", __FUNCTION__, __LINE__, mData2EventList.roadSegClass, mData2EventList.relativePos, data2Location.RvSpeed, data2Location.headingDelta);
     //TODO1: calculate Unreachable case
-    if ((mData2EventList.RoadSegClass == RoadClass_highway) && (mData2EventList.RelativePos == Pos_Left || mData2EventList.RelativePos == Pos_Right))
+    if ((mData2EventList.roadSegClass == RoadClass_highway) && (mData2EventList.relativePos == Pos_Left || mData2EventList.relativePos == Pos_Right))
     {
         realativeDirection = Dir_Unreachable;
     }
     else
-    if ((mData2EventList.RelativePos == Pos_Behind) && (data2Location.RvSpeed < pStationaryThreshold))
+    if ((mData2EventList.relativePos == Pos_Behind) && (data2Location.RvSpeed < pStationaryThreshold))
     {
         realativeDirection = Dir_Unreachable;
     }
     else
-    if ((mData2EventList.RelativePos == Pos_Ahead) && ((data2Location.HeadingDelta >= 0.0 && data2Location.HeadingDelta <= pRelativeDirection)  || (data2Location.HeadingDelta >= (360.0 - pRelativeDirection) && data2Location.HeadingDelta <= 360.0)))
+    if ((mData2EventList.relativePos == Pos_Ahead) && ((data2Location.headingDelta >= 0.0 && data2Location.headingDelta <= pRelativeDirection)  || (data2Location.headingDelta >= (360.0 - pRelativeDirection) && data2Location.headingDelta <= 360.0)))
     {
         realativeDirection = Dir_Ahead;
     }
     else 
-    if ((mData2EventList.RelativePos == Pos_Ahead) && (data2Location.HeadingDelta >= (180.0 - pRelativeDirection) && data2Location.HeadingDelta <= (180.0 + pRelativeDirection)))
+    if ((mData2EventList.relativePos == Pos_Ahead) && (data2Location.headingDelta >= (180.0 - pRelativeDirection) && data2Location.headingDelta <= (180.0 + pRelativeDirection)))
     {
         realativeDirection = Dir_Oncoming;
     }
     else
-    if ((mData2EventList.RelativePos == Pos_Behind) && ((data2Location.HeadingDelta >= 0.0 && data2Location.HeadingDelta <= pRelativeDirection)  || (data2Location.HeadingDelta >= (360.0 - pRelativeDirection) && data2Location.HeadingDelta <= 360.0)))
+    if ((mData2EventList.relativePos == Pos_Behind) && ((data2Location.headingDelta >= 0.0 && data2Location.headingDelta <= pRelativeDirection)  || (data2Location.headingDelta >= (360.0 - pRelativeDirection) && data2Location.headingDelta <= 360.0)))
     {
         realativeDirection = Dir_ComingFromBehind;
     }
     else
-    if ((mData2EventList.RelativePos == Pos_Behind) && (data2Location.HeadingDelta >= (180.0 - pRelativeDirection) && data2Location.HeadingDelta <= (180.0 + pRelativeDirection)))
+    if ((mData2EventList.relativePos == Pos_Behind) && (data2Location.headingDelta >= (180.0 - pRelativeDirection) && data2Location.headingDelta <= (180.0 + pRelativeDirection)))
     {
         realativeDirection = Dir_AwayFromBehind;
     }
     else
-    if ((mData2EventList.RelativePos == Pos_Left) && (data2Location.HeadingDelta >= (90.0 - pRelativeDirection) && data2Location.HeadingDelta <= (90.0 + pRelativeDirection)))
+    if ((mData2EventList.relativePos == Pos_Left) && (data2Location.headingDelta >= (90.0 - pRelativeDirection) && data2Location.headingDelta <= (90.0 + pRelativeDirection)))
     {
         realativeDirection = Dir_ComingFromLeft;
     }
     else
-    if ((mData2EventList.RelativePos == Pos_Left) && (data2Location.HeadingDelta >= (270.0 - pRelativeDirection) && data2Location.HeadingDelta <= (270.0 + pRelativeDirection)))
+    if ((mData2EventList.relativePos == Pos_Left) && (data2Location.headingDelta >= (270.0 - pRelativeDirection) && data2Location.headingDelta <= (270.0 + pRelativeDirection)))
     {
         realativeDirection = Dir_AwayFromLeft;
     }
     else
-    if ((mData2EventList.RelativePos == Pos_Right) && (data2Location.HeadingDelta >= (90.0 - pRelativeDirection) && data2Location.HeadingDelta <= (90.0 + pRelativeDirection)))
+    if ((mData2EventList.relativePos == Pos_Right) && (data2Location.headingDelta >= (90.0 - pRelativeDirection) && data2Location.headingDelta <= (90.0 + pRelativeDirection)))
     {
         realativeDirection = Dir_AwayFromRight;
     }
     else 
-    if ((mData2EventList.RelativePos == Pos_Right) && (data2Location.HeadingDelta >= (270.0 - pRelativeDirection) && data2Location.HeadingDelta <= (270.0 + pRelativeDirection)))
+    if ((mData2EventList.relativePos == Pos_Right) && (data2Location.headingDelta >= (270.0 - pRelativeDirection) && data2Location.headingDelta <= (270.0 + pRelativeDirection)))
     {
         realativeDirection = Dir_ComingFromRight;
     }
@@ -584,17 +576,7 @@ void PsdLocation::getEventDistance()
 /*PsdROLocation*/
 Data2EventList PsdLocation::getPsdRoLocation(Data2Location data2Location)
 {
-    /*TODO1: fill Data2EventList structure
-        bool PsdAvailable;                                   
-	    bool MPP;                                                    
-        RoadSegmentClass RoadSegClass; 
-        RelativePosition RelativePos;            
-        RealativeDirection RelativeDir;         
-        RelevancyCheck RvRelevancy;          
-	    double DistanceToEvent;                     
-	    double HvDis2Intersection;
-	    double RoDis2Intersection;
-	*/
+    //TODO1: fill Data2EventList structure
     printf("[%s] [%d]: Enter\n", __FUNCTION__, __LINE__);
     mData2EventList.PsdAvailable = getPsdAvailable();
     printf("[%s] [%d]: PsdAvailable = %d\n", __FUNCTION__, __LINE__, mData2EventList.PsdAvailable);
@@ -607,55 +589,52 @@ Data2EventList PsdLocation::getPsdRoLocation(Data2Location data2Location)
     if ((false == mData2EventList.PsdAvailable) || (false == mIsMatch))
     {
         mData2EventList.MPP = false;
-        mData2EventList.RoadSegClass = RoadClass_Unkown;
-        mData2EventList.RelativePos = Pos_Unclassified;
-        mData2EventList.RelativeDir = Dir_Unclassified;
-        mData2EventList.RvRelevancy = irrelevant;
-        mData2EventList.DistanceToEvent = 0.0;
-        mData2EventList.HvDis2Intersection = 0.0;
-        mData2EventList.RoDis2Intersection = 0.0;
+        mData2EventList.roadSegClass = RoadClass_Unkown;
+        mData2EventList.relativePos = Pos_Unclassified;
+        RelativeDir = Dir_Unclassified;
+        mData2EventList.RvRelevancy = false;
+        mData2EventList.dis2Event = 0.0;
+        mData2EventList.HvDTIP = 0.0;
+        mData2EventList.RvDTIP = 0.0;
     }
     else
     {
         //TODO3: calculate valid value if (true == mData2EventList.PsdAvailable) && (true == mIsMatch)
         mData2EventList.MPP = getMPP(mRoMatchedSegId);
-        mData2EventList.RoadSegClass = calcRoadSegmentClass();
-        mData2EventList.RelativePos = calcRelativePosition(data2Location);
-        mData2EventList.RelativeDir = calcRelativeDirection(data2Location);
+        mData2EventList.roadSegClass = calcRoadSegmentClass();
+        mData2EventList.relativePos = calcRelativePosition(data2Location);
+        RelativeDir = calcRelativeDirection(data2Location);
         mData2EventList.RvRelevancy = calcRvRelevancy(data2Location);
-        mData2EventList.DistanceToEvent = calcDistanceToEvent(data2Location);
-        if ((data2Location.RvSpeed != 0.0) && (mData2EventList.RelativeDir == Dir_ComingFromLeft || mData2EventList.RelativeDir == Dir_ComingFromRight))
+        mData2EventList.dis2Event = calcDistanceToEvent(data2Location);
+        if ((data2Location.RvSpeed != 0.0) && (RelativeDir == Dir_ComingFromLeft || RelativeDir == Dir_ComingFromRight))
         {
-            mData2EventList.HvDis2Intersection = calcHvDis2Intersection();
-            mData2EventList.RoDis2Intersection = calcRoDis2Intersection(data2Location);
-            printf("[%s] [%d]: HvDis2Intersection = %f\n", __FUNCTION__, __LINE__, mData2EventList.HvDis2Intersection);
-            printf("[%s] [%d]: RoDis2Intersection = %f\n", __FUNCTION__, __LINE__, mData2EventList.RoDis2Intersection);
+            mData2EventList.HvDTIP = calcHvDis2Intersection();
+            mData2EventList.RvDTIP = calcRoDis2Intersection(data2Location);
+            printf("[%s] [%d]: HvDTIP = %f\n", __FUNCTION__, __LINE__, mData2EventList.HvDTIP);
+            printf("[%s] [%d]: RvDTIP = %f\n", __FUNCTION__, __LINE__, mData2EventList.RvDTIP);
         }
     }
 
     printf("[%s] [%d]: MPP = %d\n", __FUNCTION__, __LINE__, mData2EventList.MPP);
-    printf("[%s] [%d]: RoadSegClass = %d\n", __FUNCTION__, __LINE__, mData2EventList.RoadSegClass);
-    printf("[%s] [%d]: RelativePos = %d\n", __FUNCTION__, __LINE__, mData2EventList.RelativePos);
-    printf("[%s] [%d]: RelativeDir = %d\n", __FUNCTION__, __LINE__, mData2EventList.RelativeDir);
+    printf("[%s] [%d]: roadSegClass = %d\n", __FUNCTION__, __LINE__, mData2EventList.roadSegClass);
+    printf("[%s] [%d]: relativePos = %d\n", __FUNCTION__, __LINE__, mData2EventList.relativePos);
+    printf("[%s] [%d]: RelativeDir = %d\n", __FUNCTION__, __LINE__, RelativeDir);
     printf("[%s] [%d]: RvRelevancy = %d\n", __FUNCTION__, __LINE__, mData2EventList.RvRelevancy);
-    printf("[%s] [%d]: DistanceToEvent = %f\n", __FUNCTION__, __LINE__, mData2EventList.DistanceToEvent);
+    printf("[%s] [%d]: dis2Event = %f\n", __FUNCTION__, __LINE__, mData2EventList.dis2Event);
 
     return mData2EventList;
 }
 
-/*createMapThread*/
 void PsdLocation::createMapThread()
 {
     pthread_create(&mapThread, NULL, PsdMapRun, NULL);
 }
 
-/*createDecoderThread*/
 void PsdLocation::createDecoderThread()
 {
     pthread_create(&decoderThread, NULL, PsdMessageDecoderRun, NULL);
 }
 
-/*initialize Psd relative data*/
 void PsdLocation::initPsdData()
 {
     tPsdMapData PsdMapData = {0};
@@ -664,7 +643,6 @@ void PsdLocation::initPsdData()
     PsdMessageDecoder::getInstance()->setSelfSegment(SelfSegment);
 }
 
-/*reserved interfaces for p_xxx*/
 void PsdLocation::getDiagnoticsParameter()
 {
 }

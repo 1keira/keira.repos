@@ -26,13 +26,6 @@
 /*-----------------------------------------------------------------------------
  * ENUMS, TYPEDEFS, STRUCTS: global
  *---------------------------------------------------------------------------*/
-//eRelevancyCheck
-typedef enum eRelevancyCheck
-{
-    irrelevant = 0,
-    relevant = 1
-}RelevancyCheck;
-
 //eRelativePosition
 typedef enum eRelativePosition
 {
@@ -70,27 +63,25 @@ typedef enum eEventClassification
 typedef struct sData2EventList{
 	bool PsdAvailable;                                   /** <  psd whether available or not*/
 	bool MPP;                                                    /** <  most posible path*/
-    RoadSegmentClass RoadSegClass; /** <  road segment class*/
-    RelativePosition RelativePos;            /** <  Ro relative Hv*/
-    RealativeDirection RelativeDir;         /** <  Ro relative Hv*/
-    RelevancyCheck RvRelevancy;         /** < Ro is on the driving route of Hv or has potential threat to Hv*/
-	float_t DistanceToEvent;                     /** <  real road distance between Hv and Ro*/
-	float_t HvDis2Intersection;                /** <  distance from Hv's position to intersection*/
-	float_t RoDis2Intersection;                /** <  distance from Ro's position to intersection*/
+    float dis2Event;                                         /** <  real road distance between Hv and Ro*/
+    RelativePosition relativePos;              /** <  Ro relative Hv*/
+    RoadSegmentClass roadSegClass;   /** <  road segment class*/
+    bool RvRelevancy;                                   /** < Ro is on the driving route of Hv or has potential threat to Hv*/
+	float HvDTIP;                                              /** <  distance from Hv's position to intersection*/
+	float RvDTIP;                                               /** <  distance from Ro's position to intersection*/
 }Data2EventList;
 
 //sData2Location
 typedef struct sData2Location{
 	Position3D RoPos;
-	double HeadingDelta;
-    double RvSpeed;
+	double headingDelta;
+    float RvSpeed;
     EventClassification eventClassify;     /** <  the status of remote object */
 }Data2Location;
 
 /*-----------------------------------------------------------------------------
  * FUNCTION PROTOTYPES: extern
  *---------------------------------------------------------------------------*/
-extern bool pPsdUsageActive;                   /** <  p_PSD_Usage_Active*/
 extern double pLateralDistTolerance;    /** <  p_lateral_dist_tolerance*/
 extern double pRelativePositionAngle; /** <  p_relative_position_angle, default value == 45 degrees*/ 
 extern double pRelativeDirection;           /** <  p_relative_direction, default value == 45 degrees*/
@@ -121,6 +112,8 @@ public:
     Data2EventList mData2EventList;           /** <  Data return to EventList*/
 
     bool mIsMatch;                                                /** <  Ro whether matched on HV's segments, default value == false*/
+
+    RealativeDirection RelativeDir;                 /** <  Ro relative Hv*/
 
     /**
      * @brief Get the Diagnotics Parameter object
@@ -200,36 +193,38 @@ public:
 
     /**
      * @brief Ro Relevancy to Hv
-     * @return RelevancyCheck 
+     * @param data2Location 
+     * @return true (relevant)
+     * @return false (irrelevant)
      */
-    RelevancyCheck calcRvRelevancy(Data2Location data2Location);
+    bool calcRvRelevancy(Data2Location data2Location);
 
     /**
      * @brief real road distance between Hv and Ro
      * @param data2Location 
-     * @return float_t (unit: meter, accuracy: float)
+     * @return float (unit: meter, accuracy: float)
      */
-    float_t calcDistanceToEvent(Data2Location data2Location);
+    float calcDistanceToEvent(Data2Location data2Location);
 
     /**
      * @brief DTIP Hv Distance to Intersection
-     * @return float_t (unit: meter, accuracy: float)
+     * @return float (unit: meter, accuracy: float)
      */
-    float_t calcHvDis2Intersection();
+    float calcHvDis2Intersection();
 
     /**
      * @brief DTIP Rv Distance to Intersection
      * @param data2Location 
-     * @return float_t (unit: meter, accuracy: float)
+     * @return float (unit: meter, accuracy: float)
      */
-    float_t calcRoDis2Intersection(Data2Location data2Location);
+    float calcRoDis2Intersection(Data2Location data2Location);
 
     /**
      * @brief Accumulate childnodes's preSegmentLength
      * @param Node 
-     * @return float_t (unit: meter, accuracy: float)
+     * @return float (unit: meter, accuracy: float)
      */
-    float_t accumulateChildsLength(struct TreeNode *Node);
+    float accumulateChildsLength(struct TreeNode *Node);
     
     /**
      * @brief Construct a new PsdLocation object
