@@ -28,6 +28,7 @@
 static uint8_t lastSize = 0;        //indicates the size of the vPsdMap container capacity to be recorded in order to trigger mapUpdate
 static uint8_t count = 0;            //indicates number of inserted elements in the database
 static bool doInsert = false;     //indicates whether an action has been inserted in the traversal
+static uint8_t lastSegmentId = 0;
 
 /*-----------------------------------------------------------------------------
  * LOCAL AND GLOBAL VARIABLES
@@ -644,7 +645,7 @@ void PsdMap::updateOtherNode()
     {
         //this RootSegment is new root
         //TODO1: find HV's last current node, lastCurNode is newParent
-        struct TreeNode *lastCurNode = findNodeById(mTree, PsdMessageDecoder::getInstance()->getSelfSegment().lastSegmentId);
+        struct TreeNode *lastCurNode = findNodeById(mTree, lastSegmentId);
         printf("[%s] [%d]: lastCurNode = %u is newParent\n", __FUNCTION__, __LINE__, lastCurNode->MapData.preSegmentId);
 
         //TODO2: update the nodeAttribute of lastCurNode
@@ -1109,15 +1110,14 @@ struct PsdMapData *PsdMap::curIdIsInList()
     return NULL;
 }
 
-#if 0
 /*Thread: PsdMap*/
 void *PsdMapRun(void *arg)
 {
     int8_t CurSegId = -1;
     while (true)
     {
-        /*TODO1: check P_PSD_Usage_Active*/
-        if (P_PSD_Usage_Active)
+        /*TODO1: check pPsdUsageActive*/
+        if (pPsdUsageActive)
         {
             /*TODO2: check HV's confidence*/
             // check HV's valid curSegmentId + posIsUnique + posLengthErr + (lat, lon) + heading + headingAccuracy(for filter invalid heading) in PsdMessageDecoder.cpp
@@ -1126,33 +1126,33 @@ void *PsdMapRun(void *arg)
             {
                 /*TODO4: find CurSegId success*/
                 pthread_mutex_lock(&decoderThreadMutex);
-                CurSegId = PsdMap::getInstance()->CurIdIsInList()->preSegmentId;
+                CurSegId = PsdMap::getInstance()->curIdIsInList()->preSegmentId;
                 pthread_mutex_unlock(&decoderThreadMutex);
 
                 /*TODO5: mapCreate*/
                 if (-1 != CurSegId)
                 {
                     PsdMap::getInstance()->mapCreate();
-                    //TODO6: record LastCurSegmentId = curSegmentId, lastSize = vPsdMap.size()
-                    // PsdMessageDecoder::getInstance()->getSelfSegment().lastSegmentId = PsdMessageDecoder::getInstance()->getSelfSegment().curSegmentId;
+                    //TODO6: record lastSegmentId = curSegmentId, lastSize = vPsdMap.size()
+                    lastSegmentId = PsdMessageDecoder::getInstance()->getSelfSegment().curSegmentId;
                     lastSize = PsdMessageDecoder::getInstance()->getVPsdMap().size();
                 }
             }
             else
             {
                 /*trigger mapUpdate*/
-                if (( PsdMessageDecoder::getInstance()->getSelfSegment().curSegmentId !=  PsdMessageDecoder::getInstance()->getSelfSegment().lastSegmentId) && (lastSize !=  PsdMessageDecoder::getInstance()->getVPsdMap().size()))
+                if (( PsdMessageDecoder::getInstance()->getSelfSegment().curSegmentId !=  lastSegmentId) && (lastSize !=  PsdMessageDecoder::getInstance()->getVPsdMap().size()))
                 {
                     PsdMap::getInstance()->mapUpdate();
-                    //TODO6: record LastCurSegmentId = curSegmentId, lastSize = vPsdMap.size()
-                    //PsdMessageDecoder::getInstance()->getSelfSegment().lastSegmentId =  PsdMessageDecoder::getInstance()->getSelfSegment().curSegmentId;
+                    //TODO6: record lastSegmentId = curSegmentId, lastSize = vPsdMap.size()
+                    lastSegmentId =  PsdMessageDecoder::getInstance()->getSelfSegment().curSegmentId;
                     lastSize = PsdMessageDecoder::getInstance()->getVPsdMap().size();
                 }
             }
         }
         else
         {
-            /*TODO: clear tree + clearList in P_PSD_Usage_Active == false case*/
+            /*TODO: clear tree + clearList in pPsdUsageActive == false case*/
             if (NULL != PsdMap::getInstance()->getTree())
             {
                 PsdMap::getInstance()->mapClear(PsdMap::getInstance()->getTree());
@@ -1161,4 +1161,3 @@ void *PsdMapRun(void *arg)
         }
     }
 }
-#endif

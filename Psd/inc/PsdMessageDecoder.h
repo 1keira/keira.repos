@@ -18,12 +18,14 @@
 #include <cstdint>
 #include <vector>
 #include <pthread.h>
+#include "GeometricCalc.h"
 
 /*-----------------------------------------------------------------------------
  * MACROS AND CONSTANTS: #define
  *---------------------------------------------------------------------------*/
- const double HeadingAccuracyThreshold = 4.5;
- 
+const double HeadingAccuracyThreshold = 4.5;
+const bool pPsdUsageActive = 1;     
+
 /*-----------------------------------------------------------------------------
  * ENUMS, TYPEDEFS, STRUCTS
  *---------------------------------------------------------------------------*/
@@ -134,7 +136,7 @@ typedef struct SelfSegment{
 	bool    posIsUnique;                           //indicates whether the location is unique, whether HV's position is consistent with the current segment, default:0
     e_PosLengthErr  posLengthErr;   //longitudinal errors in positioning, default:0
     /*extra needed*/
-    uint8_t lastSegmentId;                    //for judging whether update Map or not, what time to save it?---after mapCreate and mapUpdate
+    // uint8_t lastSegmentId;                    //for judging whether update Map or not, what time to save it?---after mapCreate and mapUpdate
     tCoordinates hvCoordinate;          //getHvPosition() from receiver
     double hvHeading;                            //getHvHeading() from receiver
 }tSelfSegment;
@@ -223,9 +225,9 @@ public:
 
     /**
      * @brief Set the Self Segment object
-     * @param SelfSegment 
+     * @param CurSegment 
      */
-    void setSelfSegment(tSelfSegment SelfSegment);
+    void setSelfSegment(tSelfSegment CurSegment);
 
     /**
      * @brief Set the Psd Map Data object
@@ -238,6 +240,21 @@ public:
      * @return std::vector<struct PsdMapData *>& 
      */
     std::vector<struct PsdMapData *>& getVPsdMap();
+
+    /**
+     * @brief assumption interface
+     * @param heading 
+     * @param threshold 
+     * @return true 
+     * @return false 
+     */
+    bool getHVHeading(double& heading, double threshold);
+
+    /**
+     * @brief assumption HV coordinate
+     * @return Position3D 
+     */
+    Position3D getHVPosition();
 
     /**
      * @brief  Construct a new PsdMessageDecoder object

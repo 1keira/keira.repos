@@ -57,6 +57,17 @@ PsdMessageDecoder::~PsdMessageDecoder()
 {
 }
 
+Position3D PsdMessageDecoder::getHVPosition()
+{
+    Position3D hvPos;
+    return hvPos;
+}
+
+bool PsdMessageDecoder::getHVHeading(double& heading, double threshold)
+{
+    return true;
+}
+
 std::vector<struct PsdMapData *>& PsdMessageDecoder::getVPsdMap()
 {
     return vPsdMap;
@@ -226,6 +237,9 @@ std::vector<struct PsdMapData *>::iterator PsdMessageDecoder::findSegmentById(ui
             return it;
         }
     }
+
+    //Note: if not found, return invalid position
+    return vPsdMap.end();
 }
 
 void PsdMessageDecoder::segmentManager(bool PsdUsageActive)
@@ -244,3 +258,28 @@ void PsdMessageDecoder::segmentManager(bool PsdUsageActive)
     }
 }
 
+/*Thread:PsdMessageDecoder*/
+void *PsdMessageDecoderRun(void *arg)
+{
+    while (true)
+    {
+        /*TODO1: check pPsdUsageActive*/
+        if (pPsdUsageActive)
+        {
+            //TODO2: save PSD04 05 06 info
+            PsdMessageDecoder::getInstance()->segmentManager(true);
+            if (PsdMessageDecoder::getInstance()->getHVHeading(PsdMessageDecoder::getInstance()->hvSegment.hvHeading, HeadingAccuracyThreshold))
+            {
+                PsdMessageDecoder::getInstance()->hvSegment.hvCoordinate.latitude = PsdMessageDecoder::getInstance()->getHVPosition().lat;
+                PsdMessageDecoder::getInstance()->hvSegment.hvCoordinate.longitude = PsdMessageDecoder::getInstance()->getHVPosition().lon;
+                PsdMessageDecoder::getInstance()->setSelfSegment(PsdMessageDecoder::getInstance()->hvSegment);
+            }
+        }
+        else
+        {
+            //TODO:pPsdUsageActive == false,segmentManager() add param control push or erase
+            PsdMessageDecoder::getInstance()->segmentManager(false);
+        }
+
+    }
+}
