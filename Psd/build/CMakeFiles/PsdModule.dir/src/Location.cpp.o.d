@@ -1,8 +1,8 @@
 CMakeFiles/PsdModule.dir/src/Location.cpp.o: \
  /home/zhao/Documents/Psd/src/Location.cpp /usr/include/stdc-predef.h \
  /home/zhao/Documents/Psd/src/../inc/Location.h \
- /home/zhao/Documents/Psd/src/../inc/PsdLocation.h \
- /home/zhao/Documents/Psd/src/../inc/PsdMessageDecoder.h \
+ /home/zhao/Documents/Psd/src/../inc/../inc/PsdLocation.h \
+ /home/zhao/Documents/Psd/src/../inc/../inc/PsdMessageDecoder.h \
  /usr/include/c++/7/iostream \
  /usr/include/x86_64-linux-gnu/c++/7/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/7/bits/os_defines.h \
@@ -138,6 +138,6 @@ CMakeFiles/PsdModule.dir/src/Location.cpp.o: \
  /usr/include/c++/7/bits/stl_uninitialized.h \
  /usr/include/c++/7/bits/stl_vector.h \
  /usr/include/c++/7/bits/stl_bvector.h /usr/include/c++/7/bits/vector.tcc \
- /home/zhao/Documents/Psd/src/../inc/GeometricCalc.h \
- /home/zhao/Documents/Psd/src/../inc/PsdMap.h \
- /home/zhao/Documents/Psd/src/../inc/Haversine.h
+ /home/zhao/Documents/Psd/src/../inc/../inc/GeometricCalc.h \
+ /home/zhao/Documents/Psd/src/../inc/../inc/PsdMap.h \
+ /home/zhao/Documents/Psd/src/../inc/../inc/Haversine.h
