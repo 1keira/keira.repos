@@ -178,14 +178,15 @@ void PsdMessageDecoder::pushInList()
             return ;
         }
     }
-
-    if (false == PsdMapData.segmentIsComplete)
-    {
-        printf("[%s] [%d]: segment is not complete\n", __FUNCTION__, __LINE__);
-        return ;
-    }
-    else
-    {   
+    
+    //Note: delete the judgment of segmentIsComplete signal, because of the completeness of the PSD04 cannot be fully indicated
+    // if (false == PsdMapData.segmentIsComplete)
+    // {
+    //     printf("[%s] [%d]: segment is not complete\n", __FUNCTION__, __LINE__);
+    //     return ;
+    // }
+    // else
+    // {   
         //TODO2: vPsdMap don't have this preSegmentId, first pushInList
         tPsdMapData *pPsdMapData = new(tPsdMapData);
         if (NULL == pPsdMapData)
@@ -198,7 +199,7 @@ void PsdMessageDecoder::pushInList()
             *pPsdMapData = PsdMapData;
             vPsdMap.emplace_back(pPsdMapData);
         }
-    }
+    // }
 }
 
 void PsdMessageDecoder::convertBranchAngle()
@@ -266,7 +267,8 @@ void *PsdMessageDecoderRun(void *arg)
         /*TODO1: check pPsdUsageActive*/
         if (pPsdUsageActive)
         {
-            //TODO2: save PSD04 05 06 info
+            //TODO2: receive valid PSD04 05 06, saving in PsdMapData.preSegmentId when (PSD_Segment_ID != "Fehlerwert") && (PSD_Segment_ID != "keine Segmentinformationen vorhanden") 
+            //TODO3: save PSD04 05 06 info
             PsdMessageDecoder::getInstance()->segmentManager(true);
             if (PsdMessageDecoder::getInstance()->getHVHeading(PsdMessageDecoder::getInstance()->hvSegment.hvHeading, HeadingAccuracyThreshold))
             {
