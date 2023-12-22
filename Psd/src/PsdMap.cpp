@@ -185,6 +185,7 @@ struct PsdMapData PsdMap::calcCoordinate(struct TreeNode *Node)
             double DrivedLength = L - PsdMessageDecoder::getInstance()->getSelfSegment().curRemainLength;  //distance drived by HV on current segment
             double KdrivedLength = K0 + (KL - K0) / L * DrivedLength;   //curvature of the current segment position of HV
             double deltaBranchAngleRad = 0.0;
+            uint8_t sampleCountHv2End = 0;                                                   //record sampling times from the postion of HV to endCoordinate
             K0 = KdrivedLength;                                                                              //starting calculation from HV's position
             Kstart = KdrivedLength;                                                                       //only the first Kstart == K0
             R = 1.0 / std::fabs(KdrivedLength);                                                  //starting radius of curvature from HV's position
@@ -198,7 +199,8 @@ struct PsdMapData PsdMap::calcCoordinate(struct TreeNode *Node)
                 {
                     break;
                 }
-                printf("[%s] [%d]: Ssum = %f\n", __FUNCTION__, __LINE__, Ssum);
+                sampleCountHv2End += 1;
+                printf("[%s] [%d]: Ssum = %f sampleCountHv2End = %u\n", __FUNCTION__, __LINE__, Ssum, sampleCountHv2End);
                 KSsum = K0 + (KL - K0) / PsdMessageDecoder::getInstance()->getSelfSegment().curRemainLength * Ssum; //next sample point curvature
                 A1_square = Ssum / KSsum;
                 //for general curve
@@ -214,8 +216,9 @@ struct PsdMapData PsdMap::calcCoordinate(struct TreeNode *Node)
                 Kstart = KSsum;
             }
             //calculate curvature endCoordinate
+            sampleCountHv2End += 1;
             finalRemainLength = PsdMessageDecoder::getInstance()->getSelfSegment().curRemainLength - (Ssum - S);
-            printf("[%s] [%d]: finalRemainLength = %f\n", __FUNCTION__, __LINE__, finalRemainLength);
+            printf("[%s] [%d]: finalRemainLength = %f sampleCountHv2End = %u\n", __FUNCTION__, __LINE__, finalRemainLength, sampleCountHv2End);
             //for general curve
             deltaBranchAngleRad = 2 * atan((KL - Kstart) / (1 + Kstart * KL)); 
             printf("[%s] [%d]: deltaBranchAngleRad = %f\n", __FUNCTION__, __LINE__, deltaBranchAngleRad);
@@ -223,6 +226,8 @@ struct PsdMapData PsdMap::calcCoordinate(struct TreeNode *Node)
             XY_1 = calcHeadingXY(PsdMessageDecoder::getInstance()->getSelfSegment().hvHeading, XY_1.distanceX, XY_1.distanceY);
             Node->MapData.endCoordinate = Haversine::calcDestination(SampleCoord, XY_1.distanceY, XY_1.distanceX);
             printf("[%s] [%d]: HV's endCoordinate latitude = %f  longitude = %f\n", __FUNCTION__, __LINE__, Node->MapData.endCoordinate.latitude, Node->MapData.endCoordinate.longitude);
+            //after the calculation, it should be cleared in time
+            sampleCountHv2End = 0;
 
             /*HV's startCoordinate*/
             tOffset XY_2 = {0.0, 0.0};
@@ -233,6 +238,7 @@ struct PsdMapData PsdMap::calcCoordinate(struct TreeNode *Node)
             R = 1.0 / std::fabs(KdrivedLength);
             Ssum = 0.0;
             A0_square = 0.0 / KdrivedLength;
+            uint8_t sampleCountHv2Start = 0;   //record sampling times from the postion of HV to startCoordinate
             while (1)
             {
                 S = 2 * R * acos((R - MaxRoadError) / R);
@@ -242,7 +248,8 @@ struct PsdMapData PsdMap::calcCoordinate(struct TreeNode *Node)
                 {
                     break;
                 }
-                printf("[%s] [%d]: Ssum = %f\n", __FUNCTION__, __LINE__, Ssum);
+                sampleCountHv2Start += 1;
+                printf("[%s] [%d]: Ssum = %f sampleCountHv2Start = %u\n", __FUNCTION__, __LINE__, Ssum, sampleCountHv2Start);
                 KSsum = K0 + (KL - K0) / DrivedLength * Ssum;//next sample point curvature
                 A1_square = Ssum / KSsum;
                 //for general curve
@@ -258,14 +265,16 @@ struct PsdMapData PsdMap::calcCoordinate(struct TreeNode *Node)
                 Kstart = KSsum;
             }
             //calculate curvature startCoordinate
+            sampleCountHv2Start += 1;
             finalRemainLength = DrivedLength - (Ssum - S);
-            printf("[%s] [%d]: finalRemainLength = %f\n", __FUNCTION__, __LINE__, finalRemainLength);        
+            printf("[%s] [%d]: finalRemainLength = %f sampleCountHv2Start = %u\n", __FUNCTION__, __LINE__, finalRemainLength, sampleCountHv2Start);        
             deltaBranchAngleRad = 2 * atan((KL - Kstart) / (1 + Kstart * KL));
             printf("[%s] [%d]: deltaBranchAngleRad = %f\n", __FUNCTION__, __LINE__, deltaBranchAngleRad);
             XY_2 = calcCurveXYOffset(finalRemainLength*(-1), A0_square, DrivedLength / KL, deltaBranchAngleRad);
             XY_2 = calcHeadingXY(PsdMessageDecoder::getInstance()->getSelfSegment().hvHeading, XY_2.distanceX, XY_2.distanceY);
             Node->MapData.startCoordinate = Haversine::calcDestination(SampleCoord, XY_2.distanceY, XY_2.distanceX);
             printf("[%s] [%d]: HV's startCoordinate latitude = %f  longitude = %f\n", __FUNCTION__, __LINE__, Node->MapData.startCoordinate.latitude, Node->MapData.startCoordinate.longitude);
+            sampleCountHv2Start = 0;
         }
     }
     else
@@ -310,6 +319,7 @@ struct PsdMapData PsdMap::calcCoordinate(struct TreeNode *Node)
             double A0_square = 0.0 / K0;
             double A1_square = Node->MapData.preSegTotalLength / KL;
             double deltaBranchAngleRad = 0.0;
+            uint8_t sampleCount = 0;   
             while (1)
             {
                 S = 2 * R * acos((R - MaxRoadError) / R);
@@ -319,6 +329,8 @@ struct PsdMapData PsdMap::calcCoordinate(struct TreeNode *Node)
                 {
                     break;
                 }
+                sampleCount += 1;
+                printf("[%s] [%d]: Ssum = %f sampleCountHv2Start = %u\n", __FUNCTION__, __LINE__, Ssum, sampleCount);
                 KSsum = K0 + (KL - K0) / L * Ssum;  //next sample point curvature
                 A1_square = Ssum / KSsum;
                 deltaBranchAngleRad = 2 * atan((KSsum - Kstart) / (1 + Kstart * KSsum));
@@ -331,14 +343,16 @@ struct PsdMapData PsdMap::calcCoordinate(struct TreeNode *Node)
                 A0_square = A1_square;
                 Kstart = KSsum;
             }
+            sampleCount += 1;
             //calculate curvature startCoordinate
             finalRemainLength = L - (Ssum - S);
-            printf("[%s] [%d]: finalRemainLength = %f\n", __FUNCTION__, __LINE__, finalRemainLength);
+            printf("[%s] [%d]: finalRemainLength = %f sampleCount = %u\n", __FUNCTION__, __LINE__, finalRemainLength, sampleCount);
             deltaBranchAngleRad = 2 * atan((KL - Kstart) / (1 + Kstart * KL));
             XY = calcCurveXYOffset(finalRemainLength*(-1), A0_square, L / KL, deltaBranchAngleRad);
             XY = calcHeadingXY(PsdMessageDecoder::getInstance()->getSelfSegment().hvHeading, XY.distanceX, XY.distanceY);
             Node->MapData.startCoordinate = Haversine::calcDestination(SampleCoord, XY.distanceY, XY.distanceX);
             printf("[%s] [%d]: rootSegment or parentSegment's startCoordinate latitude = %f  longitude = %f\n", __FUNCTION__, __LINE__, Node->MapData.startCoordinate.latitude, Node->MapData.startCoordinate.longitude);
+            sampleCount = 0;
         }
     }
     else
@@ -384,6 +398,7 @@ struct PsdMapData PsdMap::calcCoordinate(struct TreeNode *Node)
             double A0_square = 0.0 / K0;
             double A1_square = Node->MapData.preSegTotalLength / KL;
             double deltaBranchAngleRad = 0.0;
+            uint8_t sampleCount = 0; 
             while (1)
             {
                 S = 2 * R * acos((R - MaxRoadError) / R);
@@ -393,6 +408,8 @@ struct PsdMapData PsdMap::calcCoordinate(struct TreeNode *Node)
                 {
                     break;
                 }
+                sampleCount += 1;
+                printf("[%s] [%d]: Ssum = %f sampleCountHv2Start = %u\n", __FUNCTION__, __LINE__, Ssum, sampleCount);
                 KSsum = K0 + (KL - K0) / L * Ssum;  //next sample point curvature
                 A1_square = Ssum / KSsum;
                 deltaBranchAngleRad = 2 * atan((KSsum - Kstart) / (1 + Kstart * KSsum));
@@ -405,14 +422,16 @@ struct PsdMapData PsdMap::calcCoordinate(struct TreeNode *Node)
                 A0_square = A1_square;
                 Kstart = KSsum;
             }
+            sampleCount += 1;
             //calculate child's curvature endCoordinate
             finalRemainLength = L - (Ssum - S);
-            printf("[%s] [%d]: finalRemainLength = %f\n", __FUNCTION__, __LINE__, finalRemainLength);
+            printf("[%s] [%d]: finalRemainLength = %f sampleCount = %u\n", __FUNCTION__, __LINE__, finalRemainLength, sampleCount);
             deltaBranchAngleRad = 2 * atan((KL - Kstart) / (1 + Kstart * KL));
             XY = calcCurveXYOffset(finalRemainLength, A0_square, L / KL, deltaBranchAngleRad);
             XY = calcHeadingXY(PsdMessageDecoder::getInstance()->getSelfSegment().hvHeading, XY.distanceX, XY.distanceY);
             Node->MapData.endCoordinate = Haversine::calcDestination(SampleCoord, XY.distanceY, XY.distanceX);
             printf("[%s] [%d]: childSegment's endCoordinate latitude = %f  longitude = %f\n", __FUNCTION__, __LINE__, Node->MapData.endCoordinate.latitude, Node->MapData.endCoordinate.longitude);
+            sampleCount = 0;
         }
     }
 
@@ -777,9 +796,9 @@ void PsdMap::insertNode(struct TreeNode *Node, std::vector<struct PsdMapData *>:
                 struct TreeNode *rootNode = insertRootNode(Node, it);
                 rootNode->MapData.endCoordinate = Node->MapData.startCoordinate;
                 //the branch angle of the parent relative to the root, because it is calculated backwards from the segment where the HV is located.
-                rootNode->MapData.branchAngle = Node->MapData.branchAngle;   
+                rootRelativeParentAngle = Node->MapData.branchAngle;   
                 //accumulateBranchAngle relative to HV's segment, for PsdLocation module to calcRelativePosition.
-                rootNode->MapData.accumulateBranchAngle = Node->MapData.accumulateBranchAngle + rootNode->MapData.branchAngle; 
+                rootNode->MapData.accumulateBranchAngle = Node->MapData.accumulateBranchAngle + rootRelativeParentAngle; 
                 rootNode->MapData = calcCoordinate(rootNode);
                 pthread_mutex_lock(&decoderThreadMutex);
                 *(*it) = rootNode->MapData;  
@@ -811,7 +830,7 @@ void PsdMap::insertNode(struct TreeNode *Node, std::vector<struct PsdMapData *>:
                 parentNode->MapData = calcCoordinate(parentNode);
                 pthread_mutex_lock(&decoderThreadMutex);
                 *(*it) = parentNode->MapData;  
-                (*it)->branchAngle = parentRelativeCurrentAngle;  //save parentRelativeCurrentAngle as new parent's branchAngle to list, but parentNode->MapData.branchAngle is still parent relative root in mTree
+                // (*it)->branchAngle = parentRelativeCurrentAngle;  //save parentRelativeCurrentAngle as new parent's branchAngle to list, but parentNode->MapData.branchAngle is still parent relative root in mTree
                 pthread_mutex_unlock(&decoderThreadMutex);
                 if (parentNode->MapData.sp == 1)
                 {
@@ -1064,8 +1083,8 @@ void PsdMap::mapUpdate()
             pthread_mutex_lock(&mapThreadMutex);
             mMapMutexIsLocked = true;
             curNode->ParentNode->ParentNode->MapData.endCoordinate = curNode->ParentNode->MapData.startCoordinate; 
-            curNode->ParentNode->ParentNode->MapData.branchAngle = curNode->ParentNode->MapData.branchAngle;
-            curNode->ParentNode->ParentNode->MapData.accumulateBranchAngle = curNode->ParentNode->MapData.accumulateBranchAngle + curNode->ParentNode->ParentNode->MapData.branchAngle;
+            rootRelativeParentAngle = curNode->ParentNode->MapData.branchAngle;
+            curNode->ParentNode->ParentNode->MapData.accumulateBranchAngle = curNode->ParentNode->MapData.accumulateBranchAngle + rootRelativeParentAngle;
             curNode->ParentNode->ParentNode->MapData = calcCoordinate(curNode->ParentNode->ParentNode);
             pthread_mutex_unlock(&mapThreadMutex);
             mMapMutexIsLocked = false;

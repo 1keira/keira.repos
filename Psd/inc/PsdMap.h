@@ -63,6 +63,8 @@ public:
 
     double parentRelativeCurrentAngle;            /** <  the branchAngle of current segment relative parent segment */
 
+    double rootRelativeParentAngle;                   /** <  the branchAngle of root segment relative parent segment */  
+
     /**
      * @brief Find CurSegmentId whether in list or not
      * @return struct PsdMapData* (the location of the list where HV is located, otherwise return NULL)
