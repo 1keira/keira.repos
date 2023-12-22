@@ -4377,7 +4377,6 @@ TEST_F(PsdMapTest, useRealRecordPsdWithSP)
         std::cerr << "Error: " << strerror(errno) << std::endl;
     }   
 }
-#endif
 
 TEST_F(PsdMapTest, useRealRecordPsdWithCurve_phase1)
 {
@@ -4745,10 +4744,11 @@ TEST_F(PsdMapTest, useRealRecordPsdWithCurve_phase1)
         std::cerr << "Error: " << strerror(errno) << std::endl;
     }
 }
+#endif
 
 TEST_F(PsdMapTest, useRealRecordPsdWithCurve_phase2)
 {
-    std::string filename = "/home/zhao/Documents/Psd/gtest/src/parsed_data_转盘(第一阶段).txt";
+    std::string filename = "/home/zhao/Documents/Psd/gtest/src/parsed_data_转盘(第二阶段).txt";
     std::ifstream file(filename);
     std::string line;
     bool psd04Valid = false;
