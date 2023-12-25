@@ -4890,6 +4890,7 @@ TEST_F(PsdMapTest, useRealRecordPsdWithCurve_phase2)
                             pPsdMapData->signEndCurvature = 1;
                         }
                         pPsdMapData->endCurvature = (1.0f / (1 + 0.155 * pow(pPsdMapData->endCurvature, 2))) * (pPsdMapData->signEndCurvature ? -1 : 1);
+                        pPsdMapData->sp = 0; 
                     }
                     /*PSD_wahrscheinlichster_Pfad*/
                     iter = keyValueMap.find("PSD_wahrscheinlichster_Pfad");
@@ -4902,17 +4903,17 @@ TEST_F(PsdMapTest, useRealRecordPsdWithCurve_phase2)
                     {
                         pPsdMapData->mpp =1;
                     }
-                    /*PSD_Geradester_Pfad*/
-                    iter = keyValueMap.find("PSD_Geradester_Pfad");
-                    if (iter->second == "nicht_geradester_PFad")
-                    {
-                        pPsdMapData->sp = 0;
-                    }
-                    else 
-                    if (iter->second == "geradester_Pfad")
-                    {
-                        pPsdMapData->sp = 1;
-                    }
+                    // /*PSD_Geradester_Pfad*/
+                    // iter = keyValueMap.find("PSD_Geradester_Pfad");
+                    // if (iter->second == "nicht_geradester_PFad")
+                    // {
+                    //     pPsdMapData->sp = 0;
+                    // }
+                    // else 
+                    // if (iter->second == "geradester_Pfad")
+                    // {
+                    //     pPsdMapData->sp = 1;
+                    // }
                     /*PSD_Segment_Komplett*/
                     iter = keyValueMap.find("PSD_Segment_Komplett");
                     if (iter->second == "Segment_Attribute_nicht_komplett")
@@ -4944,6 +4945,7 @@ TEST_F(PsdMapTest, useRealRecordPsdWithCurve_phase2)
                             pPsdMapData->signStartCurvature = 1;
                         }
                         pPsdMapData->startCurvature = (1.0f / (1 + 0.155 * pow(pPsdMapData->startCurvature, 2))) * (pPsdMapData->signStartCurvature ? -1 : 1);
+                        pPsdMapData->sp = 0; 
                     }
                     /*PSD_Abzweigerichtung && PSD_Abzweigewinkel*/
                     iter = keyValueMap.find("PSD_Abzweigerichtung");
