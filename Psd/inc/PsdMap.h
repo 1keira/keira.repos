@@ -61,6 +61,10 @@ public:
 
     tOffset disHv2StartBeforeRotatingCoord;  /** <  distance from the HV to the start point before the rotation coordinate system*/
 
+    double accumulateBranchAngleHv2End;   /** <  the accumulate branchAngle of HV position to endpoint*/
+    
+    double accumulateBranchAngleHv2Start; /** <  the accumulate branchAngle of HV position to startpoint*/
+
     double parentRelativeCurrentAngle;            /** <  the branchAngle of current segment relative parent segment */
 
     double rootRelativeParentAngle;                   /** <  the branchAngle of root segment relative parent segment */  
@@ -194,10 +198,10 @@ public:
      * @param S (actual arc length, the length of a curve segment)
      * @param A0 (clothoide parameter, starting value for each sampling point)
      * @param A1 (clothoide parameter, sample the value of the next sampling point)
-     * @param deltaBranchAngleRad (branching angle relative to the previous position)
+     * @param accumulateBranchAngle (branching angle relative to the first position)
      * @return tOffset (vertical offset x and horizontal offset y after rotating BranchAngle)
      */
-    tOffset calcCurveXYOffset(double S, double A0, double A1, double deltaBranchAngleRad);
+    tOffset calcCurveXYOffset(double S, double A0, double A1, double accumulateBranchAngle);
 
     /**
      * @brief Calculate X Y offsset in straight path case
