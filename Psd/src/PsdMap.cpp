@@ -138,6 +138,7 @@ struct PsdMapData PsdMap::calcCoordinate(struct TreeNode *Node)
         if (Node->MapData.sp == 1)
         {
         /*HV's endCoordinate*/
+            accumulateBranchAngleHv2End = 0.0;  //because of straight path has not accumulateBranchAngle
             //XY: indicates the offset of current's segment relative HV's position
             tOffset XY_1 = calcStraightXYOffset(PsdMessageDecoder::getInstance()->getSelfSegment().curRemainLength, Node->MapData.accumulateBranchAngle);
 
@@ -154,6 +155,7 @@ struct PsdMapData PsdMap::calcCoordinate(struct TreeNode *Node)
             printf("[%s] [%d]: HV's endCoordinate latitude = %f  longitude = %f\n", __FUNCTION__, __LINE__, Node->MapData.endCoordinate.latitude, Node->MapData.endCoordinate.longitude);
 
         /*HV's startCoordinate*/
+            accumulateBranchAngleHv2Start = 0.0; 
             tOffset XY_2 = calcStraightXYOffset((Node->MapData.preSegTotalLength - PsdMessageDecoder::getInstance()->getSelfSegment().curRemainLength)*(-1), Node->MapData.accumulateBranchAngle);
 
             //summary offset = the offset of the current segment relative to HV's position
@@ -365,17 +367,14 @@ struct PsdMapData PsdMap::calcCoordinate(struct TreeNode *Node)
             
             if (((Node->vChilds.at(0))->MapData.nodeAttribute == CurSegment) || ((Node->vChilds.at(0))->MapData.nodeAttribute == RootAndCurSegment))
             {
-                //TODO: ParentSegment's accumulateBranchAngle should be == take away the relative angle of Node->vChilds.at(0) + accumulateBranchAngleHv2Start before sampling
-                double tempAngle = Node->MapData.accumulateBranchAngle - parentRelativeCurrentAngle;
-                Node->MapData.accumulateBranchAngle = tempAngle + accumulateBranchAngleHv2Start;
+                //TODO: ParentSegment's accumulateBranchAngle should be += accumulateBranchAngleHv2Start before sampling
+                Node->MapData.accumulateBranchAngle += accumulateBranchAngleHv2Start;
                 //TODO: ParentSegment's accumulateXY should be == disHv2StartBeforeRotatingCoord before sampling
                 Node->MapData.accumulateXY.distanceX = disHv2StartBeforeRotatingCoord.distanceX ;
                 Node->MapData.accumulateXY.distanceY = disHv2StartBeforeRotatingCoord.distanceY;
             }
             else
             {
-                //TODO: RootSegment's accumulateBranchAngle should be == take away the relative angle of Node->->vChilds.at(0)
-                Node->MapData.accumulateBranchAngle = Node->MapData.accumulateBranchAngle - rootRelativeParentAngle;
                 //Note: RootSegment's accumulateXY should be == ParentSegment's accumulateXY before sampling
                 Node->MapData.accumulateXY.distanceX = (Node->vChilds.at(0))->MapData.accumulateXY.distanceX;
                 Node->MapData.accumulateXY.distanceY = (Node->vChilds.at(0))->MapData.accumulateXY.distanceY;
@@ -486,17 +485,14 @@ struct PsdMapData PsdMap::calcCoordinate(struct TreeNode *Node)
 
             if ((Node->ParentNode->MapData.nodeAttribute == CurSegment) || (Node->ParentNode->MapData.nodeAttribute == RootAndCurSegment))
             {
-                //TODO: ChildSegment's accumulateBranchAngle should be == take away the branchAngle relative to the previous segment + accumulateBranchAngleHv2End before sampling
-                double tempAngle = Node->MapData.accumulateBranchAngle - Node->MapData.branchAngle;
-                Node->MapData.accumulateBranchAngle = tempAngle + accumulateBranchAngleHv2End;
+                //TODO: ChildSegment's accumulateBranchAngle should be += accumulateBranchAngleHv2End before sampling
+                Node->MapData.accumulateBranchAngle += accumulateBranchAngleHv2End;
                 //TODO: ChildSegment's accumulateXY should be == disHv2EndBeforeRotatingCoord before sampling
-                Node->MapData.accumulateXY.distanceX = disHv2EndBeforeRotatingCoord.distanceX ;
+                Node->MapData.accumulateXY.distanceX = disHv2EndBeforeRotatingCoord.distanceX;
                 Node->MapData.accumulateXY.distanceY = disHv2EndBeforeRotatingCoord.distanceY;
             }
             else
             {
-                //TODO: ChildSegment's accumulateBranchAngle should be == take away the branchAngle relative to the previous segment
-                Node->MapData.accumulateBranchAngle = Node->MapData.accumulateBranchAngle - Node->MapData.branchAngle;;
                 //Note: ChildSegment's accumulateXY should be == previous segment's accumulateXY before sampling
                 Node->MapData.accumulateXY.distanceX = Node->ParentNode->MapData.accumulateXY.distanceX;
                 Node->MapData.accumulateXY.distanceY = Node->ParentNode->MapData.accumulateXY.distanceY;
