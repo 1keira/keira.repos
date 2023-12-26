@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2023-12-25 17:50:59</td>
+            <td class="headerValue">2023-12-26 17:04:38</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryLo">59.1&nbsp;%</td>
@@ -169,8 +169,8 @@
 <span id="L98"><span class="lineNum">      98</span>                 :             :       pointer</span>
 <span id="L99"><span class="lineNum">      99</span>                 :<span class="tlaGNC">          22 :       allocate(size_type __n, const void* = static_cast&lt;const void*&gt;(0))</span></span>
 <span id="L100"><span class="lineNum">     100</span>                 :             :       {</span>
-<span id="L101"><span class="lineNum">     101</span>   [<span class="tlaUNC" title="Branch 0 was not taken"> - </span><span class="tlaGBC" title="Branch 1 was taken 2 times"> + </span><span class="tlaUNC" title="Branch 2 was not executed"> # </span><span class="tlaUNC" title="Branch 3 was not executed"> # </span>]:<span class="tlaGNC">          22 :         if (__n &gt; this-&gt;max_size())</span></span>
-<span class="lineNum">        </span>         [<span class="tlaUNC" title="Branch 0 was not executed"> # </span><span class="tlaUNC" title="Branch 1 was not executed"> # </span>]
+<span id="L101"><span class="lineNum">     101</span>         [<span class="tlaUNC" title="Branch 0 was not executed"> # </span><span class="tlaUNC" title="Branch 1 was not executed"> # </span>]:<span class="tlaGNC">          22 :         if (__n &gt; this-&gt;max_size())</span></span>
+<span class="lineNum">        </span>   [<span class="tlaUNC" title="Branch 0 was not taken"> - </span><span class="tlaGBC" title="Branch 1 was taken 2 times"> + </span><span class="tlaUNC" title="Branch 2 was not executed"> # </span><span class="tlaUNC" title="Branch 3 was not executed"> # </span>]
 <span id="L102"><span class="lineNum">     102</span>                 :<span class="tlaUNC tlaBgUNC">           0 :           std::__throw_bad_alloc();</span></span>
 <span id="L103"><span class="lineNum">     103</span>                 :             : </span>
 <span id="L104"><span class="lineNum">     104</span>                 :             : #if __cpp_aligned_new</span>
