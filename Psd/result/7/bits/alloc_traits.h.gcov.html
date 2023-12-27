@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2023-12-26 17:04:38</td>
+            <td class="headerValue">2023-12-27 10:24:57</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryLo">52.4&nbsp;%</td>
@@ -572,8 +572,8 @@
 <span id="L501"><span class="lineNum">     501</span>                 :             :        *  @return @c __rhs</span>
 <span id="L502"><span class="lineNum">     502</span>                 :             :       */</span>
 <span id="L503"><span class="lineNum">     503</span>                 :             :       static allocator_type</span>
-<span id="L504"><span class="lineNum">     504</span>                 :<span class="tlaGNC">          17 :       select_on_container_copy_construction(const allocator_type&amp; __rhs)</span></span>
-<span id="L505"><span class="lineNum">     505</span>                 :<span class="tlaGNC">          17 :       { return __rhs; }</span></span>
+<span id="L504"><span class="lineNum">     504</span>                 :<span class="tlaGNC">          34 :       select_on_container_copy_construction(const allocator_type&amp; __rhs)</span></span>
+<span id="L505"><span class="lineNum">     505</span>                 :<span class="tlaGNC">          34 :       { return __rhs; }</span></span>
 <span id="L506"><span class="lineNum">     506</span>                 :             :     };</span>
 <span id="L507"><span class="lineNum">     507</span>                 :             : </span>
 <span id="L508"><span class="lineNum">     508</span>                 :             : </span>
@@ -603,20 +603,20 @@
 <span id="L532"><span class="lineNum">     532</span>                 :             :     }</span>
 <span id="L533"><span class="lineNum">     533</span>                 :             : </span>
 <span id="L534"><span class="lineNum">     534</span>                 :             :   template&lt;typename _Alloc&gt;</span>
-<span id="L535"><span class="lineNum">     535</span>                 :<span class="tlaGNC tlaBgGNC">          17 :     inline void __do_alloc_on_move(_Alloc&amp; __one, _Alloc&amp; __two, true_type)</span></span>
-<span id="L536"><span class="lineNum">     536</span>                 :<span class="tlaGNC">          17 :     { __one = std::move(__two); }</span></span>
+<span id="L535"><span class="lineNum">     535</span>                 :<span class="tlaGNC tlaBgGNC">          34 :     inline void __do_alloc_on_move(_Alloc&amp; __one, _Alloc&amp; __two, true_type)</span></span>
+<span id="L536"><span class="lineNum">     536</span>                 :<span class="tlaGNC">          34 :     { __one = std::move(__two); }</span></span>
 <span id="L537"><span class="lineNum">     537</span>                 :             : </span>
 <span id="L538"><span class="lineNum">     538</span>                 :             :   template&lt;typename _Alloc&gt;</span>
 <span id="L539"><span class="lineNum">     539</span>                 :             :     inline void __do_alloc_on_move(_Alloc&amp;, _Alloc&amp;, false_type)</span>
 <span id="L540"><span class="lineNum">     540</span>                 :             :     { }</span>
 <span id="L541"><span class="lineNum">     541</span>                 :             : </span>
 <span id="L542"><span class="lineNum">     542</span>                 :             :   template&lt;typename _Alloc&gt;</span>
-<span id="L543"><span class="lineNum">     543</span>                 :<span class="tlaGNC">          17 :     inline void __alloc_on_move(_Alloc&amp; __one, _Alloc&amp; __two)</span></span>
+<span id="L543"><span class="lineNum">     543</span>                 :<span class="tlaGNC">          34 :     inline void __alloc_on_move(_Alloc&amp; __one, _Alloc&amp; __two)</span></span>
 <span id="L544"><span class="lineNum">     544</span>                 :             :     {</span>
 <span id="L545"><span class="lineNum">     545</span>                 :             :       typedef allocator_traits&lt;_Alloc&gt; __traits;</span>
 <span id="L546"><span class="lineNum">     546</span>                 :             :       typedef typename __traits::propagate_on_container_move_assignment __pocma;</span>
-<span id="L547"><span class="lineNum">     547</span>                 :<span class="tlaGNC">          17 :       __do_alloc_on_move(__one, __two, __pocma());</span></span>
-<span id="L548"><span class="lineNum">     548</span>                 :<span class="tlaGNC">          17 :     }</span></span>
+<span id="L547"><span class="lineNum">     547</span>                 :<span class="tlaGNC">          34 :       __do_alloc_on_move(__one, __two, __pocma());</span></span>
+<span id="L548"><span class="lineNum">     548</span>                 :<span class="tlaGNC">          34 :     }</span></span>
 <span id="L549"><span class="lineNum">     549</span>                 :             : </span>
 <span id="L550"><span class="lineNum">     550</span>                 :             :   template&lt;typename _Alloc&gt;</span>
 <span id="L551"><span class="lineNum">     551</span>                 :             :     inline void __do_alloc_on_swap(_Alloc&amp; __one, _Alloc&amp; __two, true_type)</span>

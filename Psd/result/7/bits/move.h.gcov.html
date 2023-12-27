@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2023-12-26 17:04:38</td>
+            <td class="headerValue">2023-12-27 10:24:57</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryLo">54.5&nbsp;%</td>
@@ -166,8 +166,8 @@
 <span id="L95"><span class="lineNum">      95</span>                 :             :   */</span>
 <span id="L96"><span class="lineNum">      96</span>                 :             :   template&lt;typename _Tp&gt;</span>
 <span id="L97"><span class="lineNum">      97</span>                 :             :     constexpr typename std::remove_reference&lt;_Tp&gt;::type&amp;&amp;</span>
-<span id="L98"><span class="lineNum">      98</span>                 :<span class="tlaGNC">         340 :     move(_Tp&amp;&amp; __t) noexcept</span></span>
-<span id="L99"><span class="lineNum">      99</span>                 :<span class="tlaGNC">         340 :     { return static_cast&lt;typename std::remove_reference&lt;_Tp&gt;::type&amp;&amp;&gt;(__t); }</span></span>
+<span id="L98"><span class="lineNum">      98</span>                 :<span class="tlaGNC">         680 :     move(_Tp&amp;&amp; __t) noexcept</span></span>
+<span id="L99"><span class="lineNum">      99</span>                 :<span class="tlaGNC">         680 :     { return static_cast&lt;typename std::remove_reference&lt;_Tp&gt;::type&amp;&amp;&gt;(__t); }</span></span>
 <span id="L100"><span class="lineNum">     100</span>                 :             : </span>
 <span id="L101"><span class="lineNum">     101</span>                 :             : </span>
 <span id="L102"><span class="lineNum">     102</span>                 :             :   template&lt;typename _Tp&gt;</span>
@@ -255,7 +255,7 @@
 <span id="L184"><span class="lineNum">     184</span>                 :             :     typename enable_if&lt;__and_&lt;__not_&lt;__is_tuple_like&lt;_Tp&gt;&gt;,</span>
 <span id="L185"><span class="lineNum">     185</span>                 :             :                               is_move_constructible&lt;_Tp&gt;,</span>
 <span id="L186"><span class="lineNum">     186</span>                 :             :                               is_move_assignable&lt;_Tp&gt;&gt;::value&gt;::type</span>
-<span id="L187"><span class="lineNum">     187</span>                 :<span class="tlaGNC tlaBgGNC">         102 :     swap(_Tp&amp; __a, _Tp&amp; __b)</span></span>
+<span id="L187"><span class="lineNum">     187</span>                 :<span class="tlaGNC tlaBgGNC">         204 :     swap(_Tp&amp; __a, _Tp&amp; __b)</span></span>
 <span id="L188"><span class="lineNum">     188</span>                 :             :     noexcept(__and_&lt;is_nothrow_move_constructible&lt;_Tp&gt;,</span>
 <span id="L189"><span class="lineNum">     189</span>                 :             :                     is_nothrow_move_assignable&lt;_Tp&gt;&gt;::value)</span>
 <span id="L190"><span class="lineNum">     190</span>                 :             : #else</span>
@@ -266,10 +266,10 @@
 <span id="L195"><span class="lineNum">     195</span>                 :             :       // concept requirements</span>
 <span id="L196"><span class="lineNum">     196</span>                 :             :       __glibcxx_function_requires(_SGIAssignableConcept&lt;_Tp&gt;)</span>
 <span id="L197"><span class="lineNum">     197</span>                 :             : </span>
-<span id="L198"><span class="lineNum">     198</span>                 :<span class="tlaGNC">         102 :       _Tp __tmp = _GLIBCXX_MOVE(__a);</span></span>
-<span id="L199"><span class="lineNum">     199</span>                 :<span class="tlaGNC">         102 :       __a = _GLIBCXX_MOVE(__b);</span></span>
-<span id="L200"><span class="lineNum">     200</span>                 :<span class="tlaGNC">         102 :       __b = _GLIBCXX_MOVE(__tmp);</span></span>
-<span id="L201"><span class="lineNum">     201</span>                 :<span class="tlaGNC">         102 :     }</span></span>
+<span id="L198"><span class="lineNum">     198</span>                 :<span class="tlaGNC">         204 :       _Tp __tmp = _GLIBCXX_MOVE(__a);</span></span>
+<span id="L199"><span class="lineNum">     199</span>                 :<span class="tlaGNC">         204 :       __a = _GLIBCXX_MOVE(__b);</span></span>
+<span id="L200"><span class="lineNum">     200</span>                 :<span class="tlaGNC">         204 :       __b = _GLIBCXX_MOVE(__tmp);</span></span>
+<span id="L201"><span class="lineNum">     201</span>                 :<span class="tlaGNC">         204 :     }</span></span>
 <span id="L202"><span class="lineNum">     202</span>                 :             : </span>
 <span id="L203"><span class="lineNum">     203</span>                 :             :   // _GLIBCXX_RESOLVE_LIB_DEFECTS</span>
 <span id="L204"><span class="lineNum">     204</span>                 :             :   // DR 809. std::swap should be overloaded for array types.</span>

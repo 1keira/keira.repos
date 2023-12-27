@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2023-12-26 17:04:38</td>
+            <td class="headerValue">2023-12-27 10:24:57</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryLo">48.2&nbsp;%</td>
@@ -850,8 +850,8 @@
 <span id="L779"><span class="lineNum">     779</span>                 :             :       : _M_current(_Iterator()) { }</span>
 <span id="L780"><span class="lineNum">     780</span>                 :             : </span>
 <span id="L781"><span class="lineNum">     781</span>                 :             :       explicit</span>
-<span id="L782"><span class="lineNum">     782</span>                 :<span class="tlaGNC tlaBgGNC">         586 :       __normal_iterator(const _Iterator&amp; __i) _GLIBCXX_NOEXCEPT</span></span>
-<span id="L783"><span class="lineNum">     783</span>                 :<span class="tlaGNC">         586 :       : _M_current(__i) { }</span></span>
+<span id="L782"><span class="lineNum">     782</span>                 :<span class="tlaGNC tlaBgGNC">         620 :       __normal_iterator(const _Iterator&amp; __i) _GLIBCXX_NOEXCEPT</span></span>
+<span id="L783"><span class="lineNum">     783</span>                 :<span class="tlaGNC">         620 :       : _M_current(__i) { }</span></span>
 <span id="L784"><span class="lineNum">     784</span>                 :             : </span>
 <span id="L785"><span class="lineNum">     785</span>                 :             :       // Allow iterator to const_iterator conversion</span>
 <span id="L786"><span class="lineNum">     786</span>                 :             :       template&lt;typename _Iter&gt;</span>
@@ -915,8 +915,8 @@
 <span id="L844"><span class="lineNum">     844</span>                 :<span class="tlaUNC">           0 :       { return __normal_iterator(_M_current - __n); }</span></span>
 <span id="L845"><span class="lineNum">     845</span>                 :             : </span>
 <span id="L846"><span class="lineNum">     846</span>                 :             :       const _Iterator&amp;</span>
-<span id="L847"><span class="lineNum">     847</span>                 :<span class="tlaGNC tlaBgGNC">         562 :       base() const _GLIBCXX_NOEXCEPT</span></span>
-<span id="L848"><span class="lineNum">     848</span>                 :<span class="tlaGNC">         562 :       { return _M_current; }</span></span>
+<span id="L847"><span class="lineNum">     847</span>                 :<span class="tlaGNC tlaBgGNC">         596 :       base() const _GLIBCXX_NOEXCEPT</span></span>
+<span id="L848"><span class="lineNum">     848</span>                 :<span class="tlaGNC">         596 :       { return _M_current; }</span></span>
 <span id="L849"><span class="lineNum">     849</span>                 :             :     };</span>
 <span id="L850"><span class="lineNum">     850</span>                 :             : </span>
 <span id="L851"><span class="lineNum">     851</span>                 :             :   // Note: In what follows, the left- and right-hand-side iterators are</span>
@@ -1054,8 +1054,8 @@
 <span id="L983"><span class="lineNum">     983</span>                 :             : </span>
 <span id="L984"><span class="lineNum">     984</span>                 :             :   template&lt;typename _Iterator, typename _Container&gt;</span>
 <span id="L985"><span class="lineNum">     985</span>                 :             :     _Iterator</span>
-<span id="L986"><span class="lineNum">     986</span>                 :<span class="tlaGNC">         136 :     __niter_base(__gnu_cxx::__normal_iterator&lt;_Iterator, _Container&gt; __it)</span></span>
-<span id="L987"><span class="lineNum">     987</span>                 :<span class="tlaGNC">         136 :     { return __it.base(); }</span></span>
+<span id="L986"><span class="lineNum">     986</span>                 :<span class="tlaGNC">         170 :     __niter_base(__gnu_cxx::__normal_iterator&lt;_Iterator, _Container&gt; __it)</span></span>
+<span id="L987"><span class="lineNum">     987</span>                 :<span class="tlaGNC">         170 :     { return __it.base(); }</span></span>
 <span id="L988"><span class="lineNum">     988</span>                 :             : </span>
 <span id="L989"><span class="lineNum">     989</span>                 :             : _GLIBCXX_END_NAMESPACE_VERSION</span>
 <span id="L990"><span class="lineNum">     990</span>                 :             : } // namespace</span>
