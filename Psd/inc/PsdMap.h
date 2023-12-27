@@ -194,6 +194,27 @@ public:
     struct PsdMapData calcCoordinate(struct TreeNode *Node);
 
     /**
+     * @brief Calculate start and end coordinate of the segment of HV 
+     * @param curNode 
+     * @return struct PsdMapData 
+     */
+    struct PsdMapData calcCurSegmentCoordinate(struct TreeNode *curNode);
+
+    /**
+     * @brief Calculate the segment of root and parent end coordinate
+     * @param rootOrParentNode 
+     * @return struct PsdMapData 
+     */
+    struct PsdMapData calcRootOrParentSegmentCoordinate(struct TreeNode *rootOrParentNode);
+
+    /**
+     * @brief Calculate the segment of HV kids end coordinate
+     * @param childNode 
+     * @return struct PsdMapData 
+     */
+    struct PsdMapData calcChildSegmentCoordinate(struct TreeNode *childNode);
+
+    /**
      * @brief Calculate X Y offsset in curve case
      * @param S (actual arc length, the length of a curve segment)
      * @param A0 (clothoide parameter, starting value for each sampling point)
