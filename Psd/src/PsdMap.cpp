@@ -83,6 +83,7 @@ struct TreeNode *PsdMap::getTree()
     return mTree;
 }
 
+//Note: maybe use coordinateSystemRotates in straight path, not use this function
 tOffset PsdMap::calcHeadingXY(double Heading, double distanceX, double distanceY)
 {
     tOffset Offset = {0.0, 0.0};
@@ -91,6 +92,23 @@ tOffset PsdMap::calcHeadingXY(double Heading, double distanceX, double distanceY
     printf("[%s] [%d]: HeadingRad = %f\n", __FUNCTION__, __LINE__, HeadingRad);
     Offset.distanceX = distanceX * cos(HeadingRad) - distanceY * sin(HeadingRad);
     Offset.distanceY = distanceX * sin(HeadingRad) + distanceY * cos(HeadingRad);
+    printf("[%s] [%d]: coordinate system rotated X = %f\n", __FUNCTION__, __LINE__, Offset.distanceX);
+    printf("[%s] [%d]: coordinate system rotated Y = %f\n", __FUNCTION__, __LINE__, Offset.distanceY);
+
+    return Offset;
+}
+
+//Note: The function is to calculate the rotation of the coordinate system relative to true north direction, the XY input is the offset from the start position of the segment to the end position
+tOffset PsdMap::coordinateSystemRotates(double accumulateBranchAngle, double distanceX, double distanceY)
+{
+    tOffset Offset = {0.0, 0.0};
+    printf("[%s] [%d]: accumulateBranchAngle = %f\n", __FUNCTION__, __LINE__, accumulateBranchAngle);
+    
+    double accumulateBranchAngleRad = Haversine::toRadians(accumulateBranchAngle);
+    printf("[%s] [%d]: accumulateBranchAngleRad = %f\n", __FUNCTION__, __LINE__, accumulateBranchAngleRad);
+    
+    Offset.distanceX = distanceX * cos(accumulateBranchAngleRad) - distanceY * sin(accumulateBranchAngleRad);
+    Offset.distanceY = distanceX * sin(accumulateBranchAngleRad) + distanceY * cos(accumulateBranchAngleRad);
     printf("[%s] [%d]: coordinate system rotated X = %f\n", __FUNCTION__, __LINE__, Offset.distanceX);
     printf("[%s] [%d]: coordinate system rotated Y = %f\n", __FUNCTION__, __LINE__, Offset.distanceY);
 
@@ -111,6 +129,8 @@ tOffset PsdMap::calcStraightXYOffset(double Length, double accumulateBranchAngle
     return Offset;
 }
 
+#if 0
+//Maybe the internal calculation of the definite integral principle is incorrect
 tOffset PsdMap::calcCurveXYOffset(double S, double A0_square, double A1_square, double accumulateBranchAngle)
 {
     tOffset Offset = {0.0, 0.0};
@@ -127,6 +147,22 @@ tOffset PsdMap::calcCurveXYOffset(double S, double A0_square, double A1_square, 
 
     return Offset;
 }
+#endif
+
+//Note: The function is to calculate the offset corresponding to the angle of rotation of the arc from the beginning position to the end position of this segment
+tOffset PsdMap::calcCurveXYOffset(double arcR, double arcRotationAngle)
+{
+    tOffset Offset = {0.0, 0.0};
+    printf("[%s] [%d]: arcRotationAngle = %f\n", __FUNCTION__, __LINE__, arcRotationAngle);
+    double arcRotationAngleRad = Haversine::toRadians(arcRotationAngle);
+    //TODO: The initial offset when accumulatingBranchAngle(relative to the direction of due north) is not considered: the offset is obtained by the trigonometric relationship between the radius of the arc and the rotation angle of the arc
+    Offset.distanceX = arcR * sin(arcRotationAngleRad);
+    Offset.distanceY = arcR - arcR * cos(arcRotationAngleRad);
+    printf("[%s] [%d]: with arcRotationAngle's offset X = %f\n", __FUNCTION__, __LINE__, Offset.distanceX);
+    printf("[%s] [%d]: with arcRotationAngle's offset Y = %f\n", __FUNCTION__, __LINE__, Offset.distanceY);
+
+    return Offset;
+}
 
 struct PsdMapData PsdMap::calcChildSegmentCoordinate(struct TreeNode *childNode)
 {
@@ -138,8 +174,8 @@ struct PsdMapData PsdMap::calcChildSegmentCoordinate(struct TreeNode *childNode)
         tOffset XY = calcStraightXYOffset(childNode->MapData.preSegTotalLength, childNode->MapData.accumulateBranchAngle);
         if ((childNode->ParentNode->MapData.nodeAttribute == CurSegment) || (childNode->ParentNode->MapData.nodeAttribute == RootAndCurSegment))
         {
-            childNode->MapData.accumulateXY.distanceX = disHv2EndBeforeRotatingCoord.distanceX + XY.distanceX;
-            childNode->MapData.accumulateXY.distanceY = disHv2EndBeforeRotatingCoord.distanceY+ XY.distanceY;
+            childNode->MapData.accumulateXY.distanceX = disHv2EndAfterRotatingCoord.distanceX + XY.distanceX;
+            childNode->MapData.accumulateXY.distanceY = disHv2EndAfterRotatingCoord.distanceY+ XY.distanceY;
         }
         else
         {
@@ -166,8 +202,6 @@ struct PsdMapData PsdMap::calcChildSegmentCoordinate(struct TreeNode *childNode)
         double K0 = childNode->MapData.startCurvature;
         double KL = childNode->MapData.endCurvature;
         double Kstart = K0;
-        double A0_square = 0.0 / K0;
-        double A1_square = childNode->MapData.preSegTotalLength / KL;
         double variableCurveAngleRad = 0.0; 
         double sampleRotationAngleRad = 0.0;    
         double arcRotationAngleRad = 0.0;
@@ -175,9 +209,9 @@ struct PsdMapData PsdMap::calcChildSegmentCoordinate(struct TreeNode *childNode)
         {
             //TODO: ChildSegment's accumulateBranchAngle should be += accumulateBranchAngleHv2End before sampling
             childNode->MapData.accumulateBranchAngle += accumulateBranchAngleHv2End;
-            //TODO: ChildSegment's accumulateXY should be == disHv2EndBeforeRotatingCoord before sampling
-            childNode->MapData.accumulateXY.distanceX = disHv2EndBeforeRotatingCoord.distanceX;
-            childNode->MapData.accumulateXY.distanceY = disHv2EndBeforeRotatingCoord.distanceY;
+            //TODO: ChildSegment's accumulateXY should be == disHv2EndAfterRotatingCoord before sampling
+            childNode->MapData.accumulateXY.distanceX = disHv2EndAfterRotatingCoord.distanceX;
+            childNode->MapData.accumulateXY.distanceY = disHv2EndAfterRotatingCoord.distanceY;
         }
         else
         {
@@ -185,6 +219,7 @@ struct PsdMapData PsdMap::calcChildSegmentCoordinate(struct TreeNode *childNode)
             childNode->MapData.accumulateXY.distanceX = childNode->ParentNode->MapData.accumulateXY.distanceX;
             childNode->MapData.accumulateXY.distanceY = childNode->ParentNode->MapData.accumulateXY.distanceY;
         }
+        //TODO: to calculate the sample points between startCoordinate and endCoordinate
         while (1)
         {
             S = 2 * R * acos((R - MaxRoadError) / R);
@@ -196,47 +231,71 @@ struct PsdMapData PsdMap::calcChildSegmentCoordinate(struct TreeNode *childNode)
             }
             printf("[%s] [%d]: Ssum = %f\n", __FUNCTION__, __LINE__, Ssum);
             KSsum = K0 + (KL - K0) / L * Ssum;  //next sample point curvature
-            A1_square = Ssum / KSsum;
-            // deltaBranchAngleRad = 2 * atan((KSsum - Kstart) / (1 + Kstart * KSsum));
             sampleRotationAngleRad = acos((R-MaxRoadError)/R);
-            childNode->MapData.accumulateBranchAngle += Haversine::toDegrees(sampleRotationAngleRad);
-            printf("[%s] [%d]: sampleRotationAngle = %f accumulateBranchAngle = %f\n", __FUNCTION__, __LINE__, Haversine::toDegrees(sampleRotationAngleRad), childNode->MapData.accumulateBranchAngle);
-            XY = calcCurveXYOffset(S, A0_square, A1_square, childNode->MapData.accumulateBranchAngle);
+            printf("[%s] [%d]: sampleRotationAngle = %f\n", __FUNCTION__, __LINE__, Haversine::toDegrees(sampleRotationAngleRad));
+            XY = calcCurveXYOffset(R, Haversine::toDegrees(sampleRotationAngleRad));
+            
+            XY = coordinateSystemRotates(childNode->MapData.accumulateBranchAngle, XY.distanceX, XY.distanceY);
             childNode->MapData.accumulateXY.distanceX +=  XY.distanceX;
             childNode->MapData.accumulateXY.distanceY +=   XY.distanceY;
             printf("[%s] [%d]: accumulateXY.distanceX = %f, accumulateXY.distanceY = %f\n", __FUNCTION__, __LINE__, childNode->MapData.accumulateXY.distanceX, childNode->MapData.accumulateXY.distanceY);  
-            XY = calcHeadingXY(PsdMessageDecoder::getInstance()->getSelfSegment().hvHeading, childNode->MapData.accumulateXY.distanceX, childNode->MapData.accumulateXY.distanceY);
-            SampleCoord = Haversine::calcDestination(PsdMessageDecoder::getInstance()->getSelfSegment().hvCoordinate, XY.distanceY, XY.distanceX);
+            
+            SampleCoord = Haversine::calcDestination(PsdMessageDecoder::getInstance()->getSelfSegment().hvCoordinate, childNode->MapData.accumulateXY.distanceY, childNode->MapData.accumulateXY.distanceX);
             childNode->MapData.vSampleCoord.push_back(SampleCoord);
             //update next cyclic value
             R = 1.0 / std::fabs(KSsum);
-            A0_square = A1_square;
             Kstart = KSsum;
-        }
+            childNode->MapData.accumulateBranchAngle += Haversine::toDegrees(sampleRotationAngleRad);
+            printf("[%s] [%d]: childNode->MapData.accumulateBranchAngle = %f\n", __FUNCTION__, __LINE__, childNode->MapData.accumulateBranchAngle);
+            //Note: Avoid the entered angle value is outside the valid range (e.g. outside the range of '2π'), it may cause the value to be unstable or lose accuracy
+            if (childNode->MapData.accumulateBranchAngle > 360.0 )
+            {
+                childNode->MapData.accumulateBranchAngle -= 360.0;
+            }
+            else 
+            if (childNode->MapData.accumulateBranchAngle < -360.0)
+            {
+                childNode->MapData.accumulateBranchAngle += 360.0;
+            }
+            printf("[%s] [%d]: fixed childNode->MapData.accumulateBranchAngle = %f\n", __FUNCTION__, __LINE__, childNode->MapData.accumulateBranchAngle);
+        }   /*----------end while----------*/
         //calculate child's curvature endCoordinate
         finalRemainLength = L - (Ssum - S);
         printf("[%s] [%d]: finalRemainLength = %f\n", __FUNCTION__, __LINE__, finalRemainLength);
         if (KL == Kstart)
         {
-            arcRotationAngleRad = (finalRemainLength / R) * (childNode->MapData.signStartCurvature ? -1 : 1);
-            childNode->MapData.accumulateBranchAngle += Haversine::toDegrees(arcRotationAngleRad);
-            printf("[%s] [%d]: arcRotationAngle = %f accumulateBranchAngle = %f\n", __FUNCTION__, __LINE__, Haversine::toDegrees(arcRotationAngleRad), childNode->MapData.accumulateBranchAngle);
+            // arcRotationAngleRad = (finalRemainLength / R) * (childNode->MapData.signStartCurvature ? -1 : 1) * (-1);
+            arcRotationAngleRad = (finalRemainLength / R); 
         }
         else
         {
-            variableCurveAngleRad = 2 * atan((KL - Kstart) / (1 + Kstart * KL)); 
-            childNode->MapData.accumulateBranchAngle += Haversine::toDegrees(variableCurveAngleRad);
-            printf("[%s] [%d]: variableCurveAngle = %f accumulateBranchAngle = %f\n", __FUNCTION__, __LINE__, Haversine::toDegrees(variableCurveAngleRad), childNode->MapData.accumulateBranchAngle);
+            double averageCurve = (KL + K0) / 2.0;
+            R = 1.0 / std::fabs(averageCurve);
+            // arcRotationAngleRad = (finalRemainLength / R) * (childNode->MapData.signStartCurvature ? -1 : 1) * (-1);            
+            arcRotationAngleRad = (finalRemainLength / R); 
         }
-        XY = calcCurveXYOffset(finalRemainLength, A0_square, L / KL, childNode->MapData.accumulateBranchAngle);
-        
+        XY = calcCurveXYOffset(R, Haversine::toDegrees(arcRotationAngleRad));
+
+        XY = coordinateSystemRotates(childNode->MapData.accumulateBranchAngle, XY.distanceX, XY.distanceY);
         childNode->MapData.accumulateXY.distanceX +=  XY.distanceX;
         childNode->MapData.accumulateXY.distanceY +=   XY.distanceY;
         printf("[%s] [%d]: accumulateXY.distanceX = %f, accumulateXY.distanceY = %f\n", __FUNCTION__, __LINE__, childNode->MapData.accumulateXY.distanceX, childNode->MapData.accumulateXY.distanceY);  
-        XY = calcHeadingXY(PsdMessageDecoder::getInstance()->getSelfSegment().hvHeading, childNode->MapData.accumulateXY.distanceX, childNode->MapData.accumulateXY.distanceY);
         
-        childNode->MapData.endCoordinate = Haversine::calcDestination(PsdMessageDecoder::getInstance()->getSelfSegment().hvCoordinate, XY.distanceY, XY.distanceX);
+        childNode->MapData.endCoordinate = Haversine::calcDestination(PsdMessageDecoder::getInstance()->getSelfSegment().hvCoordinate, childNode->MapData.accumulateXY.distanceY, childNode->MapData.accumulateXY.distanceX);
         printf("[%s] [%d]: childSegment's endCoordinate latitude = %f  longitude = %f\n", __FUNCTION__, __LINE__, childNode->MapData.endCoordinate.latitude, childNode->MapData.endCoordinate.longitude);
+
+        childNode->MapData.accumulateBranchAngle += Haversine::toDegrees(arcRotationAngleRad);
+        printf("[%s] [%d]: childNode->MapData.accumulateBranchAngle = %f\n", __FUNCTION__, __LINE__, childNode->MapData.accumulateBranchAngle);
+        if (childNode->MapData.accumulateBranchAngle > 360.0 )
+        {
+            childNode->MapData.accumulateBranchAngle -= 360.0;
+        }
+        else 
+        if (childNode->MapData.accumulateBranchAngle < -360.0)
+        {
+            childNode->MapData.accumulateBranchAngle += 360.0;
+        }
+        printf("[%s] [%d]: fixed childNode->MapData.accumulateBranchAngle = %f\n", __FUNCTION__, __LINE__, childNode->MapData.accumulateBranchAngle);
     }
 
     return childNode->MapData;
@@ -253,8 +312,8 @@ struct PsdMapData PsdMap::calcRootOrParentSegmentCoordinate(struct TreeNode *roo
         //the two segments's accumulateXY before and after the HV's segment should be distinguished, and the location of the HV should be used as the coordinate origin
         if (((rootOrParentNode->vChilds.at(0))->MapData.nodeAttribute == CurSegment) || ((rootOrParentNode->vChilds.at(0))->MapData.nodeAttribute == RootAndCurSegment))
         {
-            rootOrParentNode->MapData.accumulateXY.distanceX = disHv2StartBeforeRotatingCoord.distanceX + XY.distanceX;
-            rootOrParentNode->MapData.accumulateXY.distanceY = disHv2StartBeforeRotatingCoord.distanceY+ XY.distanceY;
+            rootOrParentNode->MapData.accumulateXY.distanceX = disHv2StartAfterRotatingCoord.distanceX + XY.distanceX;
+            rootOrParentNode->MapData.accumulateXY.distanceY = disHv2StartAfterRotatingCoord.distanceY+ XY.distanceY;
         }
         else 
         {
@@ -279,19 +338,16 @@ struct PsdMapData PsdMap::calcRootOrParentSegmentCoordinate(struct TreeNode *roo
         double K0 = rootOrParentNode->MapData.endCurvature;
         double KL = rootOrParentNode->MapData.startCurvature;
         double Kstart = K0;
-        double A0_square = 0.0 / K0;
-        double A1_square = rootOrParentNode->MapData.preSegTotalLength / KL;
-        double variableCurveAngleRad = 0.0;                                            
         double sampleRotationAngleRad = 0.0;                                        
         double arcRotationAngleRad = 0.0;
         
         if (((rootOrParentNode->vChilds.at(0))->MapData.nodeAttribute == CurSegment) || ((rootOrParentNode->vChilds.at(0))->MapData.nodeAttribute == RootAndCurSegment))
         {
             //TODO: ParentSegment's accumulateBranchAngle should be += accumulateBranchAngleHv2Start before sampling
-            rootOrParentNode->MapData.accumulateBranchAngle += accumulateBranchAngleHv2Start;
-            //TODO: ParentSegment's accumulateXY should be == disHv2StartBeforeRotatingCoord before sampling
-            rootOrParentNode->MapData.accumulateXY.distanceX = disHv2StartBeforeRotatingCoord.distanceX ;
-            rootOrParentNode->MapData.accumulateXY.distanceY = disHv2StartBeforeRotatingCoord.distanceY;
+            rootOrParentNode->MapData.accumulateBranchAngle += accumulateBranchAngleHv2Start; //need - relativeBranchAngle
+            //TODO: ParentSegment's accumulateXY should be == disHv2StartAfterRotatingCoord before sampling
+            rootOrParentNode->MapData.accumulateXY.distanceX = disHv2StartAfterRotatingCoord.distanceX ;
+            rootOrParentNode->MapData.accumulateXY.distanceY = disHv2StartAfterRotatingCoord.distanceY;
         }
         else
         {
@@ -310,45 +366,71 @@ struct PsdMapData PsdMap::calcRootOrParentSegmentCoordinate(struct TreeNode *roo
             }
             printf("[%s] [%d]: Ssum = %f\n", __FUNCTION__, __LINE__, Ssum);
             KSsum = K0 + (KL - K0) / L * Ssum;  //next sample point curvature
-            A1_square = Ssum / KSsum;
-            // variableCurveAngleRad = 2 * atan((KSsum - Kstart) / (1 + Kstart * KSsum));
             sampleRotationAngleRad = acos((R-MaxRoadError)/R);
-            rootOrParentNode->MapData.accumulateBranchAngle += Haversine::toDegrees(sampleRotationAngleRad);
-            printf("[%s] [%d]: sampleRotationAngle = %f accumulateBranchAngle = %f\n", __FUNCTION__, __LINE__, Haversine::toDegrees(sampleRotationAngleRad), rootOrParentNode->MapData.accumulateBranchAngle);
-            XY = calcCurveXYOffset(S*(-1), A0_square, A1_square, rootOrParentNode->MapData.accumulateBranchAngle);
-            rootOrParentNode->MapData.accumulateXY.distanceX +=  XY.distanceX;
-            rootOrParentNode->MapData.accumulateXY.distanceY +=   XY.distanceY;
+            printf("[%s] [%d]: sampleRotationAngle = %f\n", __FUNCTION__, __LINE__, Haversine::toDegrees(sampleRotationAngleRad));
+
+            XY = calcCurveXYOffset(R * (-1), Haversine::toDegrees(sampleRotationAngleRad));
+
+            XY = coordinateSystemRotates(rootOrParentNode->MapData.accumulateBranchAngle, XY.distanceX, XY.distanceY);
+            rootOrParentNode->MapData.accumulateXY.distanceX += XY.distanceX;
+            rootOrParentNode->MapData.accumulateXY.distanceY +=  XY.distanceY;
             printf("[%s] [%d]: accumulateXY.distanceX = %f, accumulateXY.distanceY = %f\n", __FUNCTION__, __LINE__, rootOrParentNode->MapData.accumulateXY.distanceX, rootOrParentNode->MapData.accumulateXY.distanceY);  
-            XY = calcHeadingXY(PsdMessageDecoder::getInstance()->getSelfSegment().hvHeading, rootOrParentNode->MapData.accumulateXY.distanceX, rootOrParentNode->MapData.accumulateXY.distanceY);
-            SampleCoord = Haversine::calcDestination(PsdMessageDecoder::getInstance()->getSelfSegment().hvCoordinate, XY.distanceY, XY.distanceX);
+
+            SampleCoord = Haversine::calcDestination(PsdMessageDecoder::getInstance()->getSelfSegment().hvCoordinate, rootOrParentNode->MapData.accumulateXY.distanceY, rootOrParentNode->MapData.accumulateXY.distanceX);
             rootOrParentNode->MapData.vSampleCoord.insert(rootOrParentNode->MapData.vSampleCoord.begin(), SampleCoord);
             //update next cyclic value
             R = 1.0 / std::fabs(KSsum);
-            A0_square = A1_square;
             Kstart = KSsum;
-        }
+            rootOrParentNode->MapData.accumulateBranchAngle += Haversine::toDegrees(sampleRotationAngleRad);
+            printf("[%s] [%d]: accumulateBranchAngle = %f\n", __FUNCTION__, __LINE__, rootOrParentNode->MapData.accumulateBranchAngle);
+            if (rootOrParentNode->MapData.accumulateBranchAngle > 360.0 )
+            {
+                rootOrParentNode->MapData.accumulateBranchAngle -= 360.0;
+            }
+            else 
+            if (rootOrParentNode->MapData.accumulateBranchAngle < -360.0)
+            {
+                rootOrParentNode->MapData.accumulateBranchAngle += 360.0;
+            }
+            printf("[%s] [%d]: fixed rootOrParentNode->MapData.accumulateBranchAngle = %f\n", __FUNCTION__, __LINE__, rootOrParentNode->MapData.accumulateBranchAngle);
+        }   /*----------end while----------*/
         //calculate curvature startCoordinate
         finalRemainLength = L - (Ssum - S);
         printf("[%s] [%d]: finalRemainLength = %f\n", __FUNCTION__, __LINE__, finalRemainLength);
         if (KL == Kstart)
         {
-            arcRotationAngleRad = (finalRemainLength / R) * (rootOrParentNode->MapData.signStartCurvature ? -1 : 1);
-            rootOrParentNode->MapData.accumulateBranchAngle += Haversine::toDegrees(arcRotationAngleRad);
-            printf("[%s] [%d]: arcRotationAngle = %f accumulateBranchAngle = %f\n", __FUNCTION__, __LINE__, Haversine::toDegrees(arcRotationAngleRad), rootOrParentNode->MapData.accumulateBranchAngle);
+            // arcRotationAngleRad = (finalRemainLength / R) * (rootOrParentNode->MapData.signStartCurvature ? -1 : 1) * (-1);
+            arcRotationAngleRad = (finalRemainLength / R); 
         }
         else
         {
-            variableCurveAngleRad = 2 * atan((KL - Kstart) / (1 + Kstart * KL)); 
-            rootOrParentNode->MapData.accumulateBranchAngle += Haversine::toDegrees(variableCurveAngleRad);
-            printf("[%s] [%d]: variableCurveAngle = %f accumulateBranchAngle = %f\n", __FUNCTION__, __LINE__, Haversine::toDegrees(variableCurveAngleRad), rootOrParentNode->MapData.accumulateBranchAngle);
+            double averageCurve = (KL + K0) / 2.0;
+            R = 1.0 / std::fabs(averageCurve);
+            // arcRotationAngleRad = (finalRemainLength / R) * (rootOrParentNode->MapData.signStartCurvature ? -1 : 1) * (-1);            
+            arcRotationAngleRad = (finalRemainLength / R); 
         }
-        XY = calcCurveXYOffset(finalRemainLength*(-1), A0_square, L / KL, rootOrParentNode->MapData.accumulateBranchAngle);
+        XY = calcCurveXYOffset(R * (-1), Haversine::toDegrees(arcRotationAngleRad));
+
+        XY = coordinateSystemRotates(rootOrParentNode->MapData.accumulateBranchAngle, XY.distanceX, XY.distanceY);        
         rootOrParentNode->MapData.accumulateXY.distanceX +=  XY.distanceX;
         rootOrParentNode->MapData.accumulateXY.distanceY +=   XY.distanceY;
         printf("[%s] [%d]: accumulateXY.distanceX = %f, accumulateXY.distanceY = %f\n", __FUNCTION__, __LINE__, rootOrParentNode->MapData.accumulateXY.distanceX, rootOrParentNode->MapData.accumulateXY.distanceY);  
-        XY = calcHeadingXY(PsdMessageDecoder::getInstance()->getSelfSegment().hvHeading, rootOrParentNode->MapData.accumulateXY.distanceX, rootOrParentNode->MapData.accumulateXY.distanceY);
-        rootOrParentNode->MapData.startCoordinate = Haversine::calcDestination(PsdMessageDecoder::getInstance()->getSelfSegment().hvCoordinate, XY.distanceY, XY.distanceX);
+
+        rootOrParentNode->MapData.startCoordinate = Haversine::calcDestination(PsdMessageDecoder::getInstance()->getSelfSegment().hvCoordinate, rootOrParentNode->MapData.accumulateXY.distanceY, rootOrParentNode->MapData.accumulateXY.distanceX);
         printf("[%s] [%d]: rootSegment or parentSegment's startCoordinate latitude = %f  longitude = %f\n", __FUNCTION__, __LINE__, rootOrParentNode->MapData.startCoordinate.latitude, rootOrParentNode->MapData.startCoordinate.longitude);
+        
+        rootOrParentNode->MapData.accumulateBranchAngle += Haversine::toDegrees(arcRotationAngleRad);
+        printf("[%s] [%d]: arcRotationAngle = %f accumulateBranchAngle = %f\n", __FUNCTION__, __LINE__, Haversine::toDegrees(arcRotationAngleRad), rootOrParentNode->MapData.accumulateBranchAngle);
+        if (rootOrParentNode->MapData.accumulateBranchAngle > 360.0 )
+        {
+            rootOrParentNode->MapData.accumulateBranchAngle -= 360.0;
+        }
+        else 
+        if (rootOrParentNode->MapData.accumulateBranchAngle < -360.0)
+        {
+            rootOrParentNode->MapData.accumulateBranchAngle += 360.0;
+        }
+        printf("[%s] [%d]: fixed rootOrParentNode->MapData.accumulateBranchAngle = %f\n", __FUNCTION__, __LINE__, rootOrParentNode->MapData.accumulateBranchAngle);    
     }
 
     return rootOrParentNode->MapData;
@@ -365,11 +447,11 @@ struct PsdMapData PsdMap::calcCurSegmentCoordinate(struct TreeNode *curNode)
         //XY: indicates the offset of current's segment relative HV's position
         tOffset XY_1 = calcStraightXYOffset(PsdMessageDecoder::getInstance()->getSelfSegment().curRemainLength, curNode->MapData.accumulateBranchAngle);
         //summary offset = the offset of the current segment relative to HV's position
-        disHv2EndBeforeRotatingCoord.distanceX =  XY_1.distanceX;
-        disHv2EndBeforeRotatingCoord.distanceY =   XY_1.distanceY;
-        printf("[%s] [%d]: disHv2EndBeforeRotatingCoord.distanceX = %f, disHv2EndBeforeRotatingCoord.distanceY = %f\n", __FUNCTION__, __LINE__, disHv2EndBeforeRotatingCoord.distanceX, disHv2EndBeforeRotatingCoord.distanceY);  
+        disHv2EndAfterRotatingCoord.distanceX =  XY_1.distanceX;
+        disHv2EndAfterRotatingCoord.distanceY =   XY_1.distanceY;
+        printf("[%s] [%d]: disHv2EndAfterRotatingCoord.distanceX = %f, disHv2EndAfterRotatingCoord.distanceY = %f\n", __FUNCTION__, __LINE__, disHv2EndAfterRotatingCoord.distanceX, disHv2EndAfterRotatingCoord.distanceY);  
         //rotate coordinate system,  this is based on the direction in which the HV is driving            
-        XY_1 = calcHeadingXY(PsdMessageDecoder::getInstance()->getSelfSegment().hvHeading, disHv2EndBeforeRotatingCoord.distanceX, disHv2EndBeforeRotatingCoord.distanceY);
+        XY_1 = calcHeadingXY(PsdMessageDecoder::getInstance()->getSelfSegment().hvHeading, disHv2EndAfterRotatingCoord.distanceX, disHv2EndAfterRotatingCoord.distanceY);
         //Y<->Horizontal Distance<->deltaLon, X<->Vertical Distance<->deltaLat
         curNode->MapData.endCoordinate = Haversine::calcDestination(PsdMessageDecoder::getInstance()->getSelfSegment().hvCoordinate, XY_1.distanceY, XY_1.distanceX); 
         printf("[%s] [%d]: HV's endCoordinate latitude = %f  longitude = %f\n", __FUNCTION__, __LINE__, curNode->MapData.endCoordinate.latitude, curNode->MapData.endCoordinate.longitude);
@@ -377,10 +459,10 @@ struct PsdMapData PsdMap::calcCurSegmentCoordinate(struct TreeNode *curNode)
         accumulateBranchAngleHv2Start = 0.0; 
         tOffset XY_2 = calcStraightXYOffset((curNode->MapData.preSegTotalLength - PsdMessageDecoder::getInstance()->getSelfSegment().curRemainLength)*(-1), curNode->MapData.accumulateBranchAngle);
         //summary offset = the offset of the current segment relative to HV's position
-        disHv2StartBeforeRotatingCoord.distanceX =  XY_2.distanceX;
-        disHv2StartBeforeRotatingCoord.distanceY =   XY_2.distanceY;
-        printf("[%s] [%d]: disHv2StartBeforeRotatingCoord.distanceX = %f, disHv2StartBeforeRotatingCoord.distanceY = %f\n", __FUNCTION__, __LINE__, disHv2StartBeforeRotatingCoord.distanceX, disHv2StartBeforeRotatingCoord.distanceY);
-        XY_2 = calcHeadingXY(PsdMessageDecoder::getInstance()->getSelfSegment().hvHeading, disHv2StartBeforeRotatingCoord.distanceX, disHv2StartBeforeRotatingCoord.distanceY);
+        disHv2StartAfterRotatingCoord.distanceX =  XY_2.distanceX;
+        disHv2StartAfterRotatingCoord.distanceY =   XY_2.distanceY;
+        printf("[%s] [%d]: disHv2StartAfterRotatingCoord.distanceX = %f, disHv2StartAfterRotatingCoord.distanceY = %f\n", __FUNCTION__, __LINE__, disHv2StartAfterRotatingCoord.distanceX, disHv2StartAfterRotatingCoord.distanceY);
+        XY_2 = calcHeadingXY(PsdMessageDecoder::getInstance()->getSelfSegment().hvHeading, disHv2StartAfterRotatingCoord.distanceX, disHv2StartAfterRotatingCoord.distanceY);
         
         //Y<->Horizontal Distance<->deltaLon, X<->Vertical Distance<->deltaLat
         curNode->MapData.startCoordinate = Haversine::calcDestination(PsdMessageDecoder::getInstance()->getSelfSegment().hvCoordinate, XY_2.distanceY, XY_2.distanceX);
@@ -388,29 +470,27 @@ struct PsdMapData PsdMap::calcCurSegmentCoordinate(struct TreeNode *curNode)
     }
     else
     {
-        /*HV's endCoordinate*/
+    /*HV's endCoordinate*/
         double finalRemainLength = 0.0;
         tCoordinates SampleCoord = {0.0, 0.0};
         tOffset XY_1 = {0.0, 0.0};
         double Ssum = 0.0;
         double KSsum = 0.0;
         double S = 0.0;
-        double L = curNode->MapData.preSegTotalLength;                      //total length of HV's segment
-        double R = 1.0 / std::fabs(curNode->MapData.startCurvature);//initial radius of curvature
-        double K0 = curNode->MapData.startCurvature;                            //segment initial curvature
-        double KL = curNode->MapData.endCurvature;                             //segment terminal curvature
-        double Kstart = 0.0;                                                                                      //save the curvature of the current sampling point
-        double A0_square = 0.0;                                                                            //cyclic override calculations, to be kept up to date
-        double A1_square = 0.0;                                                                            //cyclic override calculations, to be kept up to date
+        double L = curNode->MapData.preSegTotalLength;                                                                                                       //total length of HV's segment
+        double R = 1.0 / std::fabs(curNode->MapData.startCurvature);                                                                                 //initial radius of curvature
+        double K0 = curNode->MapData.startCurvature;                                                                                                             //segment initial curvature
+        double KL = curNode->MapData.endCurvature;                                                                                                               //segment terminal curvature
+        double Kstart = 0.0;                                                                                                                                                                        //save the curvature of the current sampling point
         double DrivedLength = L - PsdMessageDecoder::getInstance()->getSelfSegment().curRemainLength;  //distance drived by HV on current segment
-        double KdrivedLength = K0 + (KL - K0) / L * DrivedLength;       //curvature of the current segment position of HV
-        double variableCurveAngleRad = 0.0;                                                //indicate the angle of rotation between any two points of the variable curvature curve
-        double sampleRotationAngleRad = 0.0;                                            //indicate the angle of rotation when sampling
-        double arcRotationAngleRad = 0.0;                                                     //indicate the angle of rotation of the arc
-        accumulateBranchAngleHv2End = 0.0;
-        K0 = KdrivedLength;                                                                                 //starting calculation from HV's position
-        Kstart = KdrivedLength;                                                                          //only the first Kstart == K0
-        R = 1.0 / std::fabs(KdrivedLength);                                                     //starting radius of curvature from HV's position
+        double KdrivedLength = K0 + (KL - K0) / L * DrivedLength;                                                                                           //curvature of the current segment position of HV
+        double sampleRotationAngleRad = 0.0;                                                                                                                                //indicate the angle of rotation when sampling
+        double arcRotationAngleRad = 0.0;                                                                                                                                         //indicate the angle of rotation of the arc
+        accumulateBranchAngleHv2End = PsdMessageDecoder::getInstance()->getSelfSegment().hvHeading;//init value (the rotation angle of the curve itself is not included)
+        disHv2EndAfterRotatingCoord = {0.0, 0.0};
+        K0 = KdrivedLength;                                                                                                                                                                        //starting calculation from HV's position
+        Kstart = KdrivedLength;                                                                                                                                                                 //only the first Kstart == K0
+        R = 1.0 / std::fabs(KdrivedLength);                                                                                                                                            //starting radius of curvature from HV's position
         //calculate the sampling points between the HV's starting point and the end of HV's segment
         while (1)
         {
@@ -423,58 +503,102 @@ struct PsdMapData PsdMap::calcCurSegmentCoordinate(struct TreeNode *curNode)
             }
             printf("[%s] [%d]: Ssum = %f\n", __FUNCTION__, __LINE__, Ssum);
             KSsum = K0 + (KL - K0) / PsdMessageDecoder::getInstance()->getSelfSegment().curRemainLength * Ssum; //next sample point curvature
-            A1_square = Ssum / KSsum;
-            // variableCurveAngleRad = 2 * atan((KSsum - Kstart) / (1 + Kstart * KSsum));
             //Note: using the sampling rotation angle when the number of samples is greater than 1
             sampleRotationAngleRad = acos((R-MaxRoadError)/R);
-            accumulateBranchAngleHv2End += Haversine::toDegrees(sampleRotationAngleRad);
-            printf("[%s] [%d]: sampleRotationAngle = %f accumulateBranchAngleHv2End = %f\n", __FUNCTION__, __LINE__, Haversine::toDegrees(sampleRotationAngleRad), accumulateBranchAngleHv2End);
-            XY_1 = calcCurveXYOffset(S, A0_square, A1_square, accumulateBranchAngleHv2End);
-            disHv2EndBeforeRotatingCoord.distanceX +=  XY_1.distanceX;
-            disHv2EndBeforeRotatingCoord.distanceY +=   XY_1.distanceY;
-            printf("[%s] [%d]: disHv2EndBeforeRotatingCoord.distanceX = %f, disHv2EndBeforeRotatingCoord.distanceY = %f\n", __FUNCTION__, __LINE__, disHv2EndBeforeRotatingCoord.distanceX, disHv2EndBeforeRotatingCoord.distanceY);  
-            XY_1 = calcHeadingXY(PsdMessageDecoder::getInstance()->getSelfSegment().hvHeading, disHv2EndBeforeRotatingCoord.distanceX, disHv2EndBeforeRotatingCoord.distanceY);
-            SampleCoord = Haversine::calcDestination(PsdMessageDecoder::getInstance()->getSelfSegment().hvCoordinate, XY_1.distanceY, XY_1.distanceX);
+            printf("[%s] [%d]: sampleRotationAngle = %f\n", __FUNCTION__, __LINE__, Haversine::toDegrees(sampleRotationAngleRad));
+
+            //first: Calculate the offset between the two points
+            XY_1 = calcCurveXYOffset(R, Haversine::toDegrees(sampleRotationAngleRad));
+            
+            //second: Take the offset between the two points to rotate the coordinate system
+            XY_1 = coordinateSystemRotates(accumulateBranchAngleHv2End, XY_1.distanceX, XY_1.distanceY);
+            
+            //third: The accumulated offset in front of the segment + the offset after the rotating coordinate system of the segment, combined with the HV'scoordinate to calculate the coordinates of the target point
+            disHv2EndAfterRotatingCoord.distanceX +=  XY_1.distanceX;
+            disHv2EndAfterRotatingCoord.distanceY +=   XY_1.distanceY;
+            printf("[%s] [%d]: disHv2EndAfterRotatingCoord.distanceX = %f, disHv2EndAfterRotatingCoord.distanceY = %f\n", __FUNCTION__, __LINE__, disHv2EndAfterRotatingCoord.distanceX, disHv2EndAfterRotatingCoord.distanceY);  
+            SampleCoord = Haversine::calcDestination(PsdMessageDecoder::getInstance()->getSelfSegment().hvCoordinate, disHv2EndAfterRotatingCoord.distanceY, disHv2EndAfterRotatingCoord.distanceX);
             curNode->MapData.vSampleCoord.push_back(SampleCoord);
             //update next cyclic value
             R = 1.0 / std::fabs(KSsum);
-            A0_square = A1_square;
             Kstart = KSsum;
-        }
-        //calculate curvature endCoordinate
+            accumulateBranchAngleHv2End += Haversine::toDegrees(sampleRotationAngleRad);
+            printf("[%s] [%d]: accumulateBranchAngleHv2End = %f\n", __FUNCTION__, __LINE__, accumulateBranchAngleHv2End);
+            //Note: Avoid the entered angle value is outside the valid range (e.g. outside the range of '2π'), it may cause the value to be unstable or lose accuracy
+            if (accumulateBranchAngleHv2End > 360.0 )
+            {
+                accumulateBranchAngleHv2End -= 360.0;
+            }
+            else 
+            if (accumulateBranchAngleHv2End < -360.0)
+            {
+                accumulateBranchAngleHv2End += 360.0;
+            }
+            printf("[%s] [%d]: fixed accumulateBranchAngleHv2End = %f\n", __FUNCTION__, __LINE__, accumulateBranchAngleHv2End);
+        }   /*----------end while----------*/
+        //calculate curvature endCoordinate, finalRemainLength is used to get the rotation angle
         finalRemainLength = PsdMessageDecoder::getInstance()->getSelfSegment().curRemainLength - (Ssum - S);
         printf("[%s] [%d]: finalRemainLength = %f\n", __FUNCTION__, __LINE__, finalRemainLength);
         if (KL == Kstart)
         {
-            //for arc
-            arcRotationAngleRad = (finalRemainLength / R) * (curNode->MapData.signStartCurvature ? -1 : 1);
-            accumulateBranchAngleHv2End += Haversine::toDegrees(arcRotationAngleRad);
-            printf("[%s] [%d]: arcRotationAngle = %f accumulateBranchAngleHv2End = %f\n", __FUNCTION__, __LINE__, Haversine::toDegrees(arcRotationAngleRad), accumulateBranchAngleHv2End);
+            //for arc, using the radius to calculate the angle of rotation
+            // arcRotationAngleRad = (finalRemainLength / R) * (curNode->MapData.signStartCurvature ? -1 : 1) * (-1);
+            arcRotationAngleRad = (finalRemainLength / R);   
         }
         else
         {
-           //for variable curvature curve
-            variableCurveAngleRad = 2 * atan((KL - Kstart) / (1 + Kstart * KL)); 
-            accumulateBranchAngleHv2End += Haversine::toDegrees(variableCurveAngleRad);
-            printf("[%s] [%d]: variableCurveAngle = %f accumulateBranchAngleHv2End = %f\n", __FUNCTION__, __LINE__, Haversine::toDegrees(variableCurveAngleRad), accumulateBranchAngleHv2End);
+            //for variable curvature curve, take the average of curvature to simplified to arcs and then calculate the radius and then calculate the angle of rotation
+            double averageCurve = (KL + K0) / 2.0;
+            R = 1.0 / std::fabs(averageCurve);
+            // arcRotationAngleRad = (finalRemainLength / R) * (curNode->MapData.signStartCurvature ? -1 : 1) * (-1);
+            arcRotationAngleRad = (finalRemainLength / R); 
         }            
-        XY_1 = calcCurveXYOffset(finalRemainLength, A0_square, PsdMessageDecoder::getInstance()->getSelfSegment().curRemainLength / KL, accumulateBranchAngleHv2End);
+
+        XY_1 = calcCurveXYOffset(R, Haversine::toDegrees(arcRotationAngleRad));
+
+        XY_1 = coordinateSystemRotates(accumulateBranchAngleHv2End, XY_1.distanceX, XY_1.distanceY);
+
+        disHv2EndAfterRotatingCoord.distanceX +=  XY_1.distanceX;
+        disHv2EndAfterRotatingCoord.distanceY +=   XY_1.distanceY;
+        printf("[%s] [%d]: disHv2EndAfterRotatingCoord.distanceX = %f, disHv2EndAfterRotatingCoord.distanceY = %f\n", __FUNCTION__, __LINE__, disHv2EndAfterRotatingCoord.distanceX, disHv2EndAfterRotatingCoord.distanceY);     
         
-        disHv2EndBeforeRotatingCoord.distanceX +=  XY_1.distanceX;
-        disHv2EndBeforeRotatingCoord.distanceY +=   XY_1.distanceY;
-        printf("[%s] [%d]: disHv2EndBeforeRotatingCoord.distanceX = %f, disHv2EndBeforeRotatingCoord.distanceY = %f\n", __FUNCTION__, __LINE__, disHv2EndBeforeRotatingCoord.distanceX, disHv2EndBeforeRotatingCoord.distanceY);     
-        XY_1 = calcHeadingXY(PsdMessageDecoder::getInstance()->getSelfSegment().hvHeading, disHv2EndBeforeRotatingCoord.distanceX, disHv2EndBeforeRotatingCoord.distanceY);
-        curNode->MapData.endCoordinate = Haversine::calcDestination(PsdMessageDecoder::getInstance()->getSelfSegment().hvCoordinate, XY_1.distanceY, XY_1.distanceX);
+        curNode->MapData.endCoordinate = Haversine::calcDestination(PsdMessageDecoder::getInstance()->getSelfSegment().hvCoordinate, disHv2EndAfterRotatingCoord.distanceY, disHv2EndAfterRotatingCoord.distanceX);
         printf("[%s] [%d]: HV's endCoordinate latitude = %f  longitude = %f\n", __FUNCTION__, __LINE__, curNode->MapData.endCoordinate.latitude, curNode->MapData.endCoordinate.longitude);
-        /*HV's startCoordinate*/
+        
+        accumulateBranchAngleHv2End += Haversine::toDegrees(arcRotationAngleRad);
+        printf("[%s] [%d]: accumulateBranchAngleHv2End = %f\n", __FUNCTION__, __LINE__, accumulateBranchAngleHv2End);
+        if (accumulateBranchAngleHv2End > 360.0 )
+        {
+            accumulateBranchAngleHv2End -= 360.0;
+        }
+        else 
+        if (accumulateBranchAngleHv2End < -360.0)
+        {
+            accumulateBranchAngleHv2End += 360.0;
+        }
+        printf("[%s] [%d]: fixed accumulateBranchAngleHv2End = %f\n", __FUNCTION__, __LINE__, accumulateBranchAngleHv2End);
+        
+    /*HV's startCoordinate*/
         tOffset XY_2 = {0.0, 0.0};
-        accumulateBranchAngleHv2Start = 0.0;
+        accumulateBranchAngleHv2Start = PsdMessageDecoder::getInstance()->getSelfSegment().hvHeading + 180.0;
+        disHv2StartAfterRotatingCoord = {0.0, 0.0};
         K0 = KdrivedLength;
         Kstart = KdrivedLength;
         KL = curNode->MapData.startCurvature;
         R = 1.0 / std::fabs(KdrivedLength);
         Ssum = 0.0;
-        A0_square = 0.0 / KdrivedLength;
+        printf("[%s] [%d]: accumulateBranchAngleHv2Start = %f\n", __FUNCTION__, __LINE__, accumulateBranchAngleHv2Start);
+        if (accumulateBranchAngleHv2Start > 360.0 )
+        {
+            accumulateBranchAngleHv2Start -= 360.0;
+        }
+        else 
+        if (accumulateBranchAngleHv2Start < -360.0)
+        {
+            accumulateBranchAngleHv2Start += 360.0;
+        }
+        printf("[%s] [%d]: fixed accumulateBranchAngleHv2Start = %f\n", __FUNCTION__, __LINE__, accumulateBranchAngleHv2Start);
+
         while (1)
         {
             S = 2 * R * acos((R - MaxRoadError) / R);
@@ -485,46 +609,73 @@ struct PsdMapData PsdMap::calcCurSegmentCoordinate(struct TreeNode *curNode)
                 break;
             }
             printf("[%s] [%d]: Ssum = %f\n", __FUNCTION__, __LINE__, Ssum);
-            KSsum = K0 + (KL - K0) / DrivedLength * Ssum;//next sample point curvature
-            A1_square = Ssum / KSsum;
-            // variableCurveAngleRad = 2 * atan((KSsum - Kstart) / (1 + Kstart * KSsum));
+            KSsum = K0 + (KL - K0) / DrivedLength * Ssum;   //next sample point curvature
             sampleRotationAngleRad = acos((R-MaxRoadError)/R);
-            accumulateBranchAngleHv2Start += Haversine::toDegrees(sampleRotationAngleRad);
-            printf("[%s] [%d]: sampleRotationAngle = %f accumulateBranchAngleHv2Start = %f\n", __FUNCTION__, __LINE__, Haversine::toDegrees(sampleRotationAngleRad), accumulateBranchAngleHv2Start);
-            XY_2 = calcCurveXYOffset(S*(-1), A0_square, A1_square, accumulateBranchAngleHv2Start);
-            disHv2StartBeforeRotatingCoord.distanceX +=  XY_2.distanceX;
-            disHv2StartBeforeRotatingCoord.distanceY +=   XY_2.distanceY;
-            printf("[%s] [%d]: disHv2StartBeforeRotatingCoord.distanceX = %f, disHv2StartBeforeRotatingCoord.distanceY = %f\n", __FUNCTION__, __LINE__, disHv2StartBeforeRotatingCoord.distanceX, disHv2StartBeforeRotatingCoord.distanceY);  
-            XY_2 = calcHeadingXY(PsdMessageDecoder::getInstance()->getSelfSegment().hvHeading, disHv2StartBeforeRotatingCoord.distanceX, disHv2StartBeforeRotatingCoord.distanceY);
-            SampleCoord = Haversine::calcDestination(PsdMessageDecoder::getInstance()->getSelfSegment().hvCoordinate, XY_2.distanceY, XY_2.distanceX);
+            printf("[%s] [%d]: sampleRotationAngle = %f\n", __FUNCTION__, __LINE__, Haversine::toDegrees(sampleRotationAngleRad));
+            XY_2 = calcCurveXYOffset(R * (-1), Haversine::toDegrees(sampleRotationAngleRad));
+
+            XY_2 = coordinateSystemRotates(accumulateBranchAngleHv2Start, XY_2.distanceX, XY_2.distanceY);
+
+            disHv2StartAfterRotatingCoord.distanceX +=  XY_2.distanceX;
+            disHv2StartAfterRotatingCoord.distanceY +=   XY_2.distanceY;
+            printf("[%s] [%d]: disHv2StartAfterRotatingCoord.distanceX = %f, disHv2StartAfterRotatingCoord.distanceY = %f\n", __FUNCTION__, __LINE__, disHv2StartAfterRotatingCoord.distanceX, disHv2StartAfterRotatingCoord.distanceY);  
+            SampleCoord = Haversine::calcDestination(PsdMessageDecoder::getInstance()->getSelfSegment().hvCoordinate, disHv2StartAfterRotatingCoord.distanceY, disHv2StartAfterRotatingCoord.distanceX);
             curNode->MapData.vSampleCoord.insert(curNode->MapData.vSampleCoord.begin(), SampleCoord);
             //update next cyclic value
             R = 1.0 / std::fabs(KSsum);
-            A0_square = A1_square;
             Kstart = KSsum;
-        }
+            accumulateBranchAngleHv2Start += Haversine::toDegrees(sampleRotationAngleRad);
+            printf("[%s] [%d]: accumulateBranchAngleHv2Start = %f\n", __FUNCTION__, __LINE__, accumulateBranchAngleHv2Start);
+            if (accumulateBranchAngleHv2Start > 360.0 )
+            {
+                accumulateBranchAngleHv2Start -= 360.0;
+            }
+            else 
+            if (accumulateBranchAngleHv2Start < -360.0)
+            {
+                accumulateBranchAngleHv2Start += 360.0;
+            }
+            printf("[%s] [%d]: fixed accumulateBranchAngleHv2Start = %f\n", __FUNCTION__, __LINE__, accumulateBranchAngleHv2Start);
+        }   /*----------end while----------*/
         //calculate curvature startCoordinate
         finalRemainLength = DrivedLength - (Ssum - S);
         printf("[%s] [%d]: finalRemainLength = %f\n", __FUNCTION__, __LINE__, finalRemainLength);
+        
         if (KL == Kstart)
         {
-            arcRotationAngleRad = (finalRemainLength / R) * (curNode->MapData.signStartCurvature ? -1 : 1);
-            accumulateBranchAngleHv2Start += Haversine::toDegrees(arcRotationAngleRad);
-            printf("[%s] [%d]: arcRotationAngle = %f accumulateBranchAngleHv2Start = %f\n", __FUNCTION__, __LINE__, Haversine::toDegrees(arcRotationAngleRad), accumulateBranchAngleHv2Start);
+            // arcRotationAngleRad = (finalRemainLength / R) * (curNode->MapData.signStartCurvature ? -1 : 1) * (-1);
+            arcRotationAngleRad = (finalRemainLength / R); 
         }
         else
         {
-            variableCurveAngleRad = 2 * atan((KL - Kstart) / (1 + Kstart * KL)); 
-            accumulateBranchAngleHv2Start += Haversine::toDegrees(variableCurveAngleRad);
-            printf("[%s] [%d]: variableCurveAngle = %f accumulateBranchAngleHv2Start = %f\n", __FUNCTION__, __LINE__, Haversine::toDegrees(variableCurveAngleRad), accumulateBranchAngleHv2Start);
+            double averageCurve = (KL + K0) / 2.0;
+            R = 1.0 / std::fabs(averageCurve);
+            // arcRotationAngleRad = (finalRemainLength / R) * (curNode->MapData.signStartCurvature ? -1 : 1) * (-1);
+            arcRotationAngleRad = (finalRemainLength / R); 
         }
-        XY_2 = calcCurveXYOffset(finalRemainLength*(-1), A0_square, DrivedLength / KL, accumulateBranchAngleHv2Start);
-        disHv2StartBeforeRotatingCoord.distanceX +=  XY_2.distanceX;
-        disHv2StartBeforeRotatingCoord.distanceY +=   XY_2.distanceY;
-        printf("[%s] [%d]: disHv2StartBeforeRotatingCoord.distanceX = %f, disHv2StartBeforeRotatingCoord.distanceY = %f\n", __FUNCTION__, __LINE__, disHv2StartBeforeRotatingCoord.distanceX, disHv2StartBeforeRotatingCoord.distanceY);  
-        XY_2 = calcHeadingXY(PsdMessageDecoder::getInstance()->getSelfSegment().hvHeading, disHv2StartBeforeRotatingCoord.distanceX, disHv2StartBeforeRotatingCoord.distanceY);
-        curNode->MapData.startCoordinate = Haversine::calcDestination(PsdMessageDecoder::getInstance()->getSelfSegment().hvCoordinate, XY_2.distanceY, XY_2.distanceX);
+
+        XY_2 = calcCurveXYOffset(R * (-1), Haversine::toDegrees(arcRotationAngleRad));
+
+        XY_2 = coordinateSystemRotates(accumulateBranchAngleHv2Start, XY_2.distanceX, XY_2.distanceX);
+
+        disHv2StartAfterRotatingCoord.distanceX +=  XY_2.distanceX;
+        disHv2StartAfterRotatingCoord.distanceY +=   XY_2.distanceY;
+        printf("[%s] [%d]: disHv2StartAfterRotatingCoord.distanceX = %f, disHv2StartAfterRotatingCoord.distanceY = %f\n", __FUNCTION__, __LINE__, disHv2StartAfterRotatingCoord.distanceX, disHv2StartAfterRotatingCoord.distanceY);  
+        curNode->MapData.startCoordinate = Haversine::calcDestination(PsdMessageDecoder::getInstance()->getSelfSegment().hvCoordinate, disHv2StartAfterRotatingCoord.distanceY, disHv2StartAfterRotatingCoord.distanceX);
         printf("[%s] [%d]: HV's startCoordinate latitude = %f  longitude = %f\n", __FUNCTION__, __LINE__, curNode->MapData.startCoordinate.latitude, curNode->MapData.startCoordinate.longitude);
+
+        accumulateBranchAngleHv2Start += Haversine::toDegrees(arcRotationAngleRad);
+        printf("[%s] [%d]: accumulateBranchAngleHv2Start = %f\n", __FUNCTION__, __LINE__, accumulateBranchAngleHv2Start);
+        if (accumulateBranchAngleHv2Start > 360.0 )
+        {
+            accumulateBranchAngleHv2Start -= 360.0;
+        }
+        else 
+        if (accumulateBranchAngleHv2Start < -360.0)
+        {
+            accumulateBranchAngleHv2Start += 360.0;
+        }
+        printf("[%s] [%d]: fixed accumulateBranchAngleHv2Start = %f\n", __FUNCTION__, __LINE__, accumulateBranchAngleHv2Start);
     }
 
     return curNode->MapData;
@@ -911,7 +1062,7 @@ void PsdMap::insertNode(struct TreeNode *Node, std::vector<struct PsdMapData *>:
                 //the branch angle of the parent relative to the root, because it is calculated backwards from the segment where the HV is located.
                 rootRelativeParentAngle = Node->MapData.branchAngle;   
                 //accumulateBranchAngle relative to HV's segment, for PsdLocation module to calcRelativePosition.
-                rootNode->MapData.accumulateBranchAngle = Node->MapData.accumulateBranchAngle + rootRelativeParentAngle; 
+                rootNode->MapData.accumulateBranchAngle = Node->MapData.accumulateBranchAngle - rootRelativeParentAngle; 
                 rootNode->MapData = calcCoordinate(rootNode);
                 pthread_mutex_lock(&decoderThreadMutex);
                 *(*it) = rootNode->MapData;  
@@ -939,7 +1090,7 @@ void PsdMap::insertNode(struct TreeNode *Node, std::vector<struct PsdMapData *>:
                 //the branch angle of the parent relative to the current, because it is calculated backwards from the segment where the HV is located.
                 parentRelativeCurrentAngle = Node->MapData.branchAngle;   //use current relative parent's branchAngle as to accumulate, parentNode->MapData.branchAngle is still itself branchAngle(relative to root)
                 //accumulateBranchAngle relative to HV's segment, for PsdLocation module to calcRelativePosition.
-                parentNode->MapData.accumulateBranchAngle = Node->MapData.accumulateBranchAngle + parentRelativeCurrentAngle; 
+                parentNode->MapData.accumulateBranchAngle = Node->MapData.accumulateBranchAngle - parentRelativeCurrentAngle; 
                 parentNode->MapData = calcCoordinate(parentNode);
                 pthread_mutex_lock(&decoderThreadMutex);
                 *(*it) = parentNode->MapData;  

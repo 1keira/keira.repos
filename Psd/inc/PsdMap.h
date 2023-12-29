@@ -57,9 +57,13 @@ public:
 
     bool mMapMutexIsLocked;                               /** <  the status of Mutex whether is locked or not*/
 
-    tOffset disHv2EndBeforeRotatingCoord;    /** <  distance from the HV to the end point before the rotation coordinate system*/
+    // tOffset disHv2EndBeforeRotatingCoord;    /** <  distance from the HV to the end point before the rotation coordinate system*/
 
-    tOffset disHv2StartBeforeRotatingCoord;  /** <  distance from the HV to the start point before the rotation coordinate system*/
+    // tOffset disHv2StartBeforeRotatingCoord;  /** <  distance from the HV to the start point before the rotation coordinate system*/
+
+    tOffset disHv2EndAfterRotatingCoord;    /** <  distance from the HV to the end point after the rotation coordinate system*/
+
+    tOffset disHv2StartAfterRotatingCoord;  /** <  distance from the HV to the start point after the rotation coordinate system*/
 
     double accumulateBranchAngleHv2End;   /** <  the accumulate branchAngle of HV position to endpoint*/
     
@@ -215,6 +219,15 @@ public:
     struct PsdMapData calcChildSegmentCoordinate(struct TreeNode *childNode);
 
     /**
+     * @brief The function is to calculate the offset corresponding to the angle of rotation of the arc from the beginning position to the end position of this segment
+     * @param arcR (radius of the arc)
+     * @param arcRotationAngle (the angle of rotation of the arc)
+     * @return tOffset (vertical offset x and horizontal offset y after rotating angle)
+     */
+    tOffset calcCurveXYOffset(double arcR, double arcRotationAngle);
+
+    #if 0
+    /**
      * @brief Calculate X Y offsset in curve case
      * @param S (actual arc length, the length of a curve segment)
      * @param A0 (clothoide parameter, starting value for each sampling point)
@@ -223,6 +236,7 @@ public:
      * @return tOffset (vertical offset x and horizontal offset y after rotating BranchAngle)
      */
     tOffset calcCurveXYOffset(double S, double A0, double A1, double accumulateBranchAngle);
+    #endif
 
     /**
      * @brief Calculate X Y offsset in straight path case
@@ -231,6 +245,15 @@ public:
      * @return tOffset (vertical offset x and horizontal offset y after rotating accumulateBranchAngle)
      */
     tOffset calcStraightXYOffset(double Length, double accumulateBranchAngle);
+
+    /**
+     * @brief The function is to calculate the rotation of the coordinate system relative to true north direction, the XY input is the offset from the start position of the segment to the end position
+     * @param accumulateBranchAngle (the BranchAngle at which the start position of the every segment is accumulated relative to true north)
+     * @param distanceX (x-axis before rotation)
+     * @param distanceY (y-axis before rotation)
+     * @return tOffset (vertical offset x and horizontal offset y after rotation)
+     */
+    tOffset coordinateSystemRotates(double accumulateBranchAngle, double distanceX, double distanceY);
 
     /**
      * @brief Calculate horizontal and orthogonal distance
