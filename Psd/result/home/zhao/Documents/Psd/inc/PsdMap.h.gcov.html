@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2023-12-29 17:14:10</td>
+            <td class="headerValue">2024-01-04 14:42:00</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -293,91 +293,92 @@
 <span id="L222"><span class="lineNum">     222</span>                 :             :      * @brief The function is to calculate the offset corresponding to the angle of rotation of the arc from the beginning position to the end position of this segment</span>
 <span id="L223"><span class="lineNum">     223</span>                 :             :      * @param arcR (radius of the arc)</span>
 <span id="L224"><span class="lineNum">     224</span>                 :             :      * @param arcRotationAngle (the angle of rotation of the arc)</span>
-<span id="L225"><span class="lineNum">     225</span>                 :             :      * @return tOffset (vertical offset x and horizontal offset y after rotating angle)</span>
-<span id="L226"><span class="lineNum">     226</span>                 :             :      */</span>
-<span id="L227"><span class="lineNum">     227</span>                 :             :     tOffset calcCurveXYOffset(double arcR, double arcRotationAngle);</span>
-<span id="L228"><span class="lineNum">     228</span>                 :             : </span>
-<span id="L229"><span class="lineNum">     229</span>                 :             :     #if 0</span>
-<span id="L230"><span class="lineNum">     230</span>                 :             :     /**</span>
-<span id="L231"><span class="lineNum">     231</span>                 :             :      * @brief Calculate X Y offsset in curve case</span>
-<span id="L232"><span class="lineNum">     232</span>                 :             :      * @param S (actual arc length, the length of a curve segment)</span>
-<span id="L233"><span class="lineNum">     233</span>                 :             :      * @param A0 (clothoide parameter, starting value for each sampling point)</span>
-<span id="L234"><span class="lineNum">     234</span>                 :             :      * @param A1 (clothoide parameter, sample the value of the next sampling point)</span>
-<span id="L235"><span class="lineNum">     235</span>                 :             :      * @param accumulateBranchAngle (branching angle relative to the first position)</span>
-<span id="L236"><span class="lineNum">     236</span>                 :             :      * @return tOffset (vertical offset x and horizontal offset y after rotating BranchAngle)</span>
-<span id="L237"><span class="lineNum">     237</span>                 :             :      */</span>
-<span id="L238"><span class="lineNum">     238</span>                 :             :     tOffset calcCurveXYOffset(double S, double A0, double A1, double accumulateBranchAngle);</span>
-<span id="L239"><span class="lineNum">     239</span>                 :             :     #endif</span>
-<span id="L240"><span class="lineNum">     240</span>                 :             : </span>
-<span id="L241"><span class="lineNum">     241</span>                 :             :     /**</span>
-<span id="L242"><span class="lineNum">     242</span>                 :             :      * @brief Calculate X Y offsset in straight path case</span>
-<span id="L243"><span class="lineNum">     243</span>                 :             :      * @param Length (actual length)</span>
-<span id="L244"><span class="lineNum">     244</span>                 :             :      * @param accumulateBranchAngle (accumulate branch angle relative to the first position)</span>
-<span id="L245"><span class="lineNum">     245</span>                 :             :      * @return tOffset (vertical offset x and horizontal offset y after rotating accumulateBranchAngle)</span>
-<span id="L246"><span class="lineNum">     246</span>                 :             :      */</span>
-<span id="L247"><span class="lineNum">     247</span>                 :             :     tOffset calcStraightXYOffset(double Length, double accumulateBranchAngle);</span>
-<span id="L248"><span class="lineNum">     248</span>                 :             : </span>
-<span id="L249"><span class="lineNum">     249</span>                 :             :     /**</span>
-<span id="L250"><span class="lineNum">     250</span>                 :             :      * @brief The function is to calculate the rotation of the coordinate system relative to true north direction, the XY input is the offset from the start position of the segment to the end position</span>
-<span id="L251"><span class="lineNum">     251</span>                 :             :      * @param accumulateBranchAngle (the BranchAngle at which the start position of the every segment is accumulated relative to true north)</span>
-<span id="L252"><span class="lineNum">     252</span>                 :             :      * @param distanceX (x-axis before rotation)</span>
-<span id="L253"><span class="lineNum">     253</span>                 :             :      * @param distanceY (y-axis before rotation)</span>
-<span id="L254"><span class="lineNum">     254</span>                 :             :      * @return tOffset (vertical offset x and horizontal offset y after rotation)</span>
-<span id="L255"><span class="lineNum">     255</span>                 :             :      */</span>
-<span id="L256"><span class="lineNum">     256</span>                 :             :     tOffset coordinateSystemRotates(double accumulateBranchAngle, double distanceX, double distanceY);</span>
-<span id="L257"><span class="lineNum">     257</span>                 :             : </span>
-<span id="L258"><span class="lineNum">     258</span>                 :             :     /**</span>
-<span id="L259"><span class="lineNum">     259</span>                 :             :      * @brief Calculate horizontal and orthogonal distance</span>
-<span id="L260"><span class="lineNum">     260</span>                 :             :      * @param Heading (from HV)</span>
-<span id="L261"><span class="lineNum">     261</span>                 :             :      * @param distanceX (x-axis before rotation)</span>
-<span id="L262"><span class="lineNum">     262</span>                 :             :      * @param distanceY (y-axis before rotation)</span>
-<span id="L263"><span class="lineNum">     263</span>                 :             :      * @return tOffset (vertical offset x and horizontal offset y after rotation)</span>
-<span id="L264"><span class="lineNum">     264</span>                 :             :      */</span>
-<span id="L265"><span class="lineNum">     265</span>                 :             :     tOffset calcHeadingXY(double Heading, double distanceX, double distanceY);</span>
-<span id="L266"><span class="lineNum">     266</span>                 :             : </span>
-<span id="L267"><span class="lineNum">     267</span>                 :             :     /**</span>
-<span id="L268"><span class="lineNum">     268</span>                 :             :      * @brief Get the Tree object</span>
-<span id="L269"><span class="lineNum">     269</span>                 :             :      * @return struct TreeNode* </span>
-<span id="L270"><span class="lineNum">     270</span>                 :             :      */</span>
-<span id="L271"><span class="lineNum">     271</span>                 :             :     struct TreeNode *getTree();</span>
-<span id="L272"><span class="lineNum">     272</span>                 :             : </span>
-<span id="L273"><span class="lineNum">     273</span>                 :             :     /**</span>
-<span id="L274"><span class="lineNum">     274</span>                 :             :      * @brief Set the Tree object</span>
-<span id="L275"><span class="lineNum">     275</span>                 :             :      * @param Node (set the Node to mTree)</span>
-<span id="L276"><span class="lineNum">     276</span>                 :             :      */</span>
-<span id="L277"><span class="lineNum">     277</span>                 :             :     void setTree(struct TreeNode *Node);</span>
-<span id="L278"><span class="lineNum">     278</span>                 :             :     </span>
-<span id="L279"><span class="lineNum">     279</span>                 :             :     /**</span>
-<span id="L280"><span class="lineNum">     280</span>                 :             :      * @brief Get the Map Mutex Status object</span>
-<span id="L281"><span class="lineNum">     281</span>                 :             :      * @return true (mapThreadMutex is locked)</span>
-<span id="L282"><span class="lineNum">     282</span>                 :             :      * @return false (mapThreadMutex is unlocked)</span>
-<span id="L283"><span class="lineNum">     283</span>                 :             :      */</span>
-<span id="L284"><span class="lineNum">     284</span>                 :             :     bool getMapMutexStatus();</span>
-<span id="L285"><span class="lineNum">     285</span>                 :             : </span>
-<span id="L286"><span class="lineNum">     286</span>                 :             :     /**</span>
-<span id="L287"><span class="lineNum">     287</span>                 :             :      * @brief Set the Map Mutex Status object (for gtest branch coverage)</span>
-<span id="L288"><span class="lineNum">     288</span>                 :             :      * @param MutexStatus </span>
-<span id="L289"><span class="lineNum">     289</span>                 :             :      */</span>
-<span id="L290"><span class="lineNum">     290</span>                 :             :     void setMapMutexStatus(bool MutexStatus);</span>
-<span id="L291"><span class="lineNum">     291</span>                 :             : </span>
-<span id="L292"><span class="lineNum">     292</span>                 :             :     //private:</span>
-<span id="L293"><span class="lineNum">     293</span>                 :             :     static PsdMap* pInstance;   /**&lt;A pointer used to return the object of  the class of PsdMap*/</span>
-<span id="L294"><span class="lineNum">     294</span>                 :             :     </span>
-<span id="L295"><span class="lineNum">     295</span>                 :             :     /**</span>
-<span id="L296"><span class="lineNum">     296</span>                 :             :      * @brief Construct a new PsdMap object</span>
-<span id="L297"><span class="lineNum">     297</span>                 :             :      */</span>
-<span id="L298"><span class="lineNum">     298</span>                 :             :     PsdMap(/* args */);</span>
-<span id="L299"><span class="lineNum">     299</span>                 :             : </span>
-<span id="L300"><span class="lineNum">     300</span>                 :             :     /**</span>
-<span id="L301"><span class="lineNum">     301</span>                 :             :      * @brief Destroy the PsdMap object</span>
-<span id="L302"><span class="lineNum">     302</span>                 :             :      */</span>
-<span id="L303"><span class="lineNum">     303</span>                 :             :     ~PsdMap();</span>
-<span id="L304"><span class="lineNum">     304</span>                 :             : };</span>
-<span id="L305"><span class="lineNum">     305</span>                 :             : </span>
-<span id="L306"><span class="lineNum">     306</span>                 :             : void *PsdMapRun(void *arg);</span>
-<span id="L307"><span class="lineNum">     307</span>                 :             : </span>
-<span id="L308"><span class="lineNum">     308</span>                 :             : #endif /*_PSDMAP_H_*/</span>
-<span id="L309"><span class="lineNum">     309</span>                 :             : </span>
+<span id="L225"><span class="lineNum">     225</span>                 :             :      * @param signCurvature (the positive and negative effects of curvature determine the positive and negative effects of dy)</span>
+<span id="L226"><span class="lineNum">     226</span>                 :             :      * @return tOffset (dx and dy with rotating angle)</span>
+<span id="L227"><span class="lineNum">     227</span>                 :             :      */</span>
+<span id="L228"><span class="lineNum">     228</span>                 :             :     tOffset calcCurveXYOffset(double arcR, double arcRotationAngle, bool signCurvature);</span>
+<span id="L229"><span class="lineNum">     229</span>                 :             : </span>
+<span id="L230"><span class="lineNum">     230</span>                 :             :     #if 0</span>
+<span id="L231"><span class="lineNum">     231</span>                 :             :     /**</span>
+<span id="L232"><span class="lineNum">     232</span>                 :             :      * @brief Calculate X Y offsset in curve case</span>
+<span id="L233"><span class="lineNum">     233</span>                 :             :      * @param S (actual arc length, the length of a curve segment)</span>
+<span id="L234"><span class="lineNum">     234</span>                 :             :      * @param A0 (clothoide parameter, starting value for each sampling point)</span>
+<span id="L235"><span class="lineNum">     235</span>                 :             :      * @param A1 (clothoide parameter, sample the value of the next sampling point)</span>
+<span id="L236"><span class="lineNum">     236</span>                 :             :      * @param accumulateBranchAngle (branching angle relative to the first position)</span>
+<span id="L237"><span class="lineNum">     237</span>                 :             :      * @return tOffset (vertical offset x and horizontal offset y after rotating BranchAngle)</span>
+<span id="L238"><span class="lineNum">     238</span>                 :             :      */</span>
+<span id="L239"><span class="lineNum">     239</span>                 :             :     tOffset calcCurveXYOffset(double S, double A0, double A1, double accumulateBranchAngle);</span>
+<span id="L240"><span class="lineNum">     240</span>                 :             :     #endif</span>
+<span id="L241"><span class="lineNum">     241</span>                 :             : </span>
+<span id="L242"><span class="lineNum">     242</span>                 :             :     /**</span>
+<span id="L243"><span class="lineNum">     243</span>                 :             :      * @brief Calculate X Y offsset in straight path case</span>
+<span id="L244"><span class="lineNum">     244</span>                 :             :      * @param Length (actual length)</span>
+<span id="L245"><span class="lineNum">     245</span>                 :             :      * @param accumulateBranchAngle (accumulate branch angle relative to the first position)</span>
+<span id="L246"><span class="lineNum">     246</span>                 :             :      * @return tOffset (vertical offset x and horizontal offset y after rotating accumulateBranchAngle)</span>
+<span id="L247"><span class="lineNum">     247</span>                 :             :      */</span>
+<span id="L248"><span class="lineNum">     248</span>                 :             :     tOffset calcStraightXYOffset(double Length, double accumulateBranchAngle);</span>
+<span id="L249"><span class="lineNum">     249</span>                 :             : </span>
+<span id="L250"><span class="lineNum">     250</span>                 :             :     /**</span>
+<span id="L251"><span class="lineNum">     251</span>                 :             :      * @brief The function is to calculate the rotation of the coordinate system relative to true north direction, the XY input is the offset from the start position of the segment to the end position</span>
+<span id="L252"><span class="lineNum">     252</span>                 :             :      * @param accumulateBranchAngle (the BranchAngle at which the start position of the every segment is accumulated relative to true north)</span>
+<span id="L253"><span class="lineNum">     253</span>                 :             :      * @param distanceX (x-axis before rotation)</span>
+<span id="L254"><span class="lineNum">     254</span>                 :             :      * @param distanceY (y-axis before rotation)</span>
+<span id="L255"><span class="lineNum">     255</span>                 :             :      * @return tOffset (vertical offset x and horizontal offset y after rotation)</span>
+<span id="L256"><span class="lineNum">     256</span>                 :             :      */</span>
+<span id="L257"><span class="lineNum">     257</span>                 :             :     tOffset coordinateSystemRotates(double accumulateBranchAngle, double distanceX, double distanceY);</span>
+<span id="L258"><span class="lineNum">     258</span>                 :             : </span>
+<span id="L259"><span class="lineNum">     259</span>                 :             :     /**</span>
+<span id="L260"><span class="lineNum">     260</span>                 :             :      * @brief Calculate horizontal and orthogonal distance</span>
+<span id="L261"><span class="lineNum">     261</span>                 :             :      * @param Heading (from HV)</span>
+<span id="L262"><span class="lineNum">     262</span>                 :             :      * @param distanceX (x-axis before rotation)</span>
+<span id="L263"><span class="lineNum">     263</span>                 :             :      * @param distanceY (y-axis before rotation)</span>
+<span id="L264"><span class="lineNum">     264</span>                 :             :      * @return tOffset (vertical offset x and horizontal offset y after rotation)</span>
+<span id="L265"><span class="lineNum">     265</span>                 :             :      */</span>
+<span id="L266"><span class="lineNum">     266</span>                 :             :     tOffset calcHeadingXY(double Heading, double distanceX, double distanceY);</span>
+<span id="L267"><span class="lineNum">     267</span>                 :             : </span>
+<span id="L268"><span class="lineNum">     268</span>                 :             :     /**</span>
+<span id="L269"><span class="lineNum">     269</span>                 :             :      * @brief Get the Tree object</span>
+<span id="L270"><span class="lineNum">     270</span>                 :             :      * @return struct TreeNode* </span>
+<span id="L271"><span class="lineNum">     271</span>                 :             :      */</span>
+<span id="L272"><span class="lineNum">     272</span>                 :             :     struct TreeNode *getTree();</span>
+<span id="L273"><span class="lineNum">     273</span>                 :             : </span>
+<span id="L274"><span class="lineNum">     274</span>                 :             :     /**</span>
+<span id="L275"><span class="lineNum">     275</span>                 :             :      * @brief Set the Tree object</span>
+<span id="L276"><span class="lineNum">     276</span>                 :             :      * @param Node (set the Node to mTree)</span>
+<span id="L277"><span class="lineNum">     277</span>                 :             :      */</span>
+<span id="L278"><span class="lineNum">     278</span>                 :             :     void setTree(struct TreeNode *Node);</span>
+<span id="L279"><span class="lineNum">     279</span>                 :             :     </span>
+<span id="L280"><span class="lineNum">     280</span>                 :             :     /**</span>
+<span id="L281"><span class="lineNum">     281</span>                 :             :      * @brief Get the Map Mutex Status object</span>
+<span id="L282"><span class="lineNum">     282</span>                 :             :      * @return true (mapThreadMutex is locked)</span>
+<span id="L283"><span class="lineNum">     283</span>                 :             :      * @return false (mapThreadMutex is unlocked)</span>
+<span id="L284"><span class="lineNum">     284</span>                 :             :      */</span>
+<span id="L285"><span class="lineNum">     285</span>                 :             :     bool getMapMutexStatus();</span>
+<span id="L286"><span class="lineNum">     286</span>                 :             : </span>
+<span id="L287"><span class="lineNum">     287</span>                 :             :     /**</span>
+<span id="L288"><span class="lineNum">     288</span>                 :             :      * @brief Set the Map Mutex Status object (for gtest branch coverage)</span>
+<span id="L289"><span class="lineNum">     289</span>                 :             :      * @param MutexStatus </span>
+<span id="L290"><span class="lineNum">     290</span>                 :             :      */</span>
+<span id="L291"><span class="lineNum">     291</span>                 :             :     void setMapMutexStatus(bool MutexStatus);</span>
+<span id="L292"><span class="lineNum">     292</span>                 :             : </span>
+<span id="L293"><span class="lineNum">     293</span>                 :             :     //private:</span>
+<span id="L294"><span class="lineNum">     294</span>                 :             :     static PsdMap* pInstance;   /**&lt;A pointer used to return the object of  the class of PsdMap*/</span>
+<span id="L295"><span class="lineNum">     295</span>                 :             :     </span>
+<span id="L296"><span class="lineNum">     296</span>                 :             :     /**</span>
+<span id="L297"><span class="lineNum">     297</span>                 :             :      * @brief Construct a new PsdMap object</span>
+<span id="L298"><span class="lineNum">     298</span>                 :             :      */</span>
+<span id="L299"><span class="lineNum">     299</span>                 :             :     PsdMap(/* args */);</span>
+<span id="L300"><span class="lineNum">     300</span>                 :             : </span>
+<span id="L301"><span class="lineNum">     301</span>                 :             :     /**</span>
+<span id="L302"><span class="lineNum">     302</span>                 :             :      * @brief Destroy the PsdMap object</span>
+<span id="L303"><span class="lineNum">     303</span>                 :             :      */</span>
+<span id="L304"><span class="lineNum">     304</span>                 :             :     ~PsdMap();</span>
+<span id="L305"><span class="lineNum">     305</span>                 :             : };</span>
+<span id="L306"><span class="lineNum">     306</span>                 :             : </span>
+<span id="L307"><span class="lineNum">     307</span>                 :             : void *PsdMapRun(void *arg);</span>
+<span id="L308"><span class="lineNum">     308</span>                 :             : </span>
+<span id="L309"><span class="lineNum">     309</span>                 :             : #endif /*_PSDMAP_H_*/</span>
+<span id="L310"><span class="lineNum">     310</span>                 :             : </span>
         </pre>
               </td>
             </tr>

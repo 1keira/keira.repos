@@ -4903,17 +4903,6 @@ TEST_F(PsdMapTest, useRealRecordPsdWithCurve_phase2)
                     {
                         pPsdMapData->mpp =1;
                     }
-                    // /*PSD_Geradester_Pfad*/
-                    // iter = keyValueMap.find("PSD_Geradester_Pfad");
-                    // if (iter->second == "nicht_geradester_PFad")
-                    // {
-                    //     pPsdMapData->sp = 0;
-                    // }
-                    // else 
-                    // if (iter->second == "geradester_Pfad")
-                    // {
-                    //     pPsdMapData->sp = 1;
-                    // }
                     /*PSD_Segment_Komplett*/
                     iter = keyValueMap.find("PSD_Segment_Komplett");
                     if (iter->second == "Segment_Attribute_nicht_komplett")
