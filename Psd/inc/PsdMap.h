@@ -222,9 +222,10 @@ public:
      * @brief The function is to calculate the offset corresponding to the angle of rotation of the arc from the beginning position to the end position of this segment
      * @param arcR (radius of the arc)
      * @param arcRotationAngle (the angle of rotation of the arc)
-     * @return tOffset (vertical offset x and horizontal offset y after rotating angle)
+     * @param signCurvature (the positive and negative effects of curvature determine the positive and negative effects of dy)
+     * @return tOffset (dx and dy with rotating angle)
      */
-    tOffset calcCurveXYOffset(double arcR, double arcRotationAngle);
+    tOffset calcCurveXYOffset(double arcR, double arcRotationAngle, bool signCurvature);
 
     #if 0
     /**
