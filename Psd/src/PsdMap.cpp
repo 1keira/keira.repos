@@ -270,8 +270,8 @@ struct PsdMapData PsdMap::calcChildSegmentCoordinate(struct TreeNode *childNode)
         printf("[%s] [%d]: finalRemainLength = %f\n", __FUNCTION__, __LINE__, finalRemainLength);
         if (KL == Kstart)
         {
-            // arcRotationAngleRad = (finalRemainLength / R) * (childNode->MapData.signStartCurvature ? -1 : 1) * (-1);
-            // arcRotationAngleRad = (finalRemainLength / R); 
+            //for the case of arcs
+            printf("[%s] [%d]: KL == Kstart\n", __FUNCTION__, __LINE__);
             arcRotationAngleRad = (finalRemainLength / R); 
             XY = calcCurveXYOffset(R, Haversine::toDegrees(arcRotationAngleRad), childNode->MapData.signEndCurvature);
             XY = coordinateSystemRotates(childNode->MapData.accumulateBranchAngle, XY.distanceX, XY.distanceY);
@@ -295,13 +295,41 @@ struct PsdMapData PsdMap::calcChildSegmentCoordinate(struct TreeNode *childNode)
             }
             printf("[%s] [%d]: fixed childNode->MapData.accumulateBranchAngle = %f\n", __FUNCTION__, __LINE__, childNode->MapData.accumulateBranchAngle);
         }
+        else 
+        if ((KL != Kstart) && ((KL <= 0.0 && Kstart >= 0.0) || (KL >= 0.0 && Kstart <= 0.0)))
+        {
+            //for the case of variable curvature curves, (+) and (-) of the Kstart and KL is not consistent, take the average value as a arc between Kstart and KL
+            printf("[%s] [%d]: KL != Kstart and (+) and (-) of the Kstart and KL is not consistent\n", __FUNCTION__, __LINE__);
+            double averageCurvature = (KL + Kstart) / 2.0;
+            R = 1.0 / std::fabs(averageCurvature);
+            printf("[%s] [%d]:fixed R = %f\n", __FUNCTION__, __LINE__, R);
+            arcRotationAngleRad = (finalRemainLength / R); 
+            XY = calcCurveXYOffset(R, Haversine::toDegrees(arcRotationAngleRad), childNode->MapData.signEndCurvature);
+            XY = coordinateSystemRotates(childNode->MapData.accumulateBranchAngle, XY.distanceX, XY.distanceY);
+            childNode->MapData.accumulateXY.distanceX += XY.distanceX;
+            childNode->MapData.accumulateXY.distanceY += XY.distanceY;
+            printf("[%s] [%d]: accumulateXY.distanceX = %f, accumulateXY.distanceY = %f\n", __FUNCTION__, __LINE__, childNode->MapData.accumulateXY.distanceX, childNode->MapData.accumulateXY.distanceY);  
+            childNode->MapData.endCoordinate = Haversine::calcDestination(PsdMessageDecoder::getInstance()->getSelfSegment().hvCoordinate, childNode->MapData.accumulateXY.distanceY, childNode->MapData.accumulateXY.distanceX);
+            printf("[%s] [%d]: childSegment's endCoordinate latitude = %f  longitude = %f\n", __FUNCTION__, __LINE__, childNode->MapData.endCoordinate.latitude, childNode->MapData.endCoordinate.longitude);
+            //Note: consider arcRotationAngle's +-. When the curvature is +, the tangent rotates left from the previous point, so the arcRotationAngle should be -. When the curvature is -, the tangent rotates right from the previous point, so the arcRotationAngle should be +.
+            arcRotationAngleRad *= (childNode->MapData.signEndCurvature ? -1 : 1) * (-1);
+            childNode->MapData.accumulateBranchAngle += Haversine::toDegrees(arcRotationAngleRad);  //no need * (-1), because of in the forward of HV position
+            printf("[%s] [%d]: childNode->MapData.accumulateBranchAngle = %f\n", __FUNCTION__, __LINE__, childNode->MapData.accumulateBranchAngle);
+            if (childNode->MapData.accumulateBranchAngle > 360.0)
+            {
+                childNode->MapData.accumulateBranchAngle -= 360.0;
+            }
+            else 
+            if (childNode->MapData.accumulateBranchAngle < -360.0)
+            {
+                childNode->MapData.accumulateBranchAngle += 360.0;
+            }
+            printf("[%s] [%d]: fixed childNode->MapData.accumulateBranchAngle = %f\n", __FUNCTION__, __LINE__, childNode->MapData.accumulateBranchAngle);
+        }
         else
         {
-            // double averageCurve = (KL + K0) / 2.0;
-            // R = 1.0 / std::fabs(averageCurve);
-            // printf("[%s] [%d]:fixed R = %f\n", __FUNCTION__, __LINE__, R);
-            // arcRotationAngleRad = (finalRemainLength / R) * (childNode->MapData.signStartCurvature ? -1 : 1) * (-1);            
-            // arcRotationAngleRad = (finalRemainLength / R); 
+            //for the case of variable curvature curves, (+) and (-) of the Kstart and KL is consistent, split into two arcs
+            printf("[%s] [%d]: KL != Kstart and (+) and (-) of the Kstart and KL is consistent\n", __FUNCTION__, __LINE__);
             //the arc corresponding to Ca
             double Ca = Kstart;
             double Ce = KL;
