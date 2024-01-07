@@ -31,27 +31,27 @@
             <td class="headerValue">PsdModule.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntryMed">75.2&nbsp;%</td>
+            <td class="headerCovTableEntryMed">81.0&nbsp;%</td>
             <td class="headerCovTableEntry">121</td>
-            <td class="headerCovTableEntry">91</td>
+            <td class="headerCovTableEntry">98</td>
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2024-01-04 14:42:00</td>
+            <td class="headerValue">2024-01-07 18:55:15</td>
             <td></td>
             <td class="headerItem">Functions:</td>
-            <td class="headerCovTableEntryLo">67.1&nbsp;%</td>
+            <td class="headerCovTableEntryLo">73.4&nbsp;%</td>
             <td class="headerCovTableEntry">79</td>
-            <td class="headerCovTableEntry">53</td>
+            <td class="headerCovTableEntry">58</td>
           </tr>
           <tr>
             <td></td>
             <td></td>
             <td></td>
             <td class="headerItem">Branches:</td>
-            <td class="headerCovTableEntryLo">31.6&nbsp;%</td>
+            <td class="headerCovTableEntryLo">39.5&nbsp;%</td>
             <td class="headerCovTableEntry">38</td>
-            <td class="headerCovTableEntry">12</td>
+            <td class="headerCovTableEntry">15</td>
           </tr>
                   <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
                 </table>
@@ -183,12 +183,12 @@
 <span id="L112"><span class="lineNum">     112</span>                 :             :       typedef _Alloc allocator_type;</span>
 <span id="L113"><span class="lineNum">     113</span>                 :             : </span>
 <span id="L114"><span class="lineNum">     114</span>                 :             :       _Tp_alloc_type&amp;</span>
-<span id="L115"><span class="lineNum">     115</span>                 :<span class="tlaGNC">         287 :       _M_get_Tp_allocator() _GLIBCXX_NOEXCEPT</span></span>
-<span id="L116"><span class="lineNum">     116</span>                 :<span class="tlaGNC">         287 :       { return *static_cast&lt;_Tp_alloc_type*&gt;(&amp;this-&gt;_M_impl); }</span></span>
+<span id="L115"><span class="lineNum">     115</span>                 :<span class="tlaGNC">         302 :       _M_get_Tp_allocator() _GLIBCXX_NOEXCEPT</span></span>
+<span id="L116"><span class="lineNum">     116</span>                 :<span class="tlaGNC">         302 :       { return *static_cast&lt;_Tp_alloc_type*&gt;(&amp;this-&gt;_M_impl); }</span></span>
 <span id="L117"><span class="lineNum">     117</span>                 :             : </span>
 <span id="L118"><span class="lineNum">     118</span>                 :             :       const _Tp_alloc_type&amp;</span>
-<span id="L119"><span class="lineNum">     119</span>                 :<span class="tlaGNC">         112 :       _M_get_Tp_allocator() const _GLIBCXX_NOEXCEPT</span></span>
-<span id="L120"><span class="lineNum">     120</span>                 :<span class="tlaGNC">         112 :       { return *static_cast&lt;const _Tp_alloc_type*&gt;(&amp;this-&gt;_M_impl); }</span></span>
+<span id="L119"><span class="lineNum">     119</span>                 :<span class="tlaGNC">         120 :       _M_get_Tp_allocator() const _GLIBCXX_NOEXCEPT</span></span>
+<span id="L120"><span class="lineNum">     120</span>                 :<span class="tlaGNC">         120 :       { return *static_cast&lt;const _Tp_alloc_type*&gt;(&amp;this-&gt;_M_impl); }</span></span>
 <span id="L121"><span class="lineNum">     121</span>                 :             : </span>
 <span id="L122"><span class="lineNum">     122</span>                 :             :       allocator_type</span>
 <span id="L123"><span class="lineNum">     123</span>                 :<span class="tlaGNC">          34 :       get_allocator() const _GLIBCXX_NOEXCEPT</span></span>
@@ -237,21 +237,21 @@
 <span id="L166"><span class="lineNum">     166</span>                 :             :       _Vector_impl _M_impl;</span>
 <span id="L167"><span class="lineNum">     167</span>                 :             : </span>
 <span id="L168"><span class="lineNum">     168</span>                 :             :       pointer</span>
-<span id="L169"><span class="lineNum">     169</span>                 :<span class="tlaGNC">          56 :       _M_allocate(size_t __n)</span></span>
+<span id="L169"><span class="lineNum">     169</span>                 :<span class="tlaGNC">          63 :       _M_allocate(size_t __n)</span></span>
 <span id="L170"><span class="lineNum">     170</span>                 :             :       {</span>
 <span id="L171"><span class="lineNum">     171</span>                 :             :         typedef __gnu_cxx::__alloc_traits&lt;_Tp_alloc_type&gt; _Tr;</span>
-<span id="L172"><span class="lineNum">     172</span>   [<span class="tlaGBC" title="Branch 0 was taken 2 times"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span><span class="tlaUNC" title="Branch 2 was not executed"> # </span><span class="tlaUNC" title="Branch 3 was not executed"> # </span>]:<span class="tlaGNC">          56 :         return __n != 0 ? _Tr::allocate(_M_impl, __n) : pointer();</span></span>
-<span class="lineNum">        </span>         [<span class="tlaUNC" title="Branch 0 was not taken"> - </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]
+<span id="L172"><span class="lineNum">     172</span>   [<span class="tlaGBC" title="Branch 0 was taken 2 times"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span><span class="tlaUNC" title="Branch 2 was not executed"> # </span><span class="tlaUNC" title="Branch 3 was not executed"> # </span>]:<span class="tlaGNC">          63 :         return __n != 0 ? _Tr::allocate(_M_impl, __n) : pointer();</span></span>
+<span class="lineNum">        </span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]
 <span id="L173"><span class="lineNum">     173</span>                 :             :       }</span>
 <span id="L174"><span class="lineNum">     174</span>                 :             : </span>
 <span id="L175"><span class="lineNum">     175</span>                 :             :       void</span>
-<span id="L176"><span class="lineNum">     176</span>                 :<span class="tlaGNC">          90 :       _M_deallocate(pointer __p, size_t __n)</span></span>
+<span id="L176"><span class="lineNum">     176</span>                 :<span class="tlaGNC">          97 :       _M_deallocate(pointer __p, size_t __n)</span></span>
 <span id="L177"><span class="lineNum">     177</span>                 :             :       {</span>
 <span id="L178"><span class="lineNum">     178</span>                 :             :         typedef __gnu_cxx::__alloc_traits&lt;_Tp_alloc_type&gt; _Tr;</span>
-<span id="L179"><span class="lineNum">     179</span>   [<span class="tlaGBC" title="Branch 0 was taken 2 times"> + </span><span class="tlaGBC" title="Branch 1 was taken 2 times"> + </span><span class="tlaUNC" title="Branch 2 was not executed"> # </span><span class="tlaUNC" title="Branch 3 was not executed"> # </span>]:<span class="tlaGNC">          90 :         if (__p)</span></span>
-<span class="lineNum">        </span>         [<span class="tlaUNC" title="Branch 0 was not taken"> - </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]
-<span id="L180"><span class="lineNum">     180</span>                 :<span class="tlaGNC">           6 :           _Tr::deallocate(_M_impl, __p, __n);</span></span>
-<span id="L181"><span class="lineNum">     181</span>                 :<span class="tlaGNC">          90 :       }</span></span>
+<span id="L179"><span class="lineNum">     179</span>   [<span class="tlaGBC" title="Branch 0 was taken 2 times"> + </span><span class="tlaGBC" title="Branch 1 was taken 2 times"> + </span><span class="tlaUNC" title="Branch 2 was not executed"> # </span><span class="tlaUNC" title="Branch 3 was not executed"> # </span>]:<span class="tlaGNC">          97 :         if (__p)</span></span>
+<span class="lineNum">        </span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]
+<span id="L180"><span class="lineNum">     180</span>                 :<span class="tlaGNC">          13 :           _Tr::deallocate(_M_impl, __p, __n);</span></span>
+<span id="L181"><span class="lineNum">     181</span>                 :<span class="tlaGNC">          97 :       }</span></span>
 <span id="L182"><span class="lineNum">     182</span>                 :             : </span>
 <span id="L183"><span class="lineNum">     183</span>                 :             :     private:</span>
 <span id="L184"><span class="lineNum">     184</span>                 :             :       void</span>
@@ -633,8 +633,8 @@
 <span id="L560"><span class="lineNum">     560</span>                 :             :        *  element order.</span>
 <span id="L561"><span class="lineNum">     561</span>                 :             :        */</span>
 <span id="L562"><span class="lineNum">     562</span>                 :             :       iterator</span>
-<span id="L563"><span class="lineNum">     563</span>                 :<span class="tlaGNC">         194 :       begin() _GLIBCXX_NOEXCEPT</span></span>
-<span id="L564"><span class="lineNum">     564</span>                 :<span class="tlaGNC">         194 :       { return iterator(this-&gt;_M_impl._M_start); }</span></span>
+<span id="L563"><span class="lineNum">     563</span>                 :<span class="tlaGNC">         198 :       begin() _GLIBCXX_NOEXCEPT</span></span>
+<span id="L564"><span class="lineNum">     564</span>                 :<span class="tlaGNC">         198 :       { return iterator(this-&gt;_M_impl._M_start); }</span></span>
 <span id="L565"><span class="lineNum">     565</span>                 :             : </span>
 <span id="L566"><span class="lineNum">     566</span>                 :             :       /**</span>
 <span id="L567"><span class="lineNum">     567</span>                 :             :        *  Returns a read-only (constant) iterator that points to the</span>
@@ -651,8 +651,8 @@
 <span id="L578"><span class="lineNum">     578</span>                 :             :        *  element order.</span>
 <span id="L579"><span class="lineNum">     579</span>                 :             :        */</span>
 <span id="L580"><span class="lineNum">     580</span>                 :             :       iterator</span>
-<span id="L581"><span class="lineNum">     581</span>                 :<span class="tlaGNC">         225 :       end() _GLIBCXX_NOEXCEPT</span></span>
-<span id="L582"><span class="lineNum">     582</span>                 :<span class="tlaGNC">         225 :       { return iterator(this-&gt;_M_impl._M_finish); }</span></span>
+<span id="L581"><span class="lineNum">     581</span>                 :<span class="tlaGNC">         229 :       end() _GLIBCXX_NOEXCEPT</span></span>
+<span id="L582"><span class="lineNum">     582</span>                 :<span class="tlaGNC">         229 :       { return iterator(this-&gt;_M_impl._M_finish); }</span></span>
 <span id="L583"><span class="lineNum">     583</span>                 :             : </span>
 <span id="L584"><span class="lineNum">     584</span>                 :             :       /**</span>
 <span id="L585"><span class="lineNum">     585</span>                 :             :        *  Returns a read-only (constant) iterator that points one past</span>
@@ -706,8 +706,8 @@
 <span id="L633"><span class="lineNum">     633</span>                 :             :        *  element order.</span>
 <span id="L634"><span class="lineNum">     634</span>                 :             :        */</span>
 <span id="L635"><span class="lineNum">     635</span>                 :             :       const_iterator</span>
-<span id="L636"><span class="lineNum">     636</span>                 :<span class="tlaUNC tlaBgUNC">           0 :       cbegin() const noexcept</span></span>
-<span id="L637"><span class="lineNum">     637</span>                 :<span class="tlaUNC">           0 :       { return const_iterator(this-&gt;_M_impl._M_start); }</span></span>
+<span id="L636"><span class="lineNum">     636</span>                 :<span class="tlaGNC">           1 :       cbegin() const noexcept</span></span>
+<span id="L637"><span class="lineNum">     637</span>                 :<span class="tlaGNC">           1 :       { return const_iterator(this-&gt;_M_impl._M_start); }</span></span>
 <span id="L638"><span class="lineNum">     638</span>                 :             : </span>
 <span id="L639"><span class="lineNum">     639</span>                 :             :       /**</span>
 <span id="L640"><span class="lineNum">     640</span>                 :             :        *  Returns a read-only (constant) iterator that points one past</span>
@@ -740,13 +740,13 @@
 <span id="L667"><span class="lineNum">     667</span>                 :             :       // [23.2.4.2] capacity</span>
 <span id="L668"><span class="lineNum">     668</span>                 :             :       /**  Returns the number of elements in the %vector.  */</span>
 <span id="L669"><span class="lineNum">     669</span>                 :             :       size_type</span>
-<span id="L670"><span class="lineNum">     670</span>                 :<span class="tlaGNC tlaBgGNC">         225 :       size() const _GLIBCXX_NOEXCEPT</span></span>
-<span id="L671"><span class="lineNum">     671</span>                 :<span class="tlaGNC">         225 :       { return size_type(this-&gt;_M_impl._M_finish - this-&gt;_M_impl._M_start); }</span></span>
+<span id="L670"><span class="lineNum">     670</span>                 :<span class="tlaGNC">         238 :       size() const _GLIBCXX_NOEXCEPT</span></span>
+<span id="L671"><span class="lineNum">     671</span>                 :<span class="tlaGNC">         238 :       { return size_type(this-&gt;_M_impl._M_finish - this-&gt;_M_impl._M_start); }</span></span>
 <span id="L672"><span class="lineNum">     672</span>                 :             : </span>
 <span id="L673"><span class="lineNum">     673</span>                 :             :       /**  Returns the size() of the largest possible %vector.  */</span>
 <span id="L674"><span class="lineNum">     674</span>                 :             :       size_type</span>
-<span id="L675"><span class="lineNum">     675</span>                 :<span class="tlaGNC">          44 :       max_size() const _GLIBCXX_NOEXCEPT</span></span>
-<span id="L676"><span class="lineNum">     676</span>                 :<span class="tlaGNC">          44 :       { return _Alloc_traits::max_size(_M_get_Tp_allocator()); }</span></span>
+<span id="L675"><span class="lineNum">     675</span>                 :<span class="tlaGNC">          52 :       max_size() const _GLIBCXX_NOEXCEPT</span></span>
+<span id="L676"><span class="lineNum">     676</span>                 :<span class="tlaGNC">          52 :       { return _Alloc_traits::max_size(_M_get_Tp_allocator()); }</span></span>
 <span id="L677"><span class="lineNum">     677</span>                 :             : </span>
 <span id="L678"><span class="lineNum">     678</span>                 :             : #if __cplusplus &gt;= 201103L</span>
 <span id="L679"><span class="lineNum">     679</span>                 :             :       /**</span>
@@ -1009,18 +1009,18 @@
 <span id="L936"><span class="lineNum">     936</span>                 :             :        *  available.</span>
 <span id="L937"><span class="lineNum">     937</span>                 :             :        */</span>
 <span id="L938"><span class="lineNum">     938</span>                 :             :       void</span>
-<span id="L939"><span class="lineNum">     939</span>                 :<span class="tlaGNC tlaBgGNC">          16 :       push_back(const value_type&amp; __x)</span></span>
+<span id="L939"><span class="lineNum">     939</span>                 :<span class="tlaGNC tlaBgGNC">          19 :       push_back(const value_type&amp; __x)</span></span>
 <span id="L940"><span class="lineNum">     940</span>                 :             :       {</span>
-<span id="L941"><span class="lineNum">     941</span>   [<span class="tlaUNC" title="Branch 0 was not taken"> - </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 2 was not executed"> # </span><span class="tlaUNC" title="Branch 3 was not executed"> # </span>]:<span class="tlaGNC">          16 :         if (this-&gt;_M_impl._M_finish != this-&gt;_M_impl._M_end_of_storage)</span></span>
-<span class="lineNum">        </span>         [<span class="tlaUNC" title="Branch 0 was not executed"> # </span><span class="tlaUNC" title="Branch 1 was not executed"> # </span>]
+<span id="L941"><span class="lineNum">     941</span>         [<span class="tlaUNC" title="Branch 0 was not taken"> - </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]:<span class="tlaGNC">          19 :         if (this-&gt;_M_impl._M_finish != this-&gt;_M_impl._M_end_of_storage)</span></span>
+<span class="lineNum">        </span>   [<span class="tlaUNC" title="Branch 0 was not taken"> - </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 2 was not executed"> # </span><span class="tlaUNC" title="Branch 3 was not executed"> # </span>]
 <span id="L942"><span class="lineNum">     942</span>                 :             :           {</span>
 <span id="L943"><span class="lineNum">     943</span>                 :<span class="tlaUNC tlaBgUNC">           0 :             _Alloc_traits::construct(this-&gt;_M_impl, this-&gt;_M_impl._M_finish,</span></span>
 <span id="L944"><span class="lineNum">     944</span>                 :             :                                      __x);</span>
 <span id="L945"><span class="lineNum">     945</span>                 :<span class="tlaUNC">           0 :             ++this-&gt;_M_impl._M_finish;</span></span>
 <span id="L946"><span class="lineNum">     946</span>                 :             :           }</span>
 <span id="L947"><span class="lineNum">     947</span>                 :             :         else</span>
-<span id="L948"><span class="lineNum">     948</span>                 :<span class="tlaGNC tlaBgGNC">          16 :           _M_realloc_insert(end(), __x);</span></span>
-<span id="L949"><span class="lineNum">     949</span>                 :<span class="tlaGNC">          16 :       }</span></span>
+<span id="L948"><span class="lineNum">     948</span>                 :<span class="tlaGNC tlaBgGNC">          19 :           _M_realloc_insert(end(), __x);</span></span>
+<span id="L949"><span class="lineNum">     949</span>                 :<span class="tlaGNC">          19 :       }</span></span>
 <span id="L950"><span class="lineNum">     950</span>                 :             : </span>
 <span id="L951"><span class="lineNum">     951</span>                 :             : #if __cplusplus &gt;= 201103L</span>
 <span id="L952"><span class="lineNum">     952</span>                 :             :       void</span>
@@ -1328,15 +1328,15 @@
 <span id="L1254"><span class="lineNum">    1254</span>                 :             :        */</span>
 <span id="L1255"><span class="lineNum">    1255</span>                 :             :       template&lt;typename _ForwardIterator&gt;</span>
 <span id="L1256"><span class="lineNum">    1256</span>                 :             :         pointer</span>
-<span id="L1257"><span class="lineNum">    1257</span>                 :<span class="tlaUNC tlaBgUNC">           0 :         _M_allocate_and_copy(size_type __n,</span></span>
+<span id="L1257"><span class="lineNum">    1257</span>                 :<span class="tlaGNC">           3 :         _M_allocate_and_copy(size_type __n,</span></span>
 <span id="L1258"><span class="lineNum">    1258</span>                 :             :                              _ForwardIterator __first, _ForwardIterator __last)</span>
 <span id="L1259"><span class="lineNum">    1259</span>                 :             :         {</span>
-<span id="L1260"><span class="lineNum">    1260</span>                 :<span class="tlaUNC">           0 :           pointer __result = this-&gt;_M_allocate(__n);</span></span>
+<span id="L1260"><span class="lineNum">    1260</span>                 :<span class="tlaGNC">           3 :           pointer __result = this-&gt;_M_allocate(__n);</span></span>
 <span id="L1261"><span class="lineNum">    1261</span>                 :             :           __try</span>
 <span id="L1262"><span class="lineNum">    1262</span>                 :             :             {</span>
-<span id="L1263"><span class="lineNum">    1263</span>                 :<span class="tlaUNC">           0 :               std::__uninitialized_copy_a(__first, __last, __result,</span></span>
-<span id="L1264"><span class="lineNum">    1264</span>                 :<span class="tlaUNC">           0 :                                           _M_get_Tp_allocator());</span></span>
-<span id="L1265"><span class="lineNum">    1265</span>                 :<span class="tlaUNC">           0 :               return __result;</span></span>
+<span id="L1263"><span class="lineNum">    1263</span>                 :<span class="tlaGNC">           3 :               std::__uninitialized_copy_a(__first, __last, __result,</span></span>
+<span id="L1264"><span class="lineNum">    1264</span>                 :<span class="tlaGNC">           3 :                                           _M_get_Tp_allocator());</span></span>
+<span id="L1265"><span class="lineNum">    1265</span>                 :<span class="tlaGNC">           3 :               return __result;</span></span>
 <span id="L1266"><span class="lineNum">    1266</span>                 :             :             }</span>
 <span id="L1267"><span class="lineNum">    1267</span>                 :             :           __catch(...)</span>
 <span id="L1268"><span class="lineNum">    1268</span>                 :             :             {</span>
@@ -1526,7 +1526,7 @@
 <span id="L1452"><span class="lineNum">    1452</span>                 :             :       {</span>
 <span id="L1453"><span class="lineNum">    1453</span>                 :             :         template&lt;typename... _Args&gt;</span>
 <span id="L1454"><span class="lineNum">    1454</span>                 :             :           explicit</span>
-<span id="L1455"><span class="lineNum">    1455</span>                 :<span class="tlaUNC">           0 :           _Temporary_value(vector* __vec, _Args&amp;&amp;... __args) : _M_this(__vec)</span></span>
+<span id="L1455"><span class="lineNum">    1455</span>                 :<span class="tlaUNC tlaBgUNC">           0 :           _Temporary_value(vector* __vec, _Args&amp;&amp;... __args) : _M_this(__vec)</span></span>
 <span id="L1456"><span class="lineNum">    1456</span>                 :             :           {</span>
 <span id="L1457"><span class="lineNum">    1457</span>                 :<span class="tlaUNC">           0 :             _Alloc_traits::construct(_M_this-&gt;_M_impl, _M_ptr(),</span></span>
 <span id="L1458"><span class="lineNum">    1458</span>                 :             :                                      std::forward&lt;_Args&gt;(__args)...);</span>
@@ -1573,16 +1573,16 @@
 <span id="L1499"><span class="lineNum">    1499</span>                 :             : </span>
 <span id="L1500"><span class="lineNum">    1500</span>                 :             :       // Called by _M_fill_insert, _M_insert_aux etc.</span>
 <span id="L1501"><span class="lineNum">    1501</span>                 :             :       size_type</span>
-<span id="L1502"><span class="lineNum">    1502</span>                 :<span class="tlaGNC tlaBgGNC">          22 :       _M_check_len(size_type __n, const char* __s) const</span></span>
+<span id="L1502"><span class="lineNum">    1502</span>                 :<span class="tlaGNC tlaBgGNC">          26 :       _M_check_len(size_type __n, const char* __s) const</span></span>
 <span id="L1503"><span class="lineNum">    1503</span>                 :             :       {</span>
-<span id="L1504"><span class="lineNum">    1504</span>   [<span class="tlaUNC" title="Branch 0 was not taken"> - </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 2 was not executed"> # </span><span class="tlaUNC" title="Branch 3 was not executed"> # </span>]:<span class="tlaGNC">          22 :         if (max_size() - size() &lt; __n)</span></span>
-<span class="lineNum">        </span>         [<span class="tlaUNC" title="Branch 0 was not taken"> - </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]
+<span id="L1504"><span class="lineNum">    1504</span>         [<span class="tlaUNC" title="Branch 0 was not taken"> - </span><span class="tlaGBC" title="Branch 1 was taken 2 times"> + </span>]:<span class="tlaGNC">          26 :         if (max_size() - size() &lt; __n)</span></span>
+<span class="lineNum">        </span>   [<span class="tlaUNC" title="Branch 0 was not taken"> - </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 2 was not executed"> # </span><span class="tlaUNC" title="Branch 3 was not executed"> # </span>]
 <span id="L1505"><span class="lineNum">    1505</span>                 :<span class="tlaUNC tlaBgUNC">           0 :           __throw_length_error(__N(__s));</span></span>
 <span id="L1506"><span class="lineNum">    1506</span>                 :             : </span>
-<span id="L1507"><span class="lineNum">    1507</span>                 :<span class="tlaGNC tlaBgGNC">          22 :         const size_type __len = size() + std::max(size(), __n);</span></span>
-<span id="L1508"><span class="lineNum">    1508</span>   [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span><span class="tlaUNC" title="Branch 2 was not taken"> - </span><span class="tlaGBC" title="Branch 3 was taken 1 time"> + </span> :<span class="tlaGNC">          22 :         return (__len &lt; size() || __len &gt; max_size()) ? max_size() : __len;</span></span>
+<span id="L1507"><span class="lineNum">    1507</span>                 :<span class="tlaGNC tlaBgGNC">          26 :         const size_type __len = size() + std::max(size(), __n);</span></span>
+<span id="L1508"><span class="lineNum">    1508</span>   [<span class="tlaGBC" title="Branch 0 was taken 2 times"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span><span class="tlaUNC" title="Branch 2 was not taken"> - </span><span class="tlaGBC" title="Branch 3 was taken 2 times"> + </span>]:<span class="tlaGNC">          26 :         return (__len &lt; size() || __len &gt; max_size()) ? max_size() : __len;</span></span>
+<span class="lineNum">        </span>   [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span><span class="tlaUNC" title="Branch 2 was not taken"> - </span><span class="tlaGBC" title="Branch 3 was taken 1 time"> + </span> 
 <span class="lineNum">        </span>    <span class="tlaUNC" title="Branch 4 was not executed"> # </span><span class="tlaUNC" title="Branch 5 was not executed"> # </span><span class="tlaUNC" title="Branch 6 was not executed"> # </span><span class="tlaUNC" title="Branch 7 was not executed"> # </span>]
-<span class="lineNum">        </span>   [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span><span class="tlaUNC" title="Branch 2 was not taken"> - </span><span class="tlaGBC" title="Branch 3 was taken 1 time"> + </span>]
 <span id="L1509"><span class="lineNum">    1509</span>                 :             :       }</span>
 <span id="L1510"><span class="lineNum">    1510</span>                 :             : </span>
 <span id="L1511"><span class="lineNum">    1511</span>                 :             :       // Internal erase functions follow.</span>
