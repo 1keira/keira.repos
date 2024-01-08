@@ -290,6 +290,12 @@ public:
      */
     void setMapMutexStatus(bool MutexStatus);
 
+    /**
+     * @brief Set the input accumulateBranchAngle value range to: [-2π, 0]∪(0, +2π]
+     * @param accumulateBranchAngle 
+     */
+    void fixedAccumulateBranchAngle(double &accumulateBranchAngle);
+
     //private:
     static PsdMap* pInstance;   /**<A pointer used to return the object of  the class of PsdMap*/
     

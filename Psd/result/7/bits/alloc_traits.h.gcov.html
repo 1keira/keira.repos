@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2024-01-07 20:15:00</td>
+            <td class="headerValue">2024-01-08 23:25:38</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryLo">71.4&nbsp;%</td>
@@ -503,8 +503,8 @@
 <span id="L432"><span class="lineNum">     432</span>                 :             :        *  Calls @c a.allocate(n)</span>
 <span id="L433"><span class="lineNum">     433</span>                 :             :       */</span>
 <span id="L434"><span class="lineNum">     434</span>                 :             :       static pointer</span>
-<span id="L435"><span class="lineNum">     435</span>                 :<span class="tlaGNC tlaBgGNC">          31 :       allocate(allocator_type&amp; __a, size_type __n)</span></span>
-<span id="L436"><span class="lineNum">     436</span>                 :<span class="tlaGNC">          31 :       { return __a.allocate(__n); }</span></span>
+<span id="L435"><span class="lineNum">     435</span>                 :<span class="tlaGNC tlaBgGNC">          35 :       allocate(allocator_type&amp; __a, size_type __n)</span></span>
+<span id="L436"><span class="lineNum">     436</span>                 :<span class="tlaGNC">          35 :       { return __a.allocate(__n); }</span></span>
 <span id="L437"><span class="lineNum">     437</span>                 :             : </span>
 <span id="L438"><span class="lineNum">     438</span>                 :             :       /**</span>
 <span id="L439"><span class="lineNum">     439</span>                 :             :        *  @brief  Allocate memory.</span>
@@ -529,8 +529,8 @@
 <span id="L458"><span class="lineNum">     458</span>                 :             :        *  Calls &lt;tt&gt; a.deallocate(p, n) &lt;/tt&gt;</span>
 <span id="L459"><span class="lineNum">     459</span>                 :             :       */</span>
 <span id="L460"><span class="lineNum">     460</span>                 :             :       static void</span>
-<span id="L461"><span class="lineNum">     461</span>                 :<span class="tlaGNC">          11 :       deallocate(allocator_type&amp; __a, pointer __p, size_type __n)</span></span>
-<span id="L462"><span class="lineNum">     462</span>                 :<span class="tlaGNC">          11 :       { __a.deallocate(__p, __n); }</span></span>
+<span id="L461"><span class="lineNum">     461</span>                 :<span class="tlaGNC">          13 :       deallocate(allocator_type&amp; __a, pointer __p, size_type __n)</span></span>
+<span id="L462"><span class="lineNum">     462</span>                 :<span class="tlaGNC">          13 :       { __a.deallocate(__p, __n); }</span></span>
 <span id="L463"><span class="lineNum">     463</span>                 :             : </span>
 <span id="L464"><span class="lineNum">     464</span>                 :             :       /**</span>
 <span id="L465"><span class="lineNum">     465</span>                 :             :        *  @brief  Construct an object of type @a _Up</span>
@@ -542,8 +542,8 @@
 <span id="L471"><span class="lineNum">     471</span>                 :             :       */</span>
 <span id="L472"><span class="lineNum">     472</span>                 :             :       template&lt;typename _Up, typename... _Args&gt;</span>
 <span id="L473"><span class="lineNum">     473</span>                 :             :         static void</span>
-<span id="L474"><span class="lineNum">     474</span>                 :<span class="tlaGNC">          36 :         construct(allocator_type&amp; __a, _Up* __p, _Args&amp;&amp;... __args)</span></span>
-<span id="L475"><span class="lineNum">     475</span>                 :<span class="tlaGNC">          36 :         { __a.construct(__p, std::forward&lt;_Args&gt;(__args)...); }</span></span>
+<span id="L474"><span class="lineNum">     474</span>                 :<span class="tlaGNC">          37 :         construct(allocator_type&amp; __a, _Up* __p, _Args&amp;&amp;... __args)</span></span>
+<span id="L475"><span class="lineNum">     475</span>                 :<span class="tlaGNC">          37 :         { __a.construct(__p, std::forward&lt;_Args&gt;(__args)...); }</span></span>
 <span id="L476"><span class="lineNum">     476</span>                 :             : </span>
 <span id="L477"><span class="lineNum">     477</span>                 :             :       /**</span>
 <span id="L478"><span class="lineNum">     478</span>                 :             :        *  @brief  Destroy an object of type @a _Up</span>
@@ -563,8 +563,8 @@
 <span id="L492"><span class="lineNum">     492</span>                 :             :        *  @return @c __a.max_size()</span>
 <span id="L493"><span class="lineNum">     493</span>                 :             :       */</span>
 <span id="L494"><span class="lineNum">     494</span>                 :             :       static size_type</span>
-<span id="L495"><span class="lineNum">     495</span>                 :<span class="tlaGNC tlaBgGNC">          50 :       max_size(const allocator_type&amp; __a) noexcept</span></span>
-<span id="L496"><span class="lineNum">     496</span>                 :<span class="tlaGNC">          50 :       { return __a.max_size(); }</span></span>
+<span id="L495"><span class="lineNum">     495</span>                 :<span class="tlaGNC tlaBgGNC">          52 :       max_size(const allocator_type&amp; __a) noexcept</span></span>
+<span id="L496"><span class="lineNum">     496</span>                 :<span class="tlaGNC">          52 :       { return __a.max_size(); }</span></span>
 <span id="L497"><span class="lineNum">     497</span>                 :             : </span>
 <span id="L498"><span class="lineNum">     498</span>                 :             :       /**</span>
 <span id="L499"><span class="lineNum">     499</span>                 :             :        *  @brief  Obtain an allocator to use when copying a container.</span>
