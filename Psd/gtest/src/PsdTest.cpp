@@ -4377,384 +4377,18 @@ TEST_F(PsdMapTest, useRealRecordPsdWithSP)
         std::cerr << "Error: " << strerror(errno) << std::endl;
     }   
 }
-
-TEST_F(PsdMapTest, useRealRecordPsdWithCurve_phase1)
-{
-    std::string filename = "/home/zhao/Documents/Psd/gtest/src/parsed_data_转盘(第一阶段).txt";
-    std::ifstream file(filename);
-    std::string line;
-    bool psd04Valid = false;
-    bool psd05Valid = false;
-    double headingAccuracy = 9.15;
-    double lastHeadingAccuracy = 9.15;
-    tSelfSegment curSegment;
-    if (file.is_open())
-    {
-        std::cout << "open successfully" << std::endl;
-        while (std::getline(file, line))
-        {
-            std::string keyValuePair = line.substr(line.find("{") + 1, line.find("}") - line.find("{") - 1);
-            std::map<std::string, std::string> keyValueMap;
-            std::istringstream tokenStream(keyValuePair);
-            std::string token;
-            while (std::getline(tokenStream, token, ','))
-            {
-                std::istringstream keyValue(token);  // 一个键值对，'PSD_Pos_Segment_ID': 14
-                std::string key;
-                std::string value;
-                std::getline(keyValue, key, ':');                        
-                key.erase(0, key.find_first_not_of(" '"));
-                key.erase(key.find_last_not_of(" '") + 1); 
-                std::getline(keyValue, value);
-                value.erase(0, value.find_first_not_of(" '"));
-                value.erase(value.find_last_not_of(" '") + 1);
-                if (!value.empty() && value.front() == '\'') 
-                {
-                    value.erase(0, 1);
-                }
-                if (!value.empty() && value.back() == '\'')
-                {
-                    value.pop_back();
-                }
-                keyValueMap[key] = value;
-            }
-            tPsdMapData *pPsdMapData = new(tPsdMapData);
-            // PSD_Segment_ID
-            std::string keyPsdSegmentID = "PSD_Segment_ID";
-            std::map<std::string, std::string>::iterator iterPsd04 = keyValueMap.find(keyPsdSegmentID);
-            // PSD_Pos_Segment_ID
-            std::string keyPsdPosSegmentID = "PSD_Pos_Segment_ID";
-            std::map<std::string, std::string>::iterator iterPsd05 = keyValueMap.find(keyPsdPosSegmentID);
-            // GNSS_Nachrichtenpaket_ID1
-            std::string keyGnss_01 = "GNSS_Nachrichtenpaket_ID1";
-            std::map<std::string, std::string>::iterator iterGnss_01 = keyValueMap.find(keyGnss_01);
-            // GNSS_Nachrichtenpaket_ID2
-            std::string keyGnss_02 = "GNSS_Nachrichtenpaket_ID2";
-            std::map<std::string, std::string>::iterator iterGnss_02 = keyValueMap.find(keyGnss_02);
-            // GNSS_Ortung_Guete_Ausrichtung
-            std::string keyGnss_03 = "GNSS_Ortung_Guete_Ausrichtung";
-            std::map<std::string, std::string>::iterator iterGnss_03 = keyValueMap.find(keyGnss_03);
-
-            if (iterPsd04 != keyValueMap.end())
-            {
-                /*PSD_Segment_ID*/
-                std::map<std::string, std::string>::iterator iter = keyValueMap.find("PSD_Segment_ID");
-                if ((iter->second != "Fehlerwert") && (iter->second != "keine Segmentinformationen vorhanden"))
-                {
-                    psd04Valid = true;
-                    pPsdMapData->preSegmentId = static_cast<uint8_t> (std::stoi(iter->second));
-                    printf("[%s] [%d]: preSegmentId = %u\n", __FUNCTION__, __LINE__, pPsdMapData->preSegmentId);
-                }
-                else
-                {
-                    psd04Valid = false;
-                }
-                /*PSD_Vorgaenger_Segment_ID*/
-                iter = keyValueMap.find("PSD_Vorgaenger_Segment_ID");
-                if ((iter->second != "Fehlerwert") && (iter->second != "keine Segmentinformation vorhanden"))
-                {
-                    if (isNumber(iter->second))
-                    {
-                        psd04Valid = true;
-                        pPsdMapData->prevSegmentId = static_cast<uint8_t> (std::stoi(iter->second));
-                        printf("[%s] [%d]: prevSegmentId = %u\n", __FUNCTION__, __LINE__, pPsdMapData->prevSegmentId);
-                    }
-                }
-                else
-                {
-                    psd04Valid = false;
-                }
-                
-                if (psd04Valid == true)
-                {
-                    /*PSD_Segmentlaenge*/
-                    iter = keyValueMap.find("PSD_Segmentlaenge");
-                    pPsdMapData->preSegTotalLength = static_cast<uint8_t> (std::stoi(iter->second));
-                    printf("[%s] [%d]: preSegTotalLength = %u\n", __FUNCTION__, __LINE__, pPsdMapData->preSegTotalLength);
-                    /*PSD_Strassenkategorie*/
-                    iter = keyValueMap.find("PSD_Strassenkategorie");
-                    if (iter->second == "Rest_Feldweg_Schotterweg_Privatweg")
-                    {
-                        pPsdMapData->psd04RoadClass = PrivateRoad;
-                    }
-                    else if (iter->second == "Ortsstraße")
-                    {
-                        pPsdMapData->psd04RoadClass = LocalRoad;
-                    }
-                    else if (iter->second == "Kreisstraße")
-                    {
-                        pPsdMapData->psd04RoadClass = CountyRoad;
-                    }
-                    else if (iter->second == "Landstraße")
-                    {
-                        pPsdMapData->psd04RoadClass = NationalRoad;
-                    }
-                    else if (iter->second == "Bundesstraße")
-                    {
-                        pPsdMapData->psd04RoadClass = ProvincialRoad;
-                    }
-                    else if (iter->second == "Autobahn")
-                    {
-                        pPsdMapData->psd04RoadClass = Expressway;
-                    }
-                    else if (iter->second == "Init")
-                    {
-                        pPsdMapData->psd04RoadClass = Init;
-                    }
-                    /*PSD_Endkruemmung && PSD_Endkruemmung_Vorz*/
-                    iter = keyValueMap.find("PSD_Endkruemmung");
-                    if ((iter->second == "Gerade") || (iter->second == "0"))
-                    {
-                        pPsdMapData->endCurvature = 0.0;
-                        pPsdMapData->sp = 1; 
-                    }
-                    else
-                    {
-                        pPsdMapData->endCurvature = static_cast<double> (std::stod(iter->second));
-                        iter = keyValueMap.find("PSD_Endkruemmung_Vorz");
-                        if (iter->second == "Kruemmung_positiv")
-                        {
-                            pPsdMapData->signEndCurvature = 0;
-                        }
-                        else 
-                        if (iter->second == "Kruemmung_negativ")
-                        {
-                            pPsdMapData->signEndCurvature = 1;
-                        }
-                        pPsdMapData->endCurvature = (1.0f / (1 + 0.155 * pow(pPsdMapData->endCurvature, 2))) * (pPsdMapData->signEndCurvature ? -1 : 1);
-                    }
-                    /*PSD_wahrscheinlichster_Pfad*/
-                    iter = keyValueMap.find("PSD_wahrscheinlichster_Pfad");
-                    if (iter->second == "keine_Segment_Informationen_vorhanden")
-                    {
-                        pPsdMapData->mpp = 0;
-                    }
-                    else 
-                    if (iter->second  == "wahrscheinlichster_Pfad")
-                    {
-                        pPsdMapData->mpp =1;
-                    }
-                    /*PSD_Geradester_Pfad*/
-                    iter = keyValueMap.find("PSD_Geradester_Pfad");
-                    if (iter->second == "nicht_geradester_PFad")
-                    {
-                        pPsdMapData->sp = 0;
-                    }
-                    else 
-                    if (iter->second == "geradester_Pfad")
-                    {
-                        pPsdMapData->sp = 1;
-                    }
-                    /*PSD_Segment_Komplett*/
-                    iter = keyValueMap.find("PSD_Segment_Komplett");
-                    if (iter->second == "Segment_Attribute_nicht_komplett")
-                    {
-                        pPsdMapData->segmentIsComplete = 0;
-                    }
-                    else if (iter->second == "Segment_Attribute_komplett")
-                    {
-                        pPsdMapData->segmentIsComplete = 1;
-                    }
-                    /*PSD_Anfangskruemmung && PSD_Anfangskruemmung_Vorz*/
-                    iter = keyValueMap.find("PSD_Anfangskruemmung");
-                    if ((iter->second == "Gerade") || (iter->second == "0"))
-                    {
-                        pPsdMapData->endCurvature = 0.0;
-                        pPsdMapData->sp = 1; 
-                    }
-                    else
-                    {
-                        pPsdMapData->startCurvature = static_cast<double> (std::stod(iter->second));
-                        iter = keyValueMap.find("PSD_Anfangskruemmung_Vorz");
-                        if (iter->second == "positiv")
-                        {
-                            pPsdMapData->signStartCurvature = 0;
-                        }
-                        else 
-                        if (iter->second == "negativ")
-                        {
-                            pPsdMapData->signStartCurvature = 1;
-                        }
-                        pPsdMapData->startCurvature = (1.0f / (1 + 0.155 * pow(pPsdMapData->startCurvature, 2))) * (pPsdMapData->signStartCurvature ? -1 : 1);
-                    }
-                    /*PSD_Abzweigerichtung && PSD_Abzweigewinkel*/
-                    iter = keyValueMap.find("PSD_Abzweigerichtung");
-                    if (iter->second == "rects_abzweigende_Strasse")
-                    {
-                        pPsdMapData->branchDirection = 0;
-                    }
-                    else if (iter->second == "links_abzweigende_Strasse")
-                    {
-                        pPsdMapData->branchDirection = 1;
-                    }
-                    iter = keyValueMap.find("PSD_Abzweigewinkel");
-                    pPsdMapData->branchAngle = static_cast<double> (std::stod(iter->second));
-                    pPsdMapData->branchAngle = pPsdMapData->branchAngle * (pPsdMapData->branchDirection ? -1 : 1);
-                    PsdMessageDecoder::getInstance()->getVPsdMap().emplace_back(pPsdMapData);
-                }
-            }
-            else 
-            if (iterPsd05 != keyValueMap.end())
-            {
-                /*PSD_Pos_Segment_ID*/
-                std::map<std::string, std::string>::iterator iter = keyValueMap.find("PSD_Pos_Segment_ID");
-                if ((iter->second != "Fehlerwert") && (iter->second != "keine Position gegeben"))
-                {
-                    psd05Valid = true;
-                    curSegment.curSegmentId = static_cast<uint8_t> (std::stoi(iter->second));
-                    printf("[%s] [%d]: curSegmentId = %u\n", __FUNCTION__, __LINE__, curSegment.curSegmentId);
-                }
-                else
-                {
-                    psd05Valid = false;
-                }
-
-                if (psd05Valid == true)
-                {
-                    /*PSD_Pos_Segmentlaenge*/
-                    iter = keyValueMap.find("PSD_Pos_Segmentlaenge");
-                    curSegment.curRemainLength = static_cast<uint8_t> (std::stoi(iter->second));
-                    printf("[%s] [%d]: curRemainLength = %u\n", __FUNCTION__, __LINE__, curSegment.curRemainLength);
-
-                    /*PSD_Pos_Standort_Eindeutig*/
-                    iter = keyValueMap.find("PSD_Pos_Standort_Eindeutig");
-                    if ("mehrdeutiger_Standort")
-                    {
-                        curSegment.posIsUnique = 0;
-                    }   
-                    else if ("eindeutiger_Standort")
-                    {
-                        curSegment.posIsUnique = 1;
-                    }
-                    /*PSD_Pos_Fehler_Laengsrichtung*/
-                    iter = keyValueMap.find("PSD_Pos_Fehler_Laengsrichtung");             
-                    if (iter->second == "Init")
-                    {
-                        curSegment.posLengthErr = Pos_Init;
-                    }
-                    else if (iter->second == "< 2m")
-                    {
-                        curSegment.posLengthErr = Pos_0mTo2m;
-                    }
-                    else if (iter->second == "< 5m")
-                    {
-                        curSegment.posLengthErr = Pos_2mTo5m;
-                    }
-                    else if (iter->second == "< 10m")
-                    {
-                        curSegment.posLengthErr = Pos_5mTo10m;
-                    }
-                    else if (iter->second == "< 20m")
-                    {
-                        curSegment.posLengthErr = Pos_10mTo20m;
-                    }
-                    else if (iter->second == "< 50m")
-                    {
-                        curSegment.posLengthErr =  Pos_20mTo50m;
-                    }
-                    else if (iter->second == "> 50m")
-                    {
-                        curSegment.posLengthErr =  Over50m;
-                    }
-                    else if (iter->second == "Off-Road")
-                    {
-                        curSegment.posLengthErr =  OffRoad;
-                    }
-                }
-            }
-            else 
-            if (iterGnss_01 != keyValueMap.end())
-            {
-                /*GNSS_Breite_Ortung && GNSS_Richtung_Breite_Ortung*/
-                iterGnss_01 = keyValueMap.find("GNSS_Breite_Ortung");
-                std::map<std::string, std::string>::iterator iterGnss_01Sign = keyValueMap.find("GNSS_Richtung_Breite_Ortung");
-                if ((iterGnss_01->second != "Init") && (iterGnss_01->second != "Fehler"))
-                {
-                    //TODO: filter GNSS_Ortung_Guete_Ausrichtung > 4.5
-                    if (lastHeadingAccuracy <= 4.5)
-                    {
-                        if (iterGnss_01Sign->second == "Nord")
-                        {
-                            curSegment.hvCoordinate.latitude = static_cast<double>(std::stod(iterGnss_01->second));
-                        }
-                        else
-                        {
-                            curSegment.hvCoordinate.latitude = (-1) * static_cast<double>(std::stod(iterGnss_01->second));
-                        }
-                        printf("[%s] [%d]: curSegment's latitude = %lf\n", __FUNCTION__, __LINE__, curSegment.hvCoordinate.latitude);
-                    }
-                }
-                /*GNSS_Laenge_Ortung && GNSS_Richtung_Laenge_Ortung*/
-                iterGnss_01 = keyValueMap.find("GNSS_Laenge_Ortung");
-                iterGnss_01Sign = keyValueMap.find("GNSS_Richtung_Laenge_Ortung");
-                if ((iterGnss_01->second != "Init") && (iterGnss_01->second != "Fehler"))
-                {
-                    //TODO: filter GNSS_Ortung_Guete_Ausrichtung > 4.5
-                    if (lastHeadingAccuracy <= 4.5)
-                    {
-                        if (iterGnss_01Sign->second == "Ost")
-                        {
-                            curSegment.hvCoordinate.longitude = static_cast<double>(std::stod(iterGnss_01->second));
-                        }
-                        else
-                        {
-                            curSegment.hvCoordinate.longitude = (-1) * static_cast<double>(std::stod(iterGnss_01->second)); 
-                        }
-                        printf("[%s] [%d]: curSegment's longitude = %lf\n", __FUNCTION__, __LINE__, curSegment.hvCoordinate.longitude);
-                    }        
-                }
-            }
-            else 
-            if (iterGnss_02 != keyValueMap.end())
-            {
-                /*GNSS_Ortung_Ausrichtung*/
-                iterGnss_02 = keyValueMap.find("GNSS_Ortung_Ausrichtung");
-                if ((iterGnss_02->second != "Init") && (iterGnss_02->second != "Fehler"))
-                {
-                    //TODO: filter GNSS_Ortung_Guete_Ausrichtung > 4.5
-                    if (lastHeadingAccuracy <= 4.5)
-                    {
-                        curSegment.hvHeading = static_cast<double>(std::stod(iterGnss_02->second));
-                    }
-                }
-                printf("[%s] [%d]: hvHeading = %lf\n", __FUNCTION__, __LINE__, curSegment.hvHeading);
-            }
-            else 
-            if (iterGnss_03 != keyValueMap.end())
-            {
-                /* GNSS_Ortung_Guete_Ausrichtung */
-                if ((iterGnss_03->second != "Init") && (iterGnss_03->second != "Fehler"))
-                {
-                    headingAccuracy =  static_cast<double> (std::stod(iterGnss_03->second));
-                    lastHeadingAccuracy = headingAccuracy; 
-                }
-                printf("[%s] [%d]: headingAccuracy = %lf\n", __FUNCTION__, __LINE__, headingAccuracy);
-            }
-            else
-            {
-                std::cout << "键为 " << keyPsdSegmentID << " " << keyPsdPosSegmentID << " " <<   keyGnss_01 <<  " "  <<  keyGnss_02 <<  " " << " 的不存在" << std::endl;
-            }
-        }    
-        PsdMessageDecoder::getInstance()->setSelfSegment(curSegment);
-        PsdMap::getInstance()->mapCreate();
-    }   
-    else    
-    {   
-        std::cout << "cannot open" << std::endl;
-        std::cerr << "Error: " << strerror(errno) << std::endl;
-    }
-}
 #endif
 
-TEST_F(PsdMapTest, useRealRecordPsdWithCurve_phase2)
+TEST_F(PsdMapTest, useRealRecordPsdWithCurve)
 {
-    std::string filename = "/home/zhao/Documents/Psd/gtest/src/parsed_data_转盘(第二阶段).txt";
+    std::string filename = "/home/zhao/Documents/Psd/gtest/src/parsed_data_转盘(进入转盘前的一个路段构建路网).txt";
     std::ifstream file(filename);
     std::string line;
     bool psd04Valid = false;
     bool psd05Valid = false;
     double headingAccuracy = 9.15;
     double lastHeadingAccuracy = 9.15;
+    uint8_t lastSegmentId = 0;
     tSelfSegment curSegment;
     if (file.is_open())
     {
@@ -5096,7 +4730,8 @@ TEST_F(PsdMapTest, useRealRecordPsdWithCurve_phase2)
         }    
         PsdMessageDecoder::getInstance()->setSelfSegment(curSegment);
         PsdMap::getInstance()->mapCreate();
-        
+        lastSegmentId = curSegment.curSegmentId;
+
         /*TODO: Ro locates the predicted segment of HV*/
         //Ro_1
         // Position3D RoPoint                                    
@@ -5109,6 +4744,199 @@ TEST_F(PsdMapTest, useRealRecordPsdWithCurve_phase2)
     {   
         std::cout << "cannot open" << std::endl;
         std::cerr << "Error: " << strerror(errno) << std::endl;
+    }
+    file.close();
+
+    filename = "/home/zhao/Documents/Psd/gtest/src/parsed_data_转盘(进入转盘内第一个路段更新路网).txt";
+    file.open(filename);
+    if (file.is_open())
+    {
+        std::cout << "open successfully" << std::endl;
+        while (std::getline(file, line))
+        {
+            std::string keyValuePair = line.substr(line.find("{") + 1, line.find("}") - line.find("{") - 1);
+            std::map<std::string, std::string> keyValueMap;
+            std::istringstream tokenStream(keyValuePair);
+            std::string token;
+            while (std::getline(tokenStream, token, ','))
+            {
+                std::istringstream keyValue(token);  // 一个键值对，'PSD_Pos_Segment_ID': 14
+                std::string key;
+                std::string value;
+                std::getline(keyValue, key, ':');                        
+                key.erase(0, key.find_first_not_of(" '"));
+                key.erase(key.find_last_not_of(" '") + 1); 
+                std::getline(keyValue, value);
+                value.erase(0, value.find_first_not_of(" '"));
+                value.erase(value.find_last_not_of(" '") + 1);
+                if (!value.empty() && value.front() == '\'') 
+                {
+                    value.erase(0, 1);
+                }
+                if (!value.empty() && value.back() == '\'')
+                {
+                    value.pop_back();
+                }
+                keyValueMap[key] = value;
+            }
+            /*There is no need to store the PSD04 information again, only segment where the HV is located has changed. Update only the PSD05 information, and then run the mapUpdate() operation.*/
+            // PSD_Pos_Segment_ID
+            std::string keyPsdPosSegmentID = "PSD_Pos_Segment_ID";
+            std::map<std::string, std::string>::iterator iterPsd05 = keyValueMap.find(keyPsdPosSegmentID);
+            // GNSS_Nachrichtenpaket_ID1
+            std::string keyGnss_01 = "GNSS_Nachrichtenpaket_ID1";
+            std::map<std::string, std::string>::iterator iterGnss_01 = keyValueMap.find(keyGnss_01);
+            // GNSS_Nachrichtenpaket_ID2
+            std::string keyGnss_02 = "GNSS_Nachrichtenpaket_ID2";
+            std::map<std::string, std::string>::iterator iterGnss_02 = keyValueMap.find(keyGnss_02);
+            // GNSS_Ortung_Guete_Ausrichtung
+            std::string keyGnss_03 = "GNSS_Ortung_Guete_Ausrichtung";
+            std::map<std::string, std::string>::iterator iterGnss_03 = keyValueMap.find(keyGnss_03);
+            if (iterPsd05 != keyValueMap.end())
+            {
+                /*PSD_Pos_Segment_ID*/
+                std::map<std::string, std::string>::iterator iter = keyValueMap.find("PSD_Pos_Segment_ID");
+                if ((iter->second != "Fehlerwert") && (iter->second != "keine Position gegeben"))
+                {
+                    psd05Valid = true;
+                    curSegment.curSegmentId = static_cast<uint8_t> (std::stoi(iter->second));
+                    printf("[%s] [%d]: curSegmentId = %u\n", __FUNCTION__, __LINE__, curSegment.curSegmentId);
+                }
+                else
+                {
+                    psd05Valid = false;
+                }
+                if (psd05Valid == true)
+                {
+                    /*PSD_Pos_Segmentlaenge*/
+                    iter = keyValueMap.find("PSD_Pos_Segmentlaenge");
+                    curSegment.curRemainLength = static_cast<uint8_t> (std::stoi(iter->second));
+                    printf("[%s] [%d]: curRemainLength = %u\n", __FUNCTION__, __LINE__, curSegment.curRemainLength);
+                    /*PSD_Pos_Standort_Eindeutig*/
+                    iter = keyValueMap.find("PSD_Pos_Standort_Eindeutig");
+                    if ("mehrdeutiger_Standort")
+                    {
+                        curSegment.posIsUnique = 0;
+                    }   
+                    else if ("eindeutiger_Standort")
+                    {
+                        curSegment.posIsUnique = 1;
+                    }
+                    /*PSD_Pos_Fehler_Laengsrichtung*/
+                    iter = keyValueMap.find("PSD_Pos_Fehler_Laengsrichtung");             
+                    if (iter->second == "Init")
+                    {
+                        curSegment.posLengthErr = Pos_Init;
+                    }
+                    else if (iter->second == "< 2m")
+                    {
+                        curSegment.posLengthErr = Pos_0mTo2m;
+                    }
+                    else if (iter->second == "< 5m")
+                    {
+                        curSegment.posLengthErr = Pos_2mTo5m;
+                    }
+                    else if (iter->second == "< 10m")
+                    {
+                        curSegment.posLengthErr = Pos_5mTo10m;
+                    }
+                    else if (iter->second == "< 20m")
+                    {
+                        curSegment.posLengthErr = Pos_10mTo20m;
+                    }
+                    else if (iter->second == "< 50m")
+                    {
+                        curSegment.posLengthErr =  Pos_20mTo50m;
+                    }
+                    else if (iter->second == "> 50m")
+                    {
+                        curSegment.posLengthErr =  Over50m;
+                    }
+                    else if (iter->second == "Off-Road")
+                    {
+                        curSegment.posLengthErr =  OffRoad;
+                    }
+                }
+            }
+            else 
+            if (iterGnss_01 != keyValueMap.end())
+            {
+                /*GNSS_Breite_Ortung && GNSS_Richtung_Breite_Ortung*/
+                iterGnss_01 = keyValueMap.find("GNSS_Breite_Ortung");
+                std::map<std::string, std::string>::iterator iterGnss_01Sign = keyValueMap.find("GNSS_Richtung_Breite_Ortung");
+                if ((iterGnss_01->second != "Init") && (iterGnss_01->second != "Fehler"))
+                {
+                    //TODO: filter GNSS_Ortung_Guete_Ausrichtung > 4.5
+                    if (lastHeadingAccuracy <= 4.5)
+                    {
+                        if (iterGnss_01Sign->second == "Nord")
+                        {
+                            curSegment.hvCoordinate.latitude = static_cast<double>(std::stod(iterGnss_01->second));
+                        }
+                        else
+                        {
+                            curSegment.hvCoordinate.latitude = (-1) * static_cast<double>(std::stod(iterGnss_01->second));
+                        }
+                        printf("[%s] [%d]: curSegment's latitude = %lf\n", __FUNCTION__, __LINE__, curSegment.hvCoordinate.latitude);
+                    }
+                }
+                /*GNSS_Laenge_Ortung && GNSS_Richtung_Laenge_Ortung*/
+                iterGnss_01 = keyValueMap.find("GNSS_Laenge_Ortung");
+                iterGnss_01Sign = keyValueMap.find("GNSS_Richtung_Laenge_Ortung");
+                if ((iterGnss_01->second != "Init") && (iterGnss_01->second != "Fehler"))
+                {
+                    //TODO: filter GNSS_Ortung_Guete_Ausrichtung > 4.5
+                    if (lastHeadingAccuracy <= 4.5)
+                    {
+                        if (iterGnss_01Sign->second == "Ost")
+                        {
+                            curSegment.hvCoordinate.longitude = static_cast<double>(std::stod(iterGnss_01->second));
+                        }
+                        else
+                        {
+                            curSegment.hvCoordinate.longitude = (-1) * static_cast<double>(std::stod(iterGnss_01->second)); 
+                        }
+                        printf("[%s] [%d]: curSegment's longitude = %lf\n", __FUNCTION__, __LINE__, curSegment.hvCoordinate.longitude);
+                    }        
+                }
+            }
+            else 
+            if (iterGnss_02 != keyValueMap.end())
+            {
+                /*GNSS_Ortung_Ausrichtung*/
+                iterGnss_02 = keyValueMap.find("GNSS_Ortung_Ausrichtung");
+                if ((iterGnss_02->second != "Init") && (iterGnss_02->second != "Fehler"))
+                {
+                    //TODO: filter GNSS_Ortung_Guete_Ausrichtung > 4.5
+                    if (lastHeadingAccuracy <= 4.5)
+                    {
+                        curSegment.hvHeading = static_cast<double>(std::stod(iterGnss_02->second));
+                    }
+                }
+                printf("[%s] [%d]: hvHeading = %lf\n", __FUNCTION__, __LINE__, curSegment.hvHeading);
+            }
+            else 
+            if (iterGnss_03 != keyValueMap.end())
+            {
+                /* GNSS_Ortung_Guete_Ausrichtung */
+                if ((iterGnss_03->second != "Init") && (iterGnss_03->second != "Fehler"))
+                {
+                    headingAccuracy =  static_cast<double> (std::stod(iterGnss_03->second));
+                    lastHeadingAccuracy = headingAccuracy; 
+                }
+                printf("[%s] [%d]: headingAccuracy = %lf\n", __FUNCTION__, __LINE__, headingAccuracy);
+            }
+            else
+            {
+                std::cout << "键为 " << keyPsdPosSegmentID << " " <<   keyGnss_01 <<  " "  <<  keyGnss_02 <<  " " << " 的不存在" << std::endl;
+            }
+        }    
+    }
+    PsdMessageDecoder::getInstance()->setSelfSegment(curSegment);
+    if (lastSegmentId != curSegment.curSegmentId)
+    {
+        PsdMap::getInstance()->mapUpdate();
+        lastSegmentId = curSegment.curSegmentId;
     }
 }
 
