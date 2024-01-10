@@ -302,6 +302,12 @@ public:
      */
     void displayNodeCoordinate(struct TreeNode *Node);
 
+    /**
+     * @brief clear all coordinates in tree
+     * @param Node 
+     */
+    void clearCoordinates(struct TreeNode *Node);
+
     //private:
     static PsdMap* pInstance;   /**<A pointer used to return the object of  the class of PsdMap*/
     

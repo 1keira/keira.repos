@@ -63,6 +63,31 @@ PsdMap::~PsdMap()
 {
 }
 
+void PsdMap::clearCoordinates(struct TreeNode *Node)
+{
+    if (Node == NULL)
+    {
+        return ;
+    }
+    
+    //Note: clear all coordinates for every Node
+    Node->MapData.startCoordinate = {0.0, 0.0};
+    Node->MapData.endCoordinate = {0.0, 0.0};
+    Node->MapData.vSampleCoord.clear();
+    
+    //Note: clear all coordinates for every segment in vPsdMap
+    std::vector<struct PsdMapData *>::iterator iter = PsdMessageDecoder::getInstance()->findSegmentById(Node->MapData.preSegmentId);
+    (*iter)->startCoordinate = {0.0, 0.0};
+    (*iter)->endCoordinate = {0.0, 0.0};
+    (*iter)->vSampleCoord.clear();
+    
+    //recursion
+    for (auto it = Node->vChilds.begin(); it != Node->vChilds.end(); it++)
+    {
+        clearCoordinates((*it));
+    }
+}
+
 void PsdMap::displayNodeCoordinate(struct TreeNode *Node)
 {
     if (Node->MapData.sp == 1)
@@ -985,10 +1010,10 @@ void PsdMap::updateOtherNode()
     {
         return ;
     }
-
-    if (mTree->MapData.nodeAttribute == RootAndCurSegment)
+    printf("[%s] [%d]: mTree->MapData.nodeAttribute = %d\n", __FUNCTION__, __LINE__, mTree->MapData.nodeAttribute);
+    if ((mTree->MapData.nodeAttribute == RootAndCurSegment) || (mTree->MapData.nodeAttribute == CurSegment))
     {
-        printf("[%s] [%d]: mTree->MapData.nodeAttribute need update from RootAndCurSegment to ParentSegment\n", __FUNCTION__,  __LINE__);
+        printf("[%s] [%d]: mTree->MapData.nodeAttribute need update from RootAndCurSegment/CurSegment to ParentSegment\n", __FUNCTION__,  __LINE__);
         mTree->ParentNode = NULL;
         mTree->MapData.nodeAttribute = ParentSegment;
         //Note: delete brother nodes except the CurSegment 
@@ -1306,6 +1331,8 @@ void PsdMap::mapUpdate()
     pthread_mutex_unlock(&mapThreadMutex);
     mMapMutexIsLocked = false;
 
+    printf("[%s] [%d]: mTree->MapData.nodeAttribute = %d\n", __FUNCTION__, __LINE__, mTree->MapData.nodeAttribute);
+
     //TODO2: update the attribute of parent, current and delete childs 
     pthread_mutex_lock(&mapThreadMutex);
     mMapMutexIsLocked = true;
@@ -1313,6 +1340,8 @@ void PsdMap::mapUpdate()
     printf("[%s] [%d]: updateOtherNode\n", __FUNCTION__, __LINE__);
     pthread_mutex_unlock(&mapThreadMutex);
     mMapMutexIsLocked = false;
+
+    printf("[%s] [%d]: mTree->MapData.nodeAttribute = %d\n", __FUNCTION__, __LINE__, mTree->MapData.nodeAttribute);
 
     //TODO3: insert new child nodes
     pthread_mutex_lock(&mapThreadMutex);
@@ -1336,7 +1365,10 @@ void PsdMap::mapUpdate()
     pthread_mutex_unlock(&mapThreadMutex);
     mMapMutexIsLocked = false;
 
-    //TODO4: all the child nodes enter the tree and then iterate through the tree from the beginning to calculate the latitude and longitude coordinates of each node
+    //TODO4: clear the coordinates of all nodes and segment list for update new coordinates, otherwise, expired coordinates will be left
+    clearCoordinates(mTree);
+
+    //TODO5: all the child nodes enter the tree and then iterate through the tree from the beginning to calculate the latitude and longitude coordinates of each node
     printf("[%s] [%d]: --------------------------update the Coordinate of root, parent, current and childs------------------------------\n", __FUNCTION__, __LINE__);
     /*1: calculate current segment's start (latitude, longitude) and end (latitude, longitude)*/
     pthread_mutex_lock(&decoderThreadMutex);
@@ -1346,6 +1378,7 @@ void PsdMap::mapUpdate()
     mMapMutexIsLocked = true;
     struct TreeNode *curNode = findNodeById(mTree, curSegmentId);
     curNode->MapData.accumulateBranchAngle = 0.0;
+    printf("[%s] [%d]: curNode->MapData.nodeAttribute = %d\n", __FUNCTION__, __LINE__, curNode->MapData.nodeAttribute);
     curNode->MapData = calcCoordinate(curNode);
     pthread_mutex_unlock(&mapThreadMutex);
     mMapMutexIsLocked = false;
@@ -1394,7 +1427,7 @@ void PsdMap::mapUpdate()
     /*3: DFS the tree, calculate all child nodes's end (latitude, longitude) starting with curNode*/
     dfsCalcChildCoord(curNode);
 
-    //TODO5: reset the count and offset for mapUpdate after all elements being inserted in tree
+    //TODO6: reset the count and offset for mapUpdate after all elements being inserted in tree
     count = 0;
     doInsert = false;
 }
