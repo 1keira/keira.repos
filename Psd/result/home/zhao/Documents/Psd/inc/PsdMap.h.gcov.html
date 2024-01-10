@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2024-01-09 09:40:31</td>
+            <td class="headerValue">2024-01-09 16:25:22</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -367,24 +367,30 @@
 <span id="L296"><span class="lineNum">     296</span>                 :             :      */</span>
 <span id="L297"><span class="lineNum">     297</span>                 :             :     void fixedAccumulateBranchAngle(double &amp;accumulateBranchAngle);</span>
 <span id="L298"><span class="lineNum">     298</span>                 :             : </span>
-<span id="L299"><span class="lineNum">     299</span>                 :             :     //private:</span>
-<span id="L300"><span class="lineNum">     300</span>                 :             :     static PsdMap* pInstance;   /**&lt;A pointer used to return the object of  the class of PsdMap*/</span>
-<span id="L301"><span class="lineNum">     301</span>                 :             :     </span>
-<span id="L302"><span class="lineNum">     302</span>                 :             :     /**</span>
-<span id="L303"><span class="lineNum">     303</span>                 :             :      * @brief Construct a new PsdMap object</span>
-<span id="L304"><span class="lineNum">     304</span>                 :             :      */</span>
-<span id="L305"><span class="lineNum">     305</span>                 :             :     PsdMap(/* args */);</span>
-<span id="L306"><span class="lineNum">     306</span>                 :             : </span>
-<span id="L307"><span class="lineNum">     307</span>                 :             :     /**</span>
-<span id="L308"><span class="lineNum">     308</span>                 :             :      * @brief Destroy the PsdMap object</span>
-<span id="L309"><span class="lineNum">     309</span>                 :             :      */</span>
-<span id="L310"><span class="lineNum">     310</span>                 :             :     ~PsdMap();</span>
-<span id="L311"><span class="lineNum">     311</span>                 :             : };</span>
+<span id="L299"><span class="lineNum">     299</span>                 :             :     /**</span>
+<span id="L300"><span class="lineNum">     300</span>                 :             :      * @brief Just the function of printing every segment's coordinate</span>
+<span id="L301"><span class="lineNum">     301</span>                 :             :      * @param Node </span>
+<span id="L302"><span class="lineNum">     302</span>                 :             :      */</span>
+<span id="L303"><span class="lineNum">     303</span>                 :             :     void displayNodeCoordinate(struct TreeNode *Node);</span>
+<span id="L304"><span class="lineNum">     304</span>                 :             : </span>
+<span id="L305"><span class="lineNum">     305</span>                 :             :     //private:</span>
+<span id="L306"><span class="lineNum">     306</span>                 :             :     static PsdMap* pInstance;   /**&lt;A pointer used to return the object of  the class of PsdMap*/</span>
+<span id="L307"><span class="lineNum">     307</span>                 :             :     </span>
+<span id="L308"><span class="lineNum">     308</span>                 :             :     /**</span>
+<span id="L309"><span class="lineNum">     309</span>                 :             :      * @brief Construct a new PsdMap object</span>
+<span id="L310"><span class="lineNum">     310</span>                 :             :      */</span>
+<span id="L311"><span class="lineNum">     311</span>                 :             :     PsdMap(/* args */);</span>
 <span id="L312"><span class="lineNum">     312</span>                 :             : </span>
-<span id="L313"><span class="lineNum">     313</span>                 :             : void *PsdMapRun(void *arg);</span>
-<span id="L314"><span class="lineNum">     314</span>                 :             : </span>
-<span id="L315"><span class="lineNum">     315</span>                 :             : #endif /*_PSDMAP_H_*/</span>
-<span id="L316"><span class="lineNum">     316</span>                 :             : </span>
+<span id="L313"><span class="lineNum">     313</span>                 :             :     /**</span>
+<span id="L314"><span class="lineNum">     314</span>                 :             :      * @brief Destroy the PsdMap object</span>
+<span id="L315"><span class="lineNum">     315</span>                 :             :      */</span>
+<span id="L316"><span class="lineNum">     316</span>                 :             :     ~PsdMap();</span>
+<span id="L317"><span class="lineNum">     317</span>                 :             : };</span>
+<span id="L318"><span class="lineNum">     318</span>                 :             : </span>
+<span id="L319"><span class="lineNum">     319</span>                 :             : void *PsdMapRun(void *arg);</span>
+<span id="L320"><span class="lineNum">     320</span>                 :             : </span>
+<span id="L321"><span class="lineNum">     321</span>                 :             : #endif /*_PSDMAP_H_*/</span>
+<span id="L322"><span class="lineNum">     322</span>                 :             : </span>
         </pre>
               </td>
             </tr>
