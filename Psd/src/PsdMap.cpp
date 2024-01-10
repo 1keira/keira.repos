@@ -63,6 +63,24 @@ PsdMap::~PsdMap()
 {
 }
 
+void PsdMap::displayNodeCoordinate(struct TreeNode *Node)
+{
+    if (Node->MapData.sp == 1)
+    {
+        printf("[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, Node->MapData.preSegmentId, Node->MapData.startCoordinate.latitude, Node->MapData.startCoordinate.longitude);
+        printf("[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, Node->MapData.preSegmentId, Node->MapData.endCoordinate.latitude, Node->MapData.endCoordinate.longitude);
+    }
+    else
+    {
+        printf("[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, Node->MapData.preSegmentId, Node->MapData.startCoordinate.latitude, Node->MapData.startCoordinate.longitude);
+        for (auto pos = Node->MapData.vSampleCoord.begin(); pos != Node->MapData.vSampleCoord.end(); pos++)
+        {
+            printf("[%s] [%d]: %u's SampleCoord: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, Node->MapData.preSegmentId, pos->latitude, pos->longitude);
+        }
+        printf("[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, Node->MapData.preSegmentId, Node->MapData.endCoordinate.latitude, Node->MapData.endCoordinate.longitude);
+    }
+}
+
 void PsdMap::fixedAccumulateBranchAngle(double &accumulateBranchAngle)
 {
     if (accumulateBranchAngle > 360.0)
@@ -905,6 +923,7 @@ void PsdMap::dfsCalcChildCoord(struct TreeNode *Node)
         (*it)->MapData.startCoordinate = Node->MapData.endCoordinate; 
         (*it)->MapData.accumulateBranchAngle = Node->MapData.accumulateBranchAngle + (*it)->MapData.branchAngle; 
         (*it)->MapData = calcCoordinate(*it);
+        displayNodeCoordinate(*it);
         pthread_mutex_unlock(&mapThreadMutex);
         mMapMutexIsLocked = false;
         pthread_mutex_lock(&decoderThreadMutex);
@@ -969,6 +988,7 @@ void PsdMap::updateOtherNode()
 
     if (mTree->MapData.nodeAttribute == RootAndCurSegment)
     {
+        printf("[%s] [%d]: mTree->MapData.nodeAttribute need update from RootAndCurSegment to ParentSegment\n", __FUNCTION__,  __LINE__);
         mTree->ParentNode = NULL;
         mTree->MapData.nodeAttribute = ParentSegment;
         //Note: delete brother nodes except the CurSegment 
@@ -979,6 +999,7 @@ void PsdMap::updateOtherNode()
     else 
     if (mTree->MapData.nodeAttribute == ParentSegment)
     {
+        printf("[%s] [%d]: mTree->MapData.nodeAttribute need update from ParentSegment to RootSegment\n", __FUNCTION__,  __LINE__);
         mTree->ParentNode = NULL;
         mTree->MapData.nodeAttribute = RootSegment;
         mTree->vChilds.at(0)->MapData.nodeAttribute = ParentSegment;
@@ -990,7 +1011,7 @@ void PsdMap::updateOtherNode()
     else 
     if (mTree->MapData.nodeAttribute == RootSegment)
     {
-        //this RootSegment is new root
+        printf("[%s] [%d]: this RootSegment is new root\n", __FUNCTION__,  __LINE__);
         //TODO1: find HV's last current node, lastCurNode is newParent
         struct TreeNode *lastCurNode = findNodeById(mTree, lastSegmentId);
         printf("[%s] [%d]: lastCurNode = %u is newParent\n", __FUNCTION__, __LINE__, lastCurNode->MapData.preSegmentId);
@@ -1017,6 +1038,7 @@ void PsdMap::updateOtherNode()
 
 void PsdMap::updateRootNode()
 {
+    printf("[%s] [%d]: updateRootNode\n", __FUNCTION__, __LINE__);
     if (mTree->MapData.nodeAttribute == RootAndCurSegment)
     {
         //Note: do not delete root node, need change nodeAttribute  to parent node
@@ -1131,20 +1153,7 @@ void PsdMap::insertNode(struct TreeNode *Node, std::vector<struct PsdMapData *>:
                 pthread_mutex_lock(&decoderThreadMutex);
                 *(*it) = rootNode->MapData;  
                 pthread_mutex_unlock(&decoderThreadMutex);
-                if (rootNode->MapData.sp == 1)
-                {
-                    printf("[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, rootNode->MapData.preSegmentId, rootNode->MapData.startCoordinate.latitude, rootNode->MapData.startCoordinate.longitude);
-                    printf("[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, rootNode->MapData.preSegmentId, rootNode->MapData.endCoordinate.latitude, rootNode->MapData.endCoordinate.longitude);
-                }
-                else
-                {
-                    printf("[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, rootNode->MapData.preSegmentId, rootNode->MapData.startCoordinate.latitude, rootNode->MapData.startCoordinate.longitude);
-                    for (auto it = rootNode->MapData.vSampleCoord.begin(); it != rootNode->MapData.vSampleCoord.end(); it++)
-                    {
-                        printf("[%s] [%d]: %u's SampleCoord: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, rootNode->MapData.preSegmentId, it->latitude, it->longitude);
-                    }
-                    printf("[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, rootNode->MapData.preSegmentId, rootNode->MapData.endCoordinate.latitude, rootNode->MapData.endCoordinate.longitude);
-                }
+                displayNodeCoordinate(rootNode);
             }
             else
             {
@@ -1160,20 +1169,7 @@ void PsdMap::insertNode(struct TreeNode *Node, std::vector<struct PsdMapData *>:
                 *(*it) = parentNode->MapData;  
                 // (*it)->branchAngle = parentRelativeCurrentAngle;  //save parentRelativeCurrentAngle as new parent's branchAngle to list, but parentNode->MapData.branchAngle is still parent relative root in mTree
                 pthread_mutex_unlock(&decoderThreadMutex);
-                if (parentNode->MapData.sp == 1)
-                {
-                    printf("[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, parentNode->MapData.preSegmentId, parentNode->MapData.startCoordinate.latitude, parentNode->MapData.startCoordinate.longitude);
-                    printf("[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, parentNode->MapData.preSegmentId, parentNode->MapData.endCoordinate.latitude, parentNode->MapData.endCoordinate.longitude);
-                }
-                else
-                {
-                    printf("[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, parentNode->MapData.preSegmentId, parentNode->MapData.startCoordinate.latitude, parentNode->MapData.startCoordinate.longitude);
-                    for (auto it = parentNode->MapData.vSampleCoord.begin(); it != parentNode->MapData.vSampleCoord.end(); it++)
-                    {
-                        printf("[%s] [%d]: %u's SampleCoord: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, parentNode->MapData.preSegmentId, it->latitude, it->longitude);
-                    }
-                    printf("[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, parentNode->MapData.preSegmentId, parentNode->MapData.endCoordinate.latitude, parentNode->MapData.endCoordinate.longitude);
-                }
+                displayNodeCoordinate(parentNode);
             }
         }
         else
@@ -1206,20 +1202,7 @@ void PsdMap::insertNode(struct TreeNode *Node, std::vector<struct PsdMapData *>:
             *(*it) = childNode->MapData; 
             pthread_mutex_unlock(&decoderThreadMutex);
             printf("[%s] [%d]: childNode's preSegmentId = %u\n", __FUNCTION__, __LINE__, childNode->MapData.preSegmentId);
-            if (childNode->MapData.sp == 1)
-            {
-                printf("[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, childNode->MapData.preSegmentId, childNode->MapData.startCoordinate.latitude, childNode->MapData.startCoordinate.longitude);
-                printf("[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, childNode->MapData.preSegmentId, childNode->MapData.endCoordinate.latitude, childNode->MapData.endCoordinate.longitude);
-            }
-            else
-            {
-                printf("[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, childNode->MapData.preSegmentId, childNode->MapData.startCoordinate.latitude, childNode->MapData.startCoordinate.longitude);
-                for (auto it = childNode->MapData.vSampleCoord.begin(); it != childNode->MapData.vSampleCoord.end(); it++)
-                {
-                    printf("[%s] [%d]: %u's SampleCoord: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, childNode->MapData.preSegmentId, it->latitude, it->longitude);
-                }
-                printf("[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, childNode->MapData.preSegmentId, childNode->MapData.endCoordinate.latitude, childNode->MapData.endCoordinate.longitude);
-            }
+            displayNodeCoordinate(childNode);
         }
         else
         {
@@ -1271,20 +1254,7 @@ void PsdMap::insertNodeInTree()
         pthread_mutex_lock(&decoderThreadMutex);
         *HvMapData = curNode->MapData;  
         pthread_mutex_unlock(&decoderThreadMutex);
-        if (curNode->MapData.sp == 1)
-        {
-            printf("[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, curNode->MapData.preSegmentId, curNode->MapData.startCoordinate.latitude, curNode->MapData.startCoordinate.longitude);
-            printf("[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, curNode->MapData.preSegmentId, curNode->MapData.endCoordinate.latitude, curNode->MapData.endCoordinate.longitude);
-        }
-        else
-        {
-            printf("[%s] [%d]: %u's startCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, curNode->MapData.preSegmentId, curNode->MapData.startCoordinate.latitude, curNode->MapData.startCoordinate.longitude);
-            for (auto it = curNode->MapData.vSampleCoord.begin(); it != curNode->MapData.vSampleCoord.end(); it++)
-            {
-                printf("[%s] [%d]: %u's SampleCoord: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, curNode->MapData.preSegmentId, it->latitude, it->longitude);
-            }
-            printf("[%s] [%d]: %u's endCoordinate: latitude = %f, longitude = %f\n", __FUNCTION__, __LINE__, curNode->MapData.preSegmentId, curNode->MapData.endCoordinate.latitude, curNode->MapData.endCoordinate.longitude);
-        }
+        displayNodeCoordinate(curNode);
 
         //TODO5: insert other Nodes in tree
         while ((count < PsdMessageDecoder::getInstance()->getVPsdMap().size()) && (doInsert == true))
@@ -1328,16 +1298,15 @@ void PsdMap::mapClear(struct TreeNode *Node)
 
 void PsdMap::mapUpdate()
 {
-    printf("[%s] [%d]: --------------------------mapUpdate------------------------------\n", __FUNCTION__, __LINE__);
+    printf("[%s] [%d]: --------------------------update the attribute of root, parent and current and delete out of date childs------------------------------\n", __FUNCTION__, __LINE__);
     //TODO1: update root 
     pthread_mutex_lock(&mapThreadMutex);
     mMapMutexIsLocked = true;
     updateRootNode();
-    printf("[%s] [%d]: updateRootNode fullfill\n", __FUNCTION__, __LINE__);
     pthread_mutex_unlock(&mapThreadMutex);
     mMapMutexIsLocked = false;
 
-    //TODO2: update parent, current and delete childs 
+    //TODO2: update the attribute of parent, current and delete childs 
     pthread_mutex_lock(&mapThreadMutex);
     mMapMutexIsLocked = true;
     updateOtherNode();
@@ -1349,6 +1318,7 @@ void PsdMap::mapUpdate()
     pthread_mutex_lock(&mapThreadMutex);
     mMapMutexIsLocked = true;
     doInsert = true; //just for the fisrt step in mapUpdate
+    printf("[%s] [%d]: updateChildNode\n", __FUNCTION__, __LINE__);
     while ((count < PsdMessageDecoder::getInstance()->getVPsdMap().size()) && (doInsert == true))
     {
         for (auto it = PsdMessageDecoder::getInstance()->getVPsdMap().begin(); it != PsdMessageDecoder::getInstance()->getVPsdMap().end(); it++)
@@ -1367,7 +1337,7 @@ void PsdMap::mapUpdate()
     mMapMutexIsLocked = false;
 
     //TODO4: all the child nodes enter the tree and then iterate through the tree from the beginning to calculate the latitude and longitude coordinates of each node
-    printf("[%s] [%d]: --------------------------updateCoordinate------------------------------\n", __FUNCTION__, __LINE__);
+    printf("[%s] [%d]: --------------------------update the Coordinate of root, parent, current and childs------------------------------\n", __FUNCTION__, __LINE__);
     /*1: calculate current segment's start (latitude, longitude) and end (latitude, longitude)*/
     pthread_mutex_lock(&decoderThreadMutex);
     uint8_t curSegmentId = PsdMessageDecoder::getInstance()->getSelfSegment().curSegmentId;
@@ -1384,8 +1354,7 @@ void PsdMap::mapUpdate()
     std::vector<struct PsdMapData *>::iterator iter = PsdMessageDecoder::getInstance()->findSegmentById(curSegmentId);
     *(*iter) =  curNode->MapData;
     pthread_mutex_unlock(&decoderThreadMutex);
-    printf("[%s] [%d]: current.startCoordinate.latitude = %f, startCoordinate.longitude = %f\n", __FUNCTION__, __LINE__, curNode->MapData.startCoordinate.latitude, curNode->MapData.startCoordinate.longitude);
-    printf("[%s] [%d]: current.endCoordinate.latitude = %f, endCoordinate.longitude = %f\n", __FUNCTION__, __LINE__, curNode->MapData.endCoordinate.latitude, curNode->MapData.endCoordinate.longitude);
+    displayNodeCoordinate(curNode);
     /*2: if current segment's parent, root not null, to calculate theirs start (latitude, longitude)*/
     if (curNode->ParentNode != NULL)
     {
@@ -1395,7 +1364,7 @@ void PsdMap::mapUpdate()
         //the branch angle of the parent relative to the current, because it is calculated backwards from the segment where the HV is located.
         parentRelativeCurrentAngle = curNode->MapData.branchAngle;   //use current relative parent's branchAngle as to accumulate, parentNode->MapData.branchAngle is still itself branchAngle(relative to root)
         //accumulateBranchAngle relative to HV's segment, for PsdLocation module to calcRelativePosition.
-        curNode->ParentNode->MapData.accumulateBranchAngle = curNode->MapData.accumulateBranchAngle + parentRelativeCurrentAngle; 
+        curNode->ParentNode->MapData.accumulateBranchAngle = curNode->MapData.accumulateBranchAngle - parentRelativeCurrentAngle; 
         curNode->ParentNode->MapData = calcCoordinate(curNode->ParentNode);
         pthread_mutex_unlock(&mapThreadMutex);
         mMapMutexIsLocked = false;
@@ -1403,8 +1372,7 @@ void PsdMap::mapUpdate()
         iter = PsdMessageDecoder::getInstance()->findSegmentById(curNode->ParentNode->MapData.preSegmentId);
         *(*iter) =  curNode->ParentNode->MapData;
         pthread_mutex_unlock(&decoderThreadMutex);
-        printf("[%s] [%d]: parent.startCoordinate.latitude = %f, startCoordinate.longitude = %f\n", __FUNCTION__, __LINE__, curNode->ParentNode->MapData.startCoordinate.latitude, curNode->ParentNode->MapData.startCoordinate.longitude);
-        printf("[%s] [%d]: parent.endCoordinate.latitude = %f, endCoordinate.longitude = %f\n", __FUNCTION__, __LINE__, curNode->ParentNode->MapData.endCoordinate.latitude, curNode->ParentNode->MapData.endCoordinate.longitude);
+        displayNodeCoordinate(curNode->ParentNode);
         //Note: if the current tree has a root, the coordinates of the root will be calculated, if the root is null, it will not be calculated
         if (curNode->ParentNode->ParentNode != NULL)
         {
@@ -1412,7 +1380,7 @@ void PsdMap::mapUpdate()
             mMapMutexIsLocked = true;
             curNode->ParentNode->ParentNode->MapData.endCoordinate = curNode->ParentNode->MapData.startCoordinate; 
             rootRelativeParentAngle = curNode->ParentNode->MapData.branchAngle;
-            curNode->ParentNode->ParentNode->MapData.accumulateBranchAngle = curNode->ParentNode->MapData.accumulateBranchAngle + rootRelativeParentAngle;
+            curNode->ParentNode->ParentNode->MapData.accumulateBranchAngle = curNode->ParentNode->MapData.accumulateBranchAngle - rootRelativeParentAngle;
             curNode->ParentNode->ParentNode->MapData = calcCoordinate(curNode->ParentNode->ParentNode);
             pthread_mutex_unlock(&mapThreadMutex);
             mMapMutexIsLocked = false;
@@ -1420,8 +1388,7 @@ void PsdMap::mapUpdate()
             iter = PsdMessageDecoder::getInstance()->findSegmentById(curNode->ParentNode->ParentNode->MapData.preSegmentId);
             *(*iter) =  curNode->ParentNode->ParentNode->MapData;
             pthread_mutex_unlock(&decoderThreadMutex);
-            printf("[%s] [%d]: root.startCoordinate.latitude = %f, startCoordinate.longitude = %f\n", __FUNCTION__, __LINE__, curNode->ParentNode->ParentNode->MapData.startCoordinate.latitude, curNode->ParentNode->ParentNode->MapData.startCoordinate.longitude);
-            printf("[%s] [%d]: root.endCoordinate.latitude = %f, endCoordinate.longitude = %f\n", __FUNCTION__, __LINE__, curNode->ParentNode->ParentNode->MapData.endCoordinate.latitude, curNode->ParentNode->ParentNode->MapData.endCoordinate.longitude);
+            displayNodeCoordinate(curNode->ParentNode->ParentNode);     
         }
     }
     /*3: DFS the tree, calculate all child nodes's end (latitude, longitude) starting with curNode*/
@@ -1488,7 +1455,7 @@ void *PsdMapRun(void *arg)
             else
             {
                 /*trigger mapUpdate*/
-                if (( PsdMessageDecoder::getInstance()->getSelfSegment().curSegmentId !=  lastSegmentId) && (lastSize !=  PsdMessageDecoder::getInstance()->getVPsdMap().size()))
+                if ((PsdMessageDecoder::getInstance()->getSelfSegment().curSegmentId != lastSegmentId) && (lastSize != PsdMessageDecoder::getInstance()->getVPsdMap().size()))
                 {
                     PsdMap::getInstance()->mapUpdate();
                     //TODO6: record lastSegmentId = curSegmentId, lastSize = vPsdMap.size()
