@@ -4733,12 +4733,11 @@ TEST_F(PsdMapTest, useRealRecordPsdWithCurve)
         lastSegmentId = curSegment.curSegmentId;
 
         /*TODO: Ro locates the predicted segment of HV*/
-        //Ro_1
-        // Position3D RoPoint                                    
-        // RoPoint.lat = ;
-        // RoPoint.lon = ;
-        // RoPoint.elevation = 0.0;     
-        // PsdLocation::getInstance()->RoMatchSegment(RoPoint);
+        Position3D RoPoint_1;                                   
+        RoPoint_1.lat = 40.342985;
+        RoPoint_1.lon =  116.819051;
+        RoPoint_1.elevation = 0.0;     
+        printf("###### RoPoint_1 is %d matched ######\n", PsdLocation::getInstance()->RoMatchSegment(RoPoint_1));
     }   
     else    
     {   
