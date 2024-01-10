@@ -296,6 +296,12 @@ public:
      */
     void fixedAccumulateBranchAngle(double &accumulateBranchAngle);
 
+    /**
+     * @brief Just the function of printing every segment's coordinate
+     * @param Node 
+     */
+    void displayNodeCoordinate(struct TreeNode *Node);
+
     //private:
     static PsdMap* pInstance;   /**<A pointer used to return the object of  the class of PsdMap*/
     
