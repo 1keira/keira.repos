@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2024-01-10 23:47:58</td>
+            <td class="headerValue">2024-01-11 14:10:46</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryLo">66.7&nbsp;%</td>
@@ -462,7 +462,7 @@
 <span id="L391"><span class="lineNum">     391</span>                 :             :   template&lt;typename _Tp, typename _Alloc&gt;</span>
 <span id="L392"><span class="lineNum">     392</span>                 :             :     template&lt;typename... _Args&gt;</span>
 <span id="L393"><span class="lineNum">     393</span>                 :             :       void</span>
-<span id="L394"><span class="lineNum">     394</span>                 :<span class="tlaGNC tlaBgGNC">          39 :       vector&lt;_Tp, _Alloc&gt;::</span></span>
+<span id="L394"><span class="lineNum">     394</span>                 :<span class="tlaGNC tlaBgGNC">          67 :       vector&lt;_Tp, _Alloc&gt;::</span></span>
 <span id="L395"><span class="lineNum">     395</span>                 :             :       _M_realloc_insert(iterator __position, _Args&amp;&amp;... __args)</span>
 <span id="L396"><span class="lineNum">     396</span>                 :             : #else</span>
 <span id="L397"><span class="lineNum">     397</span>                 :             :   template&lt;typename _Tp, typename _Alloc&gt;</span>
@@ -471,11 +471,11 @@
 <span id="L400"><span class="lineNum">     400</span>                 :             :     _M_realloc_insert(iterator __position, const _Tp&amp; __x)</span>
 <span id="L401"><span class="lineNum">     401</span>                 :             : #endif</span>
 <span id="L402"><span class="lineNum">     402</span>                 :             :     {</span>
-<span id="L403"><span class="lineNum">     403</span>                 :<span class="tlaGNC">          39 :       const size_type __len =</span></span>
+<span id="L403"><span class="lineNum">     403</span>                 :<span class="tlaGNC">          67 :       const size_type __len =</span></span>
 <span id="L404"><span class="lineNum">     404</span>                 :             :         _M_check_len(size_type(1), &quot;vector::_M_realloc_insert&quot;);</span>
-<span id="L405"><span class="lineNum">     405</span>                 :<span class="tlaGNC">          39 :       const size_type __elems_before = __position - begin();</span></span>
-<span id="L406"><span class="lineNum">     406</span>                 :<span class="tlaGNC">          39 :       pointer __new_start(this-&gt;_M_allocate(__len));</span></span>
-<span id="L407"><span class="lineNum">     407</span>                 :<span class="tlaGNC">          39 :       pointer __new_finish(__new_start);</span></span>
+<span id="L405"><span class="lineNum">     405</span>                 :<span class="tlaGNC">          67 :       const size_type __elems_before = __position - begin();</span></span>
+<span id="L406"><span class="lineNum">     406</span>                 :<span class="tlaGNC">          67 :       pointer __new_start(this-&gt;_M_allocate(__len));</span></span>
+<span id="L407"><span class="lineNum">     407</span>                 :<span class="tlaGNC">          67 :       pointer __new_finish(__new_start);</span></span>
 <span id="L408"><span class="lineNum">     408</span>                 :             :       __try</span>
 <span id="L409"><span class="lineNum">     409</span>                 :             :         {</span>
 <span id="L410"><span class="lineNum">     410</span>                 :             :           // The order of the three operations is dictated by the C++11</span>
@@ -483,26 +483,26 @@
 <span id="L412"><span class="lineNum">     412</span>                 :             :           // to the existing vector.  This is an issue only for callers</span>
 <span id="L413"><span class="lineNum">     413</span>                 :             :           // taking the element by lvalue ref (see last bullet of C++11</span>
 <span id="L414"><span class="lineNum">     414</span>                 :             :           // [res.on.arguments]).</span>
-<span id="L415"><span class="lineNum">     415</span>                 :<span class="tlaGNC">          78 :           _Alloc_traits::construct(this-&gt;_M_impl,</span></span>
-<span id="L416"><span class="lineNum">     416</span>                 :<span class="tlaGNC">          39 :                                    __new_start + __elems_before,</span></span>
+<span id="L415"><span class="lineNum">     415</span>                 :<span class="tlaGNC">         134 :           _Alloc_traits::construct(this-&gt;_M_impl,</span></span>
+<span id="L416"><span class="lineNum">     416</span>                 :<span class="tlaGNC">          67 :                                    __new_start + __elems_before,</span></span>
 <span id="L417"><span class="lineNum">     417</span>                 :             : #if __cplusplus &gt;= 201103L</span>
 <span id="L418"><span class="lineNum">     418</span>                 :             :                                    std::forward&lt;_Args&gt;(__args)...);</span>
 <span id="L419"><span class="lineNum">     419</span>                 :             : #else</span>
 <span id="L420"><span class="lineNum">     420</span>                 :             :                                    __x);</span>
 <span id="L421"><span class="lineNum">     421</span>                 :             : #endif</span>
-<span id="L422"><span class="lineNum">     422</span>                 :<span class="tlaGNC">          39 :           __new_finish = pointer();</span></span>
+<span id="L422"><span class="lineNum">     422</span>                 :<span class="tlaGNC">          67 :           __new_finish = pointer();</span></span>
 <span id="L423"><span class="lineNum">     423</span>                 :             : </span>
-<span id="L424"><span class="lineNum">     424</span>                 :<span class="tlaGNC">          39 :           __new_finish</span></span>
+<span id="L424"><span class="lineNum">     424</span>                 :<span class="tlaGNC">          67 :           __new_finish</span></span>
 <span id="L425"><span class="lineNum">     425</span>                 :             :             = std::__uninitialized_move_if_noexcept_a</span>
-<span id="L426"><span class="lineNum">     426</span>                 :<span class="tlaGNC">          39 :             (this-&gt;_M_impl._M_start, __position.base(),</span></span>
-<span id="L427"><span class="lineNum">     427</span>                 :<span class="tlaGNC">          39 :              __new_start, _M_get_Tp_allocator());</span></span>
+<span id="L426"><span class="lineNum">     426</span>                 :<span class="tlaGNC">          67 :             (this-&gt;_M_impl._M_start, __position.base(),</span></span>
+<span id="L427"><span class="lineNum">     427</span>                 :<span class="tlaGNC">          67 :              __new_start, _M_get_Tp_allocator());</span></span>
 <span id="L428"><span class="lineNum">     428</span>                 :             : </span>
-<span id="L429"><span class="lineNum">     429</span>                 :<span class="tlaGNC">          39 :           ++__new_finish;</span></span>
+<span id="L429"><span class="lineNum">     429</span>                 :<span class="tlaGNC">          67 :           ++__new_finish;</span></span>
 <span id="L430"><span class="lineNum">     430</span>                 :             : </span>
-<span id="L431"><span class="lineNum">     431</span>                 :<span class="tlaGNC">          39 :           __new_finish</span></span>
+<span id="L431"><span class="lineNum">     431</span>                 :<span class="tlaGNC">          67 :           __new_finish</span></span>
 <span id="L432"><span class="lineNum">     432</span>                 :             :             = std::__uninitialized_move_if_noexcept_a</span>
-<span id="L433"><span class="lineNum">     433</span>                 :<span class="tlaGNC">          39 :             (__position.base(), this-&gt;_M_impl._M_finish,</span></span>
-<span id="L434"><span class="lineNum">     434</span>                 :<span class="tlaGNC">          39 :              __new_finish, _M_get_Tp_allocator());</span></span>
+<span id="L433"><span class="lineNum">     433</span>                 :<span class="tlaGNC">          67 :             (__position.base(), this-&gt;_M_impl._M_finish,</span></span>
+<span id="L434"><span class="lineNum">     434</span>                 :<span class="tlaGNC">          67 :              __new_finish, _M_get_Tp_allocator());</span></span>
 <span id="L435"><span class="lineNum">     435</span>                 :             :         }</span>
 <span id="L436"><span class="lineNum">     436</span>                 :             :       __catch(...)</span>
 <span id="L437"><span class="lineNum">     437</span>                 :             :         {</span>
@@ -514,15 +514,15 @@
 <span id="L443"><span class="lineNum">     443</span>                 :             :           _M_deallocate(__new_start, __len);</span>
 <span id="L444"><span class="lineNum">     444</span>                 :             :           __throw_exception_again;</span>
 <span id="L445"><span class="lineNum">     445</span>                 :             :         }</span>
-<span id="L446"><span class="lineNum">     446</span>                 :<span class="tlaGNC">          39 :       std::_Destroy(this-&gt;_M_impl._M_start, this-&gt;_M_impl._M_finish,</span></span>
-<span id="L447"><span class="lineNum">     447</span>                 :<span class="tlaGNC">          39 :                     _M_get_Tp_allocator());</span></span>
-<span id="L448"><span class="lineNum">     448</span>                 :<span class="tlaGNC">          78 :       _M_deallocate(this-&gt;_M_impl._M_start,</span></span>
-<span id="L449"><span class="lineNum">     449</span>                 :<span class="tlaGNC">          39 :                     this-&gt;_M_impl._M_end_of_storage</span></span>
-<span id="L450"><span class="lineNum">     450</span>                 :<span class="tlaGNC">          39 :                     - this-&gt;_M_impl._M_start);</span></span>
-<span id="L451"><span class="lineNum">     451</span>                 :<span class="tlaGNC">          39 :       this-&gt;_M_impl._M_start = __new_start;</span></span>
-<span id="L452"><span class="lineNum">     452</span>                 :<span class="tlaGNC">          39 :       this-&gt;_M_impl._M_finish = __new_finish;</span></span>
-<span id="L453"><span class="lineNum">     453</span>                 :<span class="tlaGNC">          39 :       this-&gt;_M_impl._M_end_of_storage = __new_start + __len;</span></span>
-<span id="L454"><span class="lineNum">     454</span>                 :<span class="tlaGNC">          39 :     }</span></span>
+<span id="L446"><span class="lineNum">     446</span>                 :<span class="tlaGNC">          67 :       std::_Destroy(this-&gt;_M_impl._M_start, this-&gt;_M_impl._M_finish,</span></span>
+<span id="L447"><span class="lineNum">     447</span>                 :<span class="tlaGNC">          67 :                     _M_get_Tp_allocator());</span></span>
+<span id="L448"><span class="lineNum">     448</span>                 :<span class="tlaGNC">         134 :       _M_deallocate(this-&gt;_M_impl._M_start,</span></span>
+<span id="L449"><span class="lineNum">     449</span>                 :<span class="tlaGNC">          67 :                     this-&gt;_M_impl._M_end_of_storage</span></span>
+<span id="L450"><span class="lineNum">     450</span>                 :<span class="tlaGNC">          67 :                     - this-&gt;_M_impl._M_start);</span></span>
+<span id="L451"><span class="lineNum">     451</span>                 :<span class="tlaGNC">          67 :       this-&gt;_M_impl._M_start = __new_start;</span></span>
+<span id="L452"><span class="lineNum">     452</span>                 :<span class="tlaGNC">          67 :       this-&gt;_M_impl._M_finish = __new_finish;</span></span>
+<span id="L453"><span class="lineNum">     453</span>                 :<span class="tlaGNC">          67 :       this-&gt;_M_impl._M_end_of_storage = __new_start + __len;</span></span>
+<span id="L454"><span class="lineNum">     454</span>                 :<span class="tlaGNC">          67 :     }</span></span>
 <span id="L455"><span class="lineNum">     455</span>                 :             : </span>
 <span id="L456"><span class="lineNum">     456</span>                 :             :   template&lt;typename _Tp, typename _Alloc&gt;</span>
 <span id="L457"><span class="lineNum">     457</span>                 :             :     void</span>

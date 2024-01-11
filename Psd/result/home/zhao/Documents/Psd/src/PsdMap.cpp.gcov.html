@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2024-01-10 23:47:58</td>
+            <td class="headerValue">2024-01-11 14:10:46</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryLo">67.5&nbsp;%</td>
@@ -115,14 +115,14 @@
 <span id="L44"><span class="lineNum">      44</span>                 :             :  * CLASS DECLARATIONS</span>
 <span id="L45"><span class="lineNum">      45</span>                 :             :  *---------------------------------------------------------------------------*/</span>
 <span id="L46"><span class="lineNum">      46</span>                 :             : </span>
-<span id="L47"><span class="lineNum">      47</span>                 :<span class="tlaGNC tlaBgGNC">           4 : PsdMap *PsdMap::getInstance()</span></span>
+<span id="L47"><span class="lineNum">      47</span>                 :<span class="tlaGNC tlaBgGNC">           8 : PsdMap *PsdMap::getInstance()</span></span>
 <span id="L48"><span class="lineNum">      48</span>                 :             : {</span>
-<span id="L49"><span class="lineNum">      49</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]:<span class="tlaGNC">           4 :     if (NULL == pInstance)</span></span>
+<span id="L49"><span class="lineNum">      49</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]:<span class="tlaGNC">           8 :     if (NULL == pInstance)</span></span>
 <span id="L50"><span class="lineNum">      50</span>                 :             :     {</span>
 <span id="L51"><span class="lineNum">      51</span>                 :<span class="tlaGNC">           1 :         printf(&quot;[%s] [%d]: first new a pInstance\n&quot;, __FUNCTION__, __LINE__);</span></span>
 <span id="L52"><span class="lineNum">      52</span>                 :<span class="tlaGNC">           1 :         pInstance = new PsdMap();</span></span>
 <span id="L53"><span class="lineNum">      53</span>                 :             :     }</span>
-<span id="L54"><span class="lineNum">      54</span>                 :<span class="tlaGNC">           4 :     return pInstance;</span></span>
+<span id="L54"><span class="lineNum">      54</span>                 :<span class="tlaGNC">           8 :     return pInstance;</span></span>
 <span id="L55"><span class="lineNum">      55</span>                 :             : }</span>
 <span id="L56"><span class="lineNum">      56</span>                 :             : </span>
 <span id="L57"><span class="lineNum">      57</span>                 :<span class="tlaGNC">           1 : PsdMap::PsdMap(/* args */)</span></span>
@@ -134,7 +134,7 @@
 <span id="L63"><span class="lineNum">      63</span>                 :             : {</span>
 <span id="L64"><span class="lineNum">      64</span>                 :<span class="tlaUNC">           0 : }</span></span>
 <span id="L65"><span class="lineNum">      65</span>                 :             : </span>
-<span id="L66"><span class="lineNum">      66</span>                 :<span class="tlaGNC tlaBgGNC">          17 : void PsdMap::clearCoordinates(struct TreeNode *Node)</span></span>
+<span id="L66"><span class="lineNum">      66</span>                 :<span class="tlaGNC tlaBgGNC">          17 : void PsdMap::dfsClearCoordinates(struct TreeNode *Node)</span></span>
 <span id="L67"><span class="lineNum">      67</span>                 :             : {</span>
 <span id="L68"><span class="lineNum">      68</span>         [<span class="tlaUNC" title="Branch 0 was not taken"> - </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]:<span class="tlaGNC">          17 :     if (Node == NULL)</span></span>
 <span id="L69"><span class="lineNum">      69</span>                 :             :     {</span>
@@ -155,7 +155,7 @@
 <span id="L84"><span class="lineNum">      84</span>                 :             :     //recursion</span>
 <span id="L85"><span class="lineNum">      85</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]:<span class="tlaGNC">          33 :     for (auto it = Node-&gt;vChilds.begin(); it != Node-&gt;vChilds.end(); it++)</span></span>
 <span id="L86"><span class="lineNum">      86</span>                 :             :     {</span>
-<span id="L87"><span class="lineNum">      87</span>                 :<span class="tlaGNC">          16 :         clearCoordinates((*it));</span></span>
+<span id="L87"><span class="lineNum">      87</span>                 :<span class="tlaGNC">          16 :         dfsClearCoordinates((*it));</span></span>
 <span id="L88"><span class="lineNum">      88</span>                 :             :     }</span>
 <span id="L89"><span class="lineNum">      89</span>                 :             : }</span>
 <span id="L90"><span class="lineNum">      90</span>                 :             : </span>
@@ -205,9 +205,9 @@
 <span id="L134"><span class="lineNum">     134</span>                 :<span class="tlaUNC">           0 :     mTree = Node;</span></span>
 <span id="L135"><span class="lineNum">     135</span>                 :<span class="tlaUNC">           0 : }</span></span>
 <span id="L136"><span class="lineNum">     136</span>                 :             : </span>
-<span id="L137"><span class="lineNum">     137</span>                 :<span class="tlaGNC tlaBgGNC">           1 : struct TreeNode *PsdMap::getTree()</span></span>
+<span id="L137"><span class="lineNum">     137</span>                 :<span class="tlaGNC tlaBgGNC">           3 : struct TreeNode *PsdMap::getTree()</span></span>
 <span id="L138"><span class="lineNum">     138</span>                 :             : {</span>
-<span id="L139"><span class="lineNum">     139</span>                 :<span class="tlaGNC">           1 :     return mTree;</span></span>
+<span id="L139"><span class="lineNum">     139</span>                 :<span class="tlaGNC">           3 :     return mTree;</span></span>
 <span id="L140"><span class="lineNum">     140</span>                 :             : }</span>
 <span id="L141"><span class="lineNum">     141</span>                 :             : </span>
 <span id="L142"><span class="lineNum">     142</span>                 :             : //Note: maybe use coordinateSystemRotates in straight path, not use this function</span>
@@ -568,7 +568,7 @@
 <span id="L495"><span class="lineNum">     495</span>                 :<span class="tlaGNC">           1 :             double Re = 1.0 / std::fabs(Ce);</span></span>
 <span id="L496"><span class="lineNum">     496</span>                 :<span class="tlaGNC">           1 :             double arcRotationAngleRad_a = (Sa / Ra);</span></span>
 <span id="L497"><span class="lineNum">     497</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span>]:<span class="tlaGNC">           1 :             XY = calcCurveXYOffset(Ra, Haversine::toDegrees(arcRotationAngleRad_a), (Kstart &lt; 0.0) ? 1 : 0);</span></span>
-<span id="L498"><span class="lineNum">     498</span>                 :<span class="tlaGNC">           1 :             XY = coordinateSystemRotates(rootOrParentNode-&gt;MapData.accumulateBranchAngle, XY.distanceX, XY.distanceX);</span></span>
+<span id="L498"><span class="lineNum">     498</span>                 :<span class="tlaGNC">           1 :             XY = coordinateSystemRotates(rootOrParentNode-&gt;MapData.accumulateBranchAngle, XY.distanceX, XY.distanceY);</span></span>
 <span id="L499"><span class="lineNum">     499</span>                 :<span class="tlaGNC">           1 :             rootOrParentNode-&gt;MapData.accumulateXY.distanceX +=  XY.distanceX;</span></span>
 <span id="L500"><span class="lineNum">     500</span>                 :<span class="tlaGNC">           1 :             rootOrParentNode-&gt;MapData.accumulateXY.distanceY +=   XY.distanceY;</span></span>
 <span id="L501"><span class="lineNum">     501</span>                 :<span class="tlaGNC">           1 :             printf(&quot;[%s] [%d]: first half of the curvature curve: rootOrParentNode-&gt;MapData.accumulateXY.distanceX = %f, rootOrParentNode-&gt;MapData.accumulateXY.distanceY = %f\n&quot;, __FUNCTION__, __LINE__, rootOrParentNode-&gt;MapData.accumulateXY.distanceX, rootOrParentNode-&gt;MapData.accumulateXY.distanceY);  </span></span>
@@ -803,7 +803,7 @@
 <span id="L730"><span class="lineNum">     730</span>                 :             :         {</span>
 <span id="L731"><span class="lineNum">     731</span>                 :<span class="tlaGNC">           1 :             arcRotationAngleRad = (finalRemainLength / R); </span></span>
 <span id="L732"><span class="lineNum">     732</span>                 :<span class="tlaGNC">           1 :             XY_2 = calcCurveXYOffset(R * (-1), Haversine::toDegrees(arcRotationAngleRad), curNode-&gt;MapData.signStartCurvature);</span></span>
-<span id="L733"><span class="lineNum">     733</span>                 :<span class="tlaGNC">           1 :             XY_2 = coordinateSystemRotates(accumulateBranchAngleHv2Start, XY_2.distanceX, XY_2.distanceX);</span></span>
+<span id="L733"><span class="lineNum">     733</span>                 :<span class="tlaGNC">           1 :             XY_2 = coordinateSystemRotates(accumulateBranchAngleHv2Start, XY_2.distanceX, XY_2.distanceY);</span></span>
 <span id="L734"><span class="lineNum">     734</span>                 :<span class="tlaGNC">           1 :             disHv2StartAfterRotatingCoord.distanceX +=  XY_2.distanceX;</span></span>
 <span id="L735"><span class="lineNum">     735</span>                 :<span class="tlaGNC">           1 :             disHv2StartAfterRotatingCoord.distanceY +=   XY_2.distanceY;</span></span>
 <span id="L736"><span class="lineNum">     736</span>                 :<span class="tlaGNC">           1 :             printf(&quot;[%s] [%d]: disHv2StartAfterRotatingCoord.distanceX = %f, disHv2StartAfterRotatingCoord.distanceY = %f\n&quot;, __FUNCTION__, __LINE__, disHv2StartAfterRotatingCoord.distanceX, disHv2StartAfterRotatingCoord.distanceY);  </span></span>
@@ -827,7 +827,7 @@
 <span id="L754"><span class="lineNum">     754</span>                 :<span class="tlaGNC">           1 :             double Re = 1.0 / std::fabs(Ce);</span></span>
 <span id="L755"><span class="lineNum">     755</span>                 :<span class="tlaGNC">           1 :             double arcRotationAngleRad_a = (Sa / Ra);</span></span>
 <span id="L756"><span class="lineNum">     756</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span>]:<span class="tlaGNC">           1 :             XY_2 = calcCurveXYOffset(Ra, Haversine::toDegrees(arcRotationAngleRad_a), (Kstart &lt; 0.0) ? 1 : 0);</span></span>
-<span id="L757"><span class="lineNum">     757</span>                 :<span class="tlaGNC">           1 :             XY_2 = coordinateSystemRotates(accumulateBranchAngleHv2Start, XY_2.distanceX, XY_2.distanceX);</span></span>
+<span id="L757"><span class="lineNum">     757</span>                 :<span class="tlaGNC">           1 :             XY_2 = coordinateSystemRotates(accumulateBranchAngleHv2Start, XY_2.distanceX, XY_2.distanceY);</span></span>
 <span id="L758"><span class="lineNum">     758</span>                 :<span class="tlaGNC">           1 :             disHv2StartAfterRotatingCoord.distanceX +=  XY_2.distanceX;</span></span>
 <span id="L759"><span class="lineNum">     759</span>                 :<span class="tlaGNC">           1 :             disHv2StartAfterRotatingCoord.distanceY +=   XY_2.distanceY;</span></span>
 <span id="L760"><span class="lineNum">     760</span>                 :<span class="tlaGNC">           1 :             printf(&quot;[%s] [%d]: first half of the curvature curve: disHv2StartAfterRotatingCoord.distanceX = %f, disHv2StartAfterRotatingCoord.distanceY = %f\n&quot;, __FUNCTION__, __LINE__, disHv2StartAfterRotatingCoord.distanceX, disHv2StartAfterRotatingCoord.distanceY);  </span></span>
@@ -882,32 +882,32 @@
 <span id="L809"><span class="lineNum">     809</span>                 :<span class="tlaGNC">          34 :     return Node-&gt;MapData;</span></span>
 <span id="L810"><span class="lineNum">     810</span>                 :             : }</span>
 <span id="L811"><span class="lineNum">     811</span>                 :             : </span>
-<span id="L812"><span class="lineNum">     812</span>                 :<span class="tlaGNC">         294 : struct TreeNode *PsdMap::findNodeById(struct TreeNode *Node, uint8_t KnownId)</span></span>
+<span id="L812"><span class="lineNum">     812</span>                 :<span class="tlaGNC">         306 : struct TreeNode *PsdMap::findNodeById(struct TreeNode *Node, uint8_t KnownId)</span></span>
 <span id="L813"><span class="lineNum">     813</span>                 :             : {</span>
-<span id="L814"><span class="lineNum">     814</span>                 :<span class="tlaGNC">         294 :     struct TreeNode *result = NULL;</span></span>
-<span id="L815"><span class="lineNum">     815</span>         [<span class="tlaUNC" title="Branch 0 was not taken"> - </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]:<span class="tlaGNC">         294 :     if (NULL == Node)</span></span>
+<span id="L814"><span class="lineNum">     814</span>                 :<span class="tlaGNC">         306 :     struct TreeNode *result = NULL;</span></span>
+<span id="L815"><span class="lineNum">     815</span>         [<span class="tlaUNC" title="Branch 0 was not taken"> - </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]:<span class="tlaGNC">         306 :     if (NULL == Node)</span></span>
 <span id="L816"><span class="lineNum">     816</span>                 :             :     {</span>
 <span id="L817"><span class="lineNum">     817</span>                 :<span class="tlaUNC tlaBgUNC">           0 :         return NULL;</span></span>
 <span id="L818"><span class="lineNum">     818</span>                 :             :     }</span>
 <span id="L819"><span class="lineNum">     819</span>                 :             : </span>
-<span id="L820"><span class="lineNum">     820</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]:<span class="tlaGNC tlaBgGNC">         294 :     if (KnownId == Node-&gt;MapData.preSegmentId)</span></span>
+<span id="L820"><span class="lineNum">     820</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]:<span class="tlaGNC tlaBgGNC">         306 :     if (KnownId == Node-&gt;MapData.preSegmentId)</span></span>
 <span id="L821"><span class="lineNum">     821</span>                 :             :     {</span>
-<span id="L822"><span class="lineNum">     822</span>                 :<span class="tlaGNC">          34 :         return Node;</span></span>
+<span id="L822"><span class="lineNum">     822</span>                 :<span class="tlaGNC">          36 :         return Node;</span></span>
 <span id="L823"><span class="lineNum">     823</span>                 :             :     }</span>
 <span id="L824"><span class="lineNum">     824</span>                 :             : </span>
-<span id="L825"><span class="lineNum">     825</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]:<span class="tlaGNC">         304 :     for (auto it = Node-&gt;vChilds.begin(); it != Node-&gt;vChilds.end(); it++)</span></span>
+<span id="L825"><span class="lineNum">     825</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]:<span class="tlaGNC">         316 :     for (auto it = Node-&gt;vChilds.begin(); it != Node-&gt;vChilds.end(); it++)</span></span>
 <span id="L826"><span class="lineNum">     826</span>                 :             :     {</span>
-<span id="L827"><span class="lineNum">     827</span>                 :<span class="tlaGNC">         258 :         result = findNodeById((*it), KnownId);</span></span>
-<span id="L828"><span class="lineNum">     828</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]:<span class="tlaGNC">         258 :         if (NULL != result)</span></span>
+<span id="L827"><span class="lineNum">     827</span>                 :<span class="tlaGNC">         268 :         result = findNodeById((*it), KnownId);</span></span>
+<span id="L828"><span class="lineNum">     828</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]:<span class="tlaGNC">         268 :         if (NULL != result)</span></span>
 <span id="L829"><span class="lineNum">     829</span>                 :             :         {</span>
-<span id="L830"><span class="lineNum">     830</span>                 :<span class="tlaGNC">         214 :             printf(&quot;[%s] [%d]: result = %p\n&quot;, __FUNCTION__, __LINE__, result);</span></span>
-<span id="L831"><span class="lineNum">     831</span>                 :<span class="tlaGNC">         214 :             return result;</span></span>
+<span id="L830"><span class="lineNum">     830</span>                 :<span class="tlaGNC">         222 :             printf(&quot;[%s] [%d]: result = %p\n&quot;, __FUNCTION__, __LINE__, result);</span></span>
+<span id="L831"><span class="lineNum">     831</span>                 :<span class="tlaGNC">         222 :             return result;</span></span>
 <span id="L832"><span class="lineNum">     832</span>                 :             :         }</span>
 <span id="L833"><span class="lineNum">     833</span>                 :             :     }</span>
 <span id="L834"><span class="lineNum">     834</span>                 :             : </span>
-<span id="L835"><span class="lineNum">     835</span>                 :<span class="tlaGNC">          46 :     printf(&quot;[%s] [%d]: result = %p\n&quot;, __FUNCTION__, __LINE__, result);</span></span>
+<span id="L835"><span class="lineNum">     835</span>                 :<span class="tlaGNC">          48 :     printf(&quot;[%s] [%d]: result = %p\n&quot;, __FUNCTION__, __LINE__, result);</span></span>
 <span id="L836"><span class="lineNum">     836</span>                 :             :     //all nodes not find</span>
-<span id="L837"><span class="lineNum">     837</span>                 :<span class="tlaGNC">          46 :     return NULL;</span></span>
+<span id="L837"><span class="lineNum">     837</span>                 :<span class="tlaGNC">          48 :     return NULL;</span></span>
 <span id="L838"><span class="lineNum">     838</span>                 :             : }</span>
 <span id="L839"><span class="lineNum">     839</span>                 :             : </span>
 <span id="L840"><span class="lineNum">     840</span>                 :<span class="tlaGNC">           1 : void PsdMap::deleteNodeExceptCurrent(struct TreeNode *Node)</span></span>
@@ -1443,7 +1443,7 @@
 <span id="L1366"><span class="lineNum">    1366</span>                 :<span class="tlaGNC">           1 :     mMapMutexIsLocked = false;</span></span>
 <span id="L1367"><span class="lineNum">    1367</span>                 :             : </span>
 <span id="L1368"><span class="lineNum">    1368</span>                 :             :     //TODO4: clear the coordinates of all nodes and segment list for update new coordinates, otherwise, expired coordinates will be left</span>
-<span id="L1369"><span class="lineNum">    1369</span>                 :<span class="tlaGNC">           1 :     clearCoordinates(mTree);</span></span>
+<span id="L1369"><span class="lineNum">    1369</span>                 :<span class="tlaGNC">           1 :     dfsClearCoordinates(mTree);</span></span>
 <span id="L1370"><span class="lineNum">    1370</span>                 :             : </span>
 <span id="L1371"><span class="lineNum">    1371</span>                 :             :     //TODO5: all the child nodes enter the tree and then iterate through the tree from the beginning to calculate the latitude and longitude coordinates of each node</span>
 <span id="L1372"><span class="lineNum">    1372</span>                 :<span class="tlaGNC">           1 :     printf(&quot;[%s] [%d]: --------------------------update the Coordinate of root, parent, current and childs------------------------------\n&quot;, __FUNCTION__, __LINE__);</span></span>
