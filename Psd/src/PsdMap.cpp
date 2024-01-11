@@ -63,7 +63,7 @@ PsdMap::~PsdMap()
 {
 }
 
-void PsdMap::clearCoordinates(struct TreeNode *Node)
+void PsdMap::dfsClearCoordinates(struct TreeNode *Node)
 {
     if (Node == NULL)
     {
@@ -84,7 +84,7 @@ void PsdMap::clearCoordinates(struct TreeNode *Node)
     //recursion
     for (auto it = Node->vChilds.begin(); it != Node->vChilds.end(); it++)
     {
-        clearCoordinates((*it));
+        dfsClearCoordinates((*it));
     }
 }
 
@@ -495,7 +495,7 @@ struct PsdMapData PsdMap::calcRootOrParentSegmentCoordinate(struct TreeNode *roo
             double Re = 1.0 / std::fabs(Ce);
             double arcRotationAngleRad_a = (Sa / Ra);
             XY = calcCurveXYOffset(Ra, Haversine::toDegrees(arcRotationAngleRad_a), (Kstart < 0.0) ? 1 : 0);
-            XY = coordinateSystemRotates(rootOrParentNode->MapData.accumulateBranchAngle, XY.distanceX, XY.distanceX);
+            XY = coordinateSystemRotates(rootOrParentNode->MapData.accumulateBranchAngle, XY.distanceX, XY.distanceY);
             rootOrParentNode->MapData.accumulateXY.distanceX +=  XY.distanceX;
             rootOrParentNode->MapData.accumulateXY.distanceY +=   XY.distanceY;
             printf("[%s] [%d]: first half of the curvature curve: rootOrParentNode->MapData.accumulateXY.distanceX = %f, rootOrParentNode->MapData.accumulateXY.distanceY = %f\n", __FUNCTION__, __LINE__, rootOrParentNode->MapData.accumulateXY.distanceX, rootOrParentNode->MapData.accumulateXY.distanceY);  
@@ -730,7 +730,7 @@ struct PsdMapData PsdMap::calcCurSegmentCoordinate(struct TreeNode *curNode)
         {
             arcRotationAngleRad = (finalRemainLength / R); 
             XY_2 = calcCurveXYOffset(R * (-1), Haversine::toDegrees(arcRotationAngleRad), curNode->MapData.signStartCurvature);
-            XY_2 = coordinateSystemRotates(accumulateBranchAngleHv2Start, XY_2.distanceX, XY_2.distanceX);
+            XY_2 = coordinateSystemRotates(accumulateBranchAngleHv2Start, XY_2.distanceX, XY_2.distanceY);
             disHv2StartAfterRotatingCoord.distanceX +=  XY_2.distanceX;
             disHv2StartAfterRotatingCoord.distanceY +=   XY_2.distanceY;
             printf("[%s] [%d]: disHv2StartAfterRotatingCoord.distanceX = %f, disHv2StartAfterRotatingCoord.distanceY = %f\n", __FUNCTION__, __LINE__, disHv2StartAfterRotatingCoord.distanceX, disHv2StartAfterRotatingCoord.distanceY);  
@@ -754,7 +754,7 @@ struct PsdMapData PsdMap::calcCurSegmentCoordinate(struct TreeNode *curNode)
             double Re = 1.0 / std::fabs(Ce);
             double arcRotationAngleRad_a = (Sa / Ra);
             XY_2 = calcCurveXYOffset(Ra, Haversine::toDegrees(arcRotationAngleRad_a), (Kstart < 0.0) ? 1 : 0);
-            XY_2 = coordinateSystemRotates(accumulateBranchAngleHv2Start, XY_2.distanceX, XY_2.distanceX);
+            XY_2 = coordinateSystemRotates(accumulateBranchAngleHv2Start, XY_2.distanceX, XY_2.distanceY);
             disHv2StartAfterRotatingCoord.distanceX +=  XY_2.distanceX;
             disHv2StartAfterRotatingCoord.distanceY +=   XY_2.distanceY;
             printf("[%s] [%d]: first half of the curvature curve: disHv2StartAfterRotatingCoord.distanceX = %f, disHv2StartAfterRotatingCoord.distanceY = %f\n", __FUNCTION__, __LINE__, disHv2StartAfterRotatingCoord.distanceX, disHv2StartAfterRotatingCoord.distanceY);  
@@ -1366,7 +1366,7 @@ void PsdMap::mapUpdate()
     mMapMutexIsLocked = false;
 
     //TODO4: clear the coordinates of all nodes and segment list for update new coordinates, otherwise, expired coordinates will be left
-    clearCoordinates(mTree);
+    dfsClearCoordinates(mTree);
 
     //TODO5: all the child nodes enter the tree and then iterate through the tree from the beginning to calculate the latitude and longitude coordinates of each node
     printf("[%s] [%d]: --------------------------update the Coordinate of root, parent, current and childs------------------------------\n", __FUNCTION__, __LINE__);
