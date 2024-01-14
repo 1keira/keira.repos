@@ -89,6 +89,7 @@ extern double pStationaryThreshold;    /** <  p_StationaryThreshold*/
 /*-----------------------------------------------------------------------------
  * GLOBAL VARIABLE DECLARATIONS
  *---------------------------------------------------------------------------*/
+const double pPsdValidDistance = 250.0;
 
 /*-----------------------------------------------------------------------------
  * CLASS DECLARATIONS

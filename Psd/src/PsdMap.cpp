@@ -167,10 +167,12 @@ tOffset PsdMap::coordinateSystemRotates(double accumulateBranchAngle, double dis
     printf("[%s] [%d]: distanceX * cos(accumulateBranchAngleRad) = %f\n", __FUNCTION__, __LINE__, distanceX * cos(accumulateBranchAngleRad));
     printf("[%s] [%d]: distanceY * sin(accumulateBranchAngleRad) = %f\n", __FUNCTION__, __LINE__, distanceY * sin(accumulateBranchAngleRad)); 
     printf("[%s] [%d]: distanceX * sin(accumulateBranchAngleRad) = %f\n", __FUNCTION__, __LINE__, distanceX * sin(accumulateBranchAngleRad));
-    printf("[%s] [%d]: distanceY * cos(accumulateBranchAngleRad) = %f\n", __FUNCTION__, __LINE__, distanceY * cos(accumulateBranchAngleRad)); 
+    printf("[%s] [%d]: distanceY * cos(accumulateBranchAngleRad) = %f\n", __FUNCTION__, __LINE__, distanceY * cos(accumulateBranchAngleRad));
     
     Offset.distanceX = distanceX * cos(accumulateBranchAngleRad) - distanceY * sin(accumulateBranchAngleRad);
     Offset.distanceY = distanceX * sin(accumulateBranchAngleRad) + distanceY * cos(accumulateBranchAngleRad);
+    printf("[%s] [%d]: distanceX = distanceX * cos(accumulateBranchAngleRad) - distanceY * sin(accumulateBranchAngleRad) = %f\n", __FUNCTION__, __LINE__, Offset.distanceX);
+    printf("[%s] [%d]: distanceY = distanceX * sin(accumulateBranchAngleRad) + distanceY * cos(accumulateBranchAngleRad) = %f\n", __FUNCTION__, __LINE__, Offset.distanceY);
     printf("[%s] [%d]: coordinate system rotated X = %f\n", __FUNCTION__, __LINE__, Offset.distanceX);
     printf("[%s] [%d]: coordinate system rotated Y = %f\n", __FUNCTION__, __LINE__, Offset.distanceY);
 
@@ -219,6 +221,11 @@ tOffset PsdMap::calcCurveXYOffset(double arcR, double arcRotationAngle, bool sig
     printf("[%s] [%d]: arcR = %f, arcRotationAngle = %f, arcRotationAngleRad = %f, signCurvature = %d\n", __FUNCTION__, __LINE__, arcR, arcRotationAngle, arcRotationAngleRad, signCurvature);
     //TODO: The initial offset when accumulatingBranchAngle(relative to the direction of due north) is not considered: the offset is obtained by the trigonometric relationship between the radius of the arc and the rotation angle of the arc
     Offset.distanceX = arcR * sin(arcRotationAngleRad);
+    if (arcR < 0.0)
+    {
+        arcR *= -1;
+        printf("[%s] [%d]: fixed arcR = %f\n", __FUNCTION__, __LINE__, arcR);
+    }
     Offset.distanceY = (arcR * (cos(arcRotationAngleRad) - 1)) * (signCurvature ? -1 : 1);
     printf("[%s] [%d]: cos(arcRotationAngleRad) - 1 = %f\n", __FUNCTION__, __LINE__, cos(arcRotationAngleRad) - 1);
     printf("[%s] [%d]: arcR * (cos(arcRotationAngleRad) - 1) = %f\n", __FUNCTION__, __LINE__, arcR * (cos(arcRotationAngleRad) - 1));
@@ -1370,6 +1377,8 @@ void PsdMap::mapUpdate()
 
     //TODO5: all the child nodes enter the tree and then iterate through the tree from the beginning to calculate the latitude and longitude coordinates of each node
     printf("[%s] [%d]: --------------------------update the Coordinate of root, parent, current and childs------------------------------\n", __FUNCTION__, __LINE__);
+    printf("[%s] [%d]: hv's longitude = %lf, latitude = %lf, hvHeading = %lf\n", __FUNCTION__, __LINE__, PsdMessageDecoder::getInstance()->getSelfSegment().hvCoordinate.longitude, PsdMessageDecoder::getInstance()->getSelfSegment().hvCoordinate.latitude, PsdMessageDecoder::getInstance()->getSelfSegment().hvHeading);
+
     /*1: calculate current segment's start (latitude, longitude) and end (latitude, longitude)*/
     pthread_mutex_lock(&decoderThreadMutex);
     uint8_t curSegmentId = PsdMessageDecoder::getInstance()->getSelfSegment().curSegmentId;
@@ -1435,6 +1444,7 @@ void PsdMap::mapUpdate()
 void PsdMap::mapCreate()
 {
     printf("[%s] [%d]: --------------------------mapCreate------------------------------\n", __FUNCTION__, __LINE__);
+    printf("[%s] [%d]: hv's longitude = %lf, latitude = %lf, hvHeading = %lf\n", __FUNCTION__, __LINE__, PsdMessageDecoder::getInstance()->getSelfSegment().hvCoordinate.longitude, PsdMessageDecoder::getInstance()->getSelfSegment().hvCoordinate.latitude, PsdMessageDecoder::getInstance()->getSelfSegment().hvHeading);
     pthread_mutex_lock(&mapThreadMutex);
     mMapMutexIsLocked = true;
     insertNodeInTree();

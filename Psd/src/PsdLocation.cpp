@@ -613,6 +613,12 @@ Data2EventList PsdLocation::getPsdRoLocation(Data2Location data2Location)
             printf("[%s] [%d]: HvDTIP = %f\n", __FUNCTION__, __LINE__, mData2EventList.HvDTIP);
             printf("[%s] [%d]: RvDTIP = %f\n", __FUNCTION__, __LINE__, mData2EventList.RvDTIP);
         }
+
+        if (mData2EventList.dis2Event >= pPsdValidDistance)
+        {
+            printf("[%s] [%d]: actual distance between RO and HV over the  pPsdValidDistance\n", __FUNCTION__, __LINE__);        
+            mData2EventList.PsdAvailable = false;
+        }
     }
 
     printf("[%s] [%d]: MPP = %d\n", __FUNCTION__, __LINE__, mData2EventList.MPP);
