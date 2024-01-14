@@ -4381,7 +4381,7 @@ TEST_F(PsdMapTest, useRealRecordPsdWithSP)
 
 TEST_F(PsdMapTest, useRealRecordPsdWithCurve)
 {
-    std::string filename = "/home/zhao/Documents/Psd/gtest/src/parsed_data_转盘(进入转盘前的一个路段构建路网).txt";
+    std::string filename = "/home/zhao/Documents/Psd/gtest/src/parsed_data_转盘(HV在54路段构建路网).txt";
     std::ifstream file(filename);
     std::string line;
     bool psd04Valid = false;
@@ -4389,6 +4389,7 @@ TEST_F(PsdMapTest, useRealRecordPsdWithCurve)
     double headingAccuracy = 9.15;
     double lastHeadingAccuracy = 9.15;
     uint8_t lastSegmentId = 0;
+    double DrivedLength = 0.0;
     tSelfSegment curSegment;
     if (file.is_open())
     {
@@ -4607,7 +4608,10 @@ TEST_F(PsdMapTest, useRealRecordPsdWithCurve)
                     /*PSD_Pos_Segmentlaenge*/
                     iter = keyValueMap.find("PSD_Pos_Segmentlaenge");
                     curSegment.curRemainLength = static_cast<uint8_t> (std::stoi(iter->second));
-                    printf("[%s] [%d]: curRemainLength = %u\n", __FUNCTION__, __LINE__, curSegment.curRemainLength);
+                    
+                    //Note: record HV's DrivedLength for triggerring mapUpdate
+                    DrivedLength = (*PsdMessageDecoder::getInstance()->findSegmentById(curSegment.curSegmentId))->preSegTotalLength - curSegment.curRemainLength;
+                    printf("[%s] [%d]: DrivedLength = %f, curRemainLength = %u\n", __FUNCTION__, __LINE__, DrivedLength, curSegment.curRemainLength);
 
                     /*PSD_Pos_Standort_Eindeutig*/
                     iter = keyValueMap.find("PSD_Pos_Standort_Eindeutig");
@@ -4729,6 +4733,7 @@ TEST_F(PsdMapTest, useRealRecordPsdWithCurve)
             }
         }    
         PsdMessageDecoder::getInstance()->setSelfSegment(curSegment);
+        printf("###### initial road network ######\n");
         PsdMap::getInstance()->mapCreate();
         lastSegmentId = curSegment.curSegmentId;
 
@@ -4759,7 +4764,7 @@ TEST_F(PsdMapTest, useRealRecordPsdWithCurve)
     }
     file.close();
 
-    filename = "/home/zhao/Documents/Psd/gtest/src/parsed_data_转盘(进入转盘内第一个路段更新路网).txt";
+    filename = "/home/zhao/Documents/Psd/gtest/src/parsed_data_转盘(HV在58路段构建路网).txt";
     file.open(filename);
     if (file.is_open())
     {
@@ -4823,7 +4828,11 @@ TEST_F(PsdMapTest, useRealRecordPsdWithCurve)
                     /*PSD_Pos_Segmentlaenge*/
                     iter = keyValueMap.find("PSD_Pos_Segmentlaenge");
                     curSegment.curRemainLength = static_cast<uint8_t> (std::stoi(iter->second));
-                    printf("[%s] [%d]: curRemainLength = %u\n", __FUNCTION__, __LINE__, curSegment.curRemainLength);
+
+                    //Note: record HV's DrivedLength for triggerring mapUpdate
+                    DrivedLength = (*PsdMessageDecoder::getInstance()->findSegmentById(curSegment.curSegmentId))->preSegTotalLength - curSegment.curRemainLength;
+                    printf("[%s] [%d]: DrivedLength = %f, curRemainLength = %u\n", __FUNCTION__, __LINE__, DrivedLength, curSegment.curRemainLength);
+
                     /*PSD_Pos_Standort_Eindeutig*/
                     iter = keyValueMap.find("PSD_Pos_Standort_Eindeutig");
                     if ("mehrdeutiger_Standort")
@@ -4942,13 +4951,214 @@ TEST_F(PsdMapTest, useRealRecordPsdWithCurve)
             {
                 std::cout << "键为 " << keyPsdPosSegmentID << " " <<   keyGnss_01 <<  " "  <<  keyGnss_02 <<  " " << " 的不存在" << std::endl;
             }
+            PsdMessageDecoder::getInstance()->setSelfSegment(curSegment);
+            printf("[%s] [%d]: lastSegmentId = %u, curSegmentId = %u, DrivedLength = %f, curRemainLength = %u\n", __FUNCTION__, __LINE__, lastSegmentId, curSegment.curSegmentId, DrivedLength, curSegment.curRemainLength);
+            if ((lastSegmentId != curSegment.curSegmentId) && (DrivedLength >= 10.0) && (curSegment.curRemainLength >= 10.0))
+            {
+                printf("###### mapUpdate ######\n");
+                PsdMap::getInstance()->mapUpdate();
+                lastSegmentId = curSegment.curSegmentId;
+            }
         }    
     }
-    PsdMessageDecoder::getInstance()->setSelfSegment(curSegment);
-    if (lastSegmentId != curSegment.curSegmentId)
+    file.close();
+
+    filename = "/home/zhao/Documents/Psd/gtest/src/parsed_data_转盘(HV在16路段构建路网).txt";
+    file.open(filename);
+    if (file.is_open())
     {
-        PsdMap::getInstance()->mapUpdate();
-        lastSegmentId = curSegment.curSegmentId;
+        std::cout << "open successfully" << std::endl;
+        while (std::getline(file, line))
+        {
+            std::string keyValuePair = line.substr(line.find("{") + 1, line.find("}") - line.find("{") - 1);
+            std::map<std::string, std::string> keyValueMap;
+            std::istringstream tokenStream(keyValuePair);
+            std::string token;
+            while (std::getline(tokenStream, token, ','))
+            {
+                std::istringstream keyValue(token);  // 一个键值对，'PSD_Pos_Segment_ID': 14
+                std::string key;
+                std::string value;
+                std::getline(keyValue, key, ':');                        
+                key.erase(0, key.find_first_not_of(" '"));
+                key.erase(key.find_last_not_of(" '") + 1); 
+                std::getline(keyValue, value);
+                value.erase(0, value.find_first_not_of(" '"));
+                value.erase(value.find_last_not_of(" '") + 1);
+                if (!value.empty() && value.front() == '\'') 
+                {
+                    value.erase(0, 1);
+                }
+                if (!value.empty() && value.back() == '\'')
+                {
+                    value.pop_back();
+                }
+                keyValueMap[key] = value;
+            }
+            /*There is no need to store the PSD04 information again, only segment where the HV is located has changed. Update only the PSD05 information, and then run the mapUpdate() operation.*/
+            // PSD_Pos_Segment_ID
+            std::string keyPsdPosSegmentID = "PSD_Pos_Segment_ID";
+            std::map<std::string, std::string>::iterator iterPsd05 = keyValueMap.find(keyPsdPosSegmentID);
+            // GNSS_Nachrichtenpaket_ID1
+            std::string keyGnss_01 = "GNSS_Nachrichtenpaket_ID1";
+            std::map<std::string, std::string>::iterator iterGnss_01 = keyValueMap.find(keyGnss_01);
+            // GNSS_Nachrichtenpaket_ID2
+            std::string keyGnss_02 = "GNSS_Nachrichtenpaket_ID2";
+            std::map<std::string, std::string>::iterator iterGnss_02 = keyValueMap.find(keyGnss_02);
+            // GNSS_Ortung_Guete_Ausrichtung
+            std::string keyGnss_03 = "GNSS_Ortung_Guete_Ausrichtung";
+            std::map<std::string, std::string>::iterator iterGnss_03 = keyValueMap.find(keyGnss_03);
+            if (iterPsd05 != keyValueMap.end())
+            {
+                /*PSD_Pos_Segment_ID*/
+                std::map<std::string, std::string>::iterator iter = keyValueMap.find("PSD_Pos_Segment_ID");
+                if ((iter->second != "Fehlerwert") && (iter->second != "keine Position gegeben"))
+                {
+                    psd05Valid = true;
+                    curSegment.curSegmentId = static_cast<uint8_t> (std::stoi(iter->second));
+                    printf("[%s] [%d]: curSegmentId = %u\n", __FUNCTION__, __LINE__, curSegment.curSegmentId);
+                }
+                else
+                {
+                    psd05Valid = false;
+                }
+                if (psd05Valid == true)
+                {
+                    /*PSD_Pos_Segmentlaenge*/
+                    iter = keyValueMap.find("PSD_Pos_Segmentlaenge");
+                    curSegment.curRemainLength = static_cast<uint8_t> (std::stoi(iter->second));
+
+                    //Note: record HV's DrivedLength for triggerring mapUpdate
+                    DrivedLength = (*PsdMessageDecoder::getInstance()->findSegmentById(curSegment.curSegmentId))->preSegTotalLength - curSegment.curRemainLength;
+                    printf("[%s] [%d]: DrivedLength = %f, curRemainLength = %u\n", __FUNCTION__, __LINE__, DrivedLength, curSegment.curRemainLength);
+
+                    /*PSD_Pos_Standort_Eindeutig*/
+                    iter = keyValueMap.find("PSD_Pos_Standort_Eindeutig");
+                    if ("mehrdeutiger_Standort")
+                    {
+                        curSegment.posIsUnique = 0;
+                    }   
+                    else if ("eindeutiger_Standort")
+                    {
+                        curSegment.posIsUnique = 1;
+                    }
+                    /*PSD_Pos_Fehler_Laengsrichtung*/
+                    iter = keyValueMap.find("PSD_Pos_Fehler_Laengsrichtung");             
+                    if (iter->second == "Init")
+                    {
+                        curSegment.posLengthErr = Pos_Init;
+                    }
+                    else if (iter->second == "< 2m")
+                    {
+                        curSegment.posLengthErr = Pos_0mTo2m;
+                    }
+                    else if (iter->second == "< 5m")
+                    {
+                        curSegment.posLengthErr = Pos_2mTo5m;
+                    }
+                    else if (iter->second == "< 10m")
+                    {
+                        curSegment.posLengthErr = Pos_5mTo10m;
+                    }
+                    else if (iter->second == "< 20m")
+                    {
+                        curSegment.posLengthErr = Pos_10mTo20m;
+                    }
+                    else if (iter->second == "< 50m")
+                    {
+                        curSegment.posLengthErr =  Pos_20mTo50m;
+                    }
+                    else if (iter->second == "> 50m")
+                    {
+                        curSegment.posLengthErr =  Over50m;
+                    }
+                    else if (iter->second == "Off-Road")
+                    {
+                        curSegment.posLengthErr =  OffRoad;
+                    }
+                }
+            }
+            else 
+            if (iterGnss_01 != keyValueMap.end())
+            {
+                /*GNSS_Breite_Ortung && GNSS_Richtung_Breite_Ortung*/
+                iterGnss_01 = keyValueMap.find("GNSS_Breite_Ortung");
+                std::map<std::string, std::string>::iterator iterGnss_01Sign = keyValueMap.find("GNSS_Richtung_Breite_Ortung");
+                if ((iterGnss_01->second != "Init") && (iterGnss_01->second != "Fehler"))
+                {
+                    //TODO: filter GNSS_Ortung_Guete_Ausrichtung > 4.5
+                    if (lastHeadingAccuracy <= 4.5)
+                    {
+                        if (iterGnss_01Sign->second == "Nord")
+                        {
+                            curSegment.hvCoordinate.latitude = static_cast<double>(std::stod(iterGnss_01->second));
+                        }
+                        else
+                        {
+                            curSegment.hvCoordinate.latitude = (-1) * static_cast<double>(std::stod(iterGnss_01->second));
+                        }
+                        printf("[%s] [%d]: curSegment's latitude = %lf\n", __FUNCTION__, __LINE__, curSegment.hvCoordinate.latitude);
+                    }
+                }
+                /*GNSS_Laenge_Ortung && GNSS_Richtung_Laenge_Ortung*/
+                iterGnss_01 = keyValueMap.find("GNSS_Laenge_Ortung");
+                iterGnss_01Sign = keyValueMap.find("GNSS_Richtung_Laenge_Ortung");
+                if ((iterGnss_01->second != "Init") && (iterGnss_01->second != "Fehler"))
+                {
+                    //TODO: filter GNSS_Ortung_Guete_Ausrichtung > 4.5
+                    if (lastHeadingAccuracy <= 4.5)
+                    {
+                        if (iterGnss_01Sign->second == "Ost")
+                        {
+                            curSegment.hvCoordinate.longitude = static_cast<double>(std::stod(iterGnss_01->second));
+                        }
+                        else
+                        {
+                            curSegment.hvCoordinate.longitude = (-1) * static_cast<double>(std::stod(iterGnss_01->second)); 
+                        }
+                        printf("[%s] [%d]: curSegment's longitude = %lf\n", __FUNCTION__, __LINE__, curSegment.hvCoordinate.longitude);
+                    }        
+                }
+            }
+            else 
+            if (iterGnss_02 != keyValueMap.end())
+            {
+                /*GNSS_Ortung_Ausrichtung*/
+                iterGnss_02 = keyValueMap.find("GNSS_Ortung_Ausrichtung");
+                if ((iterGnss_02->second != "Init") && (iterGnss_02->second != "Fehler"))
+                {
+                    //TODO: filter GNSS_Ortung_Guete_Ausrichtung > 4.5
+                    if (lastHeadingAccuracy <= 4.5)
+                    {
+                        curSegment.hvHeading = static_cast<double>(std::stod(iterGnss_02->second));
+                    }
+                }
+                printf("[%s] [%d]: hvHeading = %lf\n", __FUNCTION__, __LINE__, curSegment.hvHeading);
+            }
+            else 
+            if (iterGnss_03 != keyValueMap.end())
+            {
+                /* GNSS_Ortung_Guete_Ausrichtung */
+                if ((iterGnss_03->second != "Init") && (iterGnss_03->second != "Fehler"))
+                {
+                    headingAccuracy =  static_cast<double> (std::stod(iterGnss_03->second));
+                    lastHeadingAccuracy = headingAccuracy; 
+                }
+                printf("[%s] [%d]: headingAccuracy = %lf\n", __FUNCTION__, __LINE__, headingAccuracy);
+            }
+            else
+            {
+                std::cout << "键为 " << keyPsdPosSegmentID << " " <<   keyGnss_01 <<  " "  <<  keyGnss_02 <<  " " << " 的不存在" << std::endl;
+            }
+            PsdMessageDecoder::getInstance()->setSelfSegment(curSegment);
+            printf("[%s] [%d]: lastSegmentId = %u, curSegmentId = %u, DrivedLength = %f, curRemainLength = %u\n", __FUNCTION__, __LINE__, lastSegmentId, curSegment.curSegmentId, DrivedLength, curSegment.curRemainLength);
+            if ((lastSegmentId != curSegment.curSegmentId) && (DrivedLength >= 10.0) && (curSegment.curRemainLength >= 10.0))
+            {
+                printf("###### mapUpdate ######\n");
+                PsdMap::getInstance()->mapUpdate();
+                lastSegmentId = curSegment.curSegmentId;
+            }
+        }    
     }
 }
 
