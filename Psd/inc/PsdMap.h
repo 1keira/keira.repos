@@ -308,6 +308,28 @@ public:
      */
     void dfsClearCoordinates(struct TreeNode *Node);
 
+    /**
+     * @brief get HV position from Ego Vehicle Data Handler
+     * @return Position3D 
+     */
+    Position3D getHVPosition();
+
+    /**
+     * @brief get HV heading from Ego Vehicle Data Handler
+     * @param heading 
+     * @param threshold (HeadingAccuracyThreshold)
+     * @return true (heading is accuracy)
+     * @return false (heading is not accuracy)
+     */
+    bool getHVHeading(double& heading, double threshold);
+
+    /**
+     * @brief  get HV's heading whether has changed from Ego Vehicle Data Handler
+     * @return true (heading is not smooth)
+     * @return false (heading is smooth)
+     */
+    bool getHeadingChangeFlag();
+
     //private:
     static PsdMap* pInstance;   /**<A pointer used to return the object of  the class of PsdMap*/
     

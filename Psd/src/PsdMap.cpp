@@ -63,6 +63,25 @@ PsdMap::~PsdMap()
 {
 }
 
+/*Assume that the interface, which is later integrated with HSM::*/
+bool PsdMap::getHeadingChangeFlag()
+{
+    return true;
+}
+
+/*Assume that the interface, which is later integrated with HSM::*/
+bool PsdMap::getHVHeading(double& heading, double threshold)
+{
+    return true;
+}
+
+/*Assume that the interface, which is later integrated with HSM::*/
+Position3D PsdMap::getHVPosition()
+{
+    Position3D hvPos;
+    return hvPos;
+}
+
 void PsdMap::dfsClearCoordinates(struct TreeNode *Node)
 {
     if (Node == NULL)
@@ -1477,33 +1496,41 @@ void *PsdMapRun(void *arg)
         if (pPsdUsageActive)
         {
             /*TODO2: check HV's confidence*/
-            // check HV's valid curSegmentId + posIsUnique + posLengthErr + (lat, lon) + heading + headingAccuracy(for filter invalid heading) in PsdMessageDecoder.cpp
-            /*TODO3: check tree whether is NULL or not*/
-            if (NULL == PsdMap::getInstance()->getTree())
-            {
-                /*TODO4: find CurSegId success*/
-                pthread_mutex_lock(&decoderThreadMutex);
-                CurSegId = PsdMap::getInstance()->curIdIsInList()->preSegmentId;
-                pthread_mutex_unlock(&decoderThreadMutex);
+            // check HV's valid curSegmentId + posIsUnique + posLengthErr in PsdMessageDecoder.cpp
 
-                /*TODO5: mapCreate*/
-                if (-1 != CurSegId)
-                {
-                    PsdMap::getInstance()->mapCreate();
-                    //TODO6: record lastSegmentId = curSegmentId, lastSize = vPsdMap.size()
-                    lastSegmentId = PsdMessageDecoder::getInstance()->getSelfSegment().curSegmentId;
-                    lastSize = PsdMessageDecoder::getInstance()->getVPsdMap().size();
-                }
-            }
-            else
+            /*TODO3: When the heading is more accurate and the changes are more stable, the map is then built*/
+            if ((PsdMap::getInstance()->getHVHeading(PsdMessageDecoder::getInstance()->hvSegment.hvHeading, HeadingAccuracyThreshold)) && (PsdMap::getInstance()->getHeadingChangeFlag() == false))
             {
-                /*trigger mapUpdate*/
-                if ((PsdMessageDecoder::getInstance()->getSelfSegment().curSegmentId != lastSegmentId) && (lastSize != PsdMessageDecoder::getInstance()->getVPsdMap().size()))
+                PsdMessageDecoder::getInstance()->hvSegment.hvCoordinate.latitude = PsdMap::getInstance()->getHVPosition().lat;
+                PsdMessageDecoder::getInstance()->hvSegment.hvCoordinate.longitude = PsdMap::getInstance()->getHVPosition().lon;
+                PsdMessageDecoder::getInstance()->setSelfSegment(PsdMessageDecoder::getInstance()->hvSegment);
+                /*TODO4: check tree whether is NULL or not*/
+                if (NULL == PsdMap::getInstance()->getTree())
                 {
-                    PsdMap::getInstance()->mapUpdate();
-                    //TODO6: record lastSegmentId = curSegmentId, lastSize = vPsdMap.size()
-                    lastSegmentId =  PsdMessageDecoder::getInstance()->getSelfSegment().curSegmentId;
-                    lastSize = PsdMessageDecoder::getInstance()->getVPsdMap().size();
+                    /*TODO5: find CurSegId success*/
+                    pthread_mutex_lock(&decoderThreadMutex);
+                    CurSegId = PsdMap::getInstance()->curIdIsInList()->preSegmentId;
+                    pthread_mutex_unlock(&decoderThreadMutex);
+
+                    /*TODO6: mapCreate*/
+                    if (-1 != CurSegId)
+                    {
+                        PsdMap::getInstance()->mapCreate();
+                        //TODO7: record lastSegmentId = curSegmentId, lastSize = vPsdMap.size()
+                        lastSegmentId = PsdMessageDecoder::getInstance()->getSelfSegment().curSegmentId;
+                        lastSize = PsdMessageDecoder::getInstance()->getVPsdMap().size();
+                    }
+                }
+                else
+                {
+                    /*trigger mapUpdate*/
+                    if ((PsdMessageDecoder::getInstance()->getSelfSegment().curSegmentId != lastSegmentId) && (lastSize != PsdMessageDecoder::getInstance()->getVPsdMap().size()))
+                    {
+                        PsdMap::getInstance()->mapUpdate();
+                        //TODO7: record lastSegmentId = curSegmentId, lastSize = vPsdMap.size()
+                        lastSegmentId =  PsdMessageDecoder::getInstance()->getSelfSegment().curSegmentId;
+                        lastSize = PsdMessageDecoder::getInstance()->getVPsdMap().size();
+                    }
                 }
             }
         }
@@ -1517,4 +1544,5 @@ void *PsdMapRun(void *arg)
             PsdMessageDecoder::getInstance()->segmentManager(false);
         }
     }
+    sleep(1);
 }

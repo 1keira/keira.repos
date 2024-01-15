@@ -57,16 +57,6 @@ PsdMessageDecoder::~PsdMessageDecoder()
 {
 }
 
-Position3D PsdMessageDecoder::getHVPosition()
-{
-    Position3D hvPos;
-    return hvPos;
-}
-
-bool PsdMessageDecoder::getHVHeading(double& heading, double threshold)
-{
-    return true;
-}
 
 std::vector<struct PsdMapData *>& PsdMessageDecoder::getVPsdMap()
 {
@@ -270,18 +260,12 @@ void *PsdMessageDecoderRun(void *arg)
             //TODO2: receive valid PSD04 05 06, saving in PsdMapData.preSegmentId when (PSD_Segment_ID != "Fehlerwert") && (PSD_Segment_ID != "keine Segmentinformationen vorhanden") 
             //TODO3: save PSD04 05 06 info
             PsdMessageDecoder::getInstance()->segmentManager(true);
-            if (PsdMessageDecoder::getInstance()->getHVHeading(PsdMessageDecoder::getInstance()->hvSegment.hvHeading, HeadingAccuracyThreshold))
-            {
-                PsdMessageDecoder::getInstance()->hvSegment.hvCoordinate.latitude = PsdMessageDecoder::getInstance()->getHVPosition().lat;
-                PsdMessageDecoder::getInstance()->hvSegment.hvCoordinate.longitude = PsdMessageDecoder::getInstance()->getHVPosition().lon;
-                PsdMessageDecoder::getInstance()->setSelfSegment(PsdMessageDecoder::getInstance()->hvSegment);
-            }
         }
         else
         {
             //TODO:pPsdUsageActive == false,segmentManager() add param control push or erase
             PsdMessageDecoder::getInstance()->segmentManager(false);
         }
-
     }
+    sleep(1);
 }

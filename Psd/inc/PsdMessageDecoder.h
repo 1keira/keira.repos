@@ -18,6 +18,7 @@
 #include <cstdint>
 #include <vector>
 #include <pthread.h>
+#include <unistd.h>
 #include "GeometricCalc.h"
 
 /*-----------------------------------------------------------------------------
@@ -136,7 +137,6 @@ typedef struct SelfSegment{
 	bool    posIsUnique;                           //indicates whether the location is unique, whether HV's position is consistent with the current segment, default:0
     e_PosLengthErr  posLengthErr;   //longitudinal errors in positioning, default:0
     /*extra needed*/
-    // uint8_t lastSegmentId;                    //for judging whether update Map or not, what time to save it?---after mapCreate and mapUpdate
     tCoordinates hvCoordinate;          //getHvPosition() from receiver
     double hvHeading;                            //getHvHeading() from receiver
 }tSelfSegment;
@@ -240,21 +240,6 @@ public:
      * @return std::vector<struct PsdMapData *>& 
      */
     std::vector<struct PsdMapData *>& getVPsdMap();
-
-    /**
-     * @brief assumption interface
-     * @param heading 
-     * @param threshold 
-     * @return true 
-     * @return false 
-     */
-    bool getHVHeading(double& heading, double threshold);
-
-    /**
-     * @brief assumption HV coordinate
-     * @return Position3D 
-     */
-    Position3D getHVPosition();
 
     /**
      * @brief  Construct a new PsdMessageDecoder object
