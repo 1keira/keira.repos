@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2024-01-15 01:30:08</td>
+            <td class="headerValue">2024-01-15 16:57:38</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -379,24 +379,46 @@
 <span id="L308"><span class="lineNum">     308</span>                 :             :      */</span>
 <span id="L309"><span class="lineNum">     309</span>                 :             :     void dfsClearCoordinates(struct TreeNode *Node);</span>
 <span id="L310"><span class="lineNum">     310</span>                 :             : </span>
-<span id="L311"><span class="lineNum">     311</span>                 :             :     //private:</span>
-<span id="L312"><span class="lineNum">     312</span>                 :             :     static PsdMap* pInstance;   /**&lt;A pointer used to return the object of  the class of PsdMap*/</span>
-<span id="L313"><span class="lineNum">     313</span>                 :             :     </span>
-<span id="L314"><span class="lineNum">     314</span>                 :             :     /**</span>
-<span id="L315"><span class="lineNum">     315</span>                 :             :      * @brief Construct a new PsdMap object</span>
-<span id="L316"><span class="lineNum">     316</span>                 :             :      */</span>
-<span id="L317"><span class="lineNum">     317</span>                 :             :     PsdMap(/* args */);</span>
-<span id="L318"><span class="lineNum">     318</span>                 :             : </span>
-<span id="L319"><span class="lineNum">     319</span>                 :             :     /**</span>
-<span id="L320"><span class="lineNum">     320</span>                 :             :      * @brief Destroy the PsdMap object</span>
-<span id="L321"><span class="lineNum">     321</span>                 :             :      */</span>
-<span id="L322"><span class="lineNum">     322</span>                 :             :     ~PsdMap();</span>
-<span id="L323"><span class="lineNum">     323</span>                 :             : };</span>
-<span id="L324"><span class="lineNum">     324</span>                 :             : </span>
-<span id="L325"><span class="lineNum">     325</span>                 :             : void *PsdMapRun(void *arg);</span>
-<span id="L326"><span class="lineNum">     326</span>                 :             : </span>
-<span id="L327"><span class="lineNum">     327</span>                 :             : #endif /*_PSDMAP_H_*/</span>
-<span id="L328"><span class="lineNum">     328</span>                 :             : </span>
+<span id="L311"><span class="lineNum">     311</span>                 :             :     /**</span>
+<span id="L312"><span class="lineNum">     312</span>                 :             :      * @brief get HV position from Ego Vehicle Data Handler</span>
+<span id="L313"><span class="lineNum">     313</span>                 :             :      * @return Position3D </span>
+<span id="L314"><span class="lineNum">     314</span>                 :             :      */</span>
+<span id="L315"><span class="lineNum">     315</span>                 :             :     Position3D getHVPosition();</span>
+<span id="L316"><span class="lineNum">     316</span>                 :             : </span>
+<span id="L317"><span class="lineNum">     317</span>                 :             :     /**</span>
+<span id="L318"><span class="lineNum">     318</span>                 :             :      * @brief get HV heading from Ego Vehicle Data Handler</span>
+<span id="L319"><span class="lineNum">     319</span>                 :             :      * @param heading </span>
+<span id="L320"><span class="lineNum">     320</span>                 :             :      * @param threshold (HeadingAccuracyThreshold)</span>
+<span id="L321"><span class="lineNum">     321</span>                 :             :      * @return true (heading is accuracy)</span>
+<span id="L322"><span class="lineNum">     322</span>                 :             :      * @return false (heading is not accuracy)</span>
+<span id="L323"><span class="lineNum">     323</span>                 :             :      */</span>
+<span id="L324"><span class="lineNum">     324</span>                 :             :     bool getHVHeading(double&amp; heading, double threshold);</span>
+<span id="L325"><span class="lineNum">     325</span>                 :             : </span>
+<span id="L326"><span class="lineNum">     326</span>                 :             :     /**</span>
+<span id="L327"><span class="lineNum">     327</span>                 :             :      * @brief  get HV's heading whether has changed from Ego Vehicle Data Handler</span>
+<span id="L328"><span class="lineNum">     328</span>                 :             :      * @return true (heading is not smooth)</span>
+<span id="L329"><span class="lineNum">     329</span>                 :             :      * @return false (heading is smooth)</span>
+<span id="L330"><span class="lineNum">     330</span>                 :             :      */</span>
+<span id="L331"><span class="lineNum">     331</span>                 :             :     bool getHeadingChangeFlag();</span>
+<span id="L332"><span class="lineNum">     332</span>                 :             : </span>
+<span id="L333"><span class="lineNum">     333</span>                 :             :     //private:</span>
+<span id="L334"><span class="lineNum">     334</span>                 :             :     static PsdMap* pInstance;   /**&lt;A pointer used to return the object of  the class of PsdMap*/</span>
+<span id="L335"><span class="lineNum">     335</span>                 :             :     </span>
+<span id="L336"><span class="lineNum">     336</span>                 :             :     /**</span>
+<span id="L337"><span class="lineNum">     337</span>                 :             :      * @brief Construct a new PsdMap object</span>
+<span id="L338"><span class="lineNum">     338</span>                 :             :      */</span>
+<span id="L339"><span class="lineNum">     339</span>                 :             :     PsdMap(/* args */);</span>
+<span id="L340"><span class="lineNum">     340</span>                 :             : </span>
+<span id="L341"><span class="lineNum">     341</span>                 :             :     /**</span>
+<span id="L342"><span class="lineNum">     342</span>                 :             :      * @brief Destroy the PsdMap object</span>
+<span id="L343"><span class="lineNum">     343</span>                 :             :      */</span>
+<span id="L344"><span class="lineNum">     344</span>                 :             :     ~PsdMap();</span>
+<span id="L345"><span class="lineNum">     345</span>                 :             : };</span>
+<span id="L346"><span class="lineNum">     346</span>                 :             : </span>
+<span id="L347"><span class="lineNum">     347</span>                 :             : void *PsdMapRun(void *arg);</span>
+<span id="L348"><span class="lineNum">     348</span>                 :             : </span>
+<span id="L349"><span class="lineNum">     349</span>                 :             : #endif /*_PSDMAP_H_*/</span>
+<span id="L350"><span class="lineNum">     350</span>                 :             : </span>
         </pre>
               </td>
             </tr>

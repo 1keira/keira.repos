@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2024-01-15 01:30:08</td>
+            <td class="headerValue">2024-01-15 16:57:38</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryMed">79.7&nbsp;%</td>
@@ -240,16 +240,16 @@
 <span id="L169"><span class="lineNum">     169</span>                 :<span class="tlaGNC">         172 :       _M_allocate(size_t __n)</span></span>
 <span id="L170"><span class="lineNum">     170</span>                 :             :       {</span>
 <span id="L171"><span class="lineNum">     171</span>                 :             :         typedef __gnu_cxx::__alloc_traits&lt;_Tp_alloc_type&gt; _Tr;</span>
-<span id="L172"><span class="lineNum">     172</span>   [<span class="tlaGBC" title="Branch 0 was taken 2 times"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span><span class="tlaUNC" title="Branch 2 was not executed"> # </span><span class="tlaUNC" title="Branch 3 was not executed"> # </span>]:<span class="tlaGNC">         172 :         return __n != 0 ? _Tr::allocate(_M_impl, __n) : pointer();</span></span>
-<span class="lineNum">        </span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]
+<span id="L172"><span class="lineNum">     172</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]:<span class="tlaGNC">         172 :         return __n != 0 ? _Tr::allocate(_M_impl, __n) : pointer();</span></span>
+<span class="lineNum">        </span>   [<span class="tlaGBC" title="Branch 0 was taken 2 times"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span><span class="tlaUNC" title="Branch 2 was not executed"> # </span><span class="tlaUNC" title="Branch 3 was not executed"> # </span>]
 <span id="L173"><span class="lineNum">     173</span>                 :             :       }</span>
 <span id="L174"><span class="lineNum">     174</span>                 :             : </span>
 <span id="L175"><span class="lineNum">     175</span>                 :             :       void</span>
 <span id="L176"><span class="lineNum">     176</span>                 :<span class="tlaGNC">         292 :       _M_deallocate(pointer __p, size_t __n)</span></span>
 <span id="L177"><span class="lineNum">     177</span>                 :             :       {</span>
 <span id="L178"><span class="lineNum">     178</span>                 :             :         typedef __gnu_cxx::__alloc_traits&lt;_Tp_alloc_type&gt; _Tr;</span>
-<span id="L179"><span class="lineNum">     179</span>   [<span class="tlaGBC" title="Branch 0 was taken 2 times"> + </span><span class="tlaGBC" title="Branch 1 was taken 2 times"> + </span><span class="tlaUNC" title="Branch 2 was not executed"> # </span><span class="tlaUNC" title="Branch 3 was not executed"> # </span>]:<span class="tlaGNC">         292 :         if (__p)</span></span>
-<span class="lineNum">        </span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]
+<span id="L179"><span class="lineNum">     179</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]:<span class="tlaGNC">         292 :         if (__p)</span></span>
+<span class="lineNum">        </span>   [<span class="tlaGBC" title="Branch 0 was taken 2 times"> + </span><span class="tlaGBC" title="Branch 1 was taken 2 times"> + </span><span class="tlaUNC" title="Branch 2 was not executed"> # </span><span class="tlaUNC" title="Branch 3 was not executed"> # </span>]
 <span id="L180"><span class="lineNum">     180</span>                 :<span class="tlaGNC">          66 :           _Tr::deallocate(_M_impl, __p, __n);</span></span>
 <span id="L181"><span class="lineNum">     181</span>                 :<span class="tlaGNC">         292 :       }</span></span>
 <span id="L182"><span class="lineNum">     182</span>                 :             : </span>
@@ -1011,8 +1011,8 @@
 <span id="L938"><span class="lineNum">     938</span>                 :             :       void</span>
 <span id="L939"><span class="lineNum">     939</span>                 :<span class="tlaGNC">          67 :       push_back(const value_type&amp; __x)</span></span>
 <span id="L940"><span class="lineNum">     940</span>                 :             :       {</span>
-<span id="L941"><span class="lineNum">     941</span>   [<span class="tlaUNC" title="Branch 0 was not taken"> - </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 2 was not executed"> # </span><span class="tlaUNC" title="Branch 3 was not executed"> # </span>]:<span class="tlaGNC">          67 :         if (this-&gt;_M_impl._M_finish != this-&gt;_M_impl._M_end_of_storage)</span></span>
-<span class="lineNum">        </span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]
+<span id="L941"><span class="lineNum">     941</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]:<span class="tlaGNC">          67 :         if (this-&gt;_M_impl._M_finish != this-&gt;_M_impl._M_end_of_storage)</span></span>
+<span class="lineNum">        </span>   [<span class="tlaUNC" title="Branch 0 was not taken"> - </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 2 was not executed"> # </span><span class="tlaUNC" title="Branch 3 was not executed"> # </span>]
 <span id="L942"><span class="lineNum">     942</span>                 :             :           {</span>
 <span id="L943"><span class="lineNum">     943</span>                 :<span class="tlaGNC">           7 :             _Alloc_traits::construct(this-&gt;_M_impl, this-&gt;_M_impl._M_finish,</span></span>
 <span id="L944"><span class="lineNum">     944</span>                 :             :                                      __x);</span>
@@ -1575,14 +1575,14 @@
 <span id="L1501"><span class="lineNum">    1501</span>                 :             :       size_type</span>
 <span id="L1502"><span class="lineNum">    1502</span>                 :<span class="tlaGNC tlaBgGNC">          67 :       _M_check_len(size_type __n, const char* __s) const</span></span>
 <span id="L1503"><span class="lineNum">    1503</span>                 :             :       {</span>
-<span id="L1504"><span class="lineNum">    1504</span>   [<span class="tlaUNC" title="Branch 0 was not taken"> - </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 2 was not executed"> # </span><span class="tlaUNC" title="Branch 3 was not executed"> # </span>]:<span class="tlaGNC">          67 :         if (max_size() - size() &lt; __n)</span></span>
-<span class="lineNum">        </span>         [<span class="tlaUNC" title="Branch 0 was not taken"> - </span><span class="tlaGBC" title="Branch 1 was taken 2 times"> + </span>]
+<span id="L1504"><span class="lineNum">    1504</span>         [<span class="tlaUNC" title="Branch 0 was not taken"> - </span><span class="tlaGBC" title="Branch 1 was taken 2 times"> + </span>]:<span class="tlaGNC">          67 :         if (max_size() - size() &lt; __n)</span></span>
+<span class="lineNum">        </span>   [<span class="tlaUNC" title="Branch 0 was not taken"> - </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 2 was not executed"> # </span><span class="tlaUNC" title="Branch 3 was not executed"> # </span>]
 <span id="L1505"><span class="lineNum">    1505</span>                 :<span class="tlaUNC tlaBgUNC">           0 :           __throw_length_error(__N(__s));</span></span>
 <span id="L1506"><span class="lineNum">    1506</span>                 :             : </span>
 <span id="L1507"><span class="lineNum">    1507</span>                 :<span class="tlaGNC tlaBgGNC">          67 :         const size_type __len = size() + std::max(size(), __n);</span></span>
-<span id="L1508"><span class="lineNum">    1508</span>   [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span><span class="tlaUNC" title="Branch 2 was not taken"> - </span><span class="tlaGBC" title="Branch 3 was taken 1 time"> + </span> :<span class="tlaGNC">          67 :         return (__len &lt; size() || __len &gt; max_size()) ? max_size() : __len;</span></span>
+<span id="L1508"><span class="lineNum">    1508</span>   [<span class="tlaGBC" title="Branch 0 was taken 2 times"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span><span class="tlaUNC" title="Branch 2 was not taken"> - </span><span class="tlaGBC" title="Branch 3 was taken 2 times"> + </span>]:<span class="tlaGNC">          67 :         return (__len &lt; size() || __len &gt; max_size()) ? max_size() : __len;</span></span>
+<span class="lineNum">        </span>   [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span><span class="tlaUNC" title="Branch 2 was not taken"> - </span><span class="tlaGBC" title="Branch 3 was taken 1 time"> + </span> 
 <span class="lineNum">        </span>    <span class="tlaUNC" title="Branch 4 was not executed"> # </span><span class="tlaUNC" title="Branch 5 was not executed"> # </span><span class="tlaUNC" title="Branch 6 was not executed"> # </span><span class="tlaUNC" title="Branch 7 was not executed"> # </span>]
-<span class="lineNum">        </span>   [<span class="tlaGBC" title="Branch 0 was taken 2 times"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span><span class="tlaUNC" title="Branch 2 was not taken"> - </span><span class="tlaGBC" title="Branch 3 was taken 2 times"> + </span>]
 <span id="L1509"><span class="lineNum">    1509</span>                 :             :       }</span>
 <span id="L1510"><span class="lineNum">    1510</span>                 :             : </span>
 <span id="L1511"><span class="lineNum">    1511</span>                 :             :       // Internal erase functions follow.</span>
