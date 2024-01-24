@@ -4,7 +4,7 @@
  * Author: 	     ZhaoZijia
  * Version :	 Ver0.1
  * Date:		 2023-11-03
- * Description: create and update PsdMap, calculate latitude and logitude coordinates
+ * Description: create and update PsdMap, calculate latitude and longitude coordinates
  *
  *********************************************************************************/
 
@@ -56,10 +56,6 @@ public:
     pthread_mutex_t mapThreadMutex;            /** <  Mutex for PsdMap thread*/
 
     bool mMapMutexIsLocked;                               /** <  the status of Mutex whether is locked or not*/
-
-    // tOffset disHv2EndBeforeRotatingCoord;    /** <  distance from the HV to the end point before the rotation coordinate system*/
-
-    // tOffset disHv2StartBeforeRotatingCoord;  /** <  distance from the HV to the start point before the rotation coordinate system*/
 
     tOffset disHv2EndAfterRotatingCoord;    /** <  distance from the HV to the end point after the rotation coordinate system*/
 
@@ -242,10 +238,10 @@ public:
     /**
      * @brief Calculate X Y offsset in straight path case
      * @param Length (actual length)
-     * @param accumulateBranchAngle (accumulate branch angle relative to the first position)
-     * @return tOffset (vertical offset x and horizontal offset y after rotating accumulateBranchAngle)
+     * @param BranchAngle (branch angle relative to the first position)
+     * @return tOffset (vertical offset x and horizontal offset y after rotating BranchAngle)
      */
-    tOffset calcStraightXYOffset(double Length, double accumulateBranchAngle);
+    tOffset calcStraightXYOffset(double Length, double BranchAngle);
 
     /**
      * @brief The function is to calculate the rotation of the coordinate system relative to true north direction, the XY input is the offset from the start position of the segment to the end position
@@ -256,14 +252,14 @@ public:
      */
     tOffset coordinateSystemRotates(double accumulateBranchAngle, double distanceX, double distanceY);
 
-    /**
-     * @brief Calculate horizontal and orthogonal distance
-     * @param Heading (from HV)
-     * @param distanceX (x-axis before rotation)
-     * @param distanceY (y-axis before rotation)
-     * @return tOffset (vertical offset x and horizontal offset y after rotation)
-     */
-    tOffset calcHeadingXY(double Heading, double distanceX, double distanceY);
+    // /**
+    //  * @brief Calculate horizontal and orthogonal distance
+    //  * @param Heading (from HV)
+    //  * @param distanceX (x-axis before rotation)
+    //  * @param distanceY (y-axis before rotation)
+    //  * @return tOffset (vertical offset x and horizontal offset y after rotation)
+    //  */
+    // tOffset calcHeadingXY(double Heading, double distanceX, double distanceY);
 
     /**
      * @brief Get the Tree object

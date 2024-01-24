@@ -57,7 +57,6 @@ PsdMessageDecoder::~PsdMessageDecoder()
 {
 }
 
-
 std::vector<struct PsdMapData *>& PsdMessageDecoder::getVPsdMap()
 {
     return vPsdMap;
@@ -249,6 +248,19 @@ void PsdMessageDecoder::segmentManager(bool PsdUsageActive)
     }
 }
 
+// void PsdMessageDecoder::receivedPdu_PSD_06(RxPdu_PSD_06 const &psd06)
+// {
+
+// }
+// void PsdMessageDecoder::receivedPdu_PSD_05(RxPdu_PSD_05 const &psd05)
+// {
+
+// }
+// void PsdMessageDecoder::receivedPdu_PSD_04(RxPdu_PSD_04 const &psd04)
+// {
+
+// }
+
 /*Thread:PsdMessageDecoder*/
 void *PsdMessageDecoderRun(void *arg)
 {
@@ -257,9 +269,12 @@ void *PsdMessageDecoderRun(void *arg)
         /*TODO1: check pPsdUsageActive*/
         if (pPsdUsageActive)
         {
-            //TODO2: receive valid PSD04 05 06, saving in PsdMapData.preSegmentId when (PSD_Segment_ID != "Fehlerwert") && (PSD_Segment_ID != "keine Segmentinformationen vorhanden") 
-            //TODO3: save PSD04 05 06 info
+            //TODO2: receive valid PSD04 05, saving in PsdMapData.preSegmentId when (PSD_Segment_ID != "Fehlerwert") && (PSD_Segment_ID != "keine Segmentinformationen vorhanden"), and calcPsd04Data
+
+            //TODO4: save PSD04 in list
             PsdMessageDecoder::getInstance()->segmentManager(true);
+
+            //TODO5: receive valid PSD06, and saveAttributToList
         }
         else
         {

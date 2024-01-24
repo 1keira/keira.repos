@@ -93,21 +93,21 @@ typedef struct Coordinates{
 //PsdMapData
 typedef	struct PsdMapData{
 	/*from PSD_04*/
-	uint8_t preSegmentId;                             //predicted segment identifier
-	uint8_t prevSegmentId;                          //the previous identifier of segment
-    uint16_t preSegTotalLength;                 //total segment length
-    Psd04RoadClass psd04RoadClass;     //the road class of every segments
-	double  endCurvature;		                      //end curvature
-    bool       signEndCurvature;                    //positive or negative sign on endCurvature, 0-positive, 1-negative
-	bool       mpp;                                                //most posibile path of HV drived
-	bool       sp;                                                     //straight path
-	bool	   segmentIsComplete;                //integrity of PSD_04
-	double  startCurvature;	                          //start curvature
-    bool       signStartCurvature;                  //positive or negative sign on startCurvature, 0-positive, 1-negative
-	bool       branchDirection;	                      //branching direction relative to the previous segment at the branch point, 0-right, 1-left 
-	double  branchAngle; 	                          //branching angle relative to the previous segment at the branch point
+	uint8_t preSegmentId;                             //PSD_Segment_ID, predicted segment identifier
+	uint8_t prevSegmentId;                          //PSD_Vorgaenger_Segment_ID, the previous identifier of segment
+    uint16_t preSegTotalLength;                 //PSD_Segmentlaenge, total segment length
+    Psd04RoadClass psd04RoadClass;     //PSD_Strassenkategorie, the road class of every segments
+	double  endCurvature;		                      //PSD_Endkruemmung, end curvature
+    bool       signEndCurvature;                    //PSD_Endkruemmung_Vorz, positive or negative sign on endCurvature, 0-positive, 1-negative
+	bool       mpp;                                                //PSD_wahrscheinlichster_Pfad, most posibile path of HV drived
+	// bool	   segmentIsComplete;                //integrity of PSD_04
+	double  startCurvature;	                          //PSD_Anfangskruemmung, start curvature
+    bool       signStartCurvature;                  //PSD_Anfangskruemmung_Vorz, positive or negative sign on startCurvature, 0-positive, 1-negative
+	bool       branchDirection;	                      //PSD_Abzweigerichtung, branching direction relative to the previous segment at the branch point, 0-right, 1-left 
+	double  branchAngle; 	                          //PSD_Abzweigewinkel, branching angle relative to the previous segment at the branch point
 
 	/*extra needed*/
+    bool      sp;                                                      //straight path
     double accumulateBranchAngle;        //indicates the branching angle of each segment with respect to the HV's segment  
     tOffset accumulateXY;                              //indicates the offset of each segment with respect to the HV's position  
 	bool     segIsInTree;                                     //identifies that segment has been grouped into the tree
@@ -132,10 +132,10 @@ typedef	struct PsdMapData{
 //SelfSegment
 typedef struct SelfSegment{
     /*from PSD_05*/
-	uint8_t	curSegmentId;                     //the segmentId where HV is currently located
-	uint8_t curRemainLength;             //the remain length of HV current segment
-	bool    posIsUnique;                           //indicates whether the location is unique, whether HV's position is consistent with the current segment, default:0
-    e_PosLengthErr  posLengthErr;   //longitudinal errors in positioning, default:0
+	uint8_t	curSegmentId;                     //PSD_Pos_Segment_ID, the segmentId where HV is currently located
+	uint8_t curRemainLength;             //PSD_Pos_Segmentlaenge, the remain length of HV current segment
+	bool    posIsUnique;                           //PSD_Pos_Standort_Eindeutig, indicates whether the location is unique, whether HV's position is consistent with the current segment, default:0
+    e_PosLengthErr  posLengthErr;   //PSD_Pos_Fehler_Laengsrichtung, longitudinal errors in positioning, default:0
     /*extra needed*/
     tCoordinates hvCoordinate;          //getHvPosition() from receiver
     double hvHeading;                            //getHvHeading() from receiver
@@ -240,6 +240,24 @@ public:
      * @return std::vector<struct PsdMapData *>& 
      */
     std::vector<struct PsdMapData *>& getVPsdMap();
+
+    // /**
+    //  * @brief receivedPdu_PSD_04 from signalAPI
+    //  * @param psd04 
+    //  */
+    // void receivedPdu_PSD_04(RxPdu_PSD_04 const &psd04);
+
+    // /**
+    //  * @brief receivedPdu_PSD_05 from signalAPI
+    //  * @param psd05 
+    //  */
+    // void receivedPdu_PSD_05(RxPdu_PSD_05 const &psd05);
+
+    // /**
+    //  * @brief receivedPdu_PSD_06 from signalAPI
+    //  * @param psd06 
+    //  */
+    // void receivedPdu_PSD_06(RxPdu_PSD_06 const &psd06);
 
     /**
      * @brief  Construct a new PsdMessageDecoder object
