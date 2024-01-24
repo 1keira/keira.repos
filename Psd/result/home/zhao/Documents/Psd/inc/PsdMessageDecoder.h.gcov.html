@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2024-01-15 16:57:38</td>
+            <td class="headerValue">2024-01-24 20:00:39</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
@@ -162,23 +162,23 @@
 <span id="L91"><span class="lineNum">      91</span>                 :             : }tCoordinates;</span>
 <span id="L92"><span class="lineNum">      92</span>                 :             : </span>
 <span id="L93"><span class="lineNum">      93</span>                 :             : //PsdMapData</span>
-<span id="L94"><span class="lineNum">      94</span>                 :<span class="tlaGNC tlaBgGNC">         416 : typedef struct PsdMapData{</span></span>
+<span id="L94"><span class="lineNum">      94</span>                 :<span class="tlaGNC tlaBgGNC">         913 : typedef struct PsdMapData{</span></span>
 <span id="L95"><span class="lineNum">      95</span>                 :             :         /*from PSD_04*/</span>
-<span id="L96"><span class="lineNum">      96</span>                 :             :         uint8_t preSegmentId;                             //predicted segment identifier</span>
-<span id="L97"><span class="lineNum">      97</span>                 :             :         uint8_t prevSegmentId;                          //the previous identifier of segment</span>
-<span id="L98"><span class="lineNum">      98</span>                 :             :     uint16_t preSegTotalLength;                 //total segment length</span>
-<span id="L99"><span class="lineNum">      99</span>                 :             :     Psd04RoadClass psd04RoadClass;     //the road class of every segments</span>
-<span id="L100"><span class="lineNum">     100</span>                 :             :         double  endCurvature;                                 //end curvature</span>
-<span id="L101"><span class="lineNum">     101</span>                 :             :     bool       signEndCurvature;                    //positive or negative sign on endCurvature, 0-positive, 1-negative</span>
-<span id="L102"><span class="lineNum">     102</span>                 :             :         bool       mpp;                                                //most posibile path of HV drived</span>
-<span id="L103"><span class="lineNum">     103</span>                 :             :         bool       sp;                                                     //straight path</span>
-<span id="L104"><span class="lineNum">     104</span>                 :             :         bool       segmentIsComplete;                //integrity of PSD_04</span>
-<span id="L105"><span class="lineNum">     105</span>                 :             :         double  startCurvature;                           //start curvature</span>
-<span id="L106"><span class="lineNum">     106</span>                 :             :     bool       signStartCurvature;                  //positive or negative sign on startCurvature, 0-positive, 1-negative</span>
-<span id="L107"><span class="lineNum">     107</span>                 :             :         bool       branchDirection;                           //branching direction relative to the previous segment at the branch point, 0-right, 1-left </span>
-<span id="L108"><span class="lineNum">     108</span>                 :             :         double  branchAngle;                              //branching angle relative to the previous segment at the branch point</span>
-<span id="L109"><span class="lineNum">     109</span>                 :             : </span>
-<span id="L110"><span class="lineNum">     110</span>                 :             :         /*extra needed*/</span>
+<span id="L96"><span class="lineNum">      96</span>                 :             :         uint8_t preSegmentId;                             //PSD_Segment_ID, predicted segment identifier</span>
+<span id="L97"><span class="lineNum">      97</span>                 :             :         uint8_t prevSegmentId;                          //PSD_Vorgaenger_Segment_ID, the previous identifier of segment</span>
+<span id="L98"><span class="lineNum">      98</span>                 :             :     uint16_t preSegTotalLength;                 //PSD_Segmentlaenge, total segment length</span>
+<span id="L99"><span class="lineNum">      99</span>                 :             :     Psd04RoadClass psd04RoadClass;     //PSD_Strassenkategorie, the road class of every segments</span>
+<span id="L100"><span class="lineNum">     100</span>                 :             :         double  endCurvature;                                 //PSD_Endkruemmung, end curvature</span>
+<span id="L101"><span class="lineNum">     101</span>                 :             :     bool       signEndCurvature;                    //PSD_Endkruemmung_Vorz, positive or negative sign on endCurvature, 0-positive, 1-negative</span>
+<span id="L102"><span class="lineNum">     102</span>                 :             :         bool       mpp;                                                //PSD_wahrscheinlichster_Pfad, most posibile path of HV drived</span>
+<span id="L103"><span class="lineNum">     103</span>                 :             :         // bool    segmentIsComplete;                //integrity of PSD_04</span>
+<span id="L104"><span class="lineNum">     104</span>                 :             :         double  startCurvature;                           //PSD_Anfangskruemmung, start curvature</span>
+<span id="L105"><span class="lineNum">     105</span>                 :             :     bool       signStartCurvature;                  //PSD_Anfangskruemmung_Vorz, positive or negative sign on startCurvature, 0-positive, 1-negative</span>
+<span id="L106"><span class="lineNum">     106</span>                 :             :         bool       branchDirection;                           //PSD_Abzweigerichtung, branching direction relative to the previous segment at the branch point, 0-right, 1-left </span>
+<span id="L107"><span class="lineNum">     107</span>                 :             :         double  branchAngle;                              //PSD_Abzweigewinkel, branching angle relative to the previous segment at the branch point</span>
+<span id="L108"><span class="lineNum">     108</span>                 :             : </span>
+<span id="L109"><span class="lineNum">     109</span>                 :             :         /*extra needed*/</span>
+<span id="L110"><span class="lineNum">     110</span>                 :             :     bool      sp;                                                      //straight path</span>
 <span id="L111"><span class="lineNum">     111</span>                 :             :     double accumulateBranchAngle;        //indicates the branching angle of each segment with respect to the HV's segment  </span>
 <span id="L112"><span class="lineNum">     112</span>                 :             :     tOffset accumulateXY;                              //indicates the offset of each segment with respect to the HV's position  </span>
 <span id="L113"><span class="lineNum">     113</span>                 :             :         bool     segIsInTree;                                     //identifies that segment has been grouped into the tree</span>
@@ -203,10 +203,10 @@
 <span id="L132"><span class="lineNum">     132</span>                 :             : //SelfSegment</span>
 <span id="L133"><span class="lineNum">     133</span>                 :             : typedef struct SelfSegment{</span>
 <span id="L134"><span class="lineNum">     134</span>                 :             :     /*from PSD_05*/</span>
-<span id="L135"><span class="lineNum">     135</span>                 :             :         uint8_t curSegmentId;                     //the segmentId where HV is currently located</span>
-<span id="L136"><span class="lineNum">     136</span>                 :             :         uint8_t curRemainLength;             //the remain length of HV current segment</span>
-<span id="L137"><span class="lineNum">     137</span>                 :             :         bool    posIsUnique;                           //indicates whether the location is unique, whether HV's position is consistent with the current segment, default:0</span>
-<span id="L138"><span class="lineNum">     138</span>                 :             :     e_PosLengthErr  posLengthErr;   //longitudinal errors in positioning, default:0</span>
+<span id="L135"><span class="lineNum">     135</span>                 :             :         uint8_t curSegmentId;                     //PSD_Pos_Segment_ID, the segmentId where HV is currently located</span>
+<span id="L136"><span class="lineNum">     136</span>                 :             :         uint8_t curRemainLength;             //PSD_Pos_Segmentlaenge, the remain length of HV current segment</span>
+<span id="L137"><span class="lineNum">     137</span>                 :             :         bool    posIsUnique;                           //PSD_Pos_Standort_Eindeutig, indicates whether the location is unique, whether HV's position is consistent with the current segment, default:0</span>
+<span id="L138"><span class="lineNum">     138</span>                 :             :     e_PosLengthErr  posLengthErr;   //PSD_Pos_Fehler_Laengsrichtung, longitudinal errors in positioning, default:0</span>
 <span id="L139"><span class="lineNum">     139</span>                 :             :     /*extra needed*/</span>
 <span id="L140"><span class="lineNum">     140</span>                 :             :     tCoordinates hvCoordinate;          //getHvPosition() from receiver</span>
 <span id="L141"><span class="lineNum">     141</span>                 :             :     double hvHeading;                            //getHvHeading() from receiver</span>
@@ -312,23 +312,41 @@
 <span id="L241"><span class="lineNum">     241</span>                 :             :      */</span>
 <span id="L242"><span class="lineNum">     242</span>                 :             :     std::vector&lt;struct PsdMapData *&gt;&amp; getVPsdMap();</span>
 <span id="L243"><span class="lineNum">     243</span>                 :             : </span>
-<span id="L244"><span class="lineNum">     244</span>                 :             :     /**</span>
-<span id="L245"><span class="lineNum">     245</span>                 :             :      * @brief  Construct a new PsdMessageDecoder object</span>
-<span id="L246"><span class="lineNum">     246</span>                 :             :      */</span>
-<span id="L247"><span class="lineNum">     247</span>                 :             :     PsdMessageDecoder(/* args */);</span>
-<span id="L248"><span class="lineNum">     248</span>                 :             : </span>
-<span id="L249"><span class="lineNum">     249</span>                 :             :     /**</span>
-<span id="L250"><span class="lineNum">     250</span>                 :             :      * @brief Destroy the PsdMessageDecoder object</span>
-<span id="L251"><span class="lineNum">     251</span>                 :             :      */</span>
-<span id="L252"><span class="lineNum">     252</span>                 :             :     ~PsdMessageDecoder();</span>
-<span id="L253"><span class="lineNum">     253</span>                 :             : </span>
-<span id="L254"><span class="lineNum">     254</span>                 :             :     static PsdMessageDecoder* pInstance;  /**&lt;A pointer used to return the object of  the class of PsdMessageDecoder*/</span>
-<span id="L255"><span class="lineNum">     255</span>                 :             : };</span>
-<span id="L256"><span class="lineNum">     256</span>                 :             : </span>
-<span id="L257"><span class="lineNum">     257</span>                 :             : void* PsdMessageDecoderRun(void *arg);</span>
-<span id="L258"><span class="lineNum">     258</span>                 :             : </span>
-<span id="L259"><span class="lineNum">     259</span>                 :             : #endif /*_PSDMESSAGEDECODER_H_*/</span>
-<span id="L260"><span class="lineNum">     260</span>                 :             : </span>
+<span id="L244"><span class="lineNum">     244</span>                 :             :     // /**</span>
+<span id="L245"><span class="lineNum">     245</span>                 :             :     //  * @brief receivedPdu_PSD_04 from signalAPI</span>
+<span id="L246"><span class="lineNum">     246</span>                 :             :     //  * @param psd04 </span>
+<span id="L247"><span class="lineNum">     247</span>                 :             :     //  */</span>
+<span id="L248"><span class="lineNum">     248</span>                 :             :     // void receivedPdu_PSD_04(RxPdu_PSD_04 const &amp;psd04);</span>
+<span id="L249"><span class="lineNum">     249</span>                 :             : </span>
+<span id="L250"><span class="lineNum">     250</span>                 :             :     // /**</span>
+<span id="L251"><span class="lineNum">     251</span>                 :             :     //  * @brief receivedPdu_PSD_05 from signalAPI</span>
+<span id="L252"><span class="lineNum">     252</span>                 :             :     //  * @param psd05 </span>
+<span id="L253"><span class="lineNum">     253</span>                 :             :     //  */</span>
+<span id="L254"><span class="lineNum">     254</span>                 :             :     // void receivedPdu_PSD_05(RxPdu_PSD_05 const &amp;psd05);</span>
+<span id="L255"><span class="lineNum">     255</span>                 :             : </span>
+<span id="L256"><span class="lineNum">     256</span>                 :             :     // /**</span>
+<span id="L257"><span class="lineNum">     257</span>                 :             :     //  * @brief receivedPdu_PSD_06 from signalAPI</span>
+<span id="L258"><span class="lineNum">     258</span>                 :             :     //  * @param psd06 </span>
+<span id="L259"><span class="lineNum">     259</span>                 :             :     //  */</span>
+<span id="L260"><span class="lineNum">     260</span>                 :             :     // void receivedPdu_PSD_06(RxPdu_PSD_06 const &amp;psd06);</span>
+<span id="L261"><span class="lineNum">     261</span>                 :             : </span>
+<span id="L262"><span class="lineNum">     262</span>                 :             :     /**</span>
+<span id="L263"><span class="lineNum">     263</span>                 :             :      * @brief  Construct a new PsdMessageDecoder object</span>
+<span id="L264"><span class="lineNum">     264</span>                 :             :      */</span>
+<span id="L265"><span class="lineNum">     265</span>                 :             :     PsdMessageDecoder(/* args */);</span>
+<span id="L266"><span class="lineNum">     266</span>                 :             : </span>
+<span id="L267"><span class="lineNum">     267</span>                 :             :     /**</span>
+<span id="L268"><span class="lineNum">     268</span>                 :             :      * @brief Destroy the PsdMessageDecoder object</span>
+<span id="L269"><span class="lineNum">     269</span>                 :             :      */</span>
+<span id="L270"><span class="lineNum">     270</span>                 :             :     ~PsdMessageDecoder();</span>
+<span id="L271"><span class="lineNum">     271</span>                 :             : </span>
+<span id="L272"><span class="lineNum">     272</span>                 :             :     static PsdMessageDecoder* pInstance;  /**&lt;A pointer used to return the object of  the class of PsdMessageDecoder*/</span>
+<span id="L273"><span class="lineNum">     273</span>                 :             : };</span>
+<span id="L274"><span class="lineNum">     274</span>                 :             : </span>
+<span id="L275"><span class="lineNum">     275</span>                 :             : void* PsdMessageDecoderRun(void *arg);</span>
+<span id="L276"><span class="lineNum">     276</span>                 :             : </span>
+<span id="L277"><span class="lineNum">     277</span>                 :             : #endif /*_PSDMESSAGEDECODER_H_*/</span>
+<span id="L278"><span class="lineNum">     278</span>                 :             : </span>
         </pre>
               </td>
             </tr>

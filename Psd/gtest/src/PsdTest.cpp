@@ -4007,10 +4007,10 @@ bool isNumber(const std::string& str)
     return true;
 }
 
-#if 0
+// #if 0
 TEST_F(PsdMapTest, useRealRecordPsdWithSP)
 {
-    std::string filename = "/home/zhao/Documents/Psd/gtest/src/parsed_data_copy.txt";
+    std::string filename = "/home/zhao/Documents/Psd/gtest/src/parsed_data_直线.txt";
     std::ifstream file(filename);
     std::string line;
     bool psd04Valid = false;
@@ -4166,16 +4166,6 @@ TEST_F(PsdMapTest, useRealRecordPsdWithSP)
                     if (iter->second  == "wahrscheinlichster_Pfad")
                     {
                         pPsdMapData->mpp =1;
-                    }
-                    /*PSD_Segment_Komplett*/
-                    iter = keyValueMap.find("PSD_Segment_Komplett");
-                    if (iter->second == "Segment_Attribute_nicht_komplett")
-                    {
-                        pPsdMapData->segmentIsComplete = 0;
-                    }
-                    else if (iter->second == "Segment_Attribute_komplett")
-                    {
-                        pPsdMapData->segmentIsComplete = 1;
                     }
                     /*PSD_Anfangskruemmung && PSD_Anfangskruemmung_Vorz*/
                     iter = keyValueMap.find("PSD_Anfangskruemmung");
@@ -4368,8 +4358,9 @@ TEST_F(PsdMapTest, useRealRecordPsdWithSP)
         std::cerr << "Error: " << strerror(errno) << std::endl;
     }   
 }
-#endif
+// #endif
 
+#if 0
 TEST_F(PsdMapTest, useRealRecordPsdWithCurve)
 {
     std::string filename = "/home/zhao/Documents/Psd/gtest/src/parsed_data_转盘(HV在54路段构建路网).txt";
@@ -5152,7 +5143,7 @@ TEST_F(PsdMapTest, useRealRecordPsdWithCurve)
         }    
     }
 }
-
+#endif
 
 int main(int argc, char **argv)
 {
