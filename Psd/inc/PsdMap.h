@@ -223,18 +223,6 @@ public:
      */
     tOffset calcCurveXYOffset(double arcR, double arcRotationAngle, bool signCurvature);
 
-    #if 0
-    /**
-     * @brief Calculate X Y offsset in curve case
-     * @param S (actual arc length, the length of a curve segment)
-     * @param A0 (clothoide parameter, starting value for each sampling point)
-     * @param A1 (clothoide parameter, sample the value of the next sampling point)
-     * @param accumulateBranchAngle (branching angle relative to the first position)
-     * @return tOffset (vertical offset x and horizontal offset y after rotating BranchAngle)
-     */
-    tOffset calcCurveXYOffset(double S, double A0, double A1, double accumulateBranchAngle);
-    #endif
-
     /**
      * @brief Calculate X Y offsset in straight path case
      * @param Length (actual length)

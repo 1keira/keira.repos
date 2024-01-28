@@ -117,11 +117,6 @@ public:
     RealativeDirection RelativeDir;                 /** <  Ro relative Hv*/
 
     /**
-     * @brief Get the Diagnotics Parameter object
-     */
-    void getDiagnoticsParameter();
-
-    /**
      * @brief Initialice Psd relative Data
      */
     void initPsdData();

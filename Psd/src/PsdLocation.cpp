@@ -606,18 +606,26 @@ Data2EventList PsdLocation::getPsdRoLocation(Data2Location data2Location)
         RelativeDir = calcRelativeDirection(data2Location);
         mData2EventList.RvRelevancy = calcRvRelevancy(data2Location);
         mData2EventList.dis2Event = calcDistanceToEvent(data2Location);
+        if (mData2EventList.dis2Event >= pPsdValidDistance)
+        {
+            printf("[%s] [%d]: actual distance between RO and HV over the  pPsdValidDistance\n", __FUNCTION__, __LINE__);        
+            mData2EventList.PsdAvailable = false;
+            mData2EventList.MPP = false;
+            mData2EventList.roadSegClass = RoadClass_Unkown;
+            mData2EventList.relativePos = Pos_Unclassified;
+            RelativeDir = Dir_Unclassified;
+            mData2EventList.RvRelevancy = false;
+            mData2EventList.dis2Event = 0.0;
+            mData2EventList.HvDTIP = 0.0;
+            mData2EventList.RvDTIP = 0.0;
+        }
+
         if ((data2Location.RvSpeed != 0.0) && (RelativeDir == Dir_ComingFromLeft || RelativeDir == Dir_ComingFromRight))
         {
             mData2EventList.HvDTIP = calcHvDis2Intersection();
             mData2EventList.RvDTIP = calcRoDis2Intersection(data2Location);
             printf("[%s] [%d]: HvDTIP = %f\n", __FUNCTION__, __LINE__, mData2EventList.HvDTIP);
             printf("[%s] [%d]: RvDTIP = %f\n", __FUNCTION__, __LINE__, mData2EventList.RvDTIP);
-        }
-
-        if (mData2EventList.dis2Event >= pPsdValidDistance)
-        {
-            printf("[%s] [%d]: actual distance between RO and HV over the  pPsdValidDistance\n", __FUNCTION__, __LINE__);        
-            mData2EventList.PsdAvailable = false;
         }
     }
 
@@ -647,8 +655,4 @@ void PsdLocation::initPsdData()
     tSelfSegment SelfSegment = {0};
     PsdMessageDecoder::getInstance()->setPsdMapData(PsdMapData);
     PsdMessageDecoder::getInstance()->setSelfSegment(SelfSegment);
-}
-
-void PsdLocation::getDiagnoticsParameter()
-{
 }
