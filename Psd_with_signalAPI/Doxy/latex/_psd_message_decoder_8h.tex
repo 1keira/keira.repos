@@ -1,0 +1,321 @@
+\hypertarget{_psd_message_decoder_8h}{}\section{src/\+Psd\+Message\+Decoder.h File Reference}
+\label{_psd_message_decoder_8h}\index{src/\+Psd\+Message\+Decoder.\+h@{src/\+Psd\+Message\+Decoder.\+h}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$cstdint$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$pthread.\+h$>$}\newline
+Include dependency graph for Psd\+Message\+Decoder.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=336pt]{_psd_message_decoder_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=237pt]{_psd_message_decoder_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_offset}{Offset}
+\item 
+struct \hyperlink{struct_coordinates}{Coordinates}
+\item 
+struct \hyperlink{struct_psd_map_data}{Psd\+Map\+Data}
+\item 
+struct \hyperlink{struct_self_segment}{Self\+Segment}
+\item 
+class \hyperlink{class_psd_message_decoder}{Psd\+Message\+Decoder}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef enum \hyperlink{_psd_message_decoder_8h_a4181d055fc39a45aa96e6f1c2c4e1000}{e\+Road\+Segment\+Class} \hyperlink{_psd_message_decoder_8h_a4f9adeb93dfc3dac7961fa97e890b1a5}{Road\+Segment\+Class}
+\item 
+typedef enum \hyperlink{_psd_message_decoder_8h_a21f903113ae6030410c94c4f7cc4b8ff}{e\+Psd04\+Road\+Class} \hyperlink{_psd_message_decoder_8h_a39044ce168ac526920bc721a8dc702b9}{Psd04\+Road\+Class}
+\item 
+typedef enum \hyperlink{_psd_message_decoder_8h_a8f791f18d2c949323fdbd44cf7147fb2}{Node\+Attribute} \hyperlink{_psd_message_decoder_8h_aa38e8413bd76f11962a364459c725e06}{e\+\_\+\+Node\+Attribute}
+\item 
+typedef enum \hyperlink{_psd_message_decoder_8h_afcf24267c16e7f9079b34b502b31dc12}{Pos\+Length\+Err} \hyperlink{_psd_message_decoder_8h_a954d216bca8cdfc325504c05bb6c4336}{e\+\_\+\+Pos\+Length\+Err}
+\item 
+typedef enum \hyperlink{_psd_message_decoder_8h_aac8c09b0eb267e00d3592c98792c2588}{Struct\+Separate} \hyperlink{_psd_message_decoder_8h_a2ba67cb465ee836b9ce8470f32577f21}{e\+\_\+\+Struct\+Separate}
+\item 
+typedef struct \hyperlink{struct_offset}{Offset} \hyperlink{_psd_message_decoder_8h_a7d8466510c49a8035fcf35b2949bea5a}{t\+Offset}
+\item 
+typedef struct \hyperlink{struct_coordinates}{Coordinates} \hyperlink{_psd_message_decoder_8h_a559ada7297c8c6c2337f9e233e73aeca}{t\+Coordinates}
+\item 
+typedef struct \hyperlink{struct_psd_map_data}{Psd\+Map\+Data} \hyperlink{_psd_message_decoder_8h_ad54e183dd7c544312c06d4bd6279ebdc}{t\+Psd\+Map\+Data}
+\item 
+typedef struct \hyperlink{struct_self_segment}{Self\+Segment} \hyperlink{_psd_message_decoder_8h_a6c858ba8556a68d900d0eca9dc406232}{t\+Self\+Segment}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{_psd_message_decoder_8h_a4181d055fc39a45aa96e6f1c2c4e1000}{e\+Road\+Segment\+Class} \{ \hyperlink{_psd_message_decoder_8h_a4181d055fc39a45aa96e6f1c2c4e1000ab9905873994d3154d09cc64e44b4af15}{Road\+Class\+\_\+\+Unkown} = 0, 
+\hyperlink{_psd_message_decoder_8h_a4181d055fc39a45aa96e6f1c2c4e1000a8e0ecf498eb11d7848964d116d294b5b}{Road\+Class\+\_\+highway} = 1, 
+\hyperlink{_psd_message_decoder_8h_a4181d055fc39a45aa96e6f1c2c4e1000a9f94ce51a3eb66debdce2f852f9e92df}{Road\+Class\+\_\+\+Non\+\_\+urban} = 2, 
+\hyperlink{_psd_message_decoder_8h_a4181d055fc39a45aa96e6f1c2c4e1000a98f1668ab3701fc4ebf9e7944060aea5}{Road\+Class\+\_\+\+Urban} = 3
+ \}
+\item 
+enum \hyperlink{_psd_message_decoder_8h_a21f903113ae6030410c94c4f7cc4b8ff}{e\+Psd04\+Road\+Class} \{ \newline
+\hyperlink{_psd_message_decoder_8h_a21f903113ae6030410c94c4f7cc4b8ffadb4e856f9beef11cc5a4495e1388ed02}{Private\+Road} = 0, 
+\hyperlink{_psd_message_decoder_8h_a21f903113ae6030410c94c4f7cc4b8ffaa425ea7f61c96f91080e6f5a95f71a4d}{Local\+Road} = 1, 
+\hyperlink{_psd_message_decoder_8h_a21f903113ae6030410c94c4f7cc4b8ffa5baf9626106f6ef8ac298975c0e9265c}{County\+Road} = 2, 
+\hyperlink{_psd_message_decoder_8h_a21f903113ae6030410c94c4f7cc4b8ffade5d711d362735c2b8495a05849407a4}{National\+Road} = 3, 
+\newline
+\hyperlink{_psd_message_decoder_8h_a21f903113ae6030410c94c4f7cc4b8ffae41117996b1be53d5dc8d7f701225e9c}{Provincial\+Road} = 4, 
+\hyperlink{_psd_message_decoder_8h_a21f903113ae6030410c94c4f7cc4b8ffaaeb2c4111edc504ed3098b541db47221}{Expressway} = 5, 
+\hyperlink{_psd_message_decoder_8h_a21f903113ae6030410c94c4f7cc4b8ffa1ff76aa808bb8209a13fcdbaf330587e}{Init} = 7
+ \}
+\item 
+enum \hyperlink{_psd_message_decoder_8h_a8f791f18d2c949323fdbd44cf7147fb2}{Node\+Attribute} \{ \hyperlink{_psd_message_decoder_8h_a8f791f18d2c949323fdbd44cf7147fb2a5ed07430b29f8d6a7bdfbb5babee3fba}{Root\+Segment} = 1, 
+\hyperlink{_psd_message_decoder_8h_a8f791f18d2c949323fdbd44cf7147fb2af865aeede76b8125cd74273093e8defd}{Parent\+Segment} = 2, 
+\hyperlink{_psd_message_decoder_8h_a8f791f18d2c949323fdbd44cf7147fb2a69835f3a333258dbb50c1208db8d840a}{Cur\+Segment} = 3, 
+\hyperlink{_psd_message_decoder_8h_a8f791f18d2c949323fdbd44cf7147fb2ad78b3980d73936a06dcabf1fe9c66bf5}{Child\+Segment} = 4
+ \}
+\item 
+enum \hyperlink{_psd_message_decoder_8h_afcf24267c16e7f9079b34b502b31dc12}{Pos\+Length\+Err} \{ \newline
+\hyperlink{_psd_message_decoder_8h_afcf24267c16e7f9079b34b502b31dc12a4a7cecb0d9a9445ceee18139782cd296}{Pos\+\_\+\+Init} = 0, 
+\hyperlink{_psd_message_decoder_8h_afcf24267c16e7f9079b34b502b31dc12ad72fe6d28d20c27d908540807047b1c3}{Pos\+\_\+0m\+To2m} = 1, 
+\hyperlink{_psd_message_decoder_8h_afcf24267c16e7f9079b34b502b31dc12a7b1a7fb12746ac3b2539845efde6d791}{Pos\+\_\+2m\+To5m} = 2, 
+\hyperlink{_psd_message_decoder_8h_afcf24267c16e7f9079b34b502b31dc12ae41486b65e94f825256523f6a05d2294}{Pos\+\_\+5m\+To10m} = 3, 
+\newline
+\hyperlink{_psd_message_decoder_8h_afcf24267c16e7f9079b34b502b31dc12ac38053815bcac8b49938a9eec72f0bc1}{Pos\+\_\+10m\+To20m} = 4, 
+\hyperlink{_psd_message_decoder_8h_afcf24267c16e7f9079b34b502b31dc12a7cf61a5ed51e4850fc3ee00941b10d24}{Pos\+\_\+20m\+To50m} = 5, 
+\hyperlink{_psd_message_decoder_8h_afcf24267c16e7f9079b34b502b31dc12a4ef6931a0f205ebdeaeeafb688279757}{Over50m} = 6, 
+\hyperlink{_psd_message_decoder_8h_afcf24267c16e7f9079b34b502b31dc12aecb43e8842e8cf4125156b93f972c022}{Off\+Road} = 7
+ \}
+\item 
+enum \hyperlink{_psd_message_decoder_8h_aac8c09b0eb267e00d3592c98792c2588}{Struct\+Separate} \{ \hyperlink{_psd_message_decoder_8h_aac8c09b0eb267e00d3592c98792c2588ab1bc2d90e57ef779aff20ad87dc522cb}{No\+Seperation} = 0, 
+\hyperlink{_psd_message_decoder_8h_aac8c09b0eb267e00d3592c98792c2588a6b158ae4252a826b81386eb679a77914}{Structural\+Seperation} = 1, 
+\hyperlink{_psd_message_decoder_8h_aac8c09b0eb267e00d3592c98792c2588a8a858a380fb62c8651b25c5d3f4e68be}{Seperation\+But\+No\+Structural} = 2, 
+\hyperlink{_psd_message_decoder_8h_aac8c09b0eb267e00d3592c98792c2588aed3b39cbaec7041b9e14a89928a29dca}{No\+Info} = 3
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \hyperlink{_psd_message_decoder_8h_a99afa19c7e74376d95279fd72d4febef}{Psd\+Message\+Decoder\+Run} (void $\ast$arg)
+\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{_psd_message_decoder_8h_aa38e8413bd76f11962a364459c725e06}\label{_psd_message_decoder_8h_aa38e8413bd76f11962a364459c725e06}} 
+\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!e\+\_\+\+Node\+Attribute@{e\+\_\+\+Node\+Attribute}}
+\index{e\+\_\+\+Node\+Attribute@{e\+\_\+\+Node\+Attribute}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}
+\subsubsection{\texorpdfstring{e\+\_\+\+Node\+Attribute}{e\_NodeAttribute}}
+{\footnotesize\ttfamily typedef enum \hyperlink{_psd_message_decoder_8h_a8f791f18d2c949323fdbd44cf7147fb2}{Node\+Attribute} \hyperlink{_psd_message_decoder_8h_aa38e8413bd76f11962a364459c725e06}{e\+\_\+\+Node\+Attribute}}
+
+\mbox{\Hypertarget{_psd_message_decoder_8h_a954d216bca8cdfc325504c05bb6c4336}\label{_psd_message_decoder_8h_a954d216bca8cdfc325504c05bb6c4336}} 
+\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!e\+\_\+\+Pos\+Length\+Err@{e\+\_\+\+Pos\+Length\+Err}}
+\index{e\+\_\+\+Pos\+Length\+Err@{e\+\_\+\+Pos\+Length\+Err}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}
+\subsubsection{\texorpdfstring{e\+\_\+\+Pos\+Length\+Err}{e\_PosLengthErr}}
+{\footnotesize\ttfamily typedef enum \hyperlink{_psd_message_decoder_8h_afcf24267c16e7f9079b34b502b31dc12}{Pos\+Length\+Err} \hyperlink{_psd_message_decoder_8h_a954d216bca8cdfc325504c05bb6c4336}{e\+\_\+\+Pos\+Length\+Err}}
+
+\mbox{\Hypertarget{_psd_message_decoder_8h_a2ba67cb465ee836b9ce8470f32577f21}\label{_psd_message_decoder_8h_a2ba67cb465ee836b9ce8470f32577f21}} 
+\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!e\+\_\+\+Struct\+Separate@{e\+\_\+\+Struct\+Separate}}
+\index{e\+\_\+\+Struct\+Separate@{e\+\_\+\+Struct\+Separate}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}
+\subsubsection{\texorpdfstring{e\+\_\+\+Struct\+Separate}{e\_StructSeparate}}
+{\footnotesize\ttfamily typedef enum \hyperlink{_psd_message_decoder_8h_aac8c09b0eb267e00d3592c98792c2588}{Struct\+Separate} \hyperlink{_psd_message_decoder_8h_a2ba67cb465ee836b9ce8470f32577f21}{e\+\_\+\+Struct\+Separate}}
+
+\mbox{\Hypertarget{_psd_message_decoder_8h_a39044ce168ac526920bc721a8dc702b9}\label{_psd_message_decoder_8h_a39044ce168ac526920bc721a8dc702b9}} 
+\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!Psd04\+Road\+Class@{Psd04\+Road\+Class}}
+\index{Psd04\+Road\+Class@{Psd04\+Road\+Class}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}
+\subsubsection{\texorpdfstring{Psd04\+Road\+Class}{Psd04RoadClass}}
+{\footnotesize\ttfamily typedef enum \hyperlink{_psd_message_decoder_8h_a21f903113ae6030410c94c4f7cc4b8ff}{e\+Psd04\+Road\+Class} \hyperlink{_psd_message_decoder_8h_a39044ce168ac526920bc721a8dc702b9}{Psd04\+Road\+Class}}
+
+\mbox{\Hypertarget{_psd_message_decoder_8h_a4f9adeb93dfc3dac7961fa97e890b1a5}\label{_psd_message_decoder_8h_a4f9adeb93dfc3dac7961fa97e890b1a5}} 
+\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!Road\+Segment\+Class@{Road\+Segment\+Class}}
+\index{Road\+Segment\+Class@{Road\+Segment\+Class}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}
+\subsubsection{\texorpdfstring{Road\+Segment\+Class}{RoadSegmentClass}}
+{\footnotesize\ttfamily typedef enum \hyperlink{_psd_message_decoder_8h_a4181d055fc39a45aa96e6f1c2c4e1000}{e\+Road\+Segment\+Class} \hyperlink{_psd_message_decoder_8h_a4f9adeb93dfc3dac7961fa97e890b1a5}{Road\+Segment\+Class}}
+
+\mbox{\Hypertarget{_psd_message_decoder_8h_a559ada7297c8c6c2337f9e233e73aeca}\label{_psd_message_decoder_8h_a559ada7297c8c6c2337f9e233e73aeca}} 
+\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!t\+Coordinates@{t\+Coordinates}}
+\index{t\+Coordinates@{t\+Coordinates}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}
+\subsubsection{\texorpdfstring{t\+Coordinates}{tCoordinates}}
+{\footnotesize\ttfamily typedef struct \hyperlink{struct_coordinates}{Coordinates} \hyperlink{_psd_message_decoder_8h_a559ada7297c8c6c2337f9e233e73aeca}{t\+Coordinates}}
+
+\mbox{\Hypertarget{_psd_message_decoder_8h_a7d8466510c49a8035fcf35b2949bea5a}\label{_psd_message_decoder_8h_a7d8466510c49a8035fcf35b2949bea5a}} 
+\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!t\+Offset@{t\+Offset}}
+\index{t\+Offset@{t\+Offset}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}
+\subsubsection{\texorpdfstring{t\+Offset}{tOffset}}
+{\footnotesize\ttfamily typedef struct \hyperlink{struct_offset}{Offset} \hyperlink{_psd_message_decoder_8h_a7d8466510c49a8035fcf35b2949bea5a}{t\+Offset}}
+
+\mbox{\Hypertarget{_psd_message_decoder_8h_ad54e183dd7c544312c06d4bd6279ebdc}\label{_psd_message_decoder_8h_ad54e183dd7c544312c06d4bd6279ebdc}} 
+\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!t\+Psd\+Map\+Data@{t\+Psd\+Map\+Data}}
+\index{t\+Psd\+Map\+Data@{t\+Psd\+Map\+Data}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}
+\subsubsection{\texorpdfstring{t\+Psd\+Map\+Data}{tPsdMapData}}
+{\footnotesize\ttfamily typedef struct \hyperlink{struct_psd_map_data}{Psd\+Map\+Data} \hyperlink{_psd_message_decoder_8h_ad54e183dd7c544312c06d4bd6279ebdc}{t\+Psd\+Map\+Data}}
+
+\mbox{\Hypertarget{_psd_message_decoder_8h_a6c858ba8556a68d900d0eca9dc406232}\label{_psd_message_decoder_8h_a6c858ba8556a68d900d0eca9dc406232}} 
+\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!t\+Self\+Segment@{t\+Self\+Segment}}
+\index{t\+Self\+Segment@{t\+Self\+Segment}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}
+\subsubsection{\texorpdfstring{t\+Self\+Segment}{tSelfSegment}}
+{\footnotesize\ttfamily typedef struct \hyperlink{struct_self_segment}{Self\+Segment} \hyperlink{_psd_message_decoder_8h_a6c858ba8556a68d900d0eca9dc406232}{t\+Self\+Segment}}
+
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{_psd_message_decoder_8h_a21f903113ae6030410c94c4f7cc4b8ff}\label{_psd_message_decoder_8h_a21f903113ae6030410c94c4f7cc4b8ff}} 
+\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!e\+Psd04\+Road\+Class@{e\+Psd04\+Road\+Class}}
+\index{e\+Psd04\+Road\+Class@{e\+Psd04\+Road\+Class}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}
+\subsubsection{\texorpdfstring{e\+Psd04\+Road\+Class}{ePsd04RoadClass}}
+{\footnotesize\ttfamily enum \hyperlink{_psd_message_decoder_8h_a21f903113ae6030410c94c4f7cc4b8ff}{e\+Psd04\+Road\+Class}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Private\+Road@{Private\+Road}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!Private\+Road@{Private\+Road}}}\mbox{\Hypertarget{_psd_message_decoder_8h_a21f903113ae6030410c94c4f7cc4b8ffadb4e856f9beef11cc5a4495e1388ed02}\label{_psd_message_decoder_8h_a21f903113ae6030410c94c4f7cc4b8ffadb4e856f9beef11cc5a4495e1388ed02}} 
+Private\+Road&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Local\+Road@{Local\+Road}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!Local\+Road@{Local\+Road}}}\mbox{\Hypertarget{_psd_message_decoder_8h_a21f903113ae6030410c94c4f7cc4b8ffaa425ea7f61c96f91080e6f5a95f71a4d}\label{_psd_message_decoder_8h_a21f903113ae6030410c94c4f7cc4b8ffaa425ea7f61c96f91080e6f5a95f71a4d}} 
+Local\+Road&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{County\+Road@{County\+Road}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!County\+Road@{County\+Road}}}\mbox{\Hypertarget{_psd_message_decoder_8h_a21f903113ae6030410c94c4f7cc4b8ffa5baf9626106f6ef8ac298975c0e9265c}\label{_psd_message_decoder_8h_a21f903113ae6030410c94c4f7cc4b8ffa5baf9626106f6ef8ac298975c0e9265c}} 
+County\+Road&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{National\+Road@{National\+Road}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!National\+Road@{National\+Road}}}\mbox{\Hypertarget{_psd_message_decoder_8h_a21f903113ae6030410c94c4f7cc4b8ffade5d711d362735c2b8495a05849407a4}\label{_psd_message_decoder_8h_a21f903113ae6030410c94c4f7cc4b8ffade5d711d362735c2b8495a05849407a4}} 
+National\+Road&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Provincial\+Road@{Provincial\+Road}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!Provincial\+Road@{Provincial\+Road}}}\mbox{\Hypertarget{_psd_message_decoder_8h_a21f903113ae6030410c94c4f7cc4b8ffae41117996b1be53d5dc8d7f701225e9c}\label{_psd_message_decoder_8h_a21f903113ae6030410c94c4f7cc4b8ffae41117996b1be53d5dc8d7f701225e9c}} 
+Provincial\+Road&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Expressway@{Expressway}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!Expressway@{Expressway}}}\mbox{\Hypertarget{_psd_message_decoder_8h_a21f903113ae6030410c94c4f7cc4b8ffaaeb2c4111edc504ed3098b541db47221}\label{_psd_message_decoder_8h_a21f903113ae6030410c94c4f7cc4b8ffaaeb2c4111edc504ed3098b541db47221}} 
+Expressway&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Init@{Init}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!Init@{Init}}}\mbox{\Hypertarget{_psd_message_decoder_8h_a21f903113ae6030410c94c4f7cc4b8ffa1ff76aa808bb8209a13fcdbaf330587e}\label{_psd_message_decoder_8h_a21f903113ae6030410c94c4f7cc4b8ffa1ff76aa808bb8209a13fcdbaf330587e}} 
+Init&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{_psd_message_decoder_8h_a4181d055fc39a45aa96e6f1c2c4e1000}\label{_psd_message_decoder_8h_a4181d055fc39a45aa96e6f1c2c4e1000}} 
+\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!e\+Road\+Segment\+Class@{e\+Road\+Segment\+Class}}
+\index{e\+Road\+Segment\+Class@{e\+Road\+Segment\+Class}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}
+\subsubsection{\texorpdfstring{e\+Road\+Segment\+Class}{eRoadSegmentClass}}
+{\footnotesize\ttfamily enum \hyperlink{_psd_message_decoder_8h_a4181d055fc39a45aa96e6f1c2c4e1000}{e\+Road\+Segment\+Class}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Road\+Class\+\_\+\+Unkown@{Road\+Class\+\_\+\+Unkown}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!Road\+Class\+\_\+\+Unkown@{Road\+Class\+\_\+\+Unkown}}}\mbox{\Hypertarget{_psd_message_decoder_8h_a4181d055fc39a45aa96e6f1c2c4e1000ab9905873994d3154d09cc64e44b4af15}\label{_psd_message_decoder_8h_a4181d055fc39a45aa96e6f1c2c4e1000ab9905873994d3154d09cc64e44b4af15}} 
+Road\+Class\+\_\+\+Unkown&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Road\+Class\+\_\+highway@{Road\+Class\+\_\+highway}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!Road\+Class\+\_\+highway@{Road\+Class\+\_\+highway}}}\mbox{\Hypertarget{_psd_message_decoder_8h_a4181d055fc39a45aa96e6f1c2c4e1000a8e0ecf498eb11d7848964d116d294b5b}\label{_psd_message_decoder_8h_a4181d055fc39a45aa96e6f1c2c4e1000a8e0ecf498eb11d7848964d116d294b5b}} 
+Road\+Class\+\_\+highway&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Road\+Class\+\_\+\+Non\+\_\+urban@{Road\+Class\+\_\+\+Non\+\_\+urban}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!Road\+Class\+\_\+\+Non\+\_\+urban@{Road\+Class\+\_\+\+Non\+\_\+urban}}}\mbox{\Hypertarget{_psd_message_decoder_8h_a4181d055fc39a45aa96e6f1c2c4e1000a9f94ce51a3eb66debdce2f852f9e92df}\label{_psd_message_decoder_8h_a4181d055fc39a45aa96e6f1c2c4e1000a9f94ce51a3eb66debdce2f852f9e92df}} 
+Road\+Class\+\_\+\+Non\+\_\+urban&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Road\+Class\+\_\+\+Urban@{Road\+Class\+\_\+\+Urban}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!Road\+Class\+\_\+\+Urban@{Road\+Class\+\_\+\+Urban}}}\mbox{\Hypertarget{_psd_message_decoder_8h_a4181d055fc39a45aa96e6f1c2c4e1000a98f1668ab3701fc4ebf9e7944060aea5}\label{_psd_message_decoder_8h_a4181d055fc39a45aa96e6f1c2c4e1000a98f1668ab3701fc4ebf9e7944060aea5}} 
+Road\+Class\+\_\+\+Urban&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{_psd_message_decoder_8h_a8f791f18d2c949323fdbd44cf7147fb2}\label{_psd_message_decoder_8h_a8f791f18d2c949323fdbd44cf7147fb2}} 
+\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!Node\+Attribute@{Node\+Attribute}}
+\index{Node\+Attribute@{Node\+Attribute}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}
+\subsubsection{\texorpdfstring{Node\+Attribute}{NodeAttribute}}
+{\footnotesize\ttfamily enum \hyperlink{_psd_message_decoder_8h_a8f791f18d2c949323fdbd44cf7147fb2}{Node\+Attribute}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Root\+Segment@{Root\+Segment}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!Root\+Segment@{Root\+Segment}}}\mbox{\Hypertarget{_psd_message_decoder_8h_a8f791f18d2c949323fdbd44cf7147fb2a5ed07430b29f8d6a7bdfbb5babee3fba}\label{_psd_message_decoder_8h_a8f791f18d2c949323fdbd44cf7147fb2a5ed07430b29f8d6a7bdfbb5babee3fba}} 
+Root\+Segment&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Parent\+Segment@{Parent\+Segment}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!Parent\+Segment@{Parent\+Segment}}}\mbox{\Hypertarget{_psd_message_decoder_8h_a8f791f18d2c949323fdbd44cf7147fb2af865aeede76b8125cd74273093e8defd}\label{_psd_message_decoder_8h_a8f791f18d2c949323fdbd44cf7147fb2af865aeede76b8125cd74273093e8defd}} 
+Parent\+Segment&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Cur\+Segment@{Cur\+Segment}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!Cur\+Segment@{Cur\+Segment}}}\mbox{\Hypertarget{_psd_message_decoder_8h_a8f791f18d2c949323fdbd44cf7147fb2a69835f3a333258dbb50c1208db8d840a}\label{_psd_message_decoder_8h_a8f791f18d2c949323fdbd44cf7147fb2a69835f3a333258dbb50c1208db8d840a}} 
+Cur\+Segment&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Child\+Segment@{Child\+Segment}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!Child\+Segment@{Child\+Segment}}}\mbox{\Hypertarget{_psd_message_decoder_8h_a8f791f18d2c949323fdbd44cf7147fb2ad78b3980d73936a06dcabf1fe9c66bf5}\label{_psd_message_decoder_8h_a8f791f18d2c949323fdbd44cf7147fb2ad78b3980d73936a06dcabf1fe9c66bf5}} 
+Child\+Segment&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{_psd_message_decoder_8h_afcf24267c16e7f9079b34b502b31dc12}\label{_psd_message_decoder_8h_afcf24267c16e7f9079b34b502b31dc12}} 
+\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!Pos\+Length\+Err@{Pos\+Length\+Err}}
+\index{Pos\+Length\+Err@{Pos\+Length\+Err}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}
+\subsubsection{\texorpdfstring{Pos\+Length\+Err}{PosLengthErr}}
+{\footnotesize\ttfamily enum \hyperlink{_psd_message_decoder_8h_afcf24267c16e7f9079b34b502b31dc12}{Pos\+Length\+Err}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Pos\+\_\+\+Init@{Pos\+\_\+\+Init}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!Pos\+\_\+\+Init@{Pos\+\_\+\+Init}}}\mbox{\Hypertarget{_psd_message_decoder_8h_afcf24267c16e7f9079b34b502b31dc12a4a7cecb0d9a9445ceee18139782cd296}\label{_psd_message_decoder_8h_afcf24267c16e7f9079b34b502b31dc12a4a7cecb0d9a9445ceee18139782cd296}} 
+Pos\+\_\+\+Init&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Pos\+\_\+0m\+To2m@{Pos\+\_\+0m\+To2m}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!Pos\+\_\+0m\+To2m@{Pos\+\_\+0m\+To2m}}}\mbox{\Hypertarget{_psd_message_decoder_8h_afcf24267c16e7f9079b34b502b31dc12ad72fe6d28d20c27d908540807047b1c3}\label{_psd_message_decoder_8h_afcf24267c16e7f9079b34b502b31dc12ad72fe6d28d20c27d908540807047b1c3}} 
+Pos\+\_\+0m\+To2m&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Pos\+\_\+2m\+To5m@{Pos\+\_\+2m\+To5m}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!Pos\+\_\+2m\+To5m@{Pos\+\_\+2m\+To5m}}}\mbox{\Hypertarget{_psd_message_decoder_8h_afcf24267c16e7f9079b34b502b31dc12a7b1a7fb12746ac3b2539845efde6d791}\label{_psd_message_decoder_8h_afcf24267c16e7f9079b34b502b31dc12a7b1a7fb12746ac3b2539845efde6d791}} 
+Pos\+\_\+2m\+To5m&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Pos\+\_\+5m\+To10m@{Pos\+\_\+5m\+To10m}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!Pos\+\_\+5m\+To10m@{Pos\+\_\+5m\+To10m}}}\mbox{\Hypertarget{_psd_message_decoder_8h_afcf24267c16e7f9079b34b502b31dc12ae41486b65e94f825256523f6a05d2294}\label{_psd_message_decoder_8h_afcf24267c16e7f9079b34b502b31dc12ae41486b65e94f825256523f6a05d2294}} 
+Pos\+\_\+5m\+To10m&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Pos\+\_\+10m\+To20m@{Pos\+\_\+10m\+To20m}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!Pos\+\_\+10m\+To20m@{Pos\+\_\+10m\+To20m}}}\mbox{\Hypertarget{_psd_message_decoder_8h_afcf24267c16e7f9079b34b502b31dc12ac38053815bcac8b49938a9eec72f0bc1}\label{_psd_message_decoder_8h_afcf24267c16e7f9079b34b502b31dc12ac38053815bcac8b49938a9eec72f0bc1}} 
+Pos\+\_\+10m\+To20m&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Pos\+\_\+20m\+To50m@{Pos\+\_\+20m\+To50m}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!Pos\+\_\+20m\+To50m@{Pos\+\_\+20m\+To50m}}}\mbox{\Hypertarget{_psd_message_decoder_8h_afcf24267c16e7f9079b34b502b31dc12a7cf61a5ed51e4850fc3ee00941b10d24}\label{_psd_message_decoder_8h_afcf24267c16e7f9079b34b502b31dc12a7cf61a5ed51e4850fc3ee00941b10d24}} 
+Pos\+\_\+20m\+To50m&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Over50m@{Over50m}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!Over50m@{Over50m}}}\mbox{\Hypertarget{_psd_message_decoder_8h_afcf24267c16e7f9079b34b502b31dc12a4ef6931a0f205ebdeaeeafb688279757}\label{_psd_message_decoder_8h_afcf24267c16e7f9079b34b502b31dc12a4ef6931a0f205ebdeaeeafb688279757}} 
+Over50m&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Off\+Road@{Off\+Road}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!Off\+Road@{Off\+Road}}}\mbox{\Hypertarget{_psd_message_decoder_8h_afcf24267c16e7f9079b34b502b31dc12aecb43e8842e8cf4125156b93f972c022}\label{_psd_message_decoder_8h_afcf24267c16e7f9079b34b502b31dc12aecb43e8842e8cf4125156b93f972c022}} 
+Off\+Road&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{_psd_message_decoder_8h_aac8c09b0eb267e00d3592c98792c2588}\label{_psd_message_decoder_8h_aac8c09b0eb267e00d3592c98792c2588}} 
+\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!Struct\+Separate@{Struct\+Separate}}
+\index{Struct\+Separate@{Struct\+Separate}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}
+\subsubsection{\texorpdfstring{Struct\+Separate}{StructSeparate}}
+{\footnotesize\ttfamily enum \hyperlink{_psd_message_decoder_8h_aac8c09b0eb267e00d3592c98792c2588}{Struct\+Separate}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{No\+Seperation@{No\+Seperation}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!No\+Seperation@{No\+Seperation}}}\mbox{\Hypertarget{_psd_message_decoder_8h_aac8c09b0eb267e00d3592c98792c2588ab1bc2d90e57ef779aff20ad87dc522cb}\label{_psd_message_decoder_8h_aac8c09b0eb267e00d3592c98792c2588ab1bc2d90e57ef779aff20ad87dc522cb}} 
+No\+Seperation&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Structural\+Seperation@{Structural\+Seperation}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!Structural\+Seperation@{Structural\+Seperation}}}\mbox{\Hypertarget{_psd_message_decoder_8h_aac8c09b0eb267e00d3592c98792c2588a6b158ae4252a826b81386eb679a77914}\label{_psd_message_decoder_8h_aac8c09b0eb267e00d3592c98792c2588a6b158ae4252a826b81386eb679a77914}} 
+Structural\+Seperation&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Seperation\+But\+No\+Structural@{Seperation\+But\+No\+Structural}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!Seperation\+But\+No\+Structural@{Seperation\+But\+No\+Structural}}}\mbox{\Hypertarget{_psd_message_decoder_8h_aac8c09b0eb267e00d3592c98792c2588a8a858a380fb62c8651b25c5d3f4e68be}\label{_psd_message_decoder_8h_aac8c09b0eb267e00d3592c98792c2588a8a858a380fb62c8651b25c5d3f4e68be}} 
+Seperation\+But\+No\+Structural&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{No\+Info@{No\+Info}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!No\+Info@{No\+Info}}}\mbox{\Hypertarget{_psd_message_decoder_8h_aac8c09b0eb267e00d3592c98792c2588aed3b39cbaec7041b9e14a89928a29dca}\label{_psd_message_decoder_8h_aac8c09b0eb267e00d3592c98792c2588aed3b39cbaec7041b9e14a89928a29dca}} 
+No\+Info&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_psd_message_decoder_8h_a99afa19c7e74376d95279fd72d4febef}\label{_psd_message_decoder_8h_a99afa19c7e74376d95279fd72d4febef}} 
+\index{Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}!Psd\+Message\+Decoder\+Run@{Psd\+Message\+Decoder\+Run}}
+\index{Psd\+Message\+Decoder\+Run@{Psd\+Message\+Decoder\+Run}!Psd\+Message\+Decoder.\+h@{Psd\+Message\+Decoder.\+h}}
+\subsubsection{\texorpdfstring{Psd\+Message\+Decoder\+Run()}{PsdMessageDecoderRun()}}
+{\footnotesize\ttfamily void$\ast$ Psd\+Message\+Decoder\+Run (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+

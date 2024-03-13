@@ -1,0 +1,427 @@
+\hypertarget{class_psd_location}{}\section{Psd\+Location Class Reference}
+\label{class_psd_location}\index{Psd\+Location@{Psd\+Location}}
+
+
+{\ttfamily \#include $<$Psd\+Location.\+h$>$}
+
+
+
+Collaboration diagram for Psd\+Location\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{class_psd_location__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_psd_location_adf19a491291327b33c1101deb91fe64f}{get\+Diagnotics\+Parameter} ()
+\begin{DoxyCompactList}\small\item\em Get the Diagnotics Parameter object. \end{DoxyCompactList}\item 
+void \hyperlink{class_psd_location_a4ea349a64cd856f29a26d93f520fc38f}{init\+Psd\+Data} ()
+\begin{DoxyCompactList}\small\item\em Initialice Psd relative Data. \end{DoxyCompactList}\item 
+void \hyperlink{class_psd_location_a99798cafd2c4257230d9b74215325da0}{create\+Decoder\+Thread} ()
+\begin{DoxyCompactList}\small\item\em Create a Decoder Thread object. \end{DoxyCompactList}\item 
+void \hyperlink{class_psd_location_a5a7754d385e2b97c9b1e154e02dc0686}{create\+Map\+Thread} ()
+\begin{DoxyCompactList}\small\item\em Create a Map Thread object. \end{DoxyCompactList}\item 
+\hyperlink{_psd_location_8h_a61af0449f917913c902b37ed397eb350}{Data2\+Event\+List} \hyperlink{class_psd_location_a5bb3ffaeee69beeece9175c0b8bdf491}{get\+Psd\+Ro\+Location} (\hyperlink{_psd_location_8h_a1e3a92020005d2a81aa50ba5ae9b129c}{Data2\+Location} data2\+Location)
+\begin{DoxyCompactList}\small\item\em Get the Psd Ro Location object. \end{DoxyCompactList}\item 
+void \hyperlink{class_psd_location_acb88267ba5337c7d06687b3121930bc0}{get\+Event\+Distance} ()
+\begin{DoxyCompactList}\small\item\em Get the Event Distance object (reserved for V2I) \end{DoxyCompactList}\item 
+bool \hyperlink{class_psd_location_aef776415f675a76e9b4c100534ba8ac5}{get\+Psd\+Available} ()
+\begin{DoxyCompactList}\small\item\em Get the Psd Available object (Psd whether available or not) \end{DoxyCompactList}\item 
+bool \hyperlink{class_psd_location_a07faf8dd338c17fb33e5978b90938c22}{get\+M\+PP} (uint8\+\_\+t Known\+Id)
+\begin{DoxyCompactList}\small\item\em Using Ro matched predictive segment\+Id to judge Ro whether is driving on the mpp segment of HV or not. \end{DoxyCompactList}\item 
+bool \hyperlink{class_psd_location_a8ff8c5e7cf8057f083f0a1d05fe49d56}{Ro\+Match\+Segment} (\hyperlink{_geometric_calc_8h_aabfa1dd0400b274a48b4a45afbee0af4}{Position3D} Ro\+Point)
+\begin{DoxyCompactList}\small\item\em Ro match Segment. \end{DoxyCompactList}\item 
+\hyperlink{_psd_message_decoder_8h_a4f9adeb93dfc3dac7961fa97e890b1a5}{Road\+Segment\+Class} \hyperlink{class_psd_location_a49111bfc564db23a9c64612d285ff4bc}{calc\+Road\+Segment\+Class} ()
+\begin{DoxyCompactList}\small\item\em Hv\textquotesingle{}s Road Class. \end{DoxyCompactList}\item 
+\hyperlink{_psd_location_8h_abcb85fd51379afdf750bdda1dec9174c}{Relative\+Position} \hyperlink{class_psd_location_a3b1402df4271f1470603a82a4fe03b68}{calc\+Relative\+Position} (\hyperlink{_psd_location_8h_a1e3a92020005d2a81aa50ba5ae9b129c}{Data2\+Location} data2\+Location)
+\begin{DoxyCompactList}\small\item\em Ro Relative Position to Hv. \end{DoxyCompactList}\item 
+\hyperlink{_psd_location_8h_ae65d9d286580719610837075ffad7232}{Realative\+Direction} \hyperlink{class_psd_location_afb451818c3fd9ff5e260270365bf165f}{calc\+Relative\+Direction} (\hyperlink{_psd_location_8h_a1e3a92020005d2a81aa50ba5ae9b129c}{Data2\+Location} data2\+Location)
+\begin{DoxyCompactList}\small\item\em Ro Relative Direction to Hv. \end{DoxyCompactList}\item 
+\hyperlink{_psd_location_8h_ad3abb902810ad80bbc508a024f5af264}{Relevancy\+Check} \hyperlink{class_psd_location_a9f1a98a1ba23af93df973502332cf10f}{calc\+Rv\+Relevancy} (\hyperlink{_psd_location_8h_a1e3a92020005d2a81aa50ba5ae9b129c}{Data2\+Location} data2\+Location)
+\begin{DoxyCompactList}\small\item\em Ro Relevancy to Hv. \end{DoxyCompactList}\item 
+float\+\_\+t \hyperlink{class_psd_location_a8b78f66d995b0d621ddb4ed760e1e6a7}{calc\+Distance\+To\+Event} (\hyperlink{_psd_location_8h_a1e3a92020005d2a81aa50ba5ae9b129c}{Data2\+Location} data2\+Location)
+\begin{DoxyCompactList}\small\item\em real road distance between Hv and Ro \end{DoxyCompactList}\item 
+float\+\_\+t \hyperlink{class_psd_location_a3e8f14fdfe1e6d1495902d265ad6ea93}{calc\+Hv\+Dis2\+Intersection} ()
+\begin{DoxyCompactList}\small\item\em D\+T\+IP Hv Distance to Intersection. \end{DoxyCompactList}\item 
+float\+\_\+t \hyperlink{class_psd_location_ae9cfb75671bc47a49d167ff8d7d5093c}{calc\+Ro\+Dis2\+Intersection} (\hyperlink{_psd_location_8h_a1e3a92020005d2a81aa50ba5ae9b129c}{Data2\+Location} data2\+Location)
+\begin{DoxyCompactList}\small\item\em D\+T\+IP Rv Distance to Intersection. \end{DoxyCompactList}\item 
+float\+\_\+t \hyperlink{class_psd_location_a672da471bdc922005cfe26bfaa4315f8}{accumulate\+Childs\+Length} (struct \hyperlink{struct_tree_node}{Tree\+Node} $\ast$Node)
+\begin{DoxyCompactList}\small\item\em Accumulate childnodes\textquotesingle{}s pre\+Segment\+Length. \end{DoxyCompactList}\item 
+\hyperlink{class_psd_location_a6d89a3bd03a7fe9af26fc08d446bfd24}{Psd\+Location} ()
+\begin{DoxyCompactList}\small\item\em Construct a new \hyperlink{class_psd_location}{Psd\+Location} object. \end{DoxyCompactList}\item 
+\hyperlink{class_psd_location_ad8df0c3ca51c9df077060c1f8209d977}{$\sim$\+Psd\+Location} ()
+\begin{DoxyCompactList}\small\item\em Destroy the \hyperlink{class_psd_location}{Psd\+Location} object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{class_psd_location}{Psd\+Location} $\ast$ \hyperlink{class_psd_location_a0ec04eadcec725922d8413aa59d3cb07}{get\+Instance} ()
+\begin{DoxyCompactList}\small\item\em Get the Instance object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+pthread\+\_\+t \hyperlink{class_psd_location_a5d7bd3fa135b850706b5e84ae7030e42}{decoder\+Thread}
+\item 
+pthread\+\_\+t \hyperlink{class_psd_location_a27cc6052f8ad1d5275665eeffcf4e27a}{map\+Thread}
+\item 
+uint8\+\_\+t \hyperlink{class_psd_location_a58e1c30caca2156e789630b0daf02119}{m\+Ro\+Matched\+Seg\+Id}
+\item 
+struct \hyperlink{struct_tree_node}{Tree\+Node} $\ast$ \hyperlink{class_psd_location_ab7c279e371a3c0769393213a100b2f97}{m\+Ro\+Matched\+Node}
+\item 
+\hyperlink{_psd_location_8h_a61af0449f917913c902b37ed397eb350}{Data2\+Event\+List} \hyperlink{class_psd_location_aed2837439f815776affee635d3cb5e51}{m\+Data2\+Event\+List}
+\item 
+bool \hyperlink{class_psd_location_a7a61732e0ce265903e9b361afac2bcea}{m\+Is\+Match}
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{class_psd_location}{Psd\+Location} $\ast$ \hyperlink{class_psd_location_a65504484bcffebd2f8a95cf7d5b26f2d}{p\+Instance} = N\+U\+LL
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+$<$ p\+\_\+\+Stationary\+Threshold 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_psd_location_a6d89a3bd03a7fe9af26fc08d446bfd24}\label{class_psd_location_a6d89a3bd03a7fe9af26fc08d446bfd24}} 
+\index{Psd\+Location@{Psd\+Location}!Psd\+Location@{Psd\+Location}}
+\index{Psd\+Location@{Psd\+Location}!Psd\+Location@{Psd\+Location}}
+\subsubsection{\texorpdfstring{Psd\+Location()}{PsdLocation()}}
+{\footnotesize\ttfamily Psd\+Location\+::\+Psd\+Location (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Construct a new \hyperlink{class_psd_location}{Psd\+Location} object. 
+
+\mbox{\Hypertarget{class_psd_location_ad8df0c3ca51c9df077060c1f8209d977}\label{class_psd_location_ad8df0c3ca51c9df077060c1f8209d977}} 
+\index{Psd\+Location@{Psd\+Location}!````~Psd\+Location@{$\sim$\+Psd\+Location}}
+\index{````~Psd\+Location@{$\sim$\+Psd\+Location}!Psd\+Location@{Psd\+Location}}
+\subsubsection{\texorpdfstring{$\sim$\+Psd\+Location()}{~PsdLocation()}}
+{\footnotesize\ttfamily Psd\+Location\+::$\sim$\+Psd\+Location (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destroy the \hyperlink{class_psd_location}{Psd\+Location} object. 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_psd_location_a672da471bdc922005cfe26bfaa4315f8}\label{class_psd_location_a672da471bdc922005cfe26bfaa4315f8}} 
+\index{Psd\+Location@{Psd\+Location}!accumulate\+Childs\+Length@{accumulate\+Childs\+Length}}
+\index{accumulate\+Childs\+Length@{accumulate\+Childs\+Length}!Psd\+Location@{Psd\+Location}}
+\subsubsection{\texorpdfstring{accumulate\+Childs\+Length()}{accumulateChildsLength()}}
+{\footnotesize\ttfamily float\+\_\+t Psd\+Location\+::accumulate\+Childs\+Length (\begin{DoxyParamCaption}\item[{struct \hyperlink{struct_tree_node}{Tree\+Node} $\ast$}]{Node }\end{DoxyParamCaption})}
+
+
+
+Accumulate childnodes\textquotesingle{}s pre\+Segment\+Length. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Node} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float\+\_\+t (unit\+: meter, accuracy\+: float) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_psd_location_a8b78f66d995b0d621ddb4ed760e1e6a7}\label{class_psd_location_a8b78f66d995b0d621ddb4ed760e1e6a7}} 
+\index{Psd\+Location@{Psd\+Location}!calc\+Distance\+To\+Event@{calc\+Distance\+To\+Event}}
+\index{calc\+Distance\+To\+Event@{calc\+Distance\+To\+Event}!Psd\+Location@{Psd\+Location}}
+\subsubsection{\texorpdfstring{calc\+Distance\+To\+Event()}{calcDistanceToEvent()}}
+{\footnotesize\ttfamily float\+\_\+t Psd\+Location\+::calc\+Distance\+To\+Event (\begin{DoxyParamCaption}\item[{\hyperlink{_psd_location_8h_a1e3a92020005d2a81aa50ba5ae9b129c}{Data2\+Location}}]{data2\+Location }\end{DoxyParamCaption})}
+
+
+
+real road distance between Hv and Ro 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data2\+Location} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float\+\_\+t (unit\+: meter, accuracy\+: float) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_psd_location_a3e8f14fdfe1e6d1495902d265ad6ea93}\label{class_psd_location_a3e8f14fdfe1e6d1495902d265ad6ea93}} 
+\index{Psd\+Location@{Psd\+Location}!calc\+Hv\+Dis2\+Intersection@{calc\+Hv\+Dis2\+Intersection}}
+\index{calc\+Hv\+Dis2\+Intersection@{calc\+Hv\+Dis2\+Intersection}!Psd\+Location@{Psd\+Location}}
+\subsubsection{\texorpdfstring{calc\+Hv\+Dis2\+Intersection()}{calcHvDis2Intersection()}}
+{\footnotesize\ttfamily float\+\_\+t Psd\+Location\+::calc\+Hv\+Dis2\+Intersection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+D\+T\+IP Hv Distance to Intersection. 
+
+\begin{DoxyReturn}{Returns}
+float\+\_\+t (unit\+: meter, accuracy\+: float) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_psd_location_afb451818c3fd9ff5e260270365bf165f}\label{class_psd_location_afb451818c3fd9ff5e260270365bf165f}} 
+\index{Psd\+Location@{Psd\+Location}!calc\+Relative\+Direction@{calc\+Relative\+Direction}}
+\index{calc\+Relative\+Direction@{calc\+Relative\+Direction}!Psd\+Location@{Psd\+Location}}
+\subsubsection{\texorpdfstring{calc\+Relative\+Direction()}{calcRelativeDirection()}}
+{\footnotesize\ttfamily \hyperlink{_psd_location_8h_ae65d9d286580719610837075ffad7232}{Realative\+Direction} Psd\+Location\+::calc\+Relative\+Direction (\begin{DoxyParamCaption}\item[{\hyperlink{_psd_location_8h_a1e3a92020005d2a81aa50ba5ae9b129c}{Data2\+Location}}]{data2\+Location }\end{DoxyParamCaption})}
+
+
+
+Ro Relative Direction to Hv. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data2\+Location} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Realative\+Direction 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_psd_location_a3b1402df4271f1470603a82a4fe03b68}\label{class_psd_location_a3b1402df4271f1470603a82a4fe03b68}} 
+\index{Psd\+Location@{Psd\+Location}!calc\+Relative\+Position@{calc\+Relative\+Position}}
+\index{calc\+Relative\+Position@{calc\+Relative\+Position}!Psd\+Location@{Psd\+Location}}
+\subsubsection{\texorpdfstring{calc\+Relative\+Position()}{calcRelativePosition()}}
+{\footnotesize\ttfamily \hyperlink{_psd_location_8h_abcb85fd51379afdf750bdda1dec9174c}{Relative\+Position} Psd\+Location\+::calc\+Relative\+Position (\begin{DoxyParamCaption}\item[{\hyperlink{_psd_location_8h_a1e3a92020005d2a81aa50ba5ae9b129c}{Data2\+Location}}]{data2\+Location }\end{DoxyParamCaption})}
+
+
+
+Ro Relative Position to Hv. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data2\+Location} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Relative\+Position 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_psd_location_a49111bfc564db23a9c64612d285ff4bc}\label{class_psd_location_a49111bfc564db23a9c64612d285ff4bc}} 
+\index{Psd\+Location@{Psd\+Location}!calc\+Road\+Segment\+Class@{calc\+Road\+Segment\+Class}}
+\index{calc\+Road\+Segment\+Class@{calc\+Road\+Segment\+Class}!Psd\+Location@{Psd\+Location}}
+\subsubsection{\texorpdfstring{calc\+Road\+Segment\+Class()}{calcRoadSegmentClass()}}
+{\footnotesize\ttfamily \hyperlink{_psd_message_decoder_8h_a4f9adeb93dfc3dac7961fa97e890b1a5}{Road\+Segment\+Class} Psd\+Location\+::calc\+Road\+Segment\+Class (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Hv\textquotesingle{}s Road Class. 
+
+\begin{DoxyReturn}{Returns}
+Road\+Segment\+Class 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_psd_location_ae9cfb75671bc47a49d167ff8d7d5093c}\label{class_psd_location_ae9cfb75671bc47a49d167ff8d7d5093c}} 
+\index{Psd\+Location@{Psd\+Location}!calc\+Ro\+Dis2\+Intersection@{calc\+Ro\+Dis2\+Intersection}}
+\index{calc\+Ro\+Dis2\+Intersection@{calc\+Ro\+Dis2\+Intersection}!Psd\+Location@{Psd\+Location}}
+\subsubsection{\texorpdfstring{calc\+Ro\+Dis2\+Intersection()}{calcRoDis2Intersection()}}
+{\footnotesize\ttfamily float\+\_\+t Psd\+Location\+::calc\+Ro\+Dis2\+Intersection (\begin{DoxyParamCaption}\item[{\hyperlink{_psd_location_8h_a1e3a92020005d2a81aa50ba5ae9b129c}{Data2\+Location}}]{data2\+Location }\end{DoxyParamCaption})}
+
+
+
+D\+T\+IP Rv Distance to Intersection. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data2\+Location} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float\+\_\+t (unit\+: meter, accuracy\+: float) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_psd_location_a9f1a98a1ba23af93df973502332cf10f}\label{class_psd_location_a9f1a98a1ba23af93df973502332cf10f}} 
+\index{Psd\+Location@{Psd\+Location}!calc\+Rv\+Relevancy@{calc\+Rv\+Relevancy}}
+\index{calc\+Rv\+Relevancy@{calc\+Rv\+Relevancy}!Psd\+Location@{Psd\+Location}}
+\subsubsection{\texorpdfstring{calc\+Rv\+Relevancy()}{calcRvRelevancy()}}
+{\footnotesize\ttfamily \hyperlink{_psd_location_8h_ad3abb902810ad80bbc508a024f5af264}{Relevancy\+Check} Psd\+Location\+::calc\+Rv\+Relevancy (\begin{DoxyParamCaption}\item[{\hyperlink{_psd_location_8h_a1e3a92020005d2a81aa50ba5ae9b129c}{Data2\+Location}}]{data2\+Location }\end{DoxyParamCaption})}
+
+
+
+Ro Relevancy to Hv. 
+
+\begin{DoxyReturn}{Returns}
+Relevancy\+Check 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_psd_location_a99798cafd2c4257230d9b74215325da0}\label{class_psd_location_a99798cafd2c4257230d9b74215325da0}} 
+\index{Psd\+Location@{Psd\+Location}!create\+Decoder\+Thread@{create\+Decoder\+Thread}}
+\index{create\+Decoder\+Thread@{create\+Decoder\+Thread}!Psd\+Location@{Psd\+Location}}
+\subsubsection{\texorpdfstring{create\+Decoder\+Thread()}{createDecoderThread()}}
+{\footnotesize\ttfamily void Psd\+Location\+::create\+Decoder\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Create a Decoder Thread object. 
+
+\mbox{\Hypertarget{class_psd_location_a5a7754d385e2b97c9b1e154e02dc0686}\label{class_psd_location_a5a7754d385e2b97c9b1e154e02dc0686}} 
+\index{Psd\+Location@{Psd\+Location}!create\+Map\+Thread@{create\+Map\+Thread}}
+\index{create\+Map\+Thread@{create\+Map\+Thread}!Psd\+Location@{Psd\+Location}}
+\subsubsection{\texorpdfstring{create\+Map\+Thread()}{createMapThread()}}
+{\footnotesize\ttfamily void Psd\+Location\+::create\+Map\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Create a Map Thread object. 
+
+\mbox{\Hypertarget{class_psd_location_adf19a491291327b33c1101deb91fe64f}\label{class_psd_location_adf19a491291327b33c1101deb91fe64f}} 
+\index{Psd\+Location@{Psd\+Location}!get\+Diagnotics\+Parameter@{get\+Diagnotics\+Parameter}}
+\index{get\+Diagnotics\+Parameter@{get\+Diagnotics\+Parameter}!Psd\+Location@{Psd\+Location}}
+\subsubsection{\texorpdfstring{get\+Diagnotics\+Parameter()}{getDiagnoticsParameter()}}
+{\footnotesize\ttfamily void Psd\+Location\+::get\+Diagnotics\+Parameter (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the Diagnotics Parameter object. 
+
+$<$ Ro whether matched on HV\textquotesingle{}s segments, default value == false \mbox{\Hypertarget{class_psd_location_acb88267ba5337c7d06687b3121930bc0}\label{class_psd_location_acb88267ba5337c7d06687b3121930bc0}} 
+\index{Psd\+Location@{Psd\+Location}!get\+Event\+Distance@{get\+Event\+Distance}}
+\index{get\+Event\+Distance@{get\+Event\+Distance}!Psd\+Location@{Psd\+Location}}
+\subsubsection{\texorpdfstring{get\+Event\+Distance()}{getEventDistance()}}
+{\footnotesize\ttfamily void Psd\+Location\+::get\+Event\+Distance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the Event Distance object (reserved for V2I) 
+
+\mbox{\Hypertarget{class_psd_location_a0ec04eadcec725922d8413aa59d3cb07}\label{class_psd_location_a0ec04eadcec725922d8413aa59d3cb07}} 
+\index{Psd\+Location@{Psd\+Location}!get\+Instance@{get\+Instance}}
+\index{get\+Instance@{get\+Instance}!Psd\+Location@{Psd\+Location}}
+\subsubsection{\texorpdfstring{get\+Instance()}{getInstance()}}
+{\footnotesize\ttfamily \hyperlink{class_psd_location}{Psd\+Location} $\ast$ Psd\+Location\+::get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get the Instance object. 
+
+\begin{DoxyReturn}{Returns}
+Psd\+Location$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_psd_location_a07faf8dd338c17fb33e5978b90938c22}\label{class_psd_location_a07faf8dd338c17fb33e5978b90938c22}} 
+\index{Psd\+Location@{Psd\+Location}!get\+M\+PP@{get\+M\+PP}}
+\index{get\+M\+PP@{get\+M\+PP}!Psd\+Location@{Psd\+Location}}
+\subsubsection{\texorpdfstring{get\+M\+P\+P()}{getMPP()}}
+{\footnotesize\ttfamily bool Psd\+Location\+::get\+M\+PP (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{Known\+Id }\end{DoxyParamCaption})}
+
+
+
+Using Ro matched predictive segment\+Id to judge Ro whether is driving on the mpp segment of HV or not. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Known\+Id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true 
+
+false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_psd_location_aef776415f675a76e9b4c100534ba8ac5}\label{class_psd_location_aef776415f675a76e9b4c100534ba8ac5}} 
+\index{Psd\+Location@{Psd\+Location}!get\+Psd\+Available@{get\+Psd\+Available}}
+\index{get\+Psd\+Available@{get\+Psd\+Available}!Psd\+Location@{Psd\+Location}}
+\subsubsection{\texorpdfstring{get\+Psd\+Available()}{getPsdAvailable()}}
+{\footnotesize\ttfamily bool Psd\+Location\+::get\+Psd\+Available (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the Psd Available object (Psd whether available or not) 
+
+\begin{DoxyReturn}{Returns}
+true (Psd is available) 
+
+false (Psd is not available) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_psd_location_a5bb3ffaeee69beeece9175c0b8bdf491}\label{class_psd_location_a5bb3ffaeee69beeece9175c0b8bdf491}} 
+\index{Psd\+Location@{Psd\+Location}!get\+Psd\+Ro\+Location@{get\+Psd\+Ro\+Location}}
+\index{get\+Psd\+Ro\+Location@{get\+Psd\+Ro\+Location}!Psd\+Location@{Psd\+Location}}
+\subsubsection{\texorpdfstring{get\+Psd\+Ro\+Location()}{getPsdRoLocation()}}
+{\footnotesize\ttfamily \hyperlink{_psd_location_8h_a61af0449f917913c902b37ed397eb350}{Data2\+Event\+List} Psd\+Location\+::get\+Psd\+Ro\+Location (\begin{DoxyParamCaption}\item[{\hyperlink{_psd_location_8h_a1e3a92020005d2a81aa50ba5ae9b129c}{Data2\+Location}}]{data2\+Location }\end{DoxyParamCaption})}
+
+
+
+Get the Psd Ro Location object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data2\+Location} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Data2\+Event\+List 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_psd_location_a4ea349a64cd856f29a26d93f520fc38f}\label{class_psd_location_a4ea349a64cd856f29a26d93f520fc38f}} 
+\index{Psd\+Location@{Psd\+Location}!init\+Psd\+Data@{init\+Psd\+Data}}
+\index{init\+Psd\+Data@{init\+Psd\+Data}!Psd\+Location@{Psd\+Location}}
+\subsubsection{\texorpdfstring{init\+Psd\+Data()}{initPsdData()}}
+{\footnotesize\ttfamily void Psd\+Location\+::init\+Psd\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialice Psd relative Data. 
+
+\mbox{\Hypertarget{class_psd_location_a8ff8c5e7cf8057f083f0a1d05fe49d56}\label{class_psd_location_a8ff8c5e7cf8057f083f0a1d05fe49d56}} 
+\index{Psd\+Location@{Psd\+Location}!Ro\+Match\+Segment@{Ro\+Match\+Segment}}
+\index{Ro\+Match\+Segment@{Ro\+Match\+Segment}!Psd\+Location@{Psd\+Location}}
+\subsubsection{\texorpdfstring{Ro\+Match\+Segment()}{RoMatchSegment()}}
+{\footnotesize\ttfamily bool Psd\+Location\+::\+Ro\+Match\+Segment (\begin{DoxyParamCaption}\item[{\hyperlink{_geometric_calc_8h_aabfa1dd0400b274a48b4a45afbee0af4}{Position3D}}]{Ro\+Point }\end{DoxyParamCaption})}
+
+
+
+Ro match Segment. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Ro\+Point} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true (Ro matched one segment) 
+
+false (Ro not matched one segment) 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_psd_location_a5d7bd3fa135b850706b5e84ae7030e42}\label{class_psd_location_a5d7bd3fa135b850706b5e84ae7030e42}} 
+\index{Psd\+Location@{Psd\+Location}!decoder\+Thread@{decoder\+Thread}}
+\index{decoder\+Thread@{decoder\+Thread}!Psd\+Location@{Psd\+Location}}
+\subsubsection{\texorpdfstring{decoder\+Thread}{decoderThread}}
+{\footnotesize\ttfamily pthread\+\_\+t Psd\+Location\+::decoder\+Thread}
+
+\mbox{\Hypertarget{class_psd_location_a27cc6052f8ad1d5275665eeffcf4e27a}\label{class_psd_location_a27cc6052f8ad1d5275665eeffcf4e27a}} 
+\index{Psd\+Location@{Psd\+Location}!map\+Thread@{map\+Thread}}
+\index{map\+Thread@{map\+Thread}!Psd\+Location@{Psd\+Location}}
+\subsubsection{\texorpdfstring{map\+Thread}{mapThread}}
+{\footnotesize\ttfamily pthread\+\_\+t Psd\+Location\+::map\+Thread}
+
+$<$ decoder\+Thread\textquotesingle{}s Id \mbox{\Hypertarget{class_psd_location_aed2837439f815776affee635d3cb5e51}\label{class_psd_location_aed2837439f815776affee635d3cb5e51}} 
+\index{Psd\+Location@{Psd\+Location}!m\+Data2\+Event\+List@{m\+Data2\+Event\+List}}
+\index{m\+Data2\+Event\+List@{m\+Data2\+Event\+List}!Psd\+Location@{Psd\+Location}}
+\subsubsection{\texorpdfstring{m\+Data2\+Event\+List}{mData2EventList}}
+{\footnotesize\ttfamily \hyperlink{_psd_location_8h_a61af0449f917913c902b37ed397eb350}{Data2\+Event\+List} Psd\+Location\+::m\+Data2\+Event\+List}
+
+$<$ Ro Matched Segment Node \mbox{\Hypertarget{class_psd_location_a7a61732e0ce265903e9b361afac2bcea}\label{class_psd_location_a7a61732e0ce265903e9b361afac2bcea}} 
+\index{Psd\+Location@{Psd\+Location}!m\+Is\+Match@{m\+Is\+Match}}
+\index{m\+Is\+Match@{m\+Is\+Match}!Psd\+Location@{Psd\+Location}}
+\subsubsection{\texorpdfstring{m\+Is\+Match}{mIsMatch}}
+{\footnotesize\ttfamily bool Psd\+Location\+::m\+Is\+Match}
+
+$<$ Data return to Event\+List \mbox{\Hypertarget{class_psd_location_ab7c279e371a3c0769393213a100b2f97}\label{class_psd_location_ab7c279e371a3c0769393213a100b2f97}} 
+\index{Psd\+Location@{Psd\+Location}!m\+Ro\+Matched\+Node@{m\+Ro\+Matched\+Node}}
+\index{m\+Ro\+Matched\+Node@{m\+Ro\+Matched\+Node}!Psd\+Location@{Psd\+Location}}
+\subsubsection{\texorpdfstring{m\+Ro\+Matched\+Node}{mRoMatchedNode}}
+{\footnotesize\ttfamily struct \hyperlink{struct_tree_node}{Tree\+Node}$\ast$ Psd\+Location\+::m\+Ro\+Matched\+Node}
+
+$<$ Ro Matched Segment Id \mbox{\Hypertarget{class_psd_location_a58e1c30caca2156e789630b0daf02119}\label{class_psd_location_a58e1c30caca2156e789630b0daf02119}} 
+\index{Psd\+Location@{Psd\+Location}!m\+Ro\+Matched\+Seg\+Id@{m\+Ro\+Matched\+Seg\+Id}}
+\index{m\+Ro\+Matched\+Seg\+Id@{m\+Ro\+Matched\+Seg\+Id}!Psd\+Location@{Psd\+Location}}
+\subsubsection{\texorpdfstring{m\+Ro\+Matched\+Seg\+Id}{mRoMatchedSegId}}
+{\footnotesize\ttfamily uint8\+\_\+t Psd\+Location\+::m\+Ro\+Matched\+Seg\+Id}
+
+$<$ map\+Thread\textquotesingle{}s Id \mbox{\Hypertarget{class_psd_location_a65504484bcffebd2f8a95cf7d5b26f2d}\label{class_psd_location_a65504484bcffebd2f8a95cf7d5b26f2d}} 
+\index{Psd\+Location@{Psd\+Location}!p\+Instance@{p\+Instance}}
+\index{p\+Instance@{p\+Instance}!Psd\+Location@{Psd\+Location}}
+\subsubsection{\texorpdfstring{p\+Instance}{pInstance}}
+{\footnotesize\ttfamily \hyperlink{class_psd_location}{Psd\+Location} $\ast$ Psd\+Location\+::p\+Instance = N\+U\+LL\hspace{0.3cm}{\ttfamily [static]}}
+
+A pointer used to return the object of the class of \hyperlink{class_psd_location}{Psd\+Location} 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\hyperlink{_psd_location_8h}{Psd\+Location.\+h}\item 
+src/\hyperlink{_psd_location_8cpp}{Psd\+Location.\+cpp}\end{DoxyCompactItemize}

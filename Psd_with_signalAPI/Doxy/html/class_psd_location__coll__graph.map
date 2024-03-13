@@ -1,0 +1,6 @@
+<map id="PsdLocation" name="PsdLocation">
+<area shape="rect" id="node2" href="$structs_data2_event_list.html" title="sData2EventList" alt="" coords="5,199,124,225"/>
+<area shape="rect" id="node3" href="$struct_tree_node.html" title="TreeNode" alt="" coords="161,199,240,225"/>
+<area shape="rect" id="node4" href="$struct_psd_map_data.html" title="PsdMapData" alt="" coords="151,109,250,136"/>
+<area shape="rect" id="node5" href="$struct_coordinates.html" title="Coordinates" alt="" coords="155,5,247,32"/>
+</map>

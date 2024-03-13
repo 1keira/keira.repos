@@ -1,0 +1,1 @@
+genhtml -o ../../../../result PsdModule.info --branch-coverage --rc branch_coverage=1
