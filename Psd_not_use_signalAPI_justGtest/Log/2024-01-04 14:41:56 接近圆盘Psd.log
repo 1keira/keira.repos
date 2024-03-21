@@ -1,0 +1,859 @@
+Script started on 2024-01-04 14:41:56+0800
+]0;zhao@zhao-virtual-machine: ~/Documents/Psd[01;32mzhao@zhao-virtual-machine[00m:[01;34m~/Documents/Psd[00m$ exit./build.sh 
+-- The C compiler identification is GNU 7.5.0
+-- The CXX compiler identification is GNU 7.5.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/zhao/Documents/Psd/build
+[ 12%] [32mBuilding CXX object CMakeFiles/PsdModule.dir/src/GeometricCalc.cpp.o[0m
+[ 25%] [32mBuilding CXX object CMakeFiles/PsdModule.dir/src/Haversine.cpp.o[0m
+[ 37%] [32mBuilding CXX object CMakeFiles/PsdModule.dir/src/Location.cpp.o[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/PsdModule.dir/src/PsdLocation.cpp.o[0m
+[ 62%] [32mBuilding CXX object CMakeFiles/PsdModule.dir/src/PsdMap.cpp.o[0m
+[ 75%] [32mBuilding CXX object CMakeFiles/PsdModule.dir/src/PsdMessageDecoder.cpp.o[0m
+[ 87%] [32mBuilding CXX object CMakeFiles/PsdModule.dir/gtest/src/PsdTest.cpp.o[0m
+[100%] [32m[1mLinking CXX executable /home/zhao/Documents/Psd/gtest/output/bin/PsdModule[0m
+[100%] Built target PsdModule
+[0;32m[==========] [mRunning 1 test from 1 test suite.
+[0;32m[----------] [mGlobal test environment set-up.
+[0;32m[----------] [m1 test from PsdMapTest
+[0;32m[ RUN      ] [mPsdMapTest.useRealRecordPsdWithCurve_phase2
+open successfully
+[TestBody] [5090]: hvHeading = 0.000000
+[TestBody] [5101]: headingAccuracy = 2.250000
+[TestBody] [4814]: preSegmentId = 54
+[TestBody] [4828]: prevSegmentId = 51
+[TestBody] [4841]: preSegTotalLength = 40
+[TestBody] [4814]: preSegmentId = 58
+[TestBody] [4828]: prevSegmentId = 54
+[TestBody] [4841]: preSegTotalLength = 26
+[TestBody] [4814]: preSegmentId = 16
+[TestBody] [4828]: prevSegmentId = 58
+[TestBody] [4841]: preSegTotalLength = 24
+[TestBody] [4814]: preSegmentId = 33
+[TestBody] [4828]: prevSegmentId = 16
+[TestBody] [4841]: preSegTotalLength = 2
+[TestBody] [4814]: preSegmentId = 35
+[TestBody] [4828]: prevSegmentId = 33
+[TestBody] [4841]: preSegTotalLength = 30
+[TestBody] [4814]: preSegmentId = 42
+[TestBody] [4828]: prevSegmentId = 35
+[TestBody] [4841]: preSegTotalLength = 34
+[TestBody] [4814]: preSegmentId = 47
+[TestBody] [4828]: prevSegmentId = 42
+[TestBody] [4841]: preSegTotalLength = 20
+[TestBody] [4814]: preSegmentId = 52
+[TestBody] [4828]: prevSegmentId = 47
+[TestBody] [4841]: preSegTotalLength = 10
+[TestBody] [4814]: preSegmentId = 53
+[TestBody] [4828]: prevSegmentId = 52
+[TestBody] [4841]: preSegTotalLength = 36
+[TestBody] [4814]: preSegmentId = 50
+[TestBody] [4828]: prevSegmentId = 47
+[TestBody] [4841]: preSegTotalLength = 34
+[TestBody] [4975]: curSegmentId = 54
+[TestBody] [4987]: curRemainLength = 38
+[TestBody] [5054]: curSegment's latitude = 40.344001
+[TestBody] [5073]: curSegment's longitude = 116.818758
+[TestBody] [5090]: hvHeading = 143.600000
+[TestBody] [5101]: headingAccuracy = 2.250000
+[TestBody] [4814]: preSegmentId = 5
+[TestBody] [4828]: prevSegmentId = 50
+[TestBody] [4841]: preSegTotalLength = 26
+[TestBody] [4814]: preSegmentId = 9
+[TestBody] [4828]: prevSegmentId = 5
+[TestBody] [4841]: preSegTotalLength = 26
+[TestBody] [4814]: preSegmentId = 11
+[TestBody] [4828]: prevSegmentId = 9
+[TestBody] [4841]: preSegTotalLength = 34
+[TestBody] [4814]: preSegmentId = 13
+[TestBody] [4828]: prevSegmentId = 11
+[TestBody] [4841]: preSegTotalLength = 28
+[TestBody] [4814]: preSegmentId = 15
+[TestBody] [4828]: prevSegmentId = 13
+[TestBody] [4841]: preSegTotalLength = 32
+[TestBody] [4814]: preSegmentId = 17
+[TestBody] [4828]: prevSegmentId = 15
+[TestBody] [4841]: preSegTotalLength = 32
+[TestBody] [4814]: preSegmentId = 21
+[TestBody] [4828]: prevSegmentId = 17
+[TestBody] [4841]: preSegTotalLength = 26
+[getInstance] [51]: first new a pInstance
+[mapCreate] [1390]: --------------------------mapCreate------------------------------
+[createNode] [1004]: newNode = 0x5561db720170
+[insertNodeInTree] [1192]: curNode = 0x5561db720170
+[curIdIsInList] [1404]: curSegmentId is in list = 54
+[insertNodeInTree] [1218]: count = 1
+[insertNodeInTree] [1219]: current tree is = 0x5561db720170, current tree Id is = 54, curSegmentId is = 54
+[calcCurSegmentCoordinate] [455]: Is curSegment or rootAndcurSegment
+[calcCurSegmentCoordinate] [512]: R = 52.900776
+[calcCurSegmentCoordinate] [555]: finalRemainLength = 38.000000
+[calcCurSegmentCoordinate] [567]:fixed R = 76.861729
+[calcCurveXYOffset] [163]: arcR = 76.861729, arcRotationAngle = 28.326706, arcRotationAngleRad = 0.494394, signCurvature = 1
+[calcCurveXYOffset] [167]: cos(arcRotationAngleRad) - 1) = -0.119744
+[calcCurveXYOffset] [168]: arcR * (cos(arcRotationAngleRad) - 1) = -9.203709
+[calcCurveXYOffset] [169]: dX = 36.470780
+[calcCurveXYOffset] [170]: dY = 9.203709
+[coordinateSystemRotates] [106]: accumulateBranchAngle = 143.600000, accumulateBranchAngleRad = 2.506293
+[coordinateSystemRotates] [107]: dX = 36.470780
+[coordinateSystemRotates] [108]: dY = 9.203709
+[coordinateSystemRotates] [109]: cos(accumulateBranchAngleRad) = -0.804894
+[coordinateSystemRotates] [110]: sin(accumulateBranchAngleRad) = 0.593419
+[coordinateSystemRotates] [111]: distanceX * cos(accumulateBranchAngleRad) = -29.355104
+[coordinateSystemRotates] [112]: distanceY * sin(accumulateBranchAngleRad) = 5.461655
+[coordinateSystemRotates] [113]: distanceX * sin(accumulateBranchAngleRad) = 21.642449
+[coordinateSystemRotates] [114]: distanceY * cos(accumulateBranchAngleRad) = -7.408009
+[coordinateSystemRotates] [118]: coordinate system rotated X = -34.816759
+[coordinateSystemRotates] [119]: coordinate system rotated Y = 14.234441
+[calcCurSegmentCoordinate] [577]: disHv2EndAfterRotatingCoord.distanceX = -34.816759, disHv2EndAfterRotatingCoord.distanceY = 14.234441
+[calcDestination] [78]: destinationCoord latitude = 40.343688  destinationCoord longitude = 116.818926
+[calcCurSegmentCoordinate] [580]: HV's endCoordinate latitude = 40.343688  longitude = 116.818926
+[calcCurSegmentCoordinate] [584]: accumulateBranchAngleHv2End = 171.926706
+[calcCurSegmentCoordinate] [594]: fixed accumulateBranchAngleHv2End = 171.926706
+[calcCurSegmentCoordinate] [605]: accumulateBranchAngleHv2Start = 323.600000
+[calcCurSegmentCoordinate] [615]: fixed accumulateBranchAngleHv2Start = 323.600000
+[calcCurSegmentCoordinate] [620]: R = 52.900776
+[calcCurSegmentCoordinate] [657]: finalRemainLength = 2.000000
+[calcCurSegmentCoordinate] [668]:fixed R = 52.046822
+[calcCurveXYOffset] [163]: arcR = -52.046822, arcRotationAngle = 2.201701, arcRotationAngleRad = 0.038427, signCurvature = 1
+[calcCurveXYOffset] [167]: cos(arcRotationAngleRad) - 1) = -0.000738
+[calcCurveXYOffset] [168]: arcR * (cos(arcRotationAngleRad) - 1) = 0.038422
+[calcCurveXYOffset] [169]: dX = -1.999508
+[calcCurveXYOffset] [170]: dY = -0.038422
+[coordinateSystemRotates] [106]: accumulateBranchAngle = 323.600000, accumulateBranchAngleRad = 5.647885
+[coordinateSystemRotates] [107]: dX = -1.999508
+[coordinateSystemRotates] [108]: dY = -1.999508
+[coordinateSystemRotates] [109]: cos(accumulateBranchAngleRad) = 0.804894
+[coordinateSystemRotates] [110]: sin(accumulateBranchAngleRad) = -0.593419
+[coordinateSystemRotates] [111]: distanceX * cos(accumulateBranchAngleRad) = -1.609391
+[coordinateSystemRotates] [112]: distanceY * sin(accumulateBranchAngleRad) = 1.186546
+[coordinateSystemRotates] [113]: distanceX * sin(accumulateBranchAngleRad) = 1.186546
+[coordinateSystemRotates] [114]: distanceY * cos(accumulateBranchAngleRad) = -1.609391
+[coordinateSystemRotates] [118]: coordinate system rotated X = -2.795937
+[coordinateSystemRotates] [119]: coordinate system rotated Y = -0.422846
+[calcCurSegmentCoordinate] [679]: disHv2StartAfterRotatingCoord.distanceX = -2.795937, disHv2StartAfterRotatingCoord.distanceY = -0.422846
+[calcDestination] [78]: destinationCoord latitude = 40.343976  destinationCoord longitude = 116.818753
+[calcCurSegmentCoordinate] [681]: HV's startCoordinate latitude = 40.343976  longitude = 116.818753
+[calcCurSegmentCoordinate] [685]: accumulateBranchAngleHv2Start = 321.398299
+[calcCurSegmentCoordinate] [695]: fixed accumulateBranchAngleHv2Start = 321.398299
+[insertNodeInTree] [1234]: 54's startCoordinate: latitude = 40.343976, longitude = 116.818753
+[insertNodeInTree] [1239]: 54's endCoordinate: latitude = 40.343688, longitude = 116.818926
+[insertNode] [1068]: (*it)->preSegmentId = 54's segIsInTree = 1
+[findNodeById] [745]: result = (nil)
+[insertNode] [1140]: tempNode is = (nil), preSegmentId = 54, prevSegmentId = 51, segIsInTree = 1
+[insertNode] [1185]: goto check the next segment info from vPsdMap
+[insertNode] [1068]: (*it)->preSegmentId = 58's segIsInTree = 0
+[insertNode] [1140]: tempNode is = 0x5561db720170, preSegmentId = 58, prevSegmentId = 54, segIsInTree = 0
+[createNode] [1004]: newNode = 0x5561db720230
+[insertChildNode] [1012]: childNode = 0x5561db720230
+[calcChildSegmentCoordinate] [177]: Is childSegment
+[calcChildSegmentCoordinate] [234]: R = 56.955000
+[calcChildSegmentCoordinate] [272]: finalRemainLength = 26.000000
+[calcCurveXYOffset] [163]: arcR = 56.955000, arcRotationAngle = 26.155566, arcRotationAngleRad = 0.456501, signCurvature = 0
+[calcCurveXYOffset] [167]: cos(arcRotationAngleRad) - 1) = -0.102400
+[calcCurveXYOffset] [168]: arcR * (cos(arcRotationAngleRad) - 1) = -5.832164
+[calcCurveXYOffset] [169]: dX = 25.106327
+[calcCurveXYOffset] [170]: dY = -5.832164
+[coordinateSystemRotates] [106]: accumulateBranchAngle = 207.359781, accumulateBranchAngleRad = 3.619111
+[coordinateSystemRotates] [107]: dX = 25.106327
+[coordinateSystemRotates] [108]: dY = -5.832164
+[coordinateSystemRotates] [109]: cos(accumulateBranchAngleRad) = -0.888138
+[coordinateSystemRotates] [110]: sin(accumulateBranchAngleRad) = -0.459576
+[coordinateSystemRotates] [111]: distanceX * cos(accumulateBranchAngleRad) = -22.297888
+[coordinateSystemRotates] [112]: distanceY * sin(accumulateBranchAngleRad) = 2.680325
+[coordinateSystemRotates] [113]: distanceX * sin(accumulateBranchAngleRad) = -11.538277
+[coordinateSystemRotates] [114]: distanceY * cos(accumulateBranchAngleRad) = 5.179767
+[coordinateSystemRotates] [118]: coordinate system rotated X = -24.978213
+[coordinateSystemRotates] [119]: coordinate system rotated Y = -6.358509
+[calcChildSegmentCoordinate] [292]: accumulateXY.distanceX = -59.794972, accumulateXY.distanceY = 7.875931
+[calcDestination] [78]: destinationCoord latitude = 40.343464  destinationCoord longitude = 116.818851
+[calcChildSegmentCoordinate] [295]: childSegment's endCoordinate latitude = 40.343464  longitude = 116.818851
+[calcChildSegmentCoordinate] [299]: childNode->MapData.accumulateBranchAngle = 181.204215
+[calcChildSegmentCoordinate] [309]: fixed childNode->MapData.accumulateBranchAngle = 181.204215
+[insertNode] [1161]: childNode's preSegmentId = 58
+[insertNode] [1169]: 58's startCoordinate: latitude = 40.343688, longitude = 116.818926
+[insertNode] [1174]: 58's endCoordinate: latitude = 40.343464, longitude = 116.818851
+[insertNode] [1068]: (*it)->preSegmentId = 16's segIsInTree = 0
+[findNodeById] [740]: result = 0x5561db720230
+[insertNode] [1140]: tempNode is = 0x5561db720230, preSegmentId = 16, prevSegmentId = 58, segIsInTree = 0
+[createNode] [1004]: newNode = 0x5561db7202f0
+[insertChildNode] [1012]: childNode = 0x5561db7202f0
+[calcChildSegmentCoordinate] [177]: Is childSegment
+[calcChildSegmentCoordinate] [234]: R = 56.955000
+[calcChildSegmentCoordinate] [272]: finalRemainLength = 24.000000
+[calcCurveXYOffset] [163]: arcR = 56.955000, arcRotationAngle = 24.143599, arcRotationAngleRad = 0.421385, signCurvature = 0
+[calcCurveXYOffset] [167]: cos(arcRotationAngleRad) - 1) = -0.087477
+[calcCurveXYOffset] [168]: arcR * (cos(arcRotationAngleRad) - 1) = -4.982242
+[calcCurveXYOffset] [169]: dX = 23.296017
+[calcCurveXYOffset] [170]: dY = -4.982242
+[coordinateSystemRotates] [106]: accumulateBranchAngle = 181.204215, accumulateBranchAngleRad = 3.162610
+[coordinateSystemRotates] [107]: dX = 23.296017
+[coordinateSystemRotates] [108]: dY = -4.982242
+[coordinateSystemRotates] [109]: cos(accumulateBranchAngleRad) = -0.999779
+[coordinateSystemRotates] [110]: sin(accumulateBranchAngleRad) = -0.021016
+[coordinateSystemRotates] [111]: distanceX * cos(accumulateBranchAngleRad) = -23.290872
+[coordinateSystemRotates] [112]: distanceY * sin(accumulateBranchAngleRad) = 0.104707
+[coordinateSystemRotates] [113]: distanceX * sin(accumulateBranchAngleRad) = -0.489588
+[coordinateSystemRotates] [114]: distanceY * cos(accumulateBranchAngleRad) = 4.981141
+[coordinateSystemRotates] [118]: coordinate system rotated X = -23.395578
+[coordinateSystemRotates] [119]: coordinate system rotated Y = 4.491553
+[calcChildSegmentCoordinate] [292]: accumulateXY.distanceX = -83.190551, accumulateXY.distanceY = 12.367484
+[calcDestination] [78]: destinationCoord latitude = 40.343254  destinationCoord longitude = 116.818904
+[calcChildSegmentCoordinate] [295]: childSegment's endCoordinate latitude = 40.343254  longitude = 116.818904
+[calcChildSegmentCoordinate] [299]: childNode->MapData.accumulateBranchAngle = 157.060616
+[calcChildSegmentCoordinate] [309]: fixed childNode->MapData.accumulateBranchAngle = 157.060616
+[insertNode] [1161]: childNode's preSegmentId = 16
+[insertNode] [1169]: 16's startCoordinate: latitude = 40.343464, longitude = 116.818851
+[insertNode] [1174]: 16's endCoordinate: latitude = 40.343254, longitude = 116.818904
+[insertNode] [1068]: (*it)->preSegmentId = 33's segIsInTree = 0
+[findNodeById] [740]: result = 0x5561db7202f0
+[findNodeById] [740]: result = 0x5561db7202f0
+[insertNode] [1140]: tempNode is = 0x5561db7202f0, preSegmentId = 33, prevSegmentId = 16, segIsInTree = 0
+[createNode] [1004]: newNode = 0x5561db7203b0
+[insertChildNode] [1012]: childNode = 0x5561db7203b0
+[calcChildSegmentCoordinate] [177]: Is childSegment
+[calcChildSegmentCoordinate] [234]: R = 56.955000
+[calcChildSegmentCoordinate] [272]: finalRemainLength = 2.000000
+[calcCurveXYOffset] [163]: arcR = 56.955000, arcRotationAngle = 2.011967, arcRotationAngleRad = 0.035115, signCurvature = 0
+[calcCurveXYOffset] [167]: cos(arcRotationAngleRad) - 1) = -0.000616
+[calcCurveXYOffset] [168]: arcR * (cos(arcRotationAngleRad) - 1) = -0.035112
+[calcCurveXYOffset] [169]: dX = 1.999589
+[calcCurveXYOffset] [170]: dY = -0.035112
+[coordinateSystemRotates] [106]: accumulateBranchAngle = 157.060616, accumulateBranchAngleRad = 2.741225
+[coordinateSystemRotates] [107]: dX = 1.999589
+[coordinateSystemRotates] [108]: dY = -0.035112
+[coordinateSystemRotates] [109]: cos(accumulateBranchAngleRad) = -0.920918
+[coordinateSystemRotates] [110]: sin(accumulateBranchAngleRad) = 0.389757
+[coordinateSystemRotates] [111]: distanceX * cos(accumulateBranchAngleRad) = -1.841457
+[coordinateSystemRotates] [112]: distanceY * sin(accumulateBranchAngleRad) = -0.013685
+[coordinateSystemRotates] [113]: distanceX * sin(accumulateBranchAngleRad) = 0.779354
+[coordinateSystemRotates] [114]: distanceY * cos(accumulateBranchAngleRad) = 0.032335
+[coordinateSystemRotates] [118]: coordinate system rotated X = -1.827772
+[coordinateSystemRotates] [119]: coordinate system rotated Y = 0.811689
+[calcChildSegmentCoordinate] [292]: accumulateXY.distanceX = -85.018323, accumulateXY.distanceY = 13.179173
+[calcDestination] [78]: destinationCoord latitude = 40.343237  destinationCoord longitude = 116.818913
+[calcChildSegmentCoordinate] [295]: childSegment's endCoordinate latitude = 40.343237  longitude = 116.818913
+[calcChildSegmentCoordinate] [299]: childNode->MapData.accumulateBranchAngle = 155.048649
+[calcChildSegmentCoordinate] [309]: fixed childNode->MapData.accumulateBranchAngle = 155.048649
+[insertNode] [1161]: childNode's preSegmentId = 33
+[insertNode] [1169]: 33's startCoordinate: latitude = 40.343254, longitude = 116.818904
+[insertNode] [1174]: 33's endCoordinate: latitude = 40.343237, longitude = 116.818913
+[insertNode] [1068]: (*it)->preSegmentId = 35's segIsInTree = 0
+[findNodeById] [740]: result = 0x5561db7203b0
+[findNodeById] [740]: result = 0x5561db7203b0
+[findNodeById] [740]: result = 0x5561db7203b0
+[insertNode] [1140]: tempNode is = 0x5561db7203b0, preSegmentId = 35, prevSegmentId = 33, segIsInTree = 0
+[createNode] [1004]: newNode = 0x5561db720470
+[insertChildNode] [1012]: childNode = 0x5561db720470
+[calcChildSegmentCoordinate] [177]: Is childSegment
+[calcChildSegmentCoordinate] [234]: R = 56.955000
+[calcChildSegmentCoordinate] [272]: finalRemainLength = 30.000000
+[calcCurveXYOffset] [163]: arcR = 56.955000, arcRotationAngle = 30.179499, arcRotationAngleRad = 0.526732, signCurvature = 0
+[calcCurveXYOffset] [167]: cos(arcRotationAngleRad) - 1) = -0.135545
+[calcCurveXYOffset] [168]: arcR * (cos(arcRotationAngleRad) - 1) = -7.719981
+[calcCurveXYOffset] [169]: dX = 28.631886
+[calcCurveXYOffset] [170]: dY = -7.719981
+[coordinateSystemRotates] [106]: accumulateBranchAngle = 155.048649, accumulateBranchAngleRad = 2.706109
+[coordinateSystemRotates] [107]: dX = 28.631886
+[coordinateSystemRotates] [108]: dY = -7.719981
+[coordinateSystemRotates] [109]: cos(accumulateBranchAngleRad) = -0.906666
+[coordinateSystemRotates] [110]: sin(accumulateBranchAngleRad) = 0.421849
+[coordinateSystemRotates] [111]: distanceX * cos(accumulateBranchAngleRad) = -25.959566
+[coordinateSystemRotates] [112]: distanceY * sin(accumulateBranchAngleRad) = -3.256663
+[coordinateSystemRotates] [113]: distanceX * sin(accumulateBranchAngleRad) = 12.078321
+[coordinateSystemRotates] [114]: distanceY * cos(accumulateBranchAngleRad) = 6.999447
+[coordinateSystemRotates] [118]: coordinate system rotated X = -22.702904
+[coordinateSystemRotates] [119]: coordinate system rotated Y = 19.077767
+[calcChildSegmentCoordinate] [292]: accumulateXY.distanceX = -107.721226, accumulateXY.distanceY = 32.256940
+[calcDestination] [78]: destinationCoord latitude = 40.343033  destinationCoord longitude = 116.819138
+[calcChildSegmentCoordinate] [295]: childSegment's endCoordinate latitude = 40.343033  longitude = 116.819138
+[calcChildSegmentCoordinate] [299]: childNode->MapData.accumulateBranchAngle = 124.869150
+[calcChildSegmentCoordinate] [309]: fixed childNode->MapData.accumulateBranchAngle = 124.869150
+[insertNode] [1161]: childNode's preSegmentId = 35
+[insertNode] [1169]: 35's startCoordinate: latitude = 40.343237, longitude = 116.818913
+[insertNode] [1174]: 35's endCoordinate: latitude = 40.343033, longitude = 116.819138
+[insertNode] [1068]: (*it)->preSegmentId = 42's segIsInTree = 0
+[findNodeById] [740]: result = 0x5561db720470
+[findNodeById] [740]: result = 0x5561db720470
+[findNodeById] [740]: result = 0x5561db720470
+[findNodeById] [740]: result = 0x5561db720470
+[insertNode] [1140]: tempNode is = 0x5561db720470, preSegmentId = 42, prevSegmentId = 35, segIsInTree = 0
+[createNode] [1004]: newNode = 0x5561db720530
+[insertChildNode] [1012]: childNode = 0x5561db720530
+[calcChildSegmentCoordinate] [177]: Is childSegment
+[calcChildSegmentCoordinate] [234]: R = 56.955000
+[calcChildSegmentCoordinate] [272]: finalRemainLength = 34.000000
+[calcCurveXYOffset] [163]: arcR = 56.955000, arcRotationAngle = 34.203433, arcRotationAngleRad = 0.596963, signCurvature = 0
+[calcCurveXYOffset] [167]: cos(arcRotationAngleRad) - 1) = -0.172953
+[calcCurveXYOffset] [168]: arcR * (cos(arcRotationAngleRad) - 1) = -9.850544
+[calcCurveXYOffset] [169]: dX = 32.016281
+[calcCurveXYOffset] [170]: dY = -9.850544
+[coordinateSystemRotates] [106]: accumulateBranchAngle = 120.617181, accumulateBranchAngleRad = 2.105167
+[coordinateSystemRotates] [107]: dX = 32.016281
+[coordinateSystemRotates] [108]: dY = -9.850544
+[coordinateSystemRotates] [109]: cos(accumulateBranchAngleRad) = -0.509299
+[coordinateSystemRotates] [110]: sin(accumulateBranchAngleRad) = 0.860589
+[coordinateSystemRotates] [111]: distanceX * cos(accumulateBranchAngleRad) = -16.305876
+[coordinateSystemRotates] [112]: distanceY * sin(accumulateBranchAngleRad) = -8.477273
+[coordinateSystemRotates] [113]: distanceX * sin(accumulateBranchAngleRad) = 27.552870
+[coordinateSystemRotates] [114]: distanceY * cos(accumulateBranchAngleRad) = 5.016877
+[coordinateSystemRotates] [118]: coordinate system rotated X = -7.828602
+[coordinateSystemRotates] [119]: coordinate system rotated Y = 32.569747
+[calcChildSegmentCoordinate] [292]: accumulateXY.distanceX = -115.549829, accumulateXY.distanceY = 64.826688
+[calcDestination] [78]: destinationCoord latitude = 40.342963  destinationCoord longitude = 116.819522
+[calcChildSegmentCoordinate] [295]: childSegment's endCoordinate latitude = 40.342963  longitude = 116.819522
+[calcChildSegmentCoordinate] [299]: childNode->MapData.accumulateBranchAngle = 86.413748
+[calcChildSegmentCoordinate] [309]: fixed childNode->MapData.accumulateBranchAngle = 86.413748
+[insertNode] [1161]: childNode's preSegmentId = 42
+[insertNode] [1169]: 42's startCoordinate: latitude = 40.343033, longitude = 116.819138
+[insertNode] [1174]: 42's endCoordinate: latitude = 40.342963, longitude = 116.819522
+[insertNode] [1068]: (*it)->preSegmentId = 47's segIsInTree = 0
+[findNodeById] [740]: result = 0x5561db720530
+[findNodeById] [740]: result = 0x5561db720530
+[findNodeById] [740]: result = 0x5561db720530
+[findNodeById] [740]: result = 0x5561db720530
+[findNodeById] [740]: result = 0x5561db720530
+[insertNode] [1140]: tempNode is = 0x5561db720530, preSegmentId = 47, prevSegmentId = 42, segIsInTree = 0
+[createNode] [1004]: newNode = 0x5561db7205f0
+[insertChildNode] [1012]: childNode = 0x5561db7205f0
+[calcChildSegmentCoordinate] [177]: Is childSegment
+[calcChildSegmentCoordinate] [234]: R = 56.955000
+[calcChildSegmentCoordinate] [272]: finalRemainLength = 20.000000
+[calcCurveXYOffset] [163]: arcR = 56.955000, arcRotationAngle = 20.119666, arcRotationAngleRad = 0.351154, signCurvature = 0
+[calcCurveXYOffset] [167]: cos(arcRotationAngleRad) - 1) = -0.061024
+[calcCurveXYOffset] [168]: arcR * (cos(arcRotationAngleRad) - 1) = -3.475608
+[calcCurveXYOffset] [169]: dX = 19.591495
+[calcCurveXYOffset] [170]: dY = -3.475608
+[coordinateSystemRotates] [106]: accumulateBranchAngle = 86.413748, accumulateBranchAngleRad = 1.508204
+[coordinateSystemRotates] [107]: dX = 19.591495
+[coordinateSystemRotates] [108]: dY = -3.475608
+[coordinateSystemRotates] [109]: cos(accumulateBranchAngleRad) = 0.062551
+[coordinateSystemRotates] [110]: sin(accumulateBranchAngleRad) = 0.998042
+[coordinateSystemRotates] [111]: distanceX * cos(accumulateBranchAngleRad) = 1.225468
+[coordinateSystemRotates] [112]: distanceY * sin(accumulateBranchAngleRad) = -3.468802
+[coordinateSystemRotates] [113]: distanceX * sin(accumulateBranchAngleRad) = 19.553131
+[coordinateSystemRotates] [114]: distanceY * cos(accumulateBranchAngleRad) = -0.217403
+[coordinateSystemRotates] [118]: coordinate system rotated X = 4.694271
+[coordinateSystemRotates] [119]: coordinate system rotated Y = 19.335728
+[calcChildSegmentCoordinate] [292]: accumulateXY.distanceX = -110.855558, accumulateXY.distanceY = 84.162415
+[calcDestination] [78]: destinationCoord latitude = 40.343005  destinationCoord longitude = 116.819750
+[calcChildSegmentCoordinate] [295]: childSegment's endCoordinate latitude = 40.343005  longitude = 116.819750
+[calcChildSegmentCoordinate] [299]: childNode->MapData.accumulateBranchAngle = 66.294082
+[calcChildSegmentCoordinate] [309]: fixed childNode->MapData.accumulateBranchAngle = 66.294082
+[insertNode] [1161]: childNode's preSegmentId = 47
+[insertNode] [1169]: 47's startCoordinate: latitude = 40.342963, longitude = 116.819522
+[insertNode] [1174]: 47's endCoordinate: latitude = 40.343005, longitude = 116.819750
+[insertNode] [1068]: (*it)->preSegmentId = 52's segIsInTree = 0
+[findNodeById] [740]: result = 0x5561db7205f0
+[findNodeById] [740]: result = 0x5561db7205f0
+[findNodeById] [740]: result = 0x5561db7205f0
+[findNodeById] [740]: result = 0x5561db7205f0
+[findNodeById] [740]: result = 0x5561db7205f0
+[findNodeById] [740]: result = 0x5561db7205f0
+[insertNode] [1140]: tempNode is = 0x5561db7205f0, preSegmentId = 52, prevSegmentId = 47, segIsInTree = 0
+[createNode] [1004]: newNode = 0x5561db7206b0
+[insertChildNode] [1012]: childNode = 0x5561db7206b0
+[calcChildSegmentCoordinate] [177]: Is childSegment
+[calcChildSegmentCoordinate] [234]: R = 97.875000
+[calcChildSegmentCoordinate] [272]: finalRemainLength = 10.000000
+[calcChildSegmentCoordinate] [282]:fixed R = 476.025289
+[calcCurveXYOffset] [163]: arcR = 476.025289, arcRotationAngle = 1.203629, arcRotationAngleRad = 0.021007, signCurvature = 0
+[calcCurveXYOffset] [167]: cos(arcRotationAngleRad) - 1) = -0.000221
+[calcCurveXYOffset] [168]: arcR * (cos(arcRotationAngleRad) - 1) = -0.105033
+[calcCurveXYOffset] [169]: dX = 9.999265
+[calcCurveXYOffset] [170]: dY = -0.105033
+[coordinateSystemRotates] [106]: accumulateBranchAngle = 98.892511, accumulateBranchAngleRad = 1.726000
+[coordinateSystemRotates] [107]: dX = 9.999265
+[coordinateSystemRotates] [108]: dY = -0.105033
+[coordinateSystemRotates] [109]: cos(accumulateBranchAngleRad) = -0.154581
+[coordinateSystemRotates] [110]: sin(accumulateBranchAngleRad) = 0.987980
+[coordinateSystemRotates] [111]: distanceX * cos(accumulateBranchAngleRad) = -1.545699
+[coordinateSystemRotates] [112]: distanceY * sin(accumulateBranchAngleRad) = -0.103770
+[coordinateSystemRotates] [113]: distanceX * sin(accumulateBranchAngleRad) = 9.879074
+[coordinateSystemRotates] [114]: distanceY * cos(accumulateBranchAngleRad) = 0.016236
+[coordinateSystemRotates] [118]: coordinate system rotated X = -1.441929
+[coordinateSystemRotates] [119]: coordinate system rotated Y = 9.895310
+[calcChildSegmentCoordinate] [292]: accumulateXY.distanceX = -112.297487, accumulateXY.distanceY = 94.057726
+[calcDestination] [78]: destinationCoord latitude = 40.342992  destinationCoord longitude = 116.819867
+[calcChildSegmentCoordinate] [295]: childSegment's endCoordinate latitude = 40.342992  longitude = 116.819867
+[calcChildSegmentCoordinate] [299]: childNode->MapData.accumulateBranchAngle = 97.688882
+[calcChildSegmentCoordinate] [309]: fixed childNode->MapData.accumulateBranchAngle = 97.688882
+[insertNode] [1161]: childNode's preSegmentId = 52
+[insertNode] [1169]: 52's startCoordinate: latitude = 40.343005, longitude = 116.819750
+[insertNode] [1174]: 52's endCoordinate: latitude = 40.342992, longitude = 116.819867
+[insertNode] [1068]: (*it)->preSegmentId = 53's segIsInTree = 0
+[findNodeById] [740]: result = 0x5561db7206b0
+[findNodeById] [740]: result = 0x5561db7206b0
+[findNodeById] [740]: result = 0x5561db7206b0
+[findNodeById] [740]: result = 0x5561db7206b0
+[findNodeById] [740]: result = 0x5561db7206b0
+[findNodeById] [740]: result = 0x5561db7206b0
+[findNodeById] [740]: result = 0x5561db7206b0
+[insertNode] [1140]: tempNode is = 0x5561db7206b0, preSegmentId = 53, prevSegmentId = 52, segIsInTree = 0
+[createNode] [1004]: newNode = 0x5561db720770
+[insertChildNode] [1012]: childNode = 0x5561db720770
+[calcChildSegmentCoordinate] [177]: Is childSegment
+[calcChildSegmentCoordinate] [234]: R = 35.875000
+[calcChildSegmentCoordinate] [272]: finalRemainLength = 36.000000
+[calcChildSegmentCoordinate] [282]:fixed R = 54.574907
+[calcCurveXYOffset] [163]: arcR = 54.574907, arcRotationAngle = 37.794807, arcRotationAngleRad = 0.659644, signCurvature = 1
+[calcCurveXYOffset] [167]: cos(arcRotationAngleRad) - 1) = -0.209789
+[calcCurveXYOffset] [168]: arcR * (cos(arcRotationAngleRad) - 1) = -11.449239
+[calcCurveXYOffset] [169]: dX = 33.445437
+[calcCurveXYOffset] [170]: dY = 11.449239
+[coordinateSystemRotates] [106]: accumulateBranchAngle = 97.688882, accumulateBranchAngleRad = 1.704993
+[coordinateSystemRotates] [107]: dX = 33.445437
+[coordinateSystemRotates] [108]: dY = 11.449239
+[coordinateSystemRotates] [109]: cos(accumulateBranchAngleRad) = -0.133794
+[coordinateSystemRotates] [110]: sin(accumulateBranchAngleRad) = 0.991009
+[coordinateSystemRotates] [111]: distanceX * cos(accumulateBranchAngleRad) = -4.474795
+[coordinateSystemRotates] [112]: distanceY * sin(accumulateBranchAngleRad) = 11.346301
+[coordinateSystemRotates] [113]: distanceX * sin(accumulateBranchAngleRad) = 33.144735
+[coordinateSystemRotates] [114]: distanceY * cos(accumulateBranchAngleRad) = -1.531838
+[coordinateSystemRotates] [118]: coordinate system rotated X = -15.821096
+[coordinateSystemRotates] [119]: coordinate system rotated Y = 31.612897
+[calcChildSegmentCoordinate] [292]: accumulateXY.distanceX = -128.118583, accumulateXY.distanceY = 125.670622
+[calcDestination] [78]: destinationCoord latitude = 40.342850  destinationCoord longitude = 116.820239
+[calcChildSegmentCoordinate] [295]: childSegment's endCoordinate latitude = 40.342850  longitude = 116.820239
+[calcChildSegmentCoordinate] [299]: childNode->MapData.accumulateBranchAngle = 135.483689
+[calcChildSegmentCoordinate] [309]: fixed childNode->MapData.accumulateBranchAngle = 135.483689
+[insertNode] [1161]: childNode's preSegmentId = 53
+[insertNode] [1169]: 53's startCoordinate: latitude = 40.342992, longitude = 116.819867
+[insertNode] [1174]: 53's endCoordinate: latitude = 40.342850, longitude = 116.820239
+[insertNode] [1068]: (*it)->preSegmentId = 50's segIsInTree = 0
+[findNodeById] [740]: result = 0x5561db7205f0
+[findNodeById] [740]: result = 0x5561db7205f0
+[findNodeById] [740]: result = 0x5561db7205f0
+[findNodeById] [740]: result = 0x5561db7205f0
+[findNodeById] [740]: result = 0x5561db7205f0
+[findNodeById] [740]: result = 0x5561db7205f0
+[insertNode] [1140]: tempNode is = 0x5561db7205f0, preSegmentId = 50, prevSegmentId = 47, segIsInTree = 0
+[createNode] [1004]: newNode = 0x5561db720830
+[insertChildNode] [1012]: childNode = 0x5561db720830
+[calcChildSegmentCoordinate] [177]: Is childSegment
+[calcChildSegmentCoordinate] [234]: R = 56.955000
+[calcChildSegmentCoordinate] [272]: finalRemainLength = 34.000000
+[calcCurveXYOffset] [163]: arcR = 56.955000, arcRotationAngle = 34.203433, arcRotationAngleRad = 0.596963, signCurvature = 0
+[calcCurveXYOffset] [167]: cos(arcRotationAngleRad) - 1) = -0.172953
+[calcCurveXYOffset] [168]: arcR * (cos(arcRotationAngleRad) - 1) = -9.850544
+[calcCurveXYOffset] [169]: dX = 32.016281
+[calcCurveXYOffset] [170]: dY = -9.850544
+[coordinateSystemRotates] [106]: accumulateBranchAngle = 66.294082, accumulateBranchAngleRad = 1.157050
+[coordinateSystemRotates] [107]: dX = 32.016281
+[coordinateSystemRotates] [108]: dY = -9.850544
+[coordinateSystemRotates] [109]: cos(accumulateBranchAngleRad) = 0.402042
+[coordinateSystemRotates] [110]: sin(accumulateBranchAngleRad) = 0.915621
+[coordinateSystemRotates] [111]: distanceX * cos(accumulateBranchAngleRad) = 12.871901
+[coordinateSystemRotates] [112]: distanceY * sin(accumulateBranchAngleRad) = -9.019366
+[coordinateSystemRotates] [113]: distanceX * sin(accumulateBranchAngleRad) = 29.314781
+[coordinateSystemRotates] [114]: distanceY * cos(accumulateBranchAngleRad) = -3.960336
+[coordinateSystemRotates] [118]: coordinate system rotated X = 21.891267
+[coordinateSystemRotates] [119]: coordinate system rotated Y = 25.354445
+[calcChildSegmentCoordinate] [292]: accumulateXY.distanceX = -88.964291, accumulateXY.distanceY = 109.516861
+[calcDestination] [78]: destinationCoord latitude = 40.343202  destinationCoord longitude = 116.820049
+[calcChildSegmentCoordinate] [295]: childSegment's endCoordinate latitude = 40.343202  longitude = 116.820049
+[calcChildSegmentCoordinate] [299]: childNode->MapData.accumulateBranchAngle = 32.090649
+[calcChildSegmentCoordinate] [309]: fixed childNode->MapData.accumulateBranchAngle = 32.090649
+[insertNode] [1161]: childNode's preSegmentId = 50
+[insertNode] [1169]: 50's startCoordinate: latitude = 40.343005, longitude = 116.819750
+[insertNode] [1174]: 50's endCoordinate: latitude = 40.343202, longitude = 116.820049
+[insertNode] [1068]: (*it)->preSegmentId = 5's segIsInTree = 0
+[findNodeById] [745]: result = (nil)
+[findNodeById] [745]: result = (nil)
+[findNodeById] [740]: result = 0x5561db720830
+[findNodeById] [740]: result = 0x5561db720830
+[findNodeById] [740]: result = 0x5561db720830
+[findNodeById] [740]: result = 0x5561db720830
+[findNodeById] [740]: result = 0x5561db720830
+[findNodeById] [740]: result = 0x5561db720830
+[findNodeById] [740]: result = 0x5561db720830
+[insertNode] [1140]: tempNode is = 0x5561db720830, preSegmentId = 5, prevSegmentId = 50, segIsInTree = 0
+[createNode] [1004]: newNode = 0x5561db7208f0
+[insertChildNode] [1012]: childNode = 0x5561db7208f0
+[calcChildSegmentCoordinate] [177]: Is childSegment
+[calcChildSegmentCoordinate] [234]: R = 56.955000
+[calcChildSegmentCoordinate] [272]: finalRemainLength = 26.000000
+[calcCurveXYOffset] [163]: arcR = 56.955000, arcRotationAngle = 26.155566, arcRotationAngleRad = 0.456501, signCurvature = 0
+[calcCurveXYOffset] [167]: cos(arcRotationAngleRad) - 1) = -0.102400
+[calcCurveXYOffset] [168]: arcR * (cos(arcRotationAngleRad) - 1) = -5.832164
+[calcCurveXYOffset] [169]: dX = 25.106327
+[calcCurveXYOffset] [170]: dY = -5.832164
+[coordinateSystemRotates] [106]: accumulateBranchAngle = 32.090649, accumulateBranchAngleRad = 0.560087
+[coordinateSystemRotates] [107]: dX = 25.106327
+[coordinateSystemRotates] [108]: dY = -5.832164
+[coordinateSystemRotates] [109]: cos(accumulateBranchAngleRad) = 0.847209
+[coordinateSystemRotates] [110]: sin(accumulateBranchAngleRad) = 0.531260
+[coordinateSystemRotates] [111]: distanceX * cos(accumulateBranchAngleRad) = 21.270297
+[coordinateSystemRotates] [112]: distanceY * sin(accumulateBranchAngleRad) = -3.098397
+[coordinateSystemRotates] [113]: distanceX * sin(accumulateBranchAngleRad) = 13.337995
+[coordinateSystemRotates] [114]: distanceY * cos(accumulateBranchAngleRad) = -4.941060
+[coordinateSystemRotates] [118]: coordinate system rotated X = 24.368694
+[coordinateSystemRotates] [119]: coordinate system rotated Y = 8.396936
+[calcChildSegmentCoordinate] [292]: accumulateXY.distanceX = -64.595597, accumulateXY.distanceY = 117.913796
+[calcDestination] [78]: destinationCoord latitude = 40.343421  destinationCoord longitude = 116.820148
+[calcChildSegmentCoordinate] [295]: childSegment's endCoordinate latitude = 40.343421  longitude = 116.820148
+[calcChildSegmentCoordinate] [299]: childNode->MapData.accumulateBranchAngle = 5.935083
+[calcChildSegmentCoordinate] [309]: fixed childNode->MapData.accumulateBranchAngle = 5.935083
+[insertNode] [1161]: childNode's preSegmentId = 5
+[insertNode] [1169]: 5's startCoordinate: latitude = 40.343202, longitude = 116.820049
+[insertNode] [1174]: 5's endCoordinate: latitude = 40.343421, longitude = 116.820148
+[insertNode] [1068]: (*it)->preSegmentId = 9's segIsInTree = 0
+[findNodeById] [745]: result = (nil)
+[findNodeById] [745]: result = (nil)
+[findNodeById] [740]: result = 0x5561db7208f0
+[findNodeById] [740]: result = 0x5561db7208f0
+[findNodeById] [740]: result = 0x5561db7208f0
+[findNodeById] [740]: result = 0x5561db7208f0
+[findNodeById] [740]: result = 0x5561db7208f0
+[findNodeById] [740]: result = 0x5561db7208f0
+[findNodeById] [740]: result = 0x5561db7208f0
+[findNodeById] [740]: result = 0x5561db7208f0
+[insertNode] [1140]: tempNode is = 0x5561db7208f0, preSegmentId = 9, prevSegmentId = 5, segIsInTree = 0
+[createNode] [1004]: newNode = 0x5561db7209b0
+[insertChildNode] [1012]: childNode = 0x5561db7209b0
+[calcChildSegmentCoordinate] [177]: Is childSegment
+[calcChildSegmentCoordinate] [234]: R = 56.955000
+[calcChildSegmentCoordinate] [272]: finalRemainLength = 26.000000
+[calcCurveXYOffset] [163]: arcR = 56.955000, arcRotationAngle = 26.155566, arcRotationAngleRad = 0.456501, signCurvature = 0
+[calcCurveXYOffset] [167]: cos(arcRotationAngleRad) - 1) = -0.102400
+[calcCurveXYOffset] [168]: arcR * (cos(arcRotationAngleRad) - 1) = -5.832164
+[calcCurveXYOffset] [169]: dX = 25.106327
+[calcCurveXYOffset] [170]: dY = -5.832164
+[coordinateSystemRotates] [106]: accumulateBranchAngle = 5.935083, accumulateBranchAngleRad = 0.103587
+[coordinateSystemRotates] [107]: dX = 25.106327
+[coordinateSystemRotates] [108]: dY = -5.832164
+[coordinateSystemRotates] [109]: cos(accumulateBranchAngleRad) = 0.994640
+[coordinateSystemRotates] [110]: sin(accumulateBranchAngleRad) = 0.103402
+[coordinateSystemRotates] [111]: distanceX * cos(accumulateBranchAngleRad) = 24.971749
+[coordinateSystemRotates] [112]: distanceY * sin(accumulateBranchAngleRad) = -0.603055
+[coordinateSystemRotates] [113]: distanceX * sin(accumulateBranchAngleRad) = 2.596034
+[coordinateSystemRotates] [114]: distanceY * cos(accumulateBranchAngleRad) = -5.800902
+[coordinateSystemRotates] [118]: coordinate system rotated X = 25.574804
+[coordinateSystemRotates] [119]: coordinate system rotated Y = -3.204867
+[calcChildSegmentCoordinate] [292]: accumulateXY.distanceX = -39.020793, accumulateXY.distanceY = 114.708929
+[calcDestination] [78]: destinationCoord latitude = 40.343650  destinationCoord longitude = 116.820110
+[calcChildSegmentCoordinate] [295]: childSegment's endCoordinate latitude = 40.343650  longitude = 116.820110
+[calcChildSegmentCoordinate] [299]: childNode->MapData.accumulateBranchAngle = -20.220483
+[calcChildSegmentCoordinate] [309]: fixed childNode->MapData.accumulateBranchAngle = -20.220483
+[insertNode] [1161]: childNode's preSegmentId = 9
+[insertNode] [1169]: 9's startCoordinate: latitude = 40.343421, longitude = 116.820148
+[insertNode] [1174]: 9's endCoordinate: latitude = 40.343650, longitude = 116.820110
+[insertNode] [1068]: (*it)->preSegmentId = 11's segIsInTree = 0
+[findNodeById] [745]: result = (nil)
+[findNodeById] [745]: result = (nil)
+[findNodeById] [740]: result = 0x5561db7209b0
+[findNodeById] [740]: result = 0x5561db7209b0
+[findNodeById] [740]: result = 0x5561db7209b0
+[findNodeById] [740]: result = 0x5561db7209b0
+[findNodeById] [740]: result = 0x5561db7209b0
+[findNodeById] [740]: result = 0x5561db7209b0
+[findNodeById] [740]: result = 0x5561db7209b0
+[findNodeById] [740]: result = 0x5561db7209b0
+[findNodeById] [740]: result = 0x5561db7209b0
+[insertNode] [1140]: tempNode is = 0x5561db7209b0, preSegmentId = 11, prevSegmentId = 9, segIsInTree = 0
+[createNode] [1004]: newNode = 0x5561db720a70
+[insertChildNode] [1012]: childNode = 0x5561db720a70
+[calcChildSegmentCoordinate] [177]: Is childSegment
+[calcChildSegmentCoordinate] [234]: R = 56.955000
+[calcChildSegmentCoordinate] [272]: finalRemainLength = 34.000000
+[calcCurveXYOffset] [163]: arcR = 56.955000, arcRotationAngle = 34.203433, arcRotationAngleRad = 0.596963, signCurvature = 0
+[calcCurveXYOffset] [167]: cos(arcRotationAngleRad) - 1) = -0.172953
+[calcCurveXYOffset] [168]: arcR * (cos(arcRotationAngleRad) - 1) = -9.850544
+[calcCurveXYOffset] [169]: dX = 32.016281
+[calcCurveXYOffset] [170]: dY = -9.850544
+[coordinateSystemRotates] [106]: accumulateBranchAngle = -24.472452, accumulateBranchAngleRad = -0.427125
+[coordinateSystemRotates] [107]: dX = 32.016281
+[coordinateSystemRotates] [108]: dY = -9.850544
+[coordinateSystemRotates] [109]: cos(accumulateBranchAngleRad) = 0.910161
+[coordinateSystemRotates] [110]: sin(accumulateBranchAngleRad) = -0.414256
+[coordinateSystemRotates] [111]: distanceX * cos(accumulateBranchAngleRad) = 29.139956
+[coordinateSystemRotates] [112]: distanceY * sin(accumulateBranchAngleRad) = 4.080644
+[coordinateSystemRotates] [113]: distanceX * sin(accumulateBranchAngleRad) = -13.262926
+[coordinateSystemRotates] [114]: distanceY * cos(accumulateBranchAngleRad) = -8.965576
+[coordinateSystemRotates] [118]: coordinate system rotated X = 25.059312
+[coordinateSystemRotates] [119]: coordinate system rotated Y = -22.228503
+[calcChildSegmentCoordinate] [292]: accumulateXY.distanceX = -13.961481, accumulateXY.distanceY = 92.480426
+[calcDestination] [78]: destinationCoord latitude = 40.343876  destinationCoord longitude = 116.819848
+[calcChildSegmentCoordinate] [295]: childSegment's endCoordinate latitude = 40.343876  longitude = 116.819848
+[calcChildSegmentCoordinate] [299]: childNode->MapData.accumulateBranchAngle = -58.675885
+[calcChildSegmentCoordinate] [309]: fixed childNode->MapData.accumulateBranchAngle = -58.675885
+[insertNode] [1161]: childNode's preSegmentId = 11
+[insertNode] [1169]: 11's startCoordinate: latitude = 40.343650, longitude = 116.820110
+[insertNode] [1174]: 11's endCoordinate: latitude = 40.343876, longitude = 116.819848
+[insertNode] [1068]: (*it)->preSegmentId = 13's segIsInTree = 0
+[findNodeById] [745]: result = (nil)
+[findNodeById] [745]: result = (nil)
+[findNodeById] [740]: result = 0x5561db720a70
+[findNodeById] [740]: result = 0x5561db720a70
+[findNodeById] [740]: result = 0x5561db720a70
+[findNodeById] [740]: result = 0x5561db720a70
+[findNodeById] [740]: result = 0x5561db720a70
+[findNodeById] [740]: result = 0x5561db720a70
+[findNodeById] [740]: result = 0x5561db720a70
+[findNodeById] [740]: result = 0x5561db720a70
+[findNodeById] [740]: result = 0x5561db720a70
+[findNodeById] [740]: result = 0x5561db720a70
+[insertNode] [1140]: tempNode is = 0x5561db720a70, preSegmentId = 13, prevSegmentId = 11, segIsInTree = 0
+[createNode] [1004]: newNode = 0x5561db720b30
+[insertChildNode] [1012]: childNode = 0x5561db720b30
+[calcChildSegmentCoordinate] [177]: Is childSegment
+[calcChildSegmentCoordinate] [234]: R = 56.955000
+[calcChildSegmentCoordinate] [272]: finalRemainLength = 28.000000
+[calcCurveXYOffset] [163]: arcR = 56.955000, arcRotationAngle = 28.167533, arcRotationAngleRad = 0.491616, signCurvature = 0
+[calcCurveXYOffset] [167]: cos(arcRotationAngleRad) - 1) = -0.118429
+[calcCurveXYOffset] [168]: arcR * (cos(arcRotationAngleRad) - 1) = -6.745119
+[calcCurveXYOffset] [169]: dX = 26.885681
+[calcCurveXYOffset] [170]: dY = -6.745119
+[coordinateSystemRotates] [106]: accumulateBranchAngle = -58.675885, accumulateBranchAngleRad = -1.024087
+[coordinateSystemRotates] [107]: dX = 26.885681
+[coordinateSystemRotates] [108]: dY = -6.745119
+[coordinateSystemRotates] [109]: cos(accumulateBranchAngleRad) = 0.519879
+[coordinateSystemRotates] [110]: sin(accumulateBranchAngleRad) = -0.854240
+[coordinateSystemRotates] [111]: distanceX * cos(accumulateBranchAngleRad) = 13.977293
+[coordinateSystemRotates] [112]: distanceY * sin(accumulateBranchAngleRad) = 5.761951
+[coordinateSystemRotates] [113]: distanceX * sin(accumulateBranchAngleRad) = -22.966827
+[coordinateSystemRotates] [114]: distanceY * cos(accumulateBranchAngleRad) = -3.506644
+[coordinateSystemRotates] [118]: coordinate system rotated X = 8.215342
+[coordinateSystemRotates] [119]: coordinate system rotated Y = -26.473470
+[calcChildSegmentCoordinate] [292]: accumulateXY.distanceX = -5.746139, accumulateXY.distanceY = 66.006956
+[calcDestination] [78]: destinationCoord latitude = 40.343949  destinationCoord longitude = 116.819536
+[calcChildSegmentCoordinate] [295]: childSegment's endCoordinate latitude = 40.343949  longitude = 116.819536
+[calcChildSegmentCoordinate] [299]: childNode->MapData.accumulateBranchAngle = -86.843417
+[calcChildSegmentCoordinate] [309]: fixed childNode->MapData.accumulateBranchAngle = -86.843417
+[insertNode] [1161]: childNode's preSegmentId = 13
+[insertNode] [1169]: 13's startCoordinate: latitude = 40.343876, longitude = 116.819848
+[insertNode] [1174]: 13's endCoordinate: latitude = 40.343949, longitude = 116.819536
+[insertNode] [1068]: (*it)->preSegmentId = 15's segIsInTree = 0
+[findNodeById] [745]: result = (nil)
+[findNodeById] [745]: result = (nil)
+[findNodeById] [740]: result = 0x5561db720b30
+[findNodeById] [740]: result = 0x5561db720b30
+[findNodeById] [740]: result = 0x5561db720b30
+[findNodeById] [740]: result = 0x5561db720b30
+[findNodeById] [740]: result = 0x5561db720b30
+[findNodeById] [740]: result = 0x5561db720b30
+[findNodeById] [740]: result = 0x5561db720b30
+[findNodeById] [740]: result = 0x5561db720b30
+[findNodeById] [740]: result = 0x5561db720b30
+[findNodeById] [740]: result = 0x5561db720b30
+[findNodeById] [740]: result = 0x5561db720b30
+[insertNode] [1140]: tempNode is = 0x5561db720b30, preSegmentId = 15, prevSegmentId = 13, segIsInTree = 0
+[createNode] [1004]: newNode = 0x5561db720bf0
+[insertChildNode] [1012]: childNode = 0x5561db720bf0
+[calcChildSegmentCoordinate] [177]: Is childSegment
+[calcChildSegmentCoordinate] [234]: R = 56.955000
+[calcChildSegmentCoordinate] [272]: finalRemainLength = 32.000000
+[calcCurveXYOffset] [163]: arcR = 56.955000, arcRotationAngle = 32.191466, arcRotationAngleRad = 0.561847, signCurvature = 0
+[calcCurveXYOffset] [167]: cos(arcRotationAngleRad) - 1) = -0.153727
+[calcCurveXYOffset] [168]: arcR * (cos(arcRotationAngleRad) - 1) = -8.755548
+[calcCurveXYOffset] [169]: dX = 30.342789
+[calcCurveXYOffset] [170]: dY = -8.755548
+[coordinateSystemRotates] [106]: accumulateBranchAngle = -86.843417, accumulateBranchAngleRad = -1.515704
+[coordinateSystemRotates] [107]: dX = 30.342789
+[coordinateSystemRotates] [108]: dY = -8.755548
+[coordinateSystemRotates] [109]: cos(accumulateBranchAngleRad) = 0.055065
+[coordinateSystemRotates] [110]: sin(accumulateBranchAngleRad) = -0.998483
+[coordinateSystemRotates] [111]: distanceX * cos(accumulateBranchAngleRad) = 1.670823
+[coordinateSystemRotates] [112]: distanceY * sin(accumulateBranchAngleRad) = 8.742264
+[coordinateSystemRotates] [113]: distanceX * sin(accumulateBranchAngleRad) = -30.296753
+[coordinateSystemRotates] [114]: distanceY * cos(accumulateBranchAngleRad) = -0.482123
+[coordinateSystemRotates] [118]: coordinate system rotated X = -7.071442
+[coordinateSystemRotates] [119]: coordinate system rotated Y = -30.778876
+[calcChildSegmentCoordinate] [292]: accumulateXY.distanceX = -12.817581, accumulateXY.distanceY = 35.228080
+[calcDestination] [78]: destinationCoord latitude = 40.343886  destinationCoord longitude = 116.819173
+[calcChildSegmentCoordinate] [295]: childSegment's endCoordinate latitude = 40.343886  longitude = 116.819173
+[calcChildSegmentCoordinate] [299]: childNode->MapData.accumulateBranchAngle = -119.034883
+[calcChildSegmentCoordinate] [309]: fixed childNode->MapData.accumulateBranchAngle = -119.034883
+[insertNode] [1161]: childNode's preSegmentId = 15
+[insertNode] [1169]: 15's startCoordinate: latitude = 40.343949, longitude = 116.819536
+[insertNode] [1174]: 15's endCoordinate: latitude = 40.343886, longitude = 116.819173
+[insertNode] [1068]: (*it)->preSegmentId = 17's segIsInTree = 0
+[findNodeById] [745]: result = (nil)
+[findNodeById] [745]: result = (nil)
+[findNodeById] [740]: result = 0x5561db720bf0
+[findNodeById] [740]: result = 0x5561db720bf0
+[findNodeById] [740]: result = 0x5561db720bf0
+[findNodeById] [740]: result = 0x5561db720bf0
+[findNodeById] [740]: result = 0x5561db720bf0
+[findNodeById] [740]: result = 0x5561db720bf0
+[findNodeById] [740]: result = 0x5561db720bf0
+[findNodeById] [740]: result = 0x5561db720bf0
+[findNodeById] [740]: result = 0x5561db720bf0
+[findNodeById] [740]: result = 0x5561db720bf0
+[findNodeById] [740]: result = 0x5561db720bf0
+[findNodeById] [740]: result = 0x5561db720bf0
+[insertNode] [1140]: tempNode is = 0x5561db720bf0, preSegmentId = 17, prevSegmentId = 15, segIsInTree = 0
+[createNode] [1004]: newNode = 0x5561db720cb0
+[insertChildNode] [1012]: childNode = 0x5561db720cb0
+[calcChildSegmentCoordinate] [177]: Is childSegment
+[calcChildSegmentCoordinate] [234]: R = 56.955000
+[calcChildSegmentCoordinate] [272]: finalRemainLength = 32.000000
+[calcCurveXYOffset] [163]: arcR = 56.955000, arcRotationAngle = 32.191466, arcRotationAngleRad = 0.561847, signCurvature = 0
+[calcCurveXYOffset] [167]: cos(arcRotationAngleRad) - 1) = -0.153727
+[calcCurveXYOffset] [168]: arcR * (cos(arcRotationAngleRad) - 1) = -8.755548
+[calcCurveXYOffset] [169]: dX = 30.342789
+[calcCurveXYOffset] [170]: dY = -8.755548
+[coordinateSystemRotates] [106]: accumulateBranchAngle = -119.034883, accumulateBranchAngleRad = -2.077551
+[coordinateSystemRotates] [107]: dX = 30.342789
+[coordinateSystemRotates] [108]: dY = -8.755548
+[coordinateSystemRotates] [109]: cos(accumulateBranchAngleRad) = -0.485342
+[coordinateSystemRotates] [110]: sin(accumulateBranchAngleRad) = -0.874324
+[coordinateSystemRotates] [111]: distanceX * cos(accumulateBranchAngleRad) = -14.726631
+[coordinateSystemRotates] [112]: distanceY * sin(accumulateBranchAngleRad) = 7.655189
+[coordinateSystemRotates] [113]: distanceX * sin(accumulateBranchAngleRad) = -26.529441
+[coordinateSystemRotates] [114]: distanceY * cos(accumulateBranchAngleRad) = 4.249435
+[coordinateSystemRotates] [118]: coordinate system rotated X = -22.381820
+[coordinateSystemRotates] [119]: coordinate system rotated Y = -22.280005
+[calcChildSegmentCoordinate] [292]: accumulateXY.distanceX = -35.199401, accumulateXY.distanceY = 12.948075
+[calcDestination] [78]: destinationCoord latitude = 40.343685  destinationCoord longitude = 116.818911
+[calcChildSegmentCoordinate] [295]: childSegment's endCoordinate latitude = 40.343685  longitude = 116.818911
+[calcChildSegmentCoordinate] [299]: childNode->MapData.accumulateBranchAngle = -151.226349
+[calcChildSegmentCoordinate] [309]: fixed childNode->MapData.accumulateBranchAngle = -151.226349
+[insertNode] [1161]: childNode's preSegmentId = 17
+[insertNode] [1169]: 17's startCoordinate: latitude = 40.343886, longitude = 116.819173
+[insertNode] [1174]: 17's endCoordinate: latitude = 40.343685, longitude = 116.818911
+[insertNode] [1068]: (*it)->preSegmentId = 21's segIsInTree = 0
+[findNodeById] [745]: result = (nil)
+[findNodeById] [745]: result = (nil)
+[findNodeById] [740]: result = 0x5561db720cb0
+[findNodeById] [740]: result = 0x5561db720cb0
+[findNodeById] [740]: result = 0x5561db720cb0
+[findNodeById] [740]: result = 0x5561db720cb0
+[findNodeById] [740]: result = 0x5561db720cb0
+[findNodeById] [740]: result = 0x5561db720cb0
+[findNodeById] [740]: result = 0x5561db720cb0
+[findNodeById] [740]: result = 0x5561db720cb0
+[findNodeById] [740]: result = 0x5561db720cb0
+[findNodeById] [740]: result = 0x5561db720cb0
+[findNodeById] [740]: result = 0x5561db720cb0
+[findNodeById] [740]: result = 0x5561db720cb0
+[findNodeById] [740]: result = 0x5561db720cb0
+[insertNode] [1140]: tempNode is = 0x5561db720cb0, preSegmentId = 21, prevSegmentId = 17, segIsInTree = 0
+[createNode] [1004]: newNode = 0x5561db720d70
+[insertChildNode] [1012]: childNode = 0x5561db720d70
+[calcChildSegmentCoordinate] [177]: Is childSegment
+[calcChildSegmentCoordinate] [234]: R = 56.955000
+[calcChildSegmentCoordinate] [272]: finalRemainLength = 26.000000
+[calcCurveXYOffset] [163]: arcR = 56.955000, arcRotationAngle = 26.155566, arcRotationAngleRad = 0.456501, signCurvature = 0
+[calcCurveXYOffset] [167]: cos(arcRotationAngleRad) - 1) = -0.102400
+[calcCurveXYOffset] [168]: arcR * (cos(arcRotationAngleRad) - 1) = -5.832164
+[calcCurveXYOffset] [169]: dX = 25.106327
+[calcCurveXYOffset] [170]: dY = -5.832164
+[coordinateSystemRotates] [106]: accumulateBranchAngle = -151.226349, accumulateBranchAngleRad = -2.639398
+[coordinateSystemRotates] [107]: dX = 25.106327
+[coordinateSystemRotates] [108]: dY = -5.832164
+[coordinateSystemRotates] [109]: cos(accumulateBranchAngleRad) = -0.876528
+[coordinateSystemRotates] [110]: sin(accumulateBranchAngleRad) = -0.481351
+[coordinateSystemRotates] [111]: distanceX * cos(accumulateBranchAngleRad) = -22.006402
+[coordinateSystemRotates] [112]: distanceY * sin(accumulateBranchAngleRad) = 2.807316
+[coordinateSystemRotates] [113]: distanceX * sin(accumulateBranchAngleRad) = -12.084946
+[coordinateSystemRotates] [114]: distanceY * cos(accumulateBranchAngleRad) = 5.112056
+[coordinateSystemRotates] [118]: coordinate system rotated X = -24.813717
+[coordinateSystemRotates] [119]: coordinate system rotated Y = -6.972890
+[calcChildSegmentCoordinate] [292]: accumulateXY.distanceX = -60.013118, accumulateXY.distanceY = 5.975184
+[calcDestination] [78]: destinationCoord latitude = 40.343462  destinationCoord longitude = 116.818828
+[calcChildSegmentCoordinate] [295]: childSegment's endCoordinate latitude = 40.343462  longitude = 116.818828
+[calcChildSegmentCoordinate] [299]: childNode->MapData.accumulateBranchAngle = -177.381915
+[calcChildSegmentCoordinate] [309]: fixed childNode->MapData.accumulateBranchAngle = -177.381915
+[insertNode] [1161]: childNode's preSegmentId = 21
+[insertNode] [1169]: 21's startCoordinate: latitude = 40.343685, longitude = 116.818911
+[insertNode] [1174]: 21's endCoordinate: latitude = 40.343462, longitude = 116.818828
+[0;32m[       OK ] [mPsdMapTest.useRealRecordPsdWithCurve_phase2 (1 ms)
+[0;32m[----------] [m1 test from PsdMapTest (1 ms total)
+
+[0;32m[----------] [mGlobal test environment tear-down
+[0;32m[==========] [m1 test from 1 test suite ran. (1 ms total)
+[0;32m[  PASSED  ] [m1 test.
+Capturing coverage data from .
+geninfo cmd: '/usr/local/bin/geninfo . --output-filename PsdModule.info --test-name PsdModule --rc lcov_branch_coverage=1 --branch-coverage'
+geninfo: WARNING: (deprecated) RC option 'lcov_branch_coverage' is deprecated.  Consider using 'branch_coverage. instead.  (Backward-compatible support will be removed in the future
+	(use "geninfo --ignore-errors deprecated,deprecated ..." to suppress this warning)
+Found gcov version: 7.5.0
+Using intermediate gcov format
+Writing temporary data to /tmp/geninfo_datGX0Y
+Scanning . for .gcda files ...
+Found 6 data files in .
+using: chunkSize: 1, nchunks:6, intervalLength:0
+Finished processing 6 GDCA files
+Apply filtering..
+Finished filter file processing
+Finished .info-file creation
+Summary coverage rate:
+  source files: 23
+  lines.......: 33.5% (555 of 1655 lines)
+  functions...: 53.8% (204 of 379 functions)
+  branches....: 17.2% (104 of 604 branches)
+Message summary:
+  1 warning message:
+    deprecated: 1
+Reading tracefile PsdModule.info.
+Found 23 entries.
+Found common filename prefix "/usr/include/c++"
+Generating output.
+Processing file 7/bits/stl_construct.h
+  lines=7 hit=7 functions=12 hit=12
+Processing file 7/bits/move.h
+  lines=13 hit=9 functions=11 hit=6
+Processing file 7/new
+  lines=2 hit=2 functions=1 hit=1
+Processing file 7/bits/vector.tcc
+  lines=86 hit=40 functions=9 hit=4 branches=22 hit=6
+Processing file 7/bits/ptr_traits.h
+  lines=2 hit=0 functions=1 hit=0
+Processing file /home/zhao/Documents/Psd/src/Haversine.cpp
+  lines=35 hit=19 functions=8 hit=5 branches=4 hit=2
+Processing file 7/bits/stl_vector.h
+  lines=121 hit=91 functions=79 hit=53 branches=38 hit=12
+Processing file 7/bits/cpp_type_traits.h
+  lines=2 hit=2 functions=6 hit=3
+Processing file /home/zhao/Documents/Psd/src/Location.cpp
+  lines=11 hit=1 functions=5 hit=2 branches=4 hit=2
+Processing file /home/zhao/Documents/Psd/src/PsdMessageDecoder.cpp
+  lines=110 hit=14 functions=21 hit=7 branches=42 hit=4
+Processing file /home/zhao/Documents/Psd/src/GeometricCalc.cpp
+  lines=29 hit=0 functions=1 hit=0
+Processing file 7/ext/new_allocator.h
+  lines=15 hit=13 functions=22 hit=13 branches=14 hit=3
+Processing file 7/bits/allocator.h
+  lines=6 hit=4 functions=7 hit=5
+Processing file 7/ext/alloc_traits.h
+  lines=6 hit=4 functions=3 hit=2
+Processing file 7/bits/stl_uninitialized.h
+  lines=10 hit=10 functions=18 hit=11
+Processing file 7/bits/stl_algobase.h
+  lines=37 hit=20 functions=33 hit=18 branches=14 hit=7
+Processing file /home/zhao/Documents/Psd/src/PsdMap.cpp
+  lines=780 hit=278 functions=37 hit=16 branches=244 hit=66
+Processing file /home/zhao/Documents/Psd/src/PsdLocation.cpp
+  lines=317 hit=1 functions=22 hit=2 branches=222 hit=2
+Processing file 7/bits/alloc_traits.h
+  lines=22 hit=15 functions=21 hit=11
+Processing file /home/zhao/Documents/Psd/inc/PsdMessageDecoder.h
+  lines=1 hit=1 functions=5 hit=5
+Processing file /home/zhao/Documents/Psd/inc/PsdMap.h
+  lines=1 hit=1 functions=1 hit=1
+Processing file 7/iostream
+  lines=1 hit=1
+Processing file 7/bits/stl_iterator.h
+  lines=41 hit=22 functions=56 hit=27
+Overall coverage rate:
+  source files: 23
+  lines.......: 33.5% (555 of 1655 lines)
+  functions...: 53.8% (204 of 379 functions)
+  branches....: 17.2% (104 of 604 branches)
+Message summary:
+  no messages were reported
+]0;zhao@zhao-virtual-machine: ~/Documents/Psd[01;32mzhao@zhao-virtual-machine[00m:[01;34m~/Documents/Psd[00m$ ./build.sh [7Pexit
+exit
+
+Script done on 2024-01-04 14:42:01+0800

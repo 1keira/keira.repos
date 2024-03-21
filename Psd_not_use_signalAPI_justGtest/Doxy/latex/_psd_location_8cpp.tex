@@ -1,0 +1,101 @@
+\hypertarget{_psd_location_8cpp}{}\section{src/\+Psd\+Location.cpp File Reference}
+\label{_psd_location_8cpp}\index{src/\+Psd\+Location.\+cpp@{src/\+Psd\+Location.\+cpp}}
+{\ttfamily \#include $<$cstdio$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$cstring$>$}\newline
+{\ttfamily \#include \char`\"{}../inc/\+Psd\+Location.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../inc/\+Geometric\+Calc.\+h\char`\"{}}\newline
+Include dependency graph for Psd\+Location.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_psd_location_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \hyperlink{_psd_location_8cpp_ab233e13620a7fae2a5576ccf9d70f590}{Psd\+Map\+Run} (void $\ast$arg)
+\item 
+void $\ast$ \hyperlink{_psd_location_8cpp_a99afa19c7e74376d95279fd72d4febef}{Psd\+Message\+Decoder\+Run} (void $\ast$arg)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+pthread\+\_\+mutex\+\_\+t \hyperlink{_psd_location_8cpp_a0e54b67a9bf300f936f9e747986659a4}{decoder\+Thread\+Mutex}
+\item 
+pthread\+\_\+mutex\+\_\+t \hyperlink{_psd_location_8cpp_aabb1d569e89cf787398ffc1a0a3b536c}{map\+Thread\+Mutex}
+\item 
+bool \hyperlink{_psd_location_8cpp_ae48c69ffd0bb85b3a053532b8bd93a9f}{p\+Psd\+Usage\+Active} = 0
+\item 
+double \hyperlink{_psd_location_8cpp_a2ed204372662d6323173bea09cf77019}{p\+Lateral\+Dist\+Tolerance} = 8.\+0
+\item 
+double \hyperlink{_psd_location_8cpp_aff6445ba91fa259a3b39fb722c1be639}{p\+Relative\+Position\+Angle} = 45.\+0
+\item 
+double \hyperlink{_psd_location_8cpp_ad0836fca0c35617f4eee507efe90b970}{p\+Relative\+Direction} = 45.\+0
+\item 
+double \hyperlink{_psd_location_8cpp_a37f4203003143e655056c0825b855a7b}{p\+Stationary\+Threshold} = 50.\+0
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_psd_location_8cpp_ab233e13620a7fae2a5576ccf9d70f590}\label{_psd_location_8cpp_ab233e13620a7fae2a5576ccf9d70f590}} 
+\index{Psd\+Location.\+cpp@{Psd\+Location.\+cpp}!Psd\+Map\+Run@{Psd\+Map\+Run}}
+\index{Psd\+Map\+Run@{Psd\+Map\+Run}!Psd\+Location.\+cpp@{Psd\+Location.\+cpp}}
+\subsubsection{\texorpdfstring{Psd\+Map\+Run()}{PsdMapRun()}}
+{\footnotesize\ttfamily void$\ast$ Psd\+Map\+Run (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_psd_location_8cpp_a99afa19c7e74376d95279fd72d4febef}\label{_psd_location_8cpp_a99afa19c7e74376d95279fd72d4febef}} 
+\index{Psd\+Location.\+cpp@{Psd\+Location.\+cpp}!Psd\+Message\+Decoder\+Run@{Psd\+Message\+Decoder\+Run}}
+\index{Psd\+Message\+Decoder\+Run@{Psd\+Message\+Decoder\+Run}!Psd\+Location.\+cpp@{Psd\+Location.\+cpp}}
+\subsubsection{\texorpdfstring{Psd\+Message\+Decoder\+Run()}{PsdMessageDecoderRun()}}
+{\footnotesize\ttfamily void$\ast$ Psd\+Message\+Decoder\+Run (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{_psd_location_8cpp_a0e54b67a9bf300f936f9e747986659a4}\label{_psd_location_8cpp_a0e54b67a9bf300f936f9e747986659a4}} 
+\index{Psd\+Location.\+cpp@{Psd\+Location.\+cpp}!decoder\+Thread\+Mutex@{decoder\+Thread\+Mutex}}
+\index{decoder\+Thread\+Mutex@{decoder\+Thread\+Mutex}!Psd\+Location.\+cpp@{Psd\+Location.\+cpp}}
+\subsubsection{\texorpdfstring{decoder\+Thread\+Mutex}{decoderThreadMutex}}
+{\footnotesize\ttfamily pthread\+\_\+mutex\+\_\+t decoder\+Thread\+Mutex}
+
+\mbox{\Hypertarget{_psd_location_8cpp_aabb1d569e89cf787398ffc1a0a3b536c}\label{_psd_location_8cpp_aabb1d569e89cf787398ffc1a0a3b536c}} 
+\index{Psd\+Location.\+cpp@{Psd\+Location.\+cpp}!map\+Thread\+Mutex@{map\+Thread\+Mutex}}
+\index{map\+Thread\+Mutex@{map\+Thread\+Mutex}!Psd\+Location.\+cpp@{Psd\+Location.\+cpp}}
+\subsubsection{\texorpdfstring{map\+Thread\+Mutex}{mapThreadMutex}}
+{\footnotesize\ttfamily pthread\+\_\+mutex\+\_\+t map\+Thread\+Mutex}
+
+\mbox{\Hypertarget{_psd_location_8cpp_a2ed204372662d6323173bea09cf77019}\label{_psd_location_8cpp_a2ed204372662d6323173bea09cf77019}} 
+\index{Psd\+Location.\+cpp@{Psd\+Location.\+cpp}!p\+Lateral\+Dist\+Tolerance@{p\+Lateral\+Dist\+Tolerance}}
+\index{p\+Lateral\+Dist\+Tolerance@{p\+Lateral\+Dist\+Tolerance}!Psd\+Location.\+cpp@{Psd\+Location.\+cpp}}
+\subsubsection{\texorpdfstring{p\+Lateral\+Dist\+Tolerance}{pLateralDistTolerance}}
+{\footnotesize\ttfamily double p\+Lateral\+Dist\+Tolerance = 8.\+0}
+
+$<$ p\+\_\+\+P\+S\+D\+\_\+\+Usage\+\_\+\+Active \mbox{\Hypertarget{_psd_location_8cpp_ae48c69ffd0bb85b3a053532b8bd93a9f}\label{_psd_location_8cpp_ae48c69ffd0bb85b3a053532b8bd93a9f}} 
+\index{Psd\+Location.\+cpp@{Psd\+Location.\+cpp}!p\+Psd\+Usage\+Active@{p\+Psd\+Usage\+Active}}
+\index{p\+Psd\+Usage\+Active@{p\+Psd\+Usage\+Active}!Psd\+Location.\+cpp@{Psd\+Location.\+cpp}}
+\subsubsection{\texorpdfstring{p\+Psd\+Usage\+Active}{pPsdUsageActive}}
+{\footnotesize\ttfamily bool p\+Psd\+Usage\+Active = 0}
+
+\mbox{\Hypertarget{_psd_location_8cpp_ad0836fca0c35617f4eee507efe90b970}\label{_psd_location_8cpp_ad0836fca0c35617f4eee507efe90b970}} 
+\index{Psd\+Location.\+cpp@{Psd\+Location.\+cpp}!p\+Relative\+Direction@{p\+Relative\+Direction}}
+\index{p\+Relative\+Direction@{p\+Relative\+Direction}!Psd\+Location.\+cpp@{Psd\+Location.\+cpp}}
+\subsubsection{\texorpdfstring{p\+Relative\+Direction}{pRelativeDirection}}
+{\footnotesize\ttfamily double p\+Relative\+Direction = 45.\+0}
+
+$<$ p\+\_\+relative\+\_\+position\+\_\+angle, default value == 45 degrees \mbox{\Hypertarget{_psd_location_8cpp_aff6445ba91fa259a3b39fb722c1be639}\label{_psd_location_8cpp_aff6445ba91fa259a3b39fb722c1be639}} 
+\index{Psd\+Location.\+cpp@{Psd\+Location.\+cpp}!p\+Relative\+Position\+Angle@{p\+Relative\+Position\+Angle}}
+\index{p\+Relative\+Position\+Angle@{p\+Relative\+Position\+Angle}!Psd\+Location.\+cpp@{Psd\+Location.\+cpp}}
+\subsubsection{\texorpdfstring{p\+Relative\+Position\+Angle}{pRelativePositionAngle}}
+{\footnotesize\ttfamily double p\+Relative\+Position\+Angle = 45.\+0}
+
+$<$ p\+\_\+lateral\+\_\+dist\+\_\+tolerance \mbox{\Hypertarget{_psd_location_8cpp_a37f4203003143e655056c0825b855a7b}\label{_psd_location_8cpp_a37f4203003143e655056c0825b855a7b}} 
+\index{Psd\+Location.\+cpp@{Psd\+Location.\+cpp}!p\+Stationary\+Threshold@{p\+Stationary\+Threshold}}
+\index{p\+Stationary\+Threshold@{p\+Stationary\+Threshold}!Psd\+Location.\+cpp@{Psd\+Location.\+cpp}}
+\subsubsection{\texorpdfstring{p\+Stationary\+Threshold}{pStationaryThreshold}}
+{\footnotesize\ttfamily double p\+Stationary\+Threshold = 50.\+0}
+
+$<$ p\+\_\+relative\+\_\+direction, default value == 45 degrees 
