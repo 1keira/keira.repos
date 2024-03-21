@@ -1,5 +1,0 @@
-<map id="PsdMap" name="PsdMap">
-<area shape="rect" id="node2" href="$struct_tree_node.html" title="TreeNode" alt="" coords="15,199,94,225"/>
-<area shape="rect" id="node3" href="$struct_psd_map_data.html" title="PsdMapData" alt="" coords="5,109,104,136"/>
-<area shape="rect" id="node4" href="$struct_coordinates.html" title="Coordinates" alt="" coords="9,5,101,32"/>
-</map>

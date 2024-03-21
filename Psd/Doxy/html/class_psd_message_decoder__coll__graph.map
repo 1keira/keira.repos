@@ -1,5 +1,0 @@
-<map id="PsdMessageDecoder" name="PsdMessageDecoder">
-<area shape="rect" id="node2" href="$struct_self_segment.html" title="SelfSegment" alt="" coords="5,109,103,136"/>
-<area shape="rect" id="node3" href="$struct_coordinates.html" title="Coordinates" alt="" coords="69,5,161,32"/>
-<area shape="rect" id="node4" href="$struct_psd_map_data.html" title="PsdMapData" alt="" coords="127,109,226,136"/>
-</map>

@@ -1,3 +1,0 @@
-/home/zhao/Documents/Psd/build/CMakeFiles/PsdModule.dir
-/home/zhao/Documents/Psd/build/CMakeFiles/edit_cache.dir
-/home/zhao/Documents/Psd/build/CMakeFiles/rebuild_cache.dir
