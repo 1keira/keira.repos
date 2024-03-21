@@ -1,0 +1,11 @@
+#ifndef OSAL_ANDROID_SYSTEMLOGGERDEFS_HXX
+#define OSAL_ANDROID_SYSTEMLOGGERDEFS_HXX
+
+namespace osal
+{
+
+struct LogHandle {};
+
+}
+
+#endif // OSAL_ANDROID_SYSTEMLOGGERDEFS_HXX

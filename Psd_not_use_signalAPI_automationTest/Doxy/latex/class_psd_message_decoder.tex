@@ -1,0 +1,293 @@
+\hypertarget{class_psd_message_decoder}{}\section{Psd\+Message\+Decoder Class Reference}
+\label{class_psd_message_decoder}\index{Psd\+Message\+Decoder@{Psd\+Message\+Decoder}}
+
+
+{\ttfamily \#include $<$Psd\+Message\+Decoder.\+h$>$}
+
+
+
+Collaboration diagram for Psd\+Message\+Decoder\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=282pt]{class_psd_message_decoder__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_psd_message_decoder_adea08ce30ab67d1a71ab7ea4463ed4a2}{segment\+Manager} (bool Psd\+Usage\+Active)
+\begin{DoxyCompactList}\small\item\em Putting \hyperlink{struct_psd_map_data}{Psd\+Map\+Data} into container when Psd\+Usage\+Active is true, clearing the container when Psd\+Usage\+Active is false. \end{DoxyCompactList}\item 
+void \hyperlink{class_psd_message_decoder_a34359c377ca6c6940025facd6b177130}{calc\+Psd04\+Data} ()
+\begin{DoxyCompactList}\small\item\em Calculate P\+S\+D\+\_\+04 data. \end{DoxyCompactList}\item 
+void \hyperlink{class_psd_message_decoder_a88607430974b48dd7379f636f3bb0b35}{convert\+Curvature} ()
+\begin{DoxyCompactList}\small\item\em Convert start \&\& end Curvature from uint8\+\_\+t to double type. \end{DoxyCompactList}\item 
+void \hyperlink{class_psd_message_decoder_adf3d4c8211c7a08f9de2f74509361ea6}{convert\+Branch\+Angle} ()
+\begin{DoxyCompactList}\small\item\em Convert branch\+Angle from uint8\+\_\+t to double type. \end{DoxyCompactList}\item 
+void \hyperlink{class_psd_message_decoder_a8fbd5e60c5807f9879de028f4593bbc4}{push\+In\+List} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{struct_psd_map_data}{Psd\+Map\+Data} emplace in container. \end{DoxyCompactList}\item 
+void \hyperlink{class_psd_message_decoder_a3f782b96f0fb6f05cd2178c626d7058b}{pop\+Up\+List} (std\+::vector$<$ struct \hyperlink{struct_psd_map_data}{Psd\+Map\+Data} $\ast$$>$\+::iterator position)
+\begin{DoxyCompactList}\small\item\em \hyperlink{struct_psd_map_data}{Psd\+Map\+Data} erase out container. \end{DoxyCompactList}\item 
+void \hyperlink{class_psd_message_decoder_a1d3d09203c12851fd048e97069bc8d5a}{clear\+List} ()
+\begin{DoxyCompactList}\small\item\em Clear the container. \end{DoxyCompactList}\item 
+void \hyperlink{class_psd_message_decoder_ab65ca19c37ae0fcf45af498081c80e18}{save\+Attribut\+To\+List} ()
+\begin{DoxyCompactList}\small\item\em Check Struct\+Separate info and save in container. \end{DoxyCompactList}\item 
+\hyperlink{_psd_message_decoder_8h_a6c858ba8556a68d900d0eca9dc406232}{t\+Self\+Segment} \hyperlink{class_psd_message_decoder_a7d7ee9d6bcaefbb6375cf5ab5b63d232}{get\+Self\+Segment} ()
+\begin{DoxyCompactList}\small\item\em Get the Self Segment object. \end{DoxyCompactList}\item 
+void \hyperlink{class_psd_message_decoder_ad9dd4ec66688adb0616b97de091aa6e7}{set\+Self\+Segment} (\hyperlink{_psd_message_decoder_8h_a6c858ba8556a68d900d0eca9dc406232}{t\+Self\+Segment} \hyperlink{struct_self_segment}{Self\+Segment})
+\begin{DoxyCompactList}\small\item\em Set the Self Segment object. \end{DoxyCompactList}\item 
+void \hyperlink{class_psd_message_decoder_a6c92018754baf45e25e682cd153864af}{set\+Psd\+Map\+Data} (\hyperlink{_psd_message_decoder_8h_ad54e183dd7c544312c06d4bd6279ebdc}{t\+Psd\+Map\+Data} psd\+Map\+Data)
+\begin{DoxyCompactList}\small\item\em Set the Psd Map Data object. \end{DoxyCompactList}\item 
+std\+::vector$<$ struct \hyperlink{struct_psd_map_data}{Psd\+Map\+Data} $\ast$ $>$ \& \hyperlink{class_psd_message_decoder_a9ab6fa68448dff44ad93bcb37a2a9690}{get\+V\+Psd\+Map} ()
+\begin{DoxyCompactList}\small\item\em Get the container with \hyperlink{struct_psd_map_data}{Psd\+Map\+Data}. \end{DoxyCompactList}\item 
+\hyperlink{class_psd_message_decoder_ac767a18e119cad2cc3dbfbcac6368af2}{Psd\+Message\+Decoder} ()
+\begin{DoxyCompactList}\small\item\em Construct a new \hyperlink{class_psd_message_decoder}{Psd\+Message\+Decoder} object. \end{DoxyCompactList}\item 
+\hyperlink{class_psd_message_decoder_a097a557e58d4b9782660aba304cd2bba}{$\sim$\+Psd\+Message\+Decoder} ()
+\begin{DoxyCompactList}\small\item\em Destroy the \hyperlink{class_psd_message_decoder}{Psd\+Message\+Decoder} object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{class_psd_message_decoder}{Psd\+Message\+Decoder} $\ast$ \hyperlink{class_psd_message_decoder_a544f32786ee3bf1b7747fd1b82604ccf}{get\+Instance} ()
+\begin{DoxyCompactList}\small\item\em Get the Instance object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_psd_message_decoder_8h_a6c858ba8556a68d900d0eca9dc406232}{t\+Self\+Segment} \hyperlink{class_psd_message_decoder_a919e19a64a59b17651a5dbbd825fc14a}{hv\+Segment}
+\item 
+\hyperlink{_psd_message_decoder_8h_ad54e183dd7c544312c06d4bd6279ebdc}{t\+Psd\+Map\+Data} \hyperlink{class_psd_message_decoder_a72e477b8bdb225e09f970bc32fff5bde}{Psd\+Map\+Data}
+\item 
+std\+::vector$<$ struct \hyperlink{struct_psd_map_data}{Psd\+Map\+Data} $\ast$ $>$ \hyperlink{class_psd_message_decoder_ae73cfd8f47a3af30d9ae199d73ef4781}{v\+Psd\+Map}
+\item 
+pthread\+\_\+mutex\+\_\+t \hyperlink{class_psd_message_decoder_abc9826f6bfccc7d97fea196adf86710c}{decoder\+Thread\+Mutex}
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{class_psd_message_decoder}{Psd\+Message\+Decoder} $\ast$ \hyperlink{class_psd_message_decoder_ad1944184b781d22c108add0c2cbdb166}{p\+Instance} = N\+U\+LL
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_psd_message_decoder_ac767a18e119cad2cc3dbfbcac6368af2}\label{class_psd_message_decoder_ac767a18e119cad2cc3dbfbcac6368af2}} 
+\index{Psd\+Message\+Decoder@{Psd\+Message\+Decoder}!Psd\+Message\+Decoder@{Psd\+Message\+Decoder}}
+\index{Psd\+Message\+Decoder@{Psd\+Message\+Decoder}!Psd\+Message\+Decoder@{Psd\+Message\+Decoder}}
+\subsubsection{\texorpdfstring{Psd\+Message\+Decoder()}{PsdMessageDecoder()}}
+{\footnotesize\ttfamily Psd\+Message\+Decoder\+::\+Psd\+Message\+Decoder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Construct a new \hyperlink{class_psd_message_decoder}{Psd\+Message\+Decoder} object. 
+
+\mbox{\Hypertarget{class_psd_message_decoder_a097a557e58d4b9782660aba304cd2bba}\label{class_psd_message_decoder_a097a557e58d4b9782660aba304cd2bba}} 
+\index{Psd\+Message\+Decoder@{Psd\+Message\+Decoder}!````~Psd\+Message\+Decoder@{$\sim$\+Psd\+Message\+Decoder}}
+\index{````~Psd\+Message\+Decoder@{$\sim$\+Psd\+Message\+Decoder}!Psd\+Message\+Decoder@{Psd\+Message\+Decoder}}
+\subsubsection{\texorpdfstring{$\sim$\+Psd\+Message\+Decoder()}{~PsdMessageDecoder()}}
+{\footnotesize\ttfamily Psd\+Message\+Decoder\+::$\sim$\+Psd\+Message\+Decoder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destroy the \hyperlink{class_psd_message_decoder}{Psd\+Message\+Decoder} object. 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_psd_message_decoder_a34359c377ca6c6940025facd6b177130}\label{class_psd_message_decoder_a34359c377ca6c6940025facd6b177130}} 
+\index{Psd\+Message\+Decoder@{Psd\+Message\+Decoder}!calc\+Psd04\+Data@{calc\+Psd04\+Data}}
+\index{calc\+Psd04\+Data@{calc\+Psd04\+Data}!Psd\+Message\+Decoder@{Psd\+Message\+Decoder}}
+\subsubsection{\texorpdfstring{calc\+Psd04\+Data()}{calcPsd04Data()}}
+{\footnotesize\ttfamily void Psd\+Message\+Decoder\+::calc\+Psd04\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Calculate P\+S\+D\+\_\+04 data. 
+
+\mbox{\Hypertarget{class_psd_message_decoder_a1d3d09203c12851fd048e97069bc8d5a}\label{class_psd_message_decoder_a1d3d09203c12851fd048e97069bc8d5a}} 
+\index{Psd\+Message\+Decoder@{Psd\+Message\+Decoder}!clear\+List@{clear\+List}}
+\index{clear\+List@{clear\+List}!Psd\+Message\+Decoder@{Psd\+Message\+Decoder}}
+\subsubsection{\texorpdfstring{clear\+List()}{clearList()}}
+{\footnotesize\ttfamily void Psd\+Message\+Decoder\+::clear\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Clear the container. 
+
+\mbox{\Hypertarget{class_psd_message_decoder_adf3d4c8211c7a08f9de2f74509361ea6}\label{class_psd_message_decoder_adf3d4c8211c7a08f9de2f74509361ea6}} 
+\index{Psd\+Message\+Decoder@{Psd\+Message\+Decoder}!convert\+Branch\+Angle@{convert\+Branch\+Angle}}
+\index{convert\+Branch\+Angle@{convert\+Branch\+Angle}!Psd\+Message\+Decoder@{Psd\+Message\+Decoder}}
+\subsubsection{\texorpdfstring{convert\+Branch\+Angle()}{convertBranchAngle()}}
+{\footnotesize\ttfamily void Psd\+Message\+Decoder\+::convert\+Branch\+Angle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Convert branch\+Angle from uint8\+\_\+t to double type. 
+
+\mbox{\Hypertarget{class_psd_message_decoder_a88607430974b48dd7379f636f3bb0b35}\label{class_psd_message_decoder_a88607430974b48dd7379f636f3bb0b35}} 
+\index{Psd\+Message\+Decoder@{Psd\+Message\+Decoder}!convert\+Curvature@{convert\+Curvature}}
+\index{convert\+Curvature@{convert\+Curvature}!Psd\+Message\+Decoder@{Psd\+Message\+Decoder}}
+\subsubsection{\texorpdfstring{convert\+Curvature()}{convertCurvature()}}
+{\footnotesize\ttfamily void Psd\+Message\+Decoder\+::convert\+Curvature (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Convert start \&\& end Curvature from uint8\+\_\+t to double type. 
+
+\mbox{\Hypertarget{class_psd_message_decoder_a544f32786ee3bf1b7747fd1b82604ccf}\label{class_psd_message_decoder_a544f32786ee3bf1b7747fd1b82604ccf}} 
+\index{Psd\+Message\+Decoder@{Psd\+Message\+Decoder}!get\+Instance@{get\+Instance}}
+\index{get\+Instance@{get\+Instance}!Psd\+Message\+Decoder@{Psd\+Message\+Decoder}}
+\subsubsection{\texorpdfstring{get\+Instance()}{getInstance()}}
+{\footnotesize\ttfamily \hyperlink{class_psd_message_decoder}{Psd\+Message\+Decoder} $\ast$ Psd\+Message\+Decoder\+::get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get the Instance object. 
+
+\begin{DoxyReturn}{Returns}
+Psd\+Message\+Decoder$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_psd_message_decoder_a7d7ee9d6bcaefbb6375cf5ab5b63d232}\label{class_psd_message_decoder_a7d7ee9d6bcaefbb6375cf5ab5b63d232}} 
+\index{Psd\+Message\+Decoder@{Psd\+Message\+Decoder}!get\+Self\+Segment@{get\+Self\+Segment}}
+\index{get\+Self\+Segment@{get\+Self\+Segment}!Psd\+Message\+Decoder@{Psd\+Message\+Decoder}}
+\subsubsection{\texorpdfstring{get\+Self\+Segment()}{getSelfSegment()}}
+{\footnotesize\ttfamily \hyperlink{_psd_message_decoder_8h_a6c858ba8556a68d900d0eca9dc406232}{t\+Self\+Segment} Psd\+Message\+Decoder\+::get\+Self\+Segment (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the Self Segment object. 
+
+\begin{DoxyReturn}{Returns}
+t\+Self\+Segment 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_psd_message_decoder_a9ab6fa68448dff44ad93bcb37a2a9690}\label{class_psd_message_decoder_a9ab6fa68448dff44ad93bcb37a2a9690}} 
+\index{Psd\+Message\+Decoder@{Psd\+Message\+Decoder}!get\+V\+Psd\+Map@{get\+V\+Psd\+Map}}
+\index{get\+V\+Psd\+Map@{get\+V\+Psd\+Map}!Psd\+Message\+Decoder@{Psd\+Message\+Decoder}}
+\subsubsection{\texorpdfstring{get\+V\+Psd\+Map()}{getVPsdMap()}}
+{\footnotesize\ttfamily std\+::vector$<$ struct \hyperlink{struct_psd_map_data}{Psd\+Map\+Data} $\ast$ $>$ \& Psd\+Message\+Decoder\+::get\+V\+Psd\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the container with \hyperlink{struct_psd_map_data}{Psd\+Map\+Data}. 
+
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$struct Psd\+Map\+Data $\ast$$>$\& 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_psd_message_decoder_a3f782b96f0fb6f05cd2178c626d7058b}\label{class_psd_message_decoder_a3f782b96f0fb6f05cd2178c626d7058b}} 
+\index{Psd\+Message\+Decoder@{Psd\+Message\+Decoder}!pop\+Up\+List@{pop\+Up\+List}}
+\index{pop\+Up\+List@{pop\+Up\+List}!Psd\+Message\+Decoder@{Psd\+Message\+Decoder}}
+\subsubsection{\texorpdfstring{pop\+Up\+List()}{popUpList()}}
+{\footnotesize\ttfamily void Psd\+Message\+Decoder\+::pop\+Up\+List (\begin{DoxyParamCaption}\item[{std\+::vector$<$ struct \hyperlink{struct_psd_map_data}{Psd\+Map\+Data} $\ast$$>$\+::iterator}]{position }\end{DoxyParamCaption})}
+
+
+
+\hyperlink{struct_psd_map_data}{Psd\+Map\+Data} erase out container. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & (the position in the container to be deleted) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_psd_message_decoder_a8fbd5e60c5807f9879de028f4593bbc4}\label{class_psd_message_decoder_a8fbd5e60c5807f9879de028f4593bbc4}} 
+\index{Psd\+Message\+Decoder@{Psd\+Message\+Decoder}!push\+In\+List@{push\+In\+List}}
+\index{push\+In\+List@{push\+In\+List}!Psd\+Message\+Decoder@{Psd\+Message\+Decoder}}
+\subsubsection{\texorpdfstring{push\+In\+List()}{pushInList()}}
+{\footnotesize\ttfamily void Psd\+Message\+Decoder\+::push\+In\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\hyperlink{struct_psd_map_data}{Psd\+Map\+Data} emplace in container. 
+
+\mbox{\Hypertarget{class_psd_message_decoder_ab65ca19c37ae0fcf45af498081c80e18}\label{class_psd_message_decoder_ab65ca19c37ae0fcf45af498081c80e18}} 
+\index{Psd\+Message\+Decoder@{Psd\+Message\+Decoder}!save\+Attribut\+To\+List@{save\+Attribut\+To\+List}}
+\index{save\+Attribut\+To\+List@{save\+Attribut\+To\+List}!Psd\+Message\+Decoder@{Psd\+Message\+Decoder}}
+\subsubsection{\texorpdfstring{save\+Attribut\+To\+List()}{saveAttributToList()}}
+{\footnotesize\ttfamily void Psd\+Message\+Decoder\+::save\+Attribut\+To\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Check Struct\+Separate info and save in container. 
+
+\mbox{\Hypertarget{class_psd_message_decoder_adea08ce30ab67d1a71ab7ea4463ed4a2}\label{class_psd_message_decoder_adea08ce30ab67d1a71ab7ea4463ed4a2}} 
+\index{Psd\+Message\+Decoder@{Psd\+Message\+Decoder}!segment\+Manager@{segment\+Manager}}
+\index{segment\+Manager@{segment\+Manager}!Psd\+Message\+Decoder@{Psd\+Message\+Decoder}}
+\subsubsection{\texorpdfstring{segment\+Manager()}{segmentManager()}}
+{\footnotesize\ttfamily void Psd\+Message\+Decoder\+::segment\+Manager (\begin{DoxyParamCaption}\item[{bool}]{Psd\+Usage\+Active }\end{DoxyParamCaption})}
+
+
+
+Putting \hyperlink{struct_psd_map_data}{Psd\+Map\+Data} into container when Psd\+Usage\+Active is true, clearing the container when Psd\+Usage\+Active is false. 
+
+$<$ Mutex for \hyperlink{class_psd_message_decoder}{Psd\+Message\+Decoder} thread 
+\begin{DoxyParams}{Parameters}
+{\em Psd\+Usage\+Active} & (true Psd active) \\
+\hline
+{\em Psd\+Usage\+Active} & (false Psd inactive) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_psd_message_decoder_a6c92018754baf45e25e682cd153864af}\label{class_psd_message_decoder_a6c92018754baf45e25e682cd153864af}} 
+\index{Psd\+Message\+Decoder@{Psd\+Message\+Decoder}!set\+Psd\+Map\+Data@{set\+Psd\+Map\+Data}}
+\index{set\+Psd\+Map\+Data@{set\+Psd\+Map\+Data}!Psd\+Message\+Decoder@{Psd\+Message\+Decoder}}
+\subsubsection{\texorpdfstring{set\+Psd\+Map\+Data()}{setPsdMapData()}}
+{\footnotesize\ttfamily void Psd\+Message\+Decoder\+::set\+Psd\+Map\+Data (\begin{DoxyParamCaption}\item[{\hyperlink{_psd_message_decoder_8h_ad54e183dd7c544312c06d4bd6279ebdc}{t\+Psd\+Map\+Data}}]{psd\+Map\+Data }\end{DoxyParamCaption})}
+
+
+
+Set the Psd Map Data object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em psd\+Map\+Data} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_psd_message_decoder_ad9dd4ec66688adb0616b97de091aa6e7}\label{class_psd_message_decoder_ad9dd4ec66688adb0616b97de091aa6e7}} 
+\index{Psd\+Message\+Decoder@{Psd\+Message\+Decoder}!set\+Self\+Segment@{set\+Self\+Segment}}
+\index{set\+Self\+Segment@{set\+Self\+Segment}!Psd\+Message\+Decoder@{Psd\+Message\+Decoder}}
+\subsubsection{\texorpdfstring{set\+Self\+Segment()}{setSelfSegment()}}
+{\footnotesize\ttfamily void Psd\+Message\+Decoder\+::set\+Self\+Segment (\begin{DoxyParamCaption}\item[{\hyperlink{_psd_message_decoder_8h_a6c858ba8556a68d900d0eca9dc406232}{t\+Self\+Segment}}]{Self\+Segment }\end{DoxyParamCaption})}
+
+
+
+Set the Self Segment object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \hyperlink{struct_self_segment}{Self\+Segment}} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_psd_message_decoder_abc9826f6bfccc7d97fea196adf86710c}\label{class_psd_message_decoder_abc9826f6bfccc7d97fea196adf86710c}} 
+\index{Psd\+Message\+Decoder@{Psd\+Message\+Decoder}!decoder\+Thread\+Mutex@{decoder\+Thread\+Mutex}}
+\index{decoder\+Thread\+Mutex@{decoder\+Thread\+Mutex}!Psd\+Message\+Decoder@{Psd\+Message\+Decoder}}
+\subsubsection{\texorpdfstring{decoder\+Thread\+Mutex}{decoderThreadMutex}}
+{\footnotesize\ttfamily pthread\+\_\+mutex\+\_\+t Psd\+Message\+Decoder\+::decoder\+Thread\+Mutex}
+
+$<$ container for storing information about each segment \mbox{\Hypertarget{class_psd_message_decoder_a919e19a64a59b17651a5dbbd825fc14a}\label{class_psd_message_decoder_a919e19a64a59b17651a5dbbd825fc14a}} 
+\index{Psd\+Message\+Decoder@{Psd\+Message\+Decoder}!hv\+Segment@{hv\+Segment}}
+\index{hv\+Segment@{hv\+Segment}!Psd\+Message\+Decoder@{Psd\+Message\+Decoder}}
+\subsubsection{\texorpdfstring{hv\+Segment}{hvSegment}}
+{\footnotesize\ttfamily \hyperlink{_psd_message_decoder_8h_a6c858ba8556a68d900d0eca9dc406232}{t\+Self\+Segment} Psd\+Message\+Decoder\+::hv\+Segment}
+
+\mbox{\Hypertarget{class_psd_message_decoder_ad1944184b781d22c108add0c2cbdb166}\label{class_psd_message_decoder_ad1944184b781d22c108add0c2cbdb166}} 
+\index{Psd\+Message\+Decoder@{Psd\+Message\+Decoder}!p\+Instance@{p\+Instance}}
+\index{p\+Instance@{p\+Instance}!Psd\+Message\+Decoder@{Psd\+Message\+Decoder}}
+\subsubsection{\texorpdfstring{p\+Instance}{pInstance}}
+{\footnotesize\ttfamily \hyperlink{class_psd_message_decoder}{Psd\+Message\+Decoder} $\ast$ Psd\+Message\+Decoder\+::p\+Instance = N\+U\+LL\hspace{0.3cm}{\ttfamily [static]}}
+
+A pointer used to return the object of the class of \hyperlink{class_psd_message_decoder}{Psd\+Message\+Decoder} \mbox{\Hypertarget{class_psd_message_decoder_a72e477b8bdb225e09f970bc32fff5bde}\label{class_psd_message_decoder_a72e477b8bdb225e09f970bc32fff5bde}} 
+\index{Psd\+Message\+Decoder@{Psd\+Message\+Decoder}!Psd\+Map\+Data@{Psd\+Map\+Data}}
+\index{Psd\+Map\+Data@{Psd\+Map\+Data}!Psd\+Message\+Decoder@{Psd\+Message\+Decoder}}
+\subsubsection{\texorpdfstring{Psd\+Map\+Data}{PsdMapData}}
+{\footnotesize\ttfamily \hyperlink{_psd_message_decoder_8h_ad54e183dd7c544312c06d4bd6279ebdc}{t\+Psd\+Map\+Data} Psd\+Message\+Decoder\+::\+Psd\+Map\+Data}
+
+$<$ HV\textquotesingle{}s segment information from P\+S\+D\+\_\+05 \mbox{\Hypertarget{class_psd_message_decoder_ae73cfd8f47a3af30d9ae199d73ef4781}\label{class_psd_message_decoder_ae73cfd8f47a3af30d9ae199d73ef4781}} 
+\index{Psd\+Message\+Decoder@{Psd\+Message\+Decoder}!v\+Psd\+Map@{v\+Psd\+Map}}
+\index{v\+Psd\+Map@{v\+Psd\+Map}!Psd\+Message\+Decoder@{Psd\+Message\+Decoder}}
+\subsubsection{\texorpdfstring{v\+Psd\+Map}{vPsdMap}}
+{\footnotesize\ttfamily std\+::vector$<$struct \hyperlink{struct_psd_map_data}{Psd\+Map\+Data} $\ast$$>$ Psd\+Message\+Decoder\+::v\+Psd\+Map}
+
+$<$ each segment information 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\hyperlink{_psd_message_decoder_8h}{Psd\+Message\+Decoder.\+h}\item 
+src/\hyperlink{_psd_message_decoder_8cpp}{Psd\+Message\+Decoder.\+cpp}\end{DoxyCompactItemize}
