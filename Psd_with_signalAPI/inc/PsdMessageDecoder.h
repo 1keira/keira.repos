@@ -241,6 +241,26 @@ public:
      */
     void receivedPdu_PSD_06(RxPdu_PSD_06 const &psd06);
 
+    /**
+     * @brief Access private PsdMessageDecoder for gtest 
+     * @return PsdMessageDecoder* 
+     */
+    static  PsdMessageDecoder *testPsdMessageDecoder();
+
+    /**
+     * @brief Access private ~PsdMessageDecoder for gtest 
+     */
+    static void testPsdMessageDecoder(PsdMessageDecoder *pInstance);
+
+    /**
+     * @brief Test calcPsd04Data for gtest
+     * @param RoadClassValue 
+     * @param endCurvatureValue 
+     * @param startCurvatureValue 
+     * @param branchAngleValue 
+     */
+    void testcalcPsd04Data(const uint32_t &RoadClassValue, const uint32_t &endCurvatureValue, const uint32_t &startCurvatureValue, const uint32_t &branchAngleValue);
+
 private:
     
     tPsdMapData PsdMapData;                                       /** <  each segment information*/

@@ -113,6 +113,42 @@ public:
      * @return Data2EventList 
      */
     Data2EventList getPsdRoLocation(Data2Location data2Location);
+
+    /**
+     * @brief Get the Event Distance object (reserved for V2I)
+     */
+    void getEventDistance();
+
+    /**
+     * @brief Access private PsdLocation for gtest 
+     * @return PsdLocation* 
+     */
+    static  PsdLocation *testPsdLocation();
+
+    /**
+     * @brief Access private ~PsdLocation for gtest 
+     */
+    static void testPsdLocation(PsdLocation *pInstance);
+
+    /**
+     * @brief Test PsdAvailable for gtest
+     * @return true 
+     * @return false 
+     */
+    bool testgetPsdAvailable();
+
+    /**
+     * @brief Test calcRoadSegmentClass
+     * @return RoadSegmentClass 
+     */
+    RoadSegmentClass testcalcRoadSegmentClass();
+
+    /**
+     * @brief Test accumulateChildsLength for gtest
+     * @param Node 
+     * @return float 
+     */
+    float testaccumulateChildsLength(struct TreeNode *Node);
     
 private:
 
@@ -144,11 +180,6 @@ private:
      * @brief Create a Map Thread object
      */
     void createMapThread();
-
-    /**
-     * @brief Get the Event Distance object (reserved for V2I)
-     */
-    void getEventDistance();
 
     /**
      * @brief Get the Psd Available object (Psd whether available or not)

@@ -61,6 +61,17 @@ PsdMap::~PsdMap()
 {
 }
 
+PsdMap *PsdMap::testPsdMap()
+{
+    return new PsdMap();
+}
+
+void PsdMap::testPsdMap(PsdMap *pInstance)
+{
+    delete pInstance;
+    pInstance = NULL;
+}
+
 void PsdMap::setmLastSegmentId(uint8_t lastSegmentId)
 {
     mLastSegmentId = lastSegmentId;
@@ -116,9 +127,9 @@ void PsdMap::dfsClearCoordinates(struct TreeNode *Node)
     (*iter)->vSampleCoord.clear();
     
     //recursion
-    for (auto it = Node->vChilds.begin(); it != Node->vChilds.end(); it++)
+    for (auto it : Node->vChilds)
     {
-        dfsClearCoordinates((*it));
+        dfsClearCoordinates(it);
     }
 }
 
@@ -172,21 +183,6 @@ struct TreeNode *PsdMap::getTree()
 {
     return mTree;
 }
-
-//Note: maybe use coordinateSystemRotates in straight path, not use this function
-// tOffset PsdMap::calcHeadingXY(double Heading, double distanceX, double distanceY)
-// {
-//     tOffset Offset = {0.0, 0.0};
-//     printf("[%s] [%d]: Heading = %f\n", __FUNCTION__, __LINE__, Heading);
-//     double HeadingRad = Haversine::toRadians(Heading);
-//     printf("[%s] [%d]: HeadingRad = %f\n", __FUNCTION__, __LINE__, HeadingRad);
-//     Offset.distanceX = distanceX * cos(HeadingRad) - distanceY * sin(HeadingRad);
-//     Offset.distanceY = distanceX * sin(HeadingRad) + distanceY * cos(HeadingRad);
-//     printf("[%s] [%d]: coordinate system rotated X = %f\n", __FUNCTION__, __LINE__, Offset.distanceX);
-//     printf("[%s] [%d]: coordinate system rotated Y = %f\n", __FUNCTION__, __LINE__, Offset.distanceY);
-
-//     return Offset;
-// }
 
 //Note: The function is to calculate the rotation of the coordinate system relative to true north direction, the XY input is the offset from the start position of the segment to the end position
 tOffset PsdMap::coordinateSystemRotates(double accumulateBranchAngle, double distanceX, double distanceY)
@@ -420,7 +416,7 @@ struct PsdMapData PsdMap::calcRootOrParentSegmentCoordinate(struct TreeNode *roo
             //TODO: ParentSegment's accumulateBranchAngle should be += accumulateBranchAngleHv2Start before sampling
             rootOrParentNode->MapData.accumulateBranchAngle += accumulateBranchAngleHv2Start;
             //TODO: ParentSegment's accumulateXY should be == disHv2StartAfterRotatingCoord before sampling
-            rootOrParentNode->MapData.accumulateXY.distanceX = disHv2StartAfterRotatingCoord.distanceX ;
+            rootOrParentNode->MapData.accumulateXY.distanceX = disHv2StartAfterRotatingCoord.distanceX;
             rootOrParentNode->MapData.accumulateXY.distanceY = disHv2StartAfterRotatingCoord.distanceY;
         }
         else
@@ -440,7 +436,7 @@ struct PsdMapData PsdMap::calcRootOrParentSegmentCoordinate(struct TreeNode *roo
             //branchAngle use rootRelativeParentAngle
             tempBranchAngle = rootRelativeParentAngle;
         }
-        tOffset XY = calcStraightXYOffset(rootOrParentNode->MapData.preSegTotalLength *(-1), tempBranchAngle);
+        tOffset XY = calcStraightXYOffset(rootOrParentNode->MapData.preSegTotalLength *(-1.0), tempBranchAngle);
         XY = coordinateSystemRotates((rootOrParentNode->MapData.accumulateBranchAngle + tempBranchAngle), XY.distanceX, XY.distanceY); //for straight path, coordinateSystemRotates no need include itself branchAngle
         rootOrParentNode->MapData.accumulateXY.distanceX += XY.distanceX;
         rootOrParentNode->MapData.accumulateXY.distanceY +=  XY.distanceY;
@@ -467,7 +463,7 @@ struct PsdMapData PsdMap::calcRootOrParentSegmentCoordinate(struct TreeNode *roo
             //TODO: ParentSegment's accumulateBranchAngle should be += accumulateBranchAngleHv2Start before sampling
             rootOrParentNode->MapData.accumulateBranchAngle += accumulateBranchAngleHv2Start;
             //TODO: ParentSegment's accumulateXY should be == disHv2StartAfterRotatingCoord before sampling
-            rootOrParentNode->MapData.accumulateXY.distanceX = disHv2StartAfterRotatingCoord.distanceX ;
+            rootOrParentNode->MapData.accumulateXY.distanceX = disHv2StartAfterRotatingCoord.distanceX;
             rootOrParentNode->MapData.accumulateXY.distanceY = disHv2StartAfterRotatingCoord.distanceY;
         }
         else
@@ -601,9 +597,10 @@ struct PsdMapData PsdMap::calcCurSegmentCoordinate(struct TreeNode *curNode)
         //Y<->Horizontal Distance<->deltaLon, X<->Vertical Distance<->deltaLat
         curNode->MapData.startCoordinate = Haversine::calcDestination(PsdMessageDecoder::getInstance()->getSelfSegment().hvCoordinate, disHv2StartAfterRotatingCoord.distanceY, disHv2StartAfterRotatingCoord.distanceX);
         printf("[%s] [%d]: HV's startCoordinate latitude = %f  longitude = %f\n", __FUNCTION__, __LINE__, curNode->MapData.startCoordinate.latitude, curNode->MapData.startCoordinate.longitude);
-        accumulateBranchAngleHv2Start += 180.0;
-        fixedAccumulateBranchAngle(accumulateBranchAngleHv2Start);
-        printf("[%s] [%d]: fixed for next point accumulateBranchAngleHv2Start = %f\n", __FUNCTION__, __LINE__, accumulateBranchAngleHv2Start);
+        //Note: No need to + 180.0, Because the coordinate system behind HV is consistent with the heading of HV, only the heading and the relative branch Angle need to be taken into account when the coordinate system is rotated. 
+        // accumulateBranchAngleHv2Start += 180.0;
+        // fixedAccumulateBranchAngle(accumulateBranchAngleHv2Start);
+        // printf("[%s] [%d]: fixed for next point accumulateBranchAngleHv2Start = %f\n", __FUNCTION__, __LINE__, accumulateBranchAngleHv2Start);
     }
     else
     {
@@ -730,10 +727,11 @@ struct PsdMapData PsdMap::calcCurSegmentCoordinate(struct TreeNode *curNode)
     /*HV's startCoordinate, it is a reverse calculation based on HV position*/
         printf("[%s] [%d]: --------------------------calculate HV's startCoordinate--------------------------\n", __FUNCTION__, __LINE__);
         tOffset XY_2 = {0.0, 0.0};
-        accumulateBranchAngleHv2Start = PsdMessageDecoder::getInstance()->getSelfSegment().hvHeading + 180.0;
+        accumulateBranchAngleHv2Start = PsdMessageDecoder::getInstance()->getSelfSegment().hvHeading;
+        // accumulateBranchAngleHv2Start = PsdMessageDecoder::getInstance()->getSelfSegment().hvHeading + 180.0;
         printf("[%s] [%d]: accumulateBranchAngleHv2Start = %f\n", __FUNCTION__, __LINE__, accumulateBranchAngleHv2Start);
-        fixedAccumulateBranchAngle(accumulateBranchAngleHv2Start);
-        printf("[%s] [%d]: fixed accumulateBranchAngleHv2Start = %f\n", __FUNCTION__, __LINE__, accumulateBranchAngleHv2Start);
+        // fixedAccumulateBranchAngle(accumulateBranchAngleHv2Start);
+        // printf("[%s] [%d]: fixed accumulateBranchAngleHv2Start = %f\n", __FUNCTION__, __LINE__, accumulateBranchAngleHv2Start);
         disHv2StartAfterRotatingCoord = {0.0, 0.0};
         K0 = KdrivedLength;
         Kstart = KdrivedLength;
@@ -867,9 +865,9 @@ struct TreeNode *PsdMap::findNodeById(struct TreeNode *Node, uint8_t KnownId)
     }
     
     struct TreeNode *result = NULL;
-    for (auto it = Node->vChilds.begin(); it != Node->vChilds.end(); it++)
+    for (auto it : Node->vChilds)
     { 
-        result = findNodeById((*it), KnownId);
+        result = findNodeById(it, KnownId);
         if (NULL != result)
         {
             printf("[%s] [%d]: result = %p\n", __FUNCTION__, __LINE__, result);
@@ -896,7 +894,7 @@ void PsdMap::deleteNodeExceptCurrent(struct TreeNode *Node)
     }
 }
 
-void PsdMap::deleteSubTree(struct TreeNode *Node)
+void PsdMap::deleteSubTree(struct TreeNode *&Node)
 {
     //return directly when node is NULL
     if (NULL == Node)
@@ -904,9 +902,9 @@ void PsdMap::deleteSubTree(struct TreeNode *Node)
         return ;
     }
     
-    for (auto it = Node->vChilds.begin(); it != Node->vChilds.end(); it++)
+    for (auto it : Node->vChilds)
     {
-        deleteSubTree(*it);
+        deleteSubTree(it);
     }
 
     //TODO: erase vPsdMap, finding position by Id.
@@ -923,8 +921,12 @@ void PsdMap::deleteSubTree(struct TreeNode *Node)
 
     Node->ParentNode = NULL;
     delete Node;
-    //do not for gtest
-    // Node = NULL;
+    Node = NULL;
+}
+
+void PsdMap::testdeleteSubTree(struct TreeNode *Node)
+{
+    deleteSubTree(Node);
 }
 
 struct TreeNode *PsdMap::deleteOldRoot()
@@ -958,23 +960,34 @@ struct TreeNode *PsdMap::deleteOldRoot()
         pthread_mutex_unlock(&decoderThreadMutex);
         //TODO4: free the memory space occupied by the old rootNode
         delete mTree; 
-        //do not for gtest
-        // mTree = NULL;
+        mTree = NULL;
         return newRoot;
     }
 }
 
-void PsdMap::clearNodeOutTree(struct TreeNode *Node)
+struct TreeNode *PsdMap::testdeleteOldRoot()
 {
-    for (auto it = Node->vChilds.begin(); it != Node->vChilds.end(); it++)
+    deleteOldRoot();
+}
+
+void PsdMap::clearNodeOutTree(struct TreeNode *&Node)
+{
+    printf("[%s] [%d]: Node id = %u\n", __FUNCTION__, __LINE__, Node->MapData.preSegmentId);
+    for (auto it : Node->vChilds)
     {
-        clearNodeOutTree(*it);
+        printf("[%s] [%d]: child id =  %u\n", __FUNCTION__, __LINE__, it->MapData.preSegmentId);
+        clearNodeOutTree(it);
     }
-    printf("[%s] [%d]: clear Node = %p\n", __FUNCTION__, __LINE__, Node);
-    Node->ParentNode = NULL;
-    delete Node;
-    //for gtest
-    // Node = NULL;
+    printf("[%s] [%d]: clear id = %u\n", __FUNCTION__, __LINE__, Node->MapData.preSegmentId);
+    if (Node != NULL)
+    {
+        printf("[%s] [%d]: Node not NULL = %p, Node->ParentNode = %p\n", __FUNCTION__, __LINE__, Node, Node->ParentNode);
+        Node->ParentNode = NULL;
+        printf("[%s] [%d]: ready to delete Node\n", __FUNCTION__, __LINE__);
+        delete Node;
+        Node = NULL;
+    }
+    printf("[%s] [%d]: cleared Node = %p\n", __FUNCTION__, __LINE__, Node);
 }
 
 void PsdMap::dfsCalcChildCoord(struct TreeNode *Node)
@@ -985,20 +998,20 @@ void PsdMap::dfsCalcChildCoord(struct TreeNode *Node)
     }
     std::vector<struct PsdMapData *>::iterator iter;
     //calculate end coordinate
-    for (auto it = Node->vChilds.begin(); it != Node->vChilds.end(); it++)
+    for (auto it : Node->vChilds)
     {
         //The starting point of each child is equal to the end point of the previous one
         pthread_mutex_lock(&mapThreadMutex);
         mMapMutexIsLocked = true;
-        (*it)->MapData.startCoordinate = Node->MapData.endCoordinate; 
-        (*it)->MapData.accumulateBranchAngle = Node->MapData.accumulateBranchAngle + (*it)->MapData.branchAngle; 
-        (*it)->MapData = calcCoordinate(*it);
-        displayNodeCoordinate(*it);
+        it->MapData.startCoordinate = Node->MapData.endCoordinate; 
+        it->MapData.accumulateBranchAngle = Node->MapData.accumulateBranchAngle + it->MapData.branchAngle; 
+        it->MapData = calcCoordinate(it);
+        displayNodeCoordinate(it);
         pthread_mutex_unlock(&mapThreadMutex);
         mMapMutexIsLocked = false;
         pthread_mutex_lock(&decoderThreadMutex);
-        iter = PsdMessageDecoder::getInstance()->findSegmentById((*it)->MapData.preSegmentId);
-        *(*iter) =  (*it)->MapData;
+        iter = PsdMessageDecoder::getInstance()->findSegmentById(it->MapData.preSegmentId);
+        *(*iter) =  it->MapData;
         pthread_mutex_unlock(&decoderThreadMutex);
     }
 
@@ -1046,6 +1059,11 @@ void PsdMap::updateChildNode(std::vector<struct PsdMapData *>::iterator it)
         mDoInsert = false;
         printf("[%s] [%d]: goto check the next segment info from vPsdMap\n", __FUNCTION__,  __LINE__);
     }   
+}
+
+void PsdMap::testupdateChildNode(std::vector<struct PsdMapData *>::iterator it)
+{
+    updateChildNode(it);
 }
 
 void PsdMap::updateOtherNode()
@@ -1355,16 +1373,15 @@ void PsdMap::insertNodeInTree()
     }
 }
 
-void PsdMap::mapClear(struct TreeNode *Node)
+void PsdMap::mapClear(struct TreeNode *&Node)
 {
     printf("[%s] [%d]: --------------------------mapClear--------------------------\n", __FUNCTION__, __LINE__);
     pthread_mutex_lock(&mapThreadMutex);
     mMapMutexIsLocked = true;
     printf("[%s] [%d]: Node = %p\n", __FUNCTION__, __LINE__, Node);
     clearNodeOutTree(Node);
-    //do not for gtest
-    // mTree = NULL;
-    printf("[%s] [%d]: tree = %p has been cleared\n", __FUNCTION__, __LINE__, getTree());
+    mTree = NULL;
+    printf("[%s] [%d]: tree = %p has been cleared\n", __FUNCTION__, __LINE__, mTree);
     pthread_mutex_unlock(&mapThreadMutex);
     mMapMutexIsLocked = false;
 }
@@ -1495,12 +1512,12 @@ void PsdMap::mapCreate()
 
 struct PsdMapData *PsdMap::IsCurIdInList()
 {
-    for (auto it = PsdMessageDecoder::getInstance()->getVPsdMap().begin(); it != PsdMessageDecoder::getInstance()->getVPsdMap().end(); it++)
+    for (auto it : PsdMessageDecoder::getInstance()->getVPsdMap())
     {
-        if ((*it)->preSegmentId == PsdMessageDecoder::getInstance()->getSelfSegment().curSegmentId)
+        if (it->preSegmentId == PsdMessageDecoder::getInstance()->getSelfSegment().curSegmentId)
         {
-            printf("[%s] [%d]: curSegmentId is in list = %u\n", __FUNCTION__, __LINE__, (*it)->preSegmentId);
-            return (*it);
+            printf("[%s] [%d]: curSegmentId is in list = %u\n", __FUNCTION__, __LINE__, it->preSegmentId);
+            return it;
         }
     }
 
@@ -1526,9 +1543,14 @@ void *PsdMapRun(void *arg)
             if ((PsdMap::getInstance()->getHVHeading(PsdMessageDecoder::getInstance()->hvSegment.hvHeading, HeadingAccuracyThreshold)) && (PsdMap::getInstance()->getHeadingChangeFlag() == false))
             {
                 printf("[%s] [%d]: heading is valid\n", __FUNCTION__, __LINE__);
-                PsdMessageDecoder::getInstance()->hvSegment.hvCoordinate.latitude = PsdMap::getInstance()->getHVPosition().lat;
-                PsdMessageDecoder::getInstance()->hvSegment.hvCoordinate.longitude = PsdMap::getInstance()->getHVPosition().Long;
-                PsdMessageDecoder::getInstance()->setSelfSegment(PsdMessageDecoder::getInstance()->hvSegment);
+                tSelfSegment SelfSegment = PsdMessageDecoder::getInstance()->getSelfSegment();
+                SelfSegment.hvCoordinate.latitude = PsdMap::getInstance()->getHVPosition().lat;
+                SelfSegment.hvCoordinate.longitude = PsdMap::getInstance()->getHVPosition().Long;
+                PsdMessageDecoder::getInstance()->setSelfSegment(SelfSegment);
+                //Optimized code:
+                // PsdMessageDecoder::getInstance()->hvSegment.hvCoordinate.latitude = PsdMap::getInstance()->getHVPosition().lat;
+                // PsdMessageDecoder::getInstance()->hvSegment.hvCoordinate.longitude = PsdMap::getInstance()->getHVPosition().Long;
+                // PsdMessageDecoder::getInstance()->setSelfSegment(PsdMessageDecoder::getInstance()->hvSegment);
                 /*TODO4: check tree whether is NULL or not*/
                 if (NULL == PsdMap::getInstance()->getTree())
                 {
@@ -1568,7 +1590,8 @@ void *PsdMapRun(void *arg)
             /*TODO: clear tree + clearList in pPsdUsageActive == false case*/
             if (NULL != PsdMap::getInstance()->getTree())
             {
-                PsdMap::getInstance()->mapClear(PsdMap::getInstance()->getTree());
+                struct TreeNode *tree = PsdMap::getInstance()->getTree();
+                PsdMap::getInstance()->mapClear(tree);
             }
             PsdMessageDecoder::getInstance()->segmentManager(false);
         }

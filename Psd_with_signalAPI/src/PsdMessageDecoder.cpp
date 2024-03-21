@@ -62,6 +62,17 @@ PsdMessageDecoder::~PsdMessageDecoder()
 {
 }
 
+PsdMessageDecoder *PsdMessageDecoder::testPsdMessageDecoder()
+{
+    new PsdMessageDecoder();
+}
+
+void PsdMessageDecoder::testPsdMessageDecoder(PsdMessageDecoder *pInstance)
+{
+    delete pInstance;
+    pInstance = NULL;
+}
+
 std::vector<struct PsdMapData *>& PsdMessageDecoder::getVPsdMap()
 {
     return vPsdMap;
@@ -74,7 +85,9 @@ void PsdMessageDecoder::setPsdMapData(tPsdMapData psdMapData)
 
 void PsdMessageDecoder::setSelfSegment(tSelfSegment CurSegment)
 {
+    pthread_mutex_lock(&decoderThreadMutex);
     memcpy(&hvSegment, &CurSegment, sizeof(tSelfSegment));
+    pthread_mutex_unlock(&decoderThreadMutex);
 }
 
 tSelfSegment PsdMessageDecoder::getSelfSegment()
@@ -123,11 +136,11 @@ void PsdMessageDecoder::saveAttributToList()
     printf("[%s] [%d]: psdAttributSegmentID = %u\n", __FUNCTION__, __LINE__, PsdMapData.psdAttributSegmentID);
     printf("[%s] [%d]: structSeparate = %u\n", __FUNCTION__, __LINE__, PsdMapData.structSeparate);
     pthread_mutex_lock(&decoderThreadMutex);
-    for (auto it = vPsdMap.begin(); it != vPsdMap.end(); it++)
+    for (auto it : vPsdMap)
     {
-        if ((*it)->preSegmentId == PsdMapData.psdAttributSegmentID)
+        if (it->preSegmentId == PsdMapData.psdAttributSegmentID)
         {
-            (*it)->structSeparate = PsdMapData.structSeparate;
+            it->structSeparate = PsdMapData.structSeparate;
             break;
         }
     }
@@ -143,10 +156,10 @@ void PsdMessageDecoder::clearList()
     }
     else
     {
-        //do not for gtest: The pointer is not new, the address of the variable stored directly in the unit test
-        for (auto it = vPsdMap.begin(); it != vPsdMap.end(); it++)
+        for (auto &it : vPsdMap)
         {
-            delete *it;
+            delete it;
+            it = NULL;
         }
         vPsdMap.clear(); //empty the container
         printf("[%s] [%d]: clear the vPsdMap\n", __FUNCTION__, __LINE__);
@@ -157,17 +170,17 @@ void PsdMessageDecoder::popUpList(std::vector<struct PsdMapData *>::iterator pos
 {
     printf("[%s] [%d]: delete list's element\n", __FUNCTION__, __LINE__);
     //TODO: delete pPsdMapData and erase(pos)
-    //do not for gtest: The pointer is not new, the address of the variable stored directly in the unit test
     delete (*position);
+    (*position) = NULL;
     vPsdMap.erase(position); //container will move on
 }
 
 void PsdMessageDecoder::pushInList()
 {
     //TODO1: judge (segmentIsComplete == false) || (vPsdMap already have this preSegmentId)
-    for (auto it = vPsdMap.begin(); it != vPsdMap.end(); it++)
+    for (auto it : vPsdMap)
     {
-        if ((*it)->preSegmentId == PsdMapData.preSegmentId)
+        if (it->preSegmentId == PsdMapData.preSegmentId)
         {
             printf("[%s] [%d]: vPsdMap already have this preSegmentId\n", __FUNCTION__, __LINE__);
             return ;
@@ -248,6 +261,11 @@ void PsdMessageDecoder::calcPsd04Data(const uint32_t &RoadClassValue, const uint
     convertRoadClass(RoadClassValue);
     convertCurvature(endCurvatureValue, startCurvatureValue);
     convertBranchAngle(branchAngleValue);
+}
+
+void PsdMessageDecoder::testcalcPsd04Data(const uint32_t &RoadClassValue, const uint32_t &endCurvatureValue, const uint32_t &startCurvatureValue, const uint32_t &branchAngleValue)
+{
+    calcPsd04Data(RoadClassValue, endCurvatureValue, startCurvatureValue, branchAngleValue);
 }
 
 std::vector<struct PsdMapData *>::iterator PsdMessageDecoder::findSegmentById(uint8_t KnownId)
@@ -526,10 +544,10 @@ void runDataReceiver(std::shared_ptr<vwg::sid::PSDParser::ISignalDataListener> p
 void *PsdMessageDecoderRun(void *arg)
 {
     printf("[%s] [%d]: PsdMessageDecoderRun\n", __FUNCTION__, __LINE__);
-    auto &handler = getSignalDataAccessHandler();
+    // auto &handler = getSignalDataAccessHandler();
 	// auto pListener = std::make_shared<PsdMessageDecoder>();
     auto pListener = std::shared_ptr<PsdMessageDecoder>(PsdMessageDecoder::getInstance(), [](PsdMessageDecoder*){ /* The custom remover is empty */ });
-	handler.start(pListener, connectionStateChanged);
+	// handler.start(pListener, connectionStateChanged);
     while (true)
     {
         /*TODO1: check pPsdUsageActive*/

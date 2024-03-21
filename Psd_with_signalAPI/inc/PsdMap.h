@@ -67,7 +67,7 @@ public:
     * @brief  Start triggering clear map action
     * @param Node (start clearing from mTree)
     */
-    void mapClear(struct TreeNode *Node);
+    void mapClear(struct TreeNode *&Node);
 
     /**
      * @brief Find CurSegmentId whether in list or not
@@ -135,6 +135,35 @@ public:
      * @return false (heading is smooth)
      */
     bool getHeadingChangeFlag();
+
+    /**
+     * @brief Access private PsdMap for gtest 
+     * @return PsdMap* 
+     */
+    static  PsdMap *testPsdMap();
+
+    /**
+     * @brief Access private ~PsdMap for gtest 
+     */
+    static void testPsdMap(PsdMap *pInstance);
+
+    /**
+     * @brief Test deleteSubTree for gtest
+     * @param Node 
+     */
+    void testdeleteSubTree(struct TreeNode *Node);
+
+    /**
+     * @brief Test deleteOldRoot for gtest 
+     * @return struct TreeNode* 
+     */
+    struct TreeNode *testdeleteOldRoot();
+
+    /**
+     * @brief Test updateChildNode for gtest
+     * @param it 
+     */
+    void testupdateChildNode(std::vector<struct PsdMapData *>::iterator it);
 
 private:
 
@@ -227,7 +256,7 @@ private:
      * @brief Clearing all nodes of mTree actually
      * @param Node (can represent any node) 
      */
-    void clearNodeOutTree(struct TreeNode *Node);
+    void clearNodeOutTree(struct TreeNode *&Node);
 
     /**
      * @brief Delete old root
@@ -239,7 +268,7 @@ private:
      * @brief Delete sub tree
      * @param Node (can represent any node) 
      */
-    void deleteSubTree(struct TreeNode *Node);
+    void deleteSubTree(struct TreeNode *&Node);
 
     /**
      * @brief delete vChilds except current, travers peer vChilds of current segment 

@@ -91,6 +91,17 @@ PsdLocation::~PsdLocation()
 {
 }
 
+PsdLocation *PsdLocation::testPsdLocation()
+{
+    return new PsdLocation();
+}
+
+void PsdLocation::testPsdLocation(PsdLocation *pInstance)
+{
+    delete pInstance;
+    pInstance = NULL;
+}
+
 float PsdLocation::accumulateChildsLength(struct TreeNode *Node)
 {
     //return directly when Node is NULL
@@ -107,6 +118,11 @@ float PsdLocation::accumulateChildsLength(struct TreeNode *Node)
     {
         return 0.0;
     }
+}
+
+float PsdLocation::testaccumulateChildsLength(struct TreeNode *Node)
+{
+    return accumulateChildsLength(Node);
 }
 
 float PsdLocation::calcRoDis2Intersection(Data2Location data2Location)
@@ -397,6 +413,11 @@ RoadSegmentClass PsdLocation::calcRoadSegmentClass()
     return RoadClass;
 }
 
+RoadSegmentClass PsdLocation::testcalcRoadSegmentClass()
+{
+    return calcRoadSegmentClass();
+}
+
 bool PsdLocation::RoMatchSegment(Position3D_D RoPoint)
 {
     //TODO1: in order for the following variables ro start with an invalid value when each time this function is invoked
@@ -408,6 +429,7 @@ bool PsdLocation::RoMatchSegment(Position3D_D RoPoint)
     // pthread_mutex_lock(&decoderThreadMutex);
     for (auto it = PsdMessageDecoder::getInstance()->getVPsdMap().begin(); it != PsdMessageDecoder::getInstance()->getVPsdMap().end(); it++)
     {
+        printf("[%s] [%d]: %u segment\n", __FUNCTION__, __LINE__, (*it)->preSegmentId);
         if ((*it)->segIsInTree == true)
         {
             //TODO3: transform RoPoint, segment's startCoord, endCoord and vSampleCoord of  the type of Postion3D to Point (x, y), consider sp and curve
@@ -569,6 +591,11 @@ bool PsdLocation::getPsdAvailable()
     return mData2EventList.PsdAvailable;
 }
 
+bool PsdLocation::testgetPsdAvailable()
+{
+    return getPsdAvailable();
+}
+
 void PsdLocation::getEventDistance()
 {
 }
@@ -619,7 +646,7 @@ Data2EventList PsdLocation::getPsdRoLocation(Data2Location data2Location)
             mData2EventList.HvDTIP = 0.0;
             mData2EventList.RvDTIP = 0.0;
         }
-
+//Note: if the real road is a straight path and every node just have one child, set ChildsTotalLength as 0.0, because not having intersection! But if there's really no intersection then the relative direction won't be Dir_ComingFromLeft or Dir_ComingFromRight!
         if ((data2Location.RvSpeed != 0.0) && (RelativeDir == PSD_Dir_ComingFromLeft || RelativeDir == PSD_Dir_ComingFromRight))
         {
             mData2EventList.HvDTIP = calcHvDis2Intersection();

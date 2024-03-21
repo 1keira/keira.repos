@@ -44,8 +44,8 @@ Point GeometricCalc::coordinateTransform(const Position3D_D refPos, const double
     x = dn;       //rotate 90° counterclockwise: x' = x*cosθ + y*sinθ
     y = de;       //rotate 90° counterclockwise, then flip to the right for positive orientation: y' = y*cosθ - x*sinθ
     z = dd;
-    printf("[%s] [%d]: dn = %lf\n", __FUNCTION__, __LINE__, dn);
-    printf("[%s] [%d]: de = %lf\n",  __FUNCTION__, __LINE__, de);
+    // printf("[%s] [%d]: dn = %lf\n", __FUNCTION__, __LINE__, dn);
+    // printf("[%s] [%d]: de = %lf\n",  __FUNCTION__, __LINE__, de);
 
 
     /*Coordinate system rotation*/
@@ -55,8 +55,8 @@ Point GeometricCalc::coordinateTransform(const Position3D_D refPos, const double
     double y_;  //the Y coordinate of the target after rotating the coordinate system
     y_ = x*sin(heading*M_PI/180)+y*cos(heading*M_PI/180);
     x_ = x*cos(heading*M_PI/180)-y*sin(heading*M_PI/180);
-    printf("[%s] [%d]: y_ = %lf\n", __FUNCTION__, __LINE__, y_);
-    printf("[%s] [%d]: x_ = %lf\n", __FUNCTION__, __LINE__, x_);
+    // printf("[%s] [%d]: y_ = %lf\n", __FUNCTION__, __LINE__, y_);
+    // printf("[%s] [%d]: x_ = %lf\n", __FUNCTION__, __LINE__, x_);
 
     Point XY_coordinate;
     XY_coordinate.x = x_;
